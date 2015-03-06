@@ -35,7 +35,8 @@
     "start": "node app.js",
     "debug": "node debug app.js",
     "dev": "node app.js",
-    "prod": "node app.js --prod"
+    "prod": "node app.js --prod",
+    "postinstall": "bower install"
   },
   "main": "app.js",
   "repository": {
