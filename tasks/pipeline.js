@@ -26,6 +26,12 @@ var jsFilesToInject = [
   // Load sails.io before everything else
   'js/dependencies/sails.io.js',
 
+  // Bower components
+  'bower_components/angular/angular.min.js',
+  'bower_components/angular-route/angular-route.min.js',
+  'bower_components/angular-resource/angular-resource.min.js',
+  'bower_components/lodash/lodash.min.js',
+
   // Load main Angular app config
   'js/app.js',
 
