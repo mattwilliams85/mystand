@@ -22,7 +22,19 @@ boot2docker up
 Build a Docker image with fig:
 
 ```bash
-fig build && fig run web npm install
+fig build
+```
+
+Install back-end dependencies(listed in package.json):
+
+```bash
+fig run web npm install
+```
+
+Install front-end dependencies(listed in bower.json):
+
+```bash
+fig run web bower install --allow-root
 ```
 
 Start application:
