@@ -84,13 +84,12 @@ module.exports.connections = {
 
   defaultPostgresqlServer: {
     adapter: 'sails-postgresql',
-    host: 'db',
-    user: 'postgres',
-    password: '',
-    // user: process.env.POSTGRES_USERNAME || '',
-    // password: process.env.POSTGRES_PASSWORD || '',
-    database: 'postgres',
-    port: 5432
+    url: process.env.DATABASE_URL || 'postgres://postgres:@db:5432/postgres'
+    // host: 'db',
+    // user: 'postgres',
+    // password: '',
+    // database: 'postgres',
+    // port: 5432
   }
 
 

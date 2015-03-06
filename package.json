@@ -5,6 +5,10 @@
   "description": "myStand app",
   "author": "Eyecuelab <sasha.shamne@eyecuelab.com>",
   "keywords": [],
+  "engines": {
+    "node": "0.12.0",
+    "npm": "2.6.0"
+  },
   "dependencies": {
     "sails": "~0.11.0",
     "sails-disk": "~0.10.0",
