@@ -22,10 +22,10 @@ boot2docker up
 Build a Docker image with fig:
 
 ```bash
-fig build
+fig build && fig run web npm install
 ```
 
-Start an app:
+Start application:
 
 ```bash
 fig up
@@ -37,10 +37,15 @@ App will be accessible on port 3000 with an ip that you can get by running this 
 boot2docker ip
 ```
 
-To run any command on the VM image (for example 'npm test'):
+Run test suite:
 
 ```bash
 fig run web npm test
+```
+
+Install dependencies(when package.json gets changed):
+```bash
+fig run web npm install
 ```
 
 Access postgres console:
