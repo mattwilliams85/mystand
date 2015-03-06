@@ -68,3 +68,17 @@ fig run db psql -h db -U postgres
 
 
 ## Deploying
+
+#### Things to know:
+
+To use sass and compass heroku will need a ruby and sass installed. Because heroku detects package.json and assumes it is a NodeJS App it doesn't install Ruby, so the heroku multipack is required, and to properly deploy heroku env var and .buildpacks file are necessary:
+
+```bash
+cat .buildpacks
+https://github.com/heroku/heroku-buildpack-nodejs.git
+https://github.com/heroku/heroku-buildpack-ruby.git
+```
+
+```bash
+heroku config:add BUILDPACK_URL=https://github.com/ddollar/heroku-buildpack-multi.git
+```
