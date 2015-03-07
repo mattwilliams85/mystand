@@ -24,7 +24,7 @@ myStandApp.config(
 );
 
 myStandApp.config(['$provide', function($provide) {
-  $provide.decorator('$templateCache', function($delegate, $sniffer) {
+  $provide.decorator("$templateCache", ["$delegate", "$sniffer", function ($delegate, $sniffer) {
     var originalGet = $delegate.get;
 
     $delegate.get = function(key) {
@@ -42,7 +42,7 @@ myStandApp.config(['$provide', function($provide) {
     };
 
     return $delegate;
-  });
+  }]);
 
   return this;
 }]);
