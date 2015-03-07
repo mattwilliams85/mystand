@@ -1,0 +1,59 @@
+h1, h2, h3, h4 {
+  text-transform: uppercase;
+}
+
+.ms-fixed-bg {
+  position: relative;
+  height: 100%;
+  background-attachment: scroll;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  z-index: 1;
+
+  @media #{$small} {
+    background-attachment: fixed;
+  }
+}
+
+.ms-scrolling-bg {
+  position: relative;
+  z-index: 2;
+  color: #000;
+}
+
+.ms-page-content-center {
+  @include vertical-align-center;
+
+  text-align: center;
+}
+
+.ms-page-content {
+  padding: 5em 0;
+}
+
+
+/*
+ * Utility
+ *
+*/
+.ms-button-transparent {
+  padding: 1em;
+  border: 2px solid #fff;
+
+  &.black {
+    border-color: #000;
+    color: #000;
+    &:hover {
+      color: #000;
+    }
+  }
+
+  &.white {
+    color: #fff;
+    border-color: #fff;
+    &:hover {
+      color: #fff;
+    }
+  }
+}

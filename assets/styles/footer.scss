@@ -1,0 +1,20 @@
+/*
+ * Footer
+ *
+*/
+
+$footer-height: 200px;
+
+.ms-footer {
+  background: #363636;
+  color: #fff;
+  height: $footer-height;
+
+  h6 {
+    color: #fff;
+  }
+
+  .inner {
+    @include vertical-align-center;
+  }
+}

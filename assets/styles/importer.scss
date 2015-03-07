@@ -14,7 +14,18 @@
  * or any other Grunt tasks you like.)
  */
 
-@import 'app.scss';
+@mixin vertical-align-center {
+  position: relative;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
 
 // Import zurb foundation framework
 @import "assets/bower_components/foundation/scss/foundation";
+
+@import 'main.scss';
+@import 'header.scss';
+@import 'footer.scss';
+@import 'landing.scss';
