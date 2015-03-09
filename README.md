@@ -63,9 +63,14 @@ fig run web npm install
 Access postgres console:
 
 ```bash
-fig run db psql -h db -U postgres
+fig run db psql -h db -U postgres postgres
 ```
 
+Reset database:
+
+```bash
+fig run db psql -h db -U postgres -c "drop schema public cascade;create schema public"
+```
 
 ## Deploying
 
