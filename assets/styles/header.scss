@@ -6,23 +6,26 @@
 $header-height: 100px;
 
 .ms-header-guest {
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: $header-height;
-  background: rgba(0, 0, 0, 0.4);
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  // background: rgba(0, 0, 0, 0.4);
+  // box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
   z-index: 2;
 
   a {
     color: #fff;
+    &:hover {
+      color: #ccc;
+    }
   }
 
   .logo {
     float: left;
-    font-size: 2em;
     text-transform: uppercase;
+    margin-right:60px ;
 
     span {
       color: #00CCFF;
@@ -34,10 +37,26 @@ $header-height: 100px;
   }
 
   .header-nav {
-    float: right;
     color: #fff;
     margin-right: 10px;
     text-transform: uppercase;
+
+    .divider {
+      margin:0 .3em;
+    }
+
+    .left-side {
+      display:inline-block;
+      float:left;
+    }
+
+    .right-side {
+      display:inline-block;
+      float:right;
+      .search {
+        margin-right:60px;
+      }
+    }
 
     ul {
       line-height: $header-height;
@@ -45,7 +64,8 @@ $header-height: 100px;
 
       li {
         display: inline-block;
-        margin-left: 1em;
+        font-size:15px;
+        letter-spacing:.25em;
       }
     }
   }
