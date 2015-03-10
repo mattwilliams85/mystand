@@ -11,8 +11,6 @@ $header-height: 100px;
   left: 0;
   width: 100%;
   height: $header-height;
-  // background: rgba(0, 0, 0, 0.4);
-  // box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
   z-index: 2;
 
   a {
@@ -21,6 +19,65 @@ $header-height: 100px;
       color: #ccc;
     }
   }
+
+  // SEARCH BOX ANIMATION //
+  $tl: 0.6s; // transition length
+
+  .search-container {
+    position:relative;
+  }
+
+  .search-box {
+    transition: width $tl, border-radius $tl, background $tl, box-shadow $tl;
+    width: 32px; height: 32px;
+    border-radius: 1px;border: none;
+    cursor: pointer;
+    background: rgba(0,0,0,0);
+    float:left;
+    
+    &:hover {
+      label {
+        color: #ccc;
+      }
+    }
+    &:focus {
+      transition: width $tl cubic-bezier(0,1.22,.66,1.39), border-radius $tl, background $tl;
+      border: none;outline: none;
+      box-shadow: none;
+      padding-left: 15px;
+      padding-right:35px;
+      cursor: text;
+      width: 250px;
+      border-radius: auto;
+      background: rgba(50,50,50,.8);
+      color: #ccc;
+      & + label .fa-search {  
+        color: #bbb;
+      }
+    }
+    &:not(:focus) {  
+      text-indent:-5000px;
+    }
+  }
+
+  #search-submit {
+    position: relative;left: -5000px;
+  }
+
+  label {    
+    color: #fff;
+    position: relative;
+    left:-25px;
+    top:5px;
+    float:left;
+    .fa-search {
+      font-size:15pt;
+      &:hover {
+       color: #bbb;
+      }
+    }
+  }
+// END //
 
   .logo {
     float: left;
@@ -53,6 +110,12 @@ $header-height: 100px;
     .right-side {
       display:inline-block;
       float:right;
+      li {
+        &:first-child {
+          float:left;
+          margin:34px 0px 0 0;
+        }
+      }
       .search {
         margin-right:60px;
       }

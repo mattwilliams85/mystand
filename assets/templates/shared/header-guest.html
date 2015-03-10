@@ -10,7 +10,13 @@
             <li><a ng-href="#/start">Start</a></li>
           </div>
           <div class="right-side">
-            <li class="search"><a><i class="fa fa-search"></i></a></li>
+            <!-- <li class="search"><a><i class="fa fa-search"></i></a></li> -->
+            <li>
+            <form class="search-container" action="">
+              <input id="search-box" type="text" class="search-box"/>
+              <label for="search-box"><i class="fa fa-search"></i></label>
+              <input type="submit" id="search-submit" />
+            </li>
             <li><a ng-href="#/sign-up">Sign Up</a></li>
             <li class="divider">|</li>
             <li><a ng-href="#/sign-in">Log In</a></li>
