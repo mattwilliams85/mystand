@@ -1,9 +1,40 @@
-body {
+body * {
   font-family: 'Source Sans Pro', sans-serif;
 }
+
 h1, h2, h3, h4 {
   text-transform: uppercase;
-  letter-spacing: 6pt;
+  font-weight: 600;
+  letter-spacing: .1em;
+  color:inherit;
+}
+
+h1 {
+  font-size: 36pt;
+}
+
+h2 {
+  font-size: 32pt;
+}
+
+h3 {
+  font-size: 21pt;
+}
+
+h4 {
+  font-size: 16pt;
+}
+
+.spaced {
+  letter-spacing: .25em;
+}
+
+.uppercase {
+  text-transform: uppercase;
+}
+
+.italic {
+  font-style: italic;
 }
 
 .ms-fixed-bg {
@@ -42,8 +73,11 @@ h1, h2, h3, h4 {
  *
 */
 .ms-button-transparent {
-  padding: 1em;
+  padding: 1em 3em;
   border: 2px solid #fff;
+  border-radius:2px;
+  font-weight:600;
+  letter-spacing:.1em;
 
   &.black {
     border-color: #000;

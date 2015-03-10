@@ -1,8 +1,45 @@
 .ms-bg-1 {
   background-image: url("/images/landing/bg-1.jpg");
   color: #fff;
+}
 
-  h1 {
-    color: #fff;
+.fa-bg-2 {
+  h4 {
+    font-weight:400;
+  }
+}
+
+.header-section {
+  span {
+    font-size: 18pt;
+  }
+  .narrow {
+    width:70%;
+    margin:0 auto;
+  }
+}
+
+.appstore-section {
+  .ms-page-content {
+    padding-bottom:200px;
+    padding-top:200px;
+    position:relative;
+
+    h2 {
+      line-height:10pt;
+    }
+    h3 {
+      line-height:1em;
+    }
+    .uppercase {
+      line-height:40pt;
+    }
+    
+    img.iphone {
+      width:450px;
+      position:absolute;
+      bottom:-201px;
+      left:50px;
+    }
   }
 }

@@ -8,13 +8,34 @@ $footer-height: 200px;
 .ms-footer {
   background: #363636;
   color: #fff;
+  letter-spacing:.25em;
   height: $footer-height;
 
   h6 {
     color: #fff;
   }
 
+  .logo {
+    font-size:15pt;
+    float:left;
+  }
+
   .inner {
     @include vertical-align-center;
+  }
+
+  .right-side {
+    float:right;
+  }
+
+  li {
+    display:inline-block;
+    text-transform:uppercase;
+    font-size:10pt;
+
+    &.divider {
+      font-size:15pt;
+      margin: 0px 5px;
+    }
   }
 }
