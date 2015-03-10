@@ -74,15 +74,13 @@ module.exports.connections = {
   *                                                                          *
   *                                                                          *
   ***************************************************************************/
-  // somePostgresqlServer: {
-  //   adapter: 'sails-postgresql',
-  //   host: 'YOUR_POSTGRES_SERVER_HOSTNAME_OR_IP_ADDRESS',
-  //   user: 'YOUR_POSTGRES_USER',
-  //   password: 'YOUR_POSTGRES_PASSWORD',
-  //   database: 'YOUR_POSTGRES_DB'
-  // },
+  devPostgresqlServer: {
+    adapter: 'sails-postgresql',
+    url: process.env.DATABASE_URL || 'postgres://postgres:@localhost:5432/mystand_dev',
+    pool: false
+  },
 
-  defaultPostgresqlServer: {
+  prodPostgresqlServer: {
     adapter: 'sails-postgresql',
     url: process.env.DATABASE_URL || 'postgres://postgres:@db:5432/postgres'
     // host: 'db',
