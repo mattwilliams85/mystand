@@ -12,9 +12,6 @@ module.exports = {
       type: 'integer',
       required: true
     },
-    video_url: {
-      type: 'string'
-    },
     full_description: {
       type: 'text'
     },

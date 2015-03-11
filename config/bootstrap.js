@@ -17,7 +17,9 @@ module.exports.bootstrap = function(cb) {
 
   async.series([
     User.seed,
-    Category.seed
+    Category.seed,
+    Stand.seed,
+    FeaturedStand.seed
   ], cb);
 
 };

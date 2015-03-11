@@ -47,7 +47,12 @@ module.exports.models = {
     self.count().exec(function(err, count) {
       if (!err && count === 0) {
         sails.log.debug('Seeding ' + modelName + '...');
-        if (self.seedData instanceof Array) {
+        if (typeof(self.seedData) === 'function') {
+          self.seedData(function(data) {
+            self.seedData = data;
+            self.seedArray(callback);
+          });
+        } else if (self.seedData instanceof Array) {
           self.seedArray(callback);
         } else {
           self.seedObject(callback);

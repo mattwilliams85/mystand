@@ -43,6 +43,8 @@ module.exports.routes = {
   // '/logout': 'AuthController.logout',
   // 'get /me': 'UserController.profile'
 
+  'get /featured-stands': 'FeaturedStandsController.index'
+
   /***************************************************************************
   *                                                                          *
   * Custom routes here...                                                    *

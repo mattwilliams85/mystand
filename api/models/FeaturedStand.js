@@ -8,12 +8,39 @@ module.exports = {
   tableName: 'featured_stands',
 
   attributes: {
-    stand_id: {
-      type: 'integer',
+    stand: {
+      model: 'Stand',
       required: true
     },
     position: {
       type: 'integer'
+    },
+
+    toJSON: function() {
+      var obj = this.toObject();
+      return {
+        id: obj.id,
+        position: obj.position,
+        title: obj.stand.title,
+        description: obj.stand.description,
+        image_original_url: obj.stand.image_original_url,
+        youtube: obj.stand.youtube,
+        goal: obj.stand.goal,
+        actions_count: obj.stand.actions_count
+      };
     }
+  },
+
+  seedData: function(callback) {
+    var seedData = [];
+    Stand.find().limit(5).exec(function(err, stands) {
+      for (var i in stands) {
+        seedData.push({
+          stand: stands[i].id,
+          position: parseInt(i) + 1
+        });
+      }
+      return callback(seedData);
+    });
   }
 };
