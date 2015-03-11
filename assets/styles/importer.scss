@@ -24,7 +24,17 @@
 
 // Import zurb foundation framework
 @import "assets/bower_components/foundation/scss/foundation";
+// Import font awesome
 @import "../bower_components/fontawesome/css/font-awesome.min.css";
+
+// Set Slick Carousel Variables
+$slick-dot-size: 24px;
+$slick-dot-color: white;
+$slick-font-path: '../bower_components/slick-carousel/slick/fonts/';
+// Import Slick Carousel Structure CSS
+@import "../bower_components/slick-carousel/slick/slick.scss";
+// Import Slick Carousel Visual CSS
+@import "../bower_components/slick-carousel/slick/slick-theme.scss";
 
 @import 'main.scss';
 @import 'header.scss';

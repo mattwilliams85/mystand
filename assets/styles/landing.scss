@@ -3,10 +3,21 @@
   color: #fff;
 }
 
+.ms-bg-2 {
+  background-image: url("/images/landing/citygirl.png");
+  color: #fff;
+  background-attachment:fixed;
+}
+
 .fa-bg-2 {
   h4 {
     font-weight:400;
   }
+}
+
+.ms-bg-3 {
+  background-color:#fff;
+  padding:100px 0px;
 }
 
 .header-section {
@@ -17,6 +28,10 @@
     width:70%;
     margin:0 auto;
   }
+}
+
+.join-section {
+  height:400px;
 }
 
 .appstore-section {

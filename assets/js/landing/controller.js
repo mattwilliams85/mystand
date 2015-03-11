@@ -14,7 +14,10 @@ LandingCtrl.prototype.init = function($scope, $location) {
 
 LandingCtrl.prototype.fetch = function($scope) {
   if ($scope.mode === 'home') {
-
+    // initialize Featured Stands carousel
+    $('.ms-featured-stands').slick({
+      draggable: false
+    });
   }
 };
 
