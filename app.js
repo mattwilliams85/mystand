@@ -53,6 +53,14 @@ process.chdir(__dirname);
     }
   }
 
+  var fs = require('fs');
+  ///// Load env variables from .env file (This will NOT overwrite existing env vars)
+  var envFilePath = __dirname + '/.env';
+  if (fs.existsSync(envFilePath)) {
+    var env = require('node-env-file');
+    env(__dirname + '/.env');
+  }
+  /////
 
   // Start server
   sails.lift(rc('sails'));
