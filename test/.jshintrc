@@ -21,6 +21,8 @@
   "smarttabs": true,
   "white": false,
   "predef": [
+    "request",
+    "agent",
     "after",
     "afterEach",
     "before",

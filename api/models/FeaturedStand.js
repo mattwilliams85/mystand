@@ -26,7 +26,7 @@ module.exports = {
         image_original_url: obj.stand.image_original_url,
         youtube: obj.stand.youtube,
         goal: obj.stand.goal,
-        actions_count: obj.stand.actions_count
+        actions_count: obj.stand.actions_count || 0
       };
     }
   },

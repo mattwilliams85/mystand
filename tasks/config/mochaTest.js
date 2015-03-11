@@ -4,9 +4,11 @@ module.exports = function(grunt) {
     test: {
       options: {
         reporter: 'spec',
-        require: 'test/helpers'
+        require: 'test/helpers',
+        timeout: 50000,
+        recursive: true
       },
-      src: ['test/**/*Spec.js']
+      src: ['test/hooks.js', 'test/**/*Spec.js']
     }
   });
 

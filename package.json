@@ -34,10 +34,12 @@
   "devDependencies": {
     "chai": "^2.1.1",
     "grunt-mocha-test": "^0.12.7",
+    "joi": "^6.0.8",
     "mocha": "^2.2.1",
     "node-env-file": "0.1.7",
     "sinon": "^1.13.0",
-    "sinon-chai": "^2.7.0"
+    "sinon-chai": "^2.7.0",
+    "supertest": "^0.15.0"
   },
   "scripts": {
     "start": "node app.js",

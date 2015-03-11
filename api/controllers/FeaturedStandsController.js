@@ -1,3 +1,5 @@
+'use strict';
+
 /**
  * FeaturedStandsController.js
  *
