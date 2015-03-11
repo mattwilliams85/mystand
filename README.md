@@ -49,12 +49,6 @@ App will be accessible on port 3000 with an ip that you can get by running this 
 boot2docker ip
 ```
 
-Run test suite:
-
-```bash
-fig run web npm test
-```
-
 Install dependencies(when package.json gets changed):
 ```bash
 fig run web npm install
@@ -70,6 +64,12 @@ Reset database:
 
 ```bash
 fig run db psql -h db -U postgres -c "drop schema public cascade;create schema public"
+```
+
+## Testing
+
+```bash
+fig run web grunt test
 ```
 
 ## Deploying

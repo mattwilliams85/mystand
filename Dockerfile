@@ -5,6 +5,7 @@ RUN apt-get update && apt-get install -y ruby ruby-dev ruby-bundler
 RUN gem install sass -v=3.4.13
 
 RUN cd / && npm install -g bower
+RUN cd / && npm install -g grunt-cli
 
 ### Install npm packages with: 'fig run web npm install',
 ### because volumes do not persist data - https://docs.docker.com/userguide/dockervolumes/
