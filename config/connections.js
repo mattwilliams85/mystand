@@ -76,18 +76,13 @@ module.exports.connections = {
   ***************************************************************************/
   devPostgresqlServer: {
     adapter: 'sails-postgresql',
-    url: process.env.DATABASE_URL || 'postgres://Matthew:@localhost:5432/mystand_dev',
+    url: process.env.DATABASE_URL || 'postgres://postgres:@db:5432/postgres',
     pool: false
   },
 
   prodPostgresqlServer: {
     adapter: 'sails-postgresql',
-    url: process.env.DATABASE_URL || 'postgres://postgres:@db:5432/postgres'
-    // host: 'db',
-    // user: 'postgres',
-    // password: '',
-    // database: 'postgres',
-    // port: 5432
+    url: process.env.DATABASE_URL
   }
 
 
