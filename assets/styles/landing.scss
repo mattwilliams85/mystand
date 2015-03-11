@@ -1,12 +1,27 @@
-.ms-bg-1 {
+.header-bg {
   background-image: url("/images/landing/bg-1.jpg");
   color: #fff;
 }
 
-.ms-bg-2 {
-  background-image: url("/images/landing/citygirl.png");
+.city-bg {
+  background-image:linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
+    url("/images/landing/city.png");
+  background-position: center center;
   color: #fff;
-  background-attachment:fixed;
+  background-attachment:scroll;
+}
+
+.girl-bg {
+  background-image:linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
+    url("/images/landing/girl.png");
+  background-position: center center;
+  color: #fff;
+  background-attachment:scroll;
+}
+
+.white-bg {
+  background-color:#fff;
+  padding:100px 0px;
 }
 
 .fa-bg-2 {
@@ -15,9 +30,12 @@
   }
 }
 
-.ms-bg-3 {
-  background-color:#fff;
-  padding:100px 0px;
+.mask-dark {
+  // background-color:rgba(0,255,255,.5);
+  height:100%;
+  width:100%;
+  z-index:3;
+  position:relative;
 }
 
 .header-section {
@@ -30,13 +48,30 @@
   }
 }
 
+.featured-section {
+    background-position: center 0px;
+}
+
 .join-section {
   height:400px;
 }
 
+.ms-featured-stands {
+  .featured-stand {
+    .progress {
+      border: 0;
+      padding: 0;
+      .meter {
+        margin: 0;
+        background-color: #933232;
+      }
+    }
+  }
+}
+
 .appstore-section {
   .ms-page-content {
-    padding-bottom:200px;
+    padding-bottom:100px;
     padding-top:200px;
     position:relative;
 

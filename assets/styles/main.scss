@@ -2,22 +2,24 @@ body * {
   font-family: 'Source Sans Pro', sans-serif;
 }
 
-h1, h2, h3, h4 {
-  text-transform: uppercase;
+h1, h2, h3, h4, h5 {
   font-weight: 600;
   letter-spacing: .1em;
   color:inherit;
 }
 
 h1 {
+  text-transform: uppercase;
   font-size: 36pt;
 }
 
 h2 {
+  text-transform: uppercase;
   font-size: 32pt;
 }
 
 h3 {
+  text-transform: uppercase;
   font-size: 21pt;
 }
 
