@@ -10,7 +10,7 @@ h1, h2, h3, h4, h5 {
 
 h1 {
   text-transform: uppercase;
-  font-size: 36pt;
+  font-size: 44pt;
 }
 
 h2 {
@@ -25,6 +25,12 @@ h3 {
 
 h4 {
   font-size: 16pt;
+}
+
+span {
+  font-size:13pt;
+  line-height:21pt;
+  font-weight:400pt;
 }
 
 .spaced {
@@ -75,17 +81,23 @@ h4 {
  *
 */
 .ms-button-transparent {
-  padding: 1em 3em;
+  padding: 1em 2.5em;
   border: 2px solid #fff;
   border-radius:2px;
   font-weight:600;
   letter-spacing:.1em;
+  -o-transition:.5s;
+  -ms-transition:.5s;
+  -moz-transition:.5s;
+  -webkit-transition:.5s;
+  transition:.5s;
 
   &.black {
     border-color: #000;
     color: #000;
     &:hover {
-      color: #000;
+      background-color:#111;
+      color: #eee;
     }
   }
 
@@ -93,7 +105,8 @@ h4 {
     color: #fff;
     border-color: #fff;
     &:hover {
-      color: #fff;
+      background-color:#fff;
+      color: #333;
     }
   }
 }
