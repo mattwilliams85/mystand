@@ -46,6 +46,10 @@ module.exports.routes = {
   *                                                                          *
   ***************************************************************************/
 
+  'post /users': 'UsersController.create',
+  'post /login': 'SessionsController.create',
+  'delete /login': 'SessionsController.destroy',
+
   'get /featured-stands': 'FeaturedStandsController.index',
   'get /trending-stands': 'TrendingStandsController.index'
 

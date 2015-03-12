@@ -6,7 +6,7 @@
  */
 
 module.exports = {
-  index: function (req, res) {
+  index: function(req, res) {
     var items = [];
     FeaturedStand.find().populate('stand').limit(5).sort('position').exec(function(err, featuredStands) {
       for (var i in featuredStands) {

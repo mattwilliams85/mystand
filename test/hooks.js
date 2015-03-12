@@ -3,6 +3,7 @@
 var Sails = require('sails');
 
 global.agent = {}; // Actual agent will be defined on sails lift callback in this file
+global.csrfToken = ''; // Actual csrfToken will be defined on sails lift callback in this file
 
 before(function(done) {
   Sails.lift({
@@ -15,7 +16,14 @@ before(function(done) {
     if (err) return done(err);
     // Here you can load fixtures, etc.
     agent = request.agent(sails.hooks.http.app);
-    done(err, sails);
+    // Request csrftoken
+    agent.get('/').end(function(err, res) {
+      var regExp = /\_csrf\:\ \"([^"]+)/g;
+      csrfToken = regExp.exec(res.text)[1];
+      console.log('Received csrftoken: ', csrfToken);
+
+      done(err, sails);
+    });
   });
 });
 

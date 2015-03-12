@@ -14,3 +14,5 @@ var sinonChai = require('sinon-chai');
 global.chai.use(sinonChai);
 
 global.request = require('supertest');
+
+global.DatabaseCleaner = require(__dirname + '/../lib/DatabaseCleaner')();

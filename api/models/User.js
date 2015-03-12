@@ -5,6 +5,8 @@
  *
 */
 
+var bcrypt = require('bcrypt');
+
 module.exports = {
 
   tableName: 'users',
@@ -21,18 +23,47 @@ module.exports = {
     },
     email: {
       type: 'email',
+      unique: true,
       required: true
     },
-    encrypted_password: {
-      type: 'string'
+    password: {
+      type: 'string',
+      minLength: 8,
+      required: true,
+      columnName: 'encrypted_password'
     },
 
     /*
      * Instance methods
     */
-    fullName: function() {
-      return this.first_name + ' ' + this.last_name;
+    toJSON: function() {
+      var obj = this.toObject();
+      return {
+        id: obj.id,
+        email: obj.email,
+        first_name: obj.first_name,
+        last_name: obj.last_name
+      };
     }
+  },
+
+  beforeCreate: function(attrs, callback) {
+    this.encryptPassword(attrs.password, function(err, hash) {
+      if (err) return callback(err);
+
+      attrs.password = hash;
+      return callback();
+    });
+  },
+
+  encryptPassword: function(password, callback) {
+    bcrypt.genSalt(10, function(err, salt) {
+      bcrypt.hash(password, salt, function(err, hash) {
+        if (err) return callback(err);
+
+        return callback(null, hash);
+      });
+    });
   },
 
   // Seed data (only runs if Users count is 0)

@@ -17,7 +17,7 @@ var trendingStandsSchema = joi.object({
 });
 
 describe('GET /trending-stands', function() {
-  it ('should return a list of trending stands', function(done) {
+  it('should return a list of trending stands', function(done) {
     agent.get('/trending-stands').end(function(err, res) {
       expect(res.statusCode).to.eql(200);
       var validation = trendingStandsSchema.validate(res.body);

@@ -18,7 +18,7 @@ var featuredStandsSchema = joi.object({
 });
 
 describe('GET /featured-stands', function() {
-  it ('should return a list of featured stands', function(done) {
+  it('should return a list of featured stands', function(done) {
     agent.get('/featured-stands').end(function(err, res) {
       expect(res.statusCode).to.eql(200);
       var validation = featuredStandsSchema.validate(res.body);
