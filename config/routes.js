@@ -36,15 +36,6 @@ module.exports.routes = {
     view: 'index'
   },
 
-  // 'get /signup': { view: 'conversion/signup' },
-  // 'post /signup': 'AuthController.processSignup',
-  // 'get /login': { view: 'portal/login' },
-  // 'post /login': 'AuthController.processLogin',
-  // '/logout': 'AuthController.logout',
-  // 'get /me': 'UserController.profile'
-
-  'get /featured-stands': 'FeaturedStandsController.index'
-
   /***************************************************************************
   *                                                                          *
   * Custom routes here...                                                    *
@@ -54,5 +45,8 @@ module.exports.routes = {
   * for configuration options and examples.                                  *
   *                                                                          *
   ***************************************************************************/
+
+  'get /featured-stands': 'FeaturedStandsController.index',
+  'get /trending-stands': 'TrendingStandsController.index'
 
 };

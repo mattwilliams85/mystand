@@ -1,3 +1,5 @@
+'use strict';
+
 module.exports = function(grunt) {
 
   grunt.config.set('mochaTest', {
@@ -5,8 +7,7 @@ module.exports = function(grunt) {
       options: {
         reporter: 'spec',
         require: 'test/helpers',
-        timeout: 50000,
-        recursive: true
+        timeout: 30000
       },
       src: ['test/hooks.js', 'test/**/*Spec.js']
     }
