@@ -6,8 +6,17 @@ var myStandApp = angular.module('myStandApp', [
   'myStandServices'
 ]);
 
-myStandApp.run(['$rootScope', '$location',
-  function ($rootScope, $location) {
+myStandApp.run(['$rootScope', '$location', '$timeout',
+  function ($rootScope, $location, $timeout) {
+    // Prevent A-sync issue with Foundation.js 
+    $timeout(function() {
+      $(document).foundation({
+        offcanvas : {
+          open_method: 'move', 
+          close_on_click : false
+        }
+      });
+    }, 100);
     //
   }
 ]);

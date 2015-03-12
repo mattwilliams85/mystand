@@ -2,6 +2,7 @@
 .header-bg {
   background-image: url("/images/landing/bg-1.jpg");
   color: #fff;
+  height:100%;
 }
 
 .city-bg {
@@ -46,6 +47,7 @@
 
 //SECTIONS
 .header-section {
+  height:100vh;
   span {
     font-size: 18pt;
   }

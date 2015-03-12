@@ -1,7 +1,9 @@
+
+
 <header class="ms-header-guest">
   <div class="row">
     <div class="large-12 columns">
-      <nav class="header-nav">
+      <nav class="header-nav show-for-medium-up">
         <ul>
           <div class="left-side">
             <li class="logo"><a ng-href="#/discover">MYSTAND</a></li>
@@ -16,6 +18,7 @@
               <input id="search-box" type="text" class="search-box"/>
               <label for="search-box"><i class="fa fa-search"></i></label>
               <input type="submit" id="search-submit" />
+            </form>
             </li>
             <li><a ng-href="#/sign-up">Sign Up</a></li>
             <li class="divider">|</li>
@@ -23,6 +26,18 @@
           </div>
         </ul>
       </nav>
+      <!-- MOBILE NAV -->
+      <nav class="mobile-header-nav show-for-small-only">
+        <form class="mobile-search-container" action="">
+          <input id="search-box" type="text"/>
+          <label for="search-box"><i class="fa fa-search"></i></label>
+          <input type="submit" id="search-submit" />
+        </form>
+        <a class="right-off-canvas-toggle"><i class="fa fa-bars"></i></a>
+       
+      </nav>
+      
+      <!-- END -->
     </div>
   </div>
 </header>

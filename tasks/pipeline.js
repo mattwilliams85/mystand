@@ -32,6 +32,7 @@ var jsFilesToInject = [
   'bower_components/angular-resource/angular-resource.min.js',
   'bower_components/lodash/lodash.min.js',
   'bower_components/jquery/dist/jquery.min.js',
+  'bower_components/foundation/js/foundation.min.js',
   'bower_components/slick-carousel/slick/slick.min.js',
 
   // Load main Angular app config
