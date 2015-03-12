@@ -1,3 +1,5 @@
+'use strict';
+
 /*
  * StandFlag.js
  *
