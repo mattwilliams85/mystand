@@ -33,6 +33,7 @@
     "sinon",
     "xit",
     "xdescribe",
-    "DatabaseCleaner"
+    "DatabaseCleaner",
+    "Factory"
   ]
 }

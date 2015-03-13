@@ -35,6 +35,7 @@
   },
   "devDependencies": {
     "chai": "^2.1.1",
+    "chance": "^0.7.3",
     "grunt-mocha-test": "^0.12.7",
     "joi": "^6.0.8",
     "mocha": "^2.2.1",

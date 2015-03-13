@@ -16,3 +16,4 @@ global.chai.use(sinonChai);
 global.request = require('supertest');
 
 global.DatabaseCleaner = require(__dirname + '/../lib/DatabaseCleaner')();
+global.Factory = require('./factory')();

@@ -1,6 +1,6 @@
-/*global User: true */
 'use strict';
 
+var q = require('q');
 var joi = require('joi');
 
 var userSchema = joi.object({
@@ -13,7 +13,8 @@ var userSchema = joi.object({
 });
 
 describe('POST /login', function() {
-  var email,
+  var factoryData,
+      email,
       password;
 
   beforeEach(function(done) {
@@ -21,11 +22,10 @@ describe('POST /login', function() {
     password = 'passw0RD';
 
     DatabaseCleaner.clean(['users'], function() {
-      User.create({
-        email: email,
-        password: password
-      })
-      .exec(function() {
+      q.all([
+        Factory.create('user', {email: email, password: password})
+      ]).then(function(data) {
+        factoryData = data;
         done();
       });
     });
