@@ -71,7 +71,8 @@ module.exports = {
     {
       first_name: 'Sasha',
       last_name: 'Shamne',
-      email: 'sasha.shamne@eyecuelab.com'
+      email: 'sasha.shamne@eyecuelab.com',
+      password: 'MyStand1'
     }
   ]
 };
