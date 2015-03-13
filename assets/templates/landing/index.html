@@ -1,9 +1,18 @@
 <div class="off-canvas-wrap" data-offcanvas>
   <div class="inner-wrap">
+    <nav class="right-off-canvas-menu" data-offcanvas>
+      <ul class="off-canvas-list">
+        <li class="active"><a href="#">HOME</a></li>
+        <li><a href="#">DISCOVER</a></li>
+        <li><a href="#">START</a></li>
+        <li><a href="#">SIGN-UP</a></li>
+        <li><a href="#">LOGIN</a></li>
+      </ul>
+    </nav>
     <ng-include src="'assets/templates/shared/header-guest.html'"></ng-include>
 
     <section class="header-section">
-      <div class="ms-fixed-bg header-bg">
+      <div class="header-bg">
         <div class="ms-page-content-center">
           <div class="row">
             <div class="large-2 columns">&nbsp;</div>
@@ -51,57 +60,29 @@
             <!-- Slick Carousel <http://kenwheeler.github.io/slick/> -->
             <div class="ms-featured-stands">
               <!-- Featured Stand -->
-              <div class="featured-stand">
-                <div class="large-8 columns">
-                  <iframe id="player" type="text/html" width="100%" height="390"
-                    src="https://www.youtube.com/embed/PwSHOI7DwWM?modestbranding=1;controls=0;showinfo=0;rel=0;fs=1"
-                    frameborder="0"  modestbranding="1" autohide="1" showinfo="1" controls="1";></iframe>
-                </div>
-                <div class="large-4 columns right-part">
-                  <!-- Featured Stand Title -->
-                  <h3>Dapibus Condime</h3>
-                  <!-- Featured Stand Tagline -->
-                  <h4 class="uppercase">Lorem Ipsum Dolor Sit</h4>
-                  <hr>
-                  <!-- Featured Stand Description -->
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                    sed do eiusmod tempor incididunt ut labore et dolore magna
-                    aliqua. Ut enim ad minim veniam...
-                  </p>
-                  <!-- Featured Stand Progress Meter -->
-                  <div class="progress">
-                    <span class="meter"></span>
+              <div class="featured-stand" ng-repeat="stand in featuredStands">
+                  <div class="large-8 columns">
+                    <iframe id="player" type="text/html" class="youtube-player" width="100%"
+                      ng-src="{{stand.youtube}}"
+                      frameborder="0"  modestbranding="1" autohide="1" showinfo="1" controls="1";></iframe>
                   </div>
-                  <!-- Featured Stand Progress Numbers -->
-                  <span>20 heroes have taken this stand.</span>
-                  <span>Let's get to 75.</span>
-                </div>
-              </div>
-              <!-- Featured Stand -->
-              <div class="featured-stand">
-                <div class="large-8 columns">
-                  <iframe id="player" type="text/html" width="100%" height="390"
-                    src="https://www.youtube.com/embed/3uNOnDJKGS8?modestbranding=1;controls=0;showinfo=0;rel=0;fs=1"
-                    frameborder="0"  modestbranding="1" autohide="1" showinfo="1" controls="1";></iframe>
-                </div>
-                <div class="large-4 columns right-part">
-                  <!-- Featured Stand Title -->
-                  <h3>Incididem Elit</h3>
-                  <!-- Featured Stand Tagline -->
-                  <h4 class="uppercase">In scelerisque sem</h4>
-                  <hr>
-                  <!-- Featured Stand Description -->
-                  <p>
-                    Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nam nec ante. Sed lacinia, urna non tincidunt mattis, tortor neque...
-                  </p>
-                  <!-- Featured Stand Progress Meter -->
-                  <div class="progress">
-                    <span class="meter"></span>
-                  </div>
-                  <!-- Featured Stand Progress Numbers -->
-                  <span>16 heroes have taken this stand.</span>
-                  <span>Let's get to 75.</span>
+                  <div class="large-4 columns right-part">
+                    <!-- Featured Stand Title -->
+                    <h3>{{stand.title}}</h3>
+                    <!-- Featured Stand Tagline -->
+                    <h4 class="uppercase">#Wildlife</h4>
+                    <hr>
+                    <!-- Featured Stand Description -->
+                    <p class="show-for-medium-up">
+                      {{stand.description}}
+                    </p>
+                    <!-- Featured Stand Progress Meter -->
+                    <div class="progress">
+                      <span class="meter"></span>
+                    </div>
+                    <!-- Featured Stand Progress Numbers -->
+                    <span>{{stand.actions_count}} heroes have taken this stand.</span>
+                    <span>Let's get to {{stand.goal}}.</span>
                 </div>
               </div>
             </div>
@@ -118,58 +99,26 @@
               <h2>TRENDING STANDs</h2>
               <h4 class="uppercase">Maecenas mattis, Sed convallis tristique sem</h4>
               <div class="row">
-                <div class="large-4 columns">
+                <div class="ms-trending-stands">
+                  <div class="large-4 columns" ng-repeat="stand in trendingStands">
                   <div class="trending-stand">
-                    <div class="trend-img">
-                      <img src="http://static.businessinsider.com/image/5221df9169beddce49072b56/image.jpg">
-                    </div>
-                    <div class="details">
-                      <h4>FREE MEOWMIX</h4>
-                      <p class="italic">Quisque volutpat condimentum.</p>
-                      <p>Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.</p>
-                      <div class="progress">
-                        <span class="meter"></span>
+                      <div class="trend-img">
+                        <img ng-src='{{stand.image_original_url}}'>
                       </div>
-                      <span>65 heroes have taken this stand.</span>
-                      <span>Let's get to 75.</span>
+                      <div class="details">
+                        <h4>{{stand.title}}</h4>
+                        <p class="italic">#trending</p>
+                        <p class="show-for-medium-up">{{stand.description}}</p>
+                        <div class="progress">
+                          <span class="meter"></span>
+                        </div>
+                        <span>{{stand.actions_count}} heroes have taken this stand.</span>
+                        <span>Let's get to {{stand.goal}}.</span>
+                      </div>
                     </div>
                   </div>
                 </div>
-                <div class="large-4 columns">
-                  <div class="trending-stand">
-                    <div class="trend-img">
-                      <img src="http://www.incrediblethings.com/wp-content/uploads/2012/07/cat-votes-for-himself.jpg">
-                    </div>
-                    <div class="details">
-                      <h4>LEGALIZE CATNIP</h4>
-                      <p class="italic">Quisque volutpat condimentum.</p>
-                      <p>Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.</p>
-                      <div class="progress">
-                        <span class="meter"></span>
-                      </div>
-                      <span>65 heroes have taken this stand.</span>
-                      <span>Let's get to 75.</span>
-                    </div>
-                  </div>
-                </div>
-                <div class="large-4 columns">
-                  <div class="trending-stand">
-                    <div class="trend-img">
-                      <img src="http://media.mlive.com/photogallery/photo/2013/09/john-serbas-cat-gus-reviews-5-contest-finalists-for-internet-cat-video-festival-1a94a0441f39cec3.jpg">
-                    </div>
-                    <div class="details">
-                      <h4>NO MORE DOGZ</h4>
-                      <p class="italic">Quisque volutpat condimentum.</p>
-                      <p>Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.</p>
-                      <div class="progress">
-                        <span class="meter"></span>
-                      </div>
-                      <span>65 heroes have taken this stand.</span>
-                      <span>Let's get to 75.</span>
-                    </div>
-                  </div>
-                </div>
-              </row>
+              </div>
             </div>
           </div>
         </div>
@@ -195,26 +144,21 @@
       <div class="ms-page-content">
         <div class="row">
           <div class="large-7 small-12 columns">
-              <h2>about the app</h2>
-              <span class="uppercase">Lorem ipsum dolor sit amet, consectetur adipisicing elit</span class="uppercase">
-              <h3> Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. </h3>
-              <span class="italic">Dapibus Condimentum Fermentum</span>
-            </div>
-            <div class="large-7 small-12 columns">
-              <img class="iphone show-for-large-up" src="/images/landing/phone.png">
-            </div>
+            <h2>about the app</h2>
+            <span class="uppercase">Lorem ipsum dolor sit amet, consectetur adipisicing elit</span class="uppercase">
+            <h3> Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. </h3>
+            <span class="italic">Dapibus Condimentum Fermentum</span>
+            <br>
+            <a href="http://store.apple.com/us"><ng-include src="'assets/templates/shared/appstore-svg.html'"></ng-include></a>
+          </div>
+          <div class="large-7 small-0 columns">
+            <img class="iphone show-for-large-up" src="/images/landing/phone.png">
+          </div>
         </div>
       </div>
     </section>
 
     <ng-include src="'assets/templates/shared/footer.html'"></ng-include>
-    <aside class="right-off-canvas-menu show-for-small-only">
-      <ul>
-        <li>LINK 1</li>
-        <li>LINK 2</li>
-        <li>LINK 3</li>
-        <li>LINK 4</li>
-      </ul>
-    </aside>
+    
   </div>
 </div>

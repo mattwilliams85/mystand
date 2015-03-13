@@ -21,16 +21,25 @@ h1 {
 
 h2 {
   text-transform: uppercase;
-  font-size: 32pt;
+  font-size: 18pt;
+  @media #{$small} { 
+    font-size: 32pt;
+  }
 }
 
 h3 {
   text-transform: uppercase;
-  font-size: 21pt;
+  font-size: 16pt;
+  @media #{$small} { 
+    font-size: 21pt;
+  }
 }
 
 h4 {
-  font-size: 16pt;
+  font-size: 13pt;
+  @media #{$small} { 
+    font-size: 16pt;
+  }
 }
 
 .detail-text {
@@ -65,9 +74,41 @@ h4 {
   }
 }
 
+.move-left {
+  position:fixed;
+}
+
 .right-off-canvas-menu {
-  background-color:#ff0000;
-  height:100vh;
+  background:#222;
+  li {
+    font-size:15pt;
+    letter-spacing:.1em;
+
+    label {
+      font-size:19pt !important;
+      background:#333 !important;
+      color:#eee;
+      font-weight:600 !important;
+      letter-spacing:.25em !important;
+      span {
+        color:#933232 !important;
+      }
+    }
+    a {
+      color:#ddd !important;
+      padding:1em 1em !important;
+      border-bottom:1px solid #292929 !important;
+      &:hover {
+        background:#933232 !important;
+      }
+    }
+    &.active {
+      background-color: #333 !important;
+      a {
+        color:#fff !important;
+      }
+    } 
+  }
 }
 
 .ms-scrolling-bg {

@@ -32,11 +32,20 @@ $footer-height: 200px;
   li {
     display:inline-block;
     text-transform:uppercase;
-    font-size:10pt;
+    font-size:5pt;
+    @media #{$small} { 
+      font-size:10pt;
+    }
 
     &.divider {
-      font-size:15pt;
-      margin: 0px 5px;
+      font-size:7pt;
+      margin: 0px;
+      letter-spacing:.1em;
+      @media #{$small} { 
+        margin: 0px 5px;
+        font-size:15pt;
+        letter-spacing:.25em;
+      }
     }
   }
 

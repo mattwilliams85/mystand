@@ -9,14 +9,14 @@ var myStandApp = angular.module('myStandApp', [
 myStandApp.run(['$rootScope', '$location', '$timeout',
   function ($rootScope, $location, $timeout) {
     // Prevent A-sync issue with Foundation.js 
-    $timeout(function() {
+    // $timeout(function() {
       $(document).foundation({
         offcanvas : {
           open_method: 'move', 
           close_on_click : false
         }
       });
-    }, 100);
+    // }, 0);
     //
   }
 ]);
