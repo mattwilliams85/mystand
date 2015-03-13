@@ -14,8 +14,8 @@ module.exports = {
       type: 'integer',
       required: true
     },
-    category_id: {
-      type: 'integer',
+    category: {
+      model: 'Category',
       required: true
     },
     title: {
@@ -61,6 +61,7 @@ module.exports = {
         image_original_url: obj.image_original_url,
         youtube: obj.youtube,
         goal: obj.goal,
+        category: obj.category.title,
         actions_count: obj.actions_count || 0
       };
     }
@@ -69,7 +70,7 @@ module.exports = {
   seedData: [
     {
       user_id: 1,
-      category_id: 1,
+      category: 1,
       title: 'Save the planet',
       image_original_url: 'http://lorempixel.com/output/nature-q-c-640-480-1.jpg',
       youtube: 'kWTQZYMIEKE',
@@ -81,7 +82,7 @@ module.exports = {
     },
     {
       user_id: 1,
-      category_id: 2,
+      category: 2,
       title: 'Oceans are awesome',
       image_original_url: 'http://lorempixel.com/output/nature-q-c-640-480-2.jpg',
       youtube: 'JtJgbd1Jfuk',
@@ -93,7 +94,7 @@ module.exports = {
     },
     {
       user_id: 1,
-      category_id: 3,
+      category: 3,
       title: 'Antarctica',
       image_original_url: 'http://lorempixel.com/output/nature-q-c-640-480-3.jpg',
       youtube: '3HAuTQGVgjc',

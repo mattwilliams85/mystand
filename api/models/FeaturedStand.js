@@ -14,6 +14,10 @@ module.exports = {
       model: 'Stand',
       required: true
     },
+    category: {
+      model: 'Category',
+      required: true
+    },
     position: {
       type: 'integer'
     },
@@ -28,6 +32,7 @@ module.exports = {
         image_original_url: obj.stand.image_original_url,
         youtube: obj.stand.youtube,
         goal: obj.stand.goal,
+        category: obj.category.title,
         actions_count: obj.stand.actions_count || 0
       };
     }
@@ -39,6 +44,7 @@ module.exports = {
       for (var i in stands) {
         seedData.push({
           stand: stands[i].id,
+          category: stands[i].category,
           position: parseInt(i) + 1
         });
       }

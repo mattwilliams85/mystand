@@ -10,6 +10,7 @@ var featuredStandSchema = joi.object({
   image_original_url: joi.string().required(),
   youtube: joi.string(),
   goal: joi.number().integer().required(),
+  category: joi.string().required(),
   actions_count: joi.number().integer().required()
 });
 
