@@ -63,7 +63,7 @@ fig run db psql -h db -U postgres postgres
 Reset database:
 
 ```bash
-fig run db psql -h db -U postgres -c "drop schema public cascade;create schema public"
+fig run db psql -h db -U postgres postgres -c "drop schema public cascade;create schema public"
 ```
 
 ## Testing
