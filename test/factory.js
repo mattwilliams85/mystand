@@ -1,7 +1,6 @@
 /*global User: true */
 'use strict';
 
-var q = require('q');
 var chance = require('chance').Chance();
 
 module.exports = function() {
@@ -9,19 +8,18 @@ module.exports = function() {
   function Factory() {}
 
   Factory.create = function(objectName, opts) {
-    opts = opts || {};
-    var deferred = q.defer();
+    var factoryCB = function(callback) {
+      Factory[objectName](opts, function(err, obj) {
+        if (err) {
+          console.log(objectName + ' factory failed: ', err, obj);
+          throw err;
+        }
 
-    Factory[objectName](opts, function(err, obj) {
-      if (err) {
-        console.log(objectName + ' factory failed: ', err, obj);
-        throw err;
-      }
+        return callback(null, obj);
+      });
+    };
 
-      deferred.resolve(obj);
-    });
-
-    return deferred.promise;
+    return factoryCB;
   };
 
   Factory.user = function(opts, callback) {

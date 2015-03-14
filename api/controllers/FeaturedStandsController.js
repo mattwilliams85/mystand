@@ -1,3 +1,4 @@
+/*global FeaturedStand: true */
 'use strict';
 
 /**
@@ -9,8 +10,8 @@ module.exports = {
   index: function(req, res) {
     var items = [];
     FeaturedStand.find().populate('stand').populate('category').limit(5).sort('position').exec(function(err, featuredStands) {
-      for (var i in featuredStands) {
-        items.push(featuredStands[i].toJSON());
+      for (var stand of featuredStands) {
+        items.push(stand.toJSON());
       }
       return res.json({featuredStands: items});
     });

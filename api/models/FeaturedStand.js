@@ -1,3 +1,4 @@
+/*global Stand: true */
 'use strict';
 
 /*

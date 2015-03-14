@@ -34,6 +34,7 @@
     "xit",
     "xdescribe",
     "DatabaseCleaner",
-    "Factory"
+    "Factory",
+    "async"
   ]
 }

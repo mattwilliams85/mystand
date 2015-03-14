@@ -1,6 +1,5 @@
 'use strict';
 
-var q = require('q');
 var joi = require('joi');
 
 var userSchema = joi.object({
@@ -22,9 +21,9 @@ describe('POST /login', function() {
     password = 'passw0RD';
 
     DatabaseCleaner.clean(['users'], function() {
-      q.all([
+      async.series([
         Factory.create('user', {email: email, password: password})
-      ]).then(function(data) {
+      ], function(err, data) {
         factoryData = data;
         done();
       });
