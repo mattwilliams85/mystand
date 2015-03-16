@@ -15,7 +15,10 @@ module.exports = {
     .sort('position')
     .limit(5)
     .exec(function(err, featuredStands) {
-      if (err) return res.status(500).json({error: 'Error requesting data'});
+      if (err) {
+        console.log(err);
+        return res.status(500).json({error: 'Database error'});
+      }
 
       for (var stand of featuredStands) {
         items.push(stand.toJSON());

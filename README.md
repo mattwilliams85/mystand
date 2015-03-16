@@ -75,9 +75,17 @@ fig run web grunt test
 ## Deploying
 
 ### Reset database
+
 ```bash
 heroku pg:reset DATABASE_URL --confirm mystand-staging
 ```
+
+### Access heroku pg console
+
+```bash
+heroku pg:psql --app mystand-staging
+```
+
 
 #### Things to know:
 

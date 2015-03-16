@@ -14,7 +14,10 @@ module.exports = {
     .sort('id DESC')
     .limit(3)
     .exec(function(err, stands) {
-      if (err) return res.status(500).json({error: 'Error requesting data'});
+      if (err) {
+        console.log(err);
+        return res.status(500).json({error: 'Database error'});
+      }
 
       for (var stand of stands) {
         items.push(stand.toJSON());
