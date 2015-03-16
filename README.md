@@ -74,6 +74,11 @@ fig run web grunt test
 
 ## Deploying
 
+### Reset database
+```bash
+heroku pg:reset DATABASE_URL --confirm mystand-staging
+```
+
 #### Things to know:
 
 To use sass and compass heroku will need a ruby and sass installed. Because heroku detects package.json and assumes it is a NodeJS App it doesn't install Ruby, so the heroku multipack is required, and to properly deploy heroku env var and .buildpacks file are necessary:

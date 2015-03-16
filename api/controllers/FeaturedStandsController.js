@@ -9,7 +9,14 @@
 module.exports = {
   index: function(req, res) {
     var items = [];
-    FeaturedStand.find().populate('stand').populate('category').limit(5).sort('position').exec(function(err, featuredStands) {
+    FeaturedStand.find()
+    .populate('stand')
+    .populate('category')
+    .sort('position')
+    .limit(5)
+    .exec(function(err, featuredStands) {
+      if (err) return res.status(500).json({error: 'Error requesting data'});
+
       for (var stand of featuredStands) {
         items.push(stand.toJSON());
       }
