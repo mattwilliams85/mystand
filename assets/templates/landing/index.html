@@ -105,15 +105,32 @@
                       <div class="trend-img">
                         <img ng-src='{{stand.image_original_url}}'>
                       </div>
-                      <div class="details">
+                      <div class="details show-for-medium-up">
                         <h4>{{stand.title}}</h4>
                         <p class="italic">#{{stand.category}}</p>
-                        <p class="show-for-medium-up">{{stand.description}}</p>
+                        <p>{{stand.description}}</p>
                         <div class="progress">
                           <span class="meter"></span>
                         </div>
-                        <span>{{stand.actions_count}} heroes have taken this stand.</span>
-                        <span>Let's get to {{stand.goal}}.</span>
+                        <span class="count-detail">{{stand.actions_count}} heroes have taken this stand.</span>
+                        <span class="count-detail">Let's get to {{stand.goal}}.</span>
+                      </div>
+                      <div class="details show-for-small-only">
+                        <h4>{{stand.title}}</h4>
+                        <span class="italic">#{{stand.category}}</span>
+                        <div class="progress">
+                          <span class="meter"></span>
+                        </div>
+                        <div class="row">
+                          <div class="small-6 columns">
+                            <span class="count">{{stand.actions_count}}</span>
+                            <span class="count-detail">heroes have taken this stand.</span>
+                          </div>
+                          <div class="small-6 columns">
+                            <span class="count">{{stand.goal}}</span>
+                            <span class="count-detail">needed to complete.</span>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -149,7 +166,7 @@
             <h3> Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. </h3>
             <span class="italic">Dapibus Condimentum Fermentum</span>
             <br>
-            <a href="http://store.apple.com/us"><ng-include src="'assets/templates/shared/appstore-svg.html'"></ng-include></a>
+            <a href="http://store.apple.com/us" target="blank"><ng-include src="'assets/templates/shared/appstore-svg.html'"></ng-include></a>
           </div>
           <div class="large-7 small-0 columns">
             <img class="iphone show-for-large-up" src="/images/landing/phone.png">

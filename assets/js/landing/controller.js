@@ -40,7 +40,7 @@ LandingCtrl.prototype.fetch = function($scope, $timeout, FeaturedStand, Trending
           centerPadding: '25px'
         });
       }
-    }, 500);
+    }, 1000);
   }
 };
 
