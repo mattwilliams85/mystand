@@ -14,10 +14,18 @@
  * or any other Grunt tasks you like.)
  */
 
-/*
- * Foundation mixins and variables
- *
- */
+
+@mixin vertical-align-center {
+  position: relative;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+// Foundation Settings
+$reveal-position-top: 0px;
+
 // Import zurb foundation framework
 @import "assets/bower_components/foundation/scss/foundation";
 // Import font awesome
@@ -57,3 +65,4 @@ $header-height-small: 60px;
 @import 'landing.scss';
 @import 'discover.scss';
 @import 'stands.scss';
+@import 'utility.scss';

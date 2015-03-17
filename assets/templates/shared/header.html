@@ -1,6 +1,5 @@
-
-
-<header class="ms-header-guest">
+<header ng-controller="HeaderCtrl"  class="ms-header-guest">
+<!-- <header class="ms-header-guest" ng-class="{inverted:isHeaderInverted()}"> -->
   <div class="row">
     <div class="large-12 columns">
       <nav class="header-nav show-for-medium-up">
@@ -20,9 +19,11 @@
               <input type="submit" id="search-submit" />
             </form>
             </li>
-            <li><a ng-href="#/sign-up">Sign Up</a></li>
+            <li ng-if="!isSignedIn"><a ng-href="#/sign-up">Sign Up</a></li>
+            <li ng-if="isSignedIn"><a ng-href="#/profile">Account</a></li>
             <li class="divider">|</li>
-            <li><a ng-href="#/sign-in">Log In</a></li>
+            <li ng-if="!isSignedIn"><a data-reveal-id="sign-in-modal">Log In</a></li>
+            <li ng-if="isSignedIn"><a ng-click="signOut()">Logout</a></li>
           </div>
         </ul>
       </nav>

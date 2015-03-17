@@ -6,17 +6,31 @@ var myStandApp = angular.module('myStandApp', [
   'myStandServices'
 ]);
 
-myStandApp.run(['$rootScope', '$location', '$timeout',
-  function ($rootScope, $location, $timeout) {
-    // Prevent A-sync issue with Foundation.js
-    // $timeout(function() {
+myStandApp.run(['$rootScope', '$location', '$timeout', 'CurrentUser',
+  function ($rootScope, $location, $timeout, CurrentUser) {
+    $rootScope.currentUser = {};
+    $rootScope.isSignedIn = !!SignedIn;
+    /*
+     * Fill in User object with data if user is signed in but object is empty
+    */
+    $rootScope.$on('$includeContentLoaded', function(event, next, current) {
+      if ($rootScope.isSignedIn) {
+        CurrentUser.get().then(function(data) {
+          $rootScope.currentUser = data;
+        });
+      }
+    });
+
+
+    // Prevent A-sync issue with Foundation.js 
+    $timeout(function() {
       $(document).foundation({
         offcanvas : {
           open_method: 'move',
           close_on_click : false
         }
       });
-    // }, 0);
+    }, 100);
     //
   }
 ]);

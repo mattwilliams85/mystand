@@ -30,14 +30,20 @@ LandingCtrl.prototype.fetch = function($scope, $timeout, FeaturedStand, Trending
 
     // initialize Featured Stands carousel
     $timeout(function() {
-      $('.ms-featured-stands').slick({
-        draggable: false
-      });
       if(window.innerWidth <= 768) {
         $('.ms-trending-stands').slick({
           centerMode: true,
           draggable: true,
           centerPadding: '25px'
+        });
+        $('.ms-featured-stands').slick({
+          centerMode: true,
+          draggable: true,
+          centerPadding: '25px'
+        });
+      } else {
+        $('.ms-featured-stands').slick({
+          draggable: false
         });
       }
     }, 1000);

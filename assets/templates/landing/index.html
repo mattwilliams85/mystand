@@ -1,15 +1,7 @@
 <div class="off-canvas-wrap" data-offcanvas>
   <div class="inner-wrap">
-    <nav class="right-off-canvas-menu" data-offcanvas>
-      <ul class="off-canvas-list">
-        <li class="active"><a ng-href="#/home">HOME</a></li>
-        <li><a ng-href="#/discover">DISCOVER</a></li>
-        <li><a href="#">START</a></li>
-        <li><a href="#">SIGN-UP</a></li>
-        <li><a href="#">LOGIN</a></li>
-      </ul>
-    </nav>
-    <ng-include src="'assets/templates/shared/header-guest.html'"></ng-include>
+    <ng-include src="'assets/templates/shared/off-canvas-menu.html'"></ng-include>
+    <ng-include src="'assets/templates/shared/header.html'"></ng-include>
 
     <section class="header-section">
       <div class="header-bg">
@@ -61,28 +53,31 @@
             <div class="ms-featured-stands">
               <!-- Featured Stand -->
               <div class="featured-stand" ng-repeat="stand in featuredStands">
-                  <div class="large-8 columns">
+                  <div class="large-8 small-12 columns">
                     <iframe id="player" type="text/html" class="youtube-player" width="100%"
                       ng-src="{{stand.youtube}}"
                       frameborder="0"  modestbranding="1" autohide="1" showinfo="1" controls="1";></iframe>
                   </div>
-                  <div class="large-4 columns right-part">
-                    <!-- Featured Stand Title -->
-                    <h3><a ng-href="#/stands/{{stand.id}}">{{stand.title}}</a></h3>
-                    <!-- Featured Stand Tagline -->
-                    <h4 class="uppercase">#{{stand.category}}</h4>
-                    <hr>
-                    <!-- Featured Stand Description -->
-                    <p class="show-for-medium-up">
-                      {{stand.description}}
-                    </p>
-                    <!-- Featured Stand Progress Meter -->
-                    <div class="progress">
-                      <span class="meter"></span>
+
+                  <div class="large-4 small-12 columns right-part">
+                    <div class="right-part-inner">
+                      <!-- Featured Stand Title -->
+                      <h3><a ng-href="#/stands/{{stand.id}}">{{stand.title}}</a></h3>
+                      <!-- Featured Stand Tagline -->
+                      <h4 class="uppercase">#{{stand.category}}</h4>
+                      <hr>
+                      <!-- Featured Stand Description -->
+                      <p class="show-for-medium-up">
+                        {{stand.description}}
+                      </p>
+                      <!-- Featured Stand Progress Meter -->
+                      <div class="progress">
+                        <span class="meter"></span>
+                      </div>
+                      <!-- Featured Stand Progress Numbers -->
+                      <span>{{stand.actions_count}} heroes have taken this stand.</span>
+                      <span>Let's get to {{stand.goal}}.</span>
                     </div>
-                    <!-- Featured Stand Progress Numbers -->
-                    <span>{{stand.actions_count}} heroes have taken this stand.</span>
-                    <span>Let's get to {{stand.goal}}.</span>
                 </div>
               </div>
             </div>
@@ -176,6 +171,7 @@
     </section>
 
     <ng-include src="'assets/templates/shared/footer.html'"></ng-include>
+    <ng-include src="'assets/templates/modals/sign-in.html'"></ng-include>
 
   </div>
 </div>
