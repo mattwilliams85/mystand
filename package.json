@@ -34,6 +34,7 @@
     "sails-postgresql": "~0.10.14"
   },
   "devDependencies": {
+    "apidoc": "^0.12.1",
     "chai": "^2.1.1",
     "chance": "^0.7.3",
     "grunt-mocha-test": "^0.12.7",
