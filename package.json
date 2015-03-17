@@ -49,6 +49,7 @@
     "debug": "node debug app.js",
     "dev": "node app.js",
     "prod": "node app.js --prod",
+    "db-migrate": "node ./node_modules/db-migrate/bin/db-migrate",
     "postinstall": "bower install"
   },
   "main": "app.js",

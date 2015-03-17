@@ -71,7 +71,7 @@ fig run db psql -h db -U postgres postgres -c "drop schema public cascade;create
 Run migrations[more info](https://www.npmjs.com/package/db-migrate):
 
 ```bash
-fig run web node ./node_modules/db-migrate/bin/db-migrate up
+fig run web npm run db-migrate up
 ```
 
 ## Testing
