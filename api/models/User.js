@@ -66,6 +66,18 @@ module.exports = {
     });
   },
 
+  auth: function(userId, callback) {
+    if (!userId) return callback('Unauthorized');
+    this.findOneById(userId).exec(function(err, user) {
+      if (err) {
+        console.log(err);
+        return callback(err);
+      }
+
+      return callback(null, user);
+    });
+  },
+
   // Seed data (only runs if Users count is 0)
   seedData: [
     {

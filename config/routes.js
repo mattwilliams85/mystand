@@ -50,6 +50,8 @@ module.exports.routes = {
   'post /login': 'SessionsController.create',
   'delete /login': 'SessionsController.destroy',
 
+  'get /profile': 'ProfilesController.show',
+
   'get /featured-stands': 'FeaturedStandsController.index',
   'get /trending-stands': 'TrendingStandsController.index'
 
