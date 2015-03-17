@@ -54,6 +54,8 @@ Install dependencies(when package.json gets changed):
 fig run web npm install
 ```
 
+## Database and Migrations
+
 Access postgres console:
 
 ```bash
@@ -64,6 +66,12 @@ Reset database:
 
 ```bash
 fig run db psql -h db -U postgres postgres -c "drop schema public cascade;create schema public"
+```
+
+Run migrations[more info](https://www.npmjs.com/package/db-migrate):
+
+```bash
+fig run web node ./node_modules/db-migrate/bin/db-migrate up
 ```
 
 ## Testing

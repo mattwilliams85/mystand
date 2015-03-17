@@ -120,3 +120,4 @@ nbproject
 
 .env
 .env.test
+database.json
