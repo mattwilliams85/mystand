@@ -16,6 +16,10 @@
   <body>
     <ng-view autoscroll="true"></ng-view>
 
+    <script type="text/javascript">
+      SignedIn = <%=req.session.user ? 'true' : 'false' %>;
+    </script>
+
     <!-- DO NOT REMOVE OR CHANGE THESE COMMENTS -- >
     <!--TEMPLATES-->
     <script type="text/javascript" src="/jst.js"></script>
