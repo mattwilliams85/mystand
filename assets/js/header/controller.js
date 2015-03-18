@@ -1,7 +1,6 @@
 'use strict';
 
 function HeaderCtrl($scope, $rootScope, $location, $timeout,  $http, CurrentUser) {
-
   /*
    * Sign Out click handler
    *

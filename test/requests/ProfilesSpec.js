@@ -58,11 +58,11 @@ describe('GET /profile', function() {
     });
   });
 
-  it('should return 401 unauthorized', function(done) {
+  it('should return 403 forbidden', function(done) {
     agent
       .get('/profile')
       .end(function(err, res) {
-        expect(res.statusCode).to.eql(401);
+        expect(res.statusCode).to.eql(403);
         expect(Object.keys(res.body).length).to.equal(0);
         done();
       });

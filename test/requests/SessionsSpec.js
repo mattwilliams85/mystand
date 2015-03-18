@@ -97,7 +97,7 @@ describe('DELETE /login', function() {
           agent
             .get('/profile')
             .end(function(err, res) {
-              expect(res.statusCode).to.eql(401);
+              expect(res.statusCode).to.eql(403);
               expect(Object.keys(res.body).length).to.equal(0);
               done();
             });

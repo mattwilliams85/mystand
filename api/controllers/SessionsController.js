@@ -43,6 +43,7 @@ module.exports = {
         if (err || !match) return res.status(404).json({error: 'Invalid email or password'});
 
         req.session.user = user.id;
+        req.session.authenticated = true;
         res.json({user: user.toJSON()});
       });
     }).catch(function() {
@@ -61,6 +62,7 @@ module.exports = {
    */
   destroy: function(req, res) {
     req.session.user = null;
+    req.session.authenticated = false;
     return res.status(200).end();
   }
 };

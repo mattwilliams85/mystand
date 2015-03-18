@@ -32,7 +32,7 @@ module.exports = {
    */
   show: function(req, res) {
     User.auth(req.session.user, function(err, currentUser) {
-      if (err) return res.status(401).end();
+      if (err) return res.forbidden();
 
       var userData = currentUser.toJSON();
       userData.is_admin = !!currentUser.is_admin;

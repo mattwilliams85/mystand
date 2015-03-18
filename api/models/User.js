@@ -70,7 +70,7 @@ module.exports = {
   },
 
   auth: function(userId, callback) {
-    if (!userId) return callback('Unauthorized');
+    if (!userId) return callback('Forbidden');
     this.findOneById(userId).exec(function(err, user) {
       if (err) {
         console.log(err);
