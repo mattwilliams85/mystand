@@ -21,6 +21,11 @@ myStandApp.run(['$rootScope', '$location', '$timeout', 'CurrentUser',
       }
     });
 
+    $rootScope.goTo = '';
+    $rootScope.signInRedirect = function(goTo) {
+      $rootScope.goTo = goTo;
+      $('#sign-in-modal').foundation('reveal','open');
+    }
 
     // Prevent A-sync issue with Foundation.js 
     $timeout(function() {

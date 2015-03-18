@@ -15,6 +15,7 @@
         }).
         success(function(data) {
           if (data.error) {
+            console.log('oop')
             // $scope.showModal('Oops, wrong email or password');
             // $(document).foundation();
           } else {
@@ -22,15 +23,17 @@
             CurrentUser.get().then(function(data) {
               $rootScope.currentUser = data;
               $('[data-reveal]').foundation('reveal','close');
+              if($rootScope.goTo) $location.path($rootScope.goTo);
             });
             // $scope.redirectToDashboardIfSignedIn();
           }
         }).
         error(function() {
           console.log('Sign In Error');
+          $('.modal-error').css('display','block');
         });
       } else {
-        console.log("username or password invalid")
+        $('.modal-error').css('display','block');
         // $scope.showValidationMessages = true;
       }
     };

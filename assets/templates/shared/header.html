@@ -8,7 +8,7 @@
             <li class="logo"><a ng-href="#/home">MYSTAND</a></li>
             <li><a ng-href="#/discover">Discover</a></li>
             <li class="divider">|</li>
-            <li><a ng-href="#/start">Start</a></li>
+            <li><a ng-click="signInRedirect('#/start')">Start</a></li>
           </div>
           <div class="right-side">
             <li>
@@ -21,7 +21,7 @@
             <li ng-if="!isSignedIn"><a ng-href="#/sign-up">Sign Up</a></li>
             <li ng-if="isSignedIn"><a ng-href="#/profile">Account</a></li>
             <li class="divider">|</li>
-            <li ng-if="!isSignedIn"><a data-reveal-id="sign-in-modal">Log In</a></li>
+            <li ng-if="!isSignedIn"><a ng-click="signInRedirect()">Log In</a></li>
             <li ng-if="isSignedIn"><a ng-click="signOut()">Logout</a></li>
           </div>
         </ul>
@@ -41,3 +41,6 @@
     </div>
   </div>
 </header>
+
+<ng-include src="'assets/templates/modals/sign-in.html'"></ng-include>
+<ng-include src="'assets/templates/modals/logout.html'"></ng-include>

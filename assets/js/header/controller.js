@@ -8,6 +8,7 @@
     $scope.signOut = function() {
       var cb = function() {
         $rootScope.isSignedIn = false;
+        $('#logout-modal').foundation('reveal','open');
         CurrentUser.clear();
       };
       $http.delete('/login', {

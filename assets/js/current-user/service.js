@@ -40,7 +40,7 @@ function CurrentUser($http, $q, $cacheFactory) {
     * Clear user data
     */
     clear: function() {
-      $cacheFactory('CurrentUser').put('data', {});
+      cache.put('data', {});
       return true;
     }
   };
