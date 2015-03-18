@@ -14,20 +14,20 @@
  * or any other Grunt tasks you like.)
  */
 
-@mixin vertical-align-center {
-  position: relative;
-  top: 50%;
-  -webkit-transform: translateY(-50%);
-  -ms-transform: translateY(-50%);
-  transform: translateY(-50%);
-}
-
+/*
+ * Foundation mixins and variables
+ *
+ */
 // Import zurb foundation framework
 @import "assets/bower_components/foundation/scss/foundation";
 // Import font awesome
 @import "../bower_components/fontawesome/css/font-awesome.min.css";
 
-// Set Slick Carousel Variables
+
+/*
+ * Slick Carousel mixins and variables
+ *
+ */
 $slick-dot-size: 24px;
 $slick-dot-color: white;
 $slick-font-path: '../bower_components/slick-carousel/slick/fonts/';
@@ -36,7 +36,23 @@ $slick-font-path: '../bower_components/slick-carousel/slick/fonts/';
 // Import Slick Carousel Visual CSS
 @import "../bower_components/slick-carousel/slick/slick-theme.scss";
 
+
+/*
+ * MyStand mixins and variables
+ *
+ */
+@mixin vertical-align-center {
+  position: relative;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+$header-height: 100px;
+$header-height-small: 60px;
+
 @import 'main.scss';
 @import 'header.scss';
 @import 'footer.scss';
 @import 'landing.scss';
+@import 'discover.scss';

@@ -1,23 +1,15 @@
-/*
- * Header
- *
-*/
-
-$header-height: 100px;
-$header-height-small: 60px;
-
 .ms-header-guest {
   position:fixed;
   // background-color:rgba(0,0,0,.8);
   // height: $header-height-small;
-  // @media #{$small} { 
-  //   position: absolute; 
-  //   height: $header-height; 
+  // @media #{$small} {
+  //   position: absolute;
+  //   height: $header-height;
   //   background-color:rgba(0,0,0,0);
   // }
   background-color:rgba(0,0,0,0);
-  position: absolute; 
-  height: $header-height; 
+  position: absolute;
+  height: $header-height;
   top: 0;
   left: 0;
   width: 100%;
@@ -45,7 +37,7 @@ $header-height-small: 60px;
     cursor: pointer;
     background: rgba(0,0,0,0);
     float:left;
-    
+
     &:hover {
       label {
         color: #ccc;
@@ -62,11 +54,11 @@ $header-height-small: 60px;
       border-radius: auto;
       background: rgba(50,50,50,.8);
       color: #ccc;
-      & + label .fa-search {  
+      & + label .fa-search {
         color: #bbb;
       }
     }
-    &:not(:focus) {  
+    &:not(:focus) {
       text-indent:-5000px;
     }
   }
@@ -75,7 +67,7 @@ $header-height-small: 60px;
     position: relative;left: -5000px;
   }
 
-  label {    
+  label {
     color: #fff;
     position: relative;
     left:-25px;
@@ -163,7 +155,7 @@ $header-height-small: 60px;
         i {
           color:#555;
         }
-     
+
       }
     }
     .fa-bars {
@@ -173,6 +165,6 @@ $header-height-small: 60px;
       top:14px;
       right:5px;
     }
-    
+
   }
 }

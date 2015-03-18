@@ -8,6 +8,11 @@ myStandApp.config(['$routeProvider', function($routeProvider) {
     controller: 'LandingCtrl'
   }).
 
+  when('/discover', {
+    template: JST['assets/templates/discover/index.html'],
+    controller: 'DiscoverCtrl'
+  }).
+
   otherwise({
     redirectTo: '/home'
   });

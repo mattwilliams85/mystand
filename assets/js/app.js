@@ -8,11 +8,11 @@ var myStandApp = angular.module('myStandApp', [
 
 myStandApp.run(['$rootScope', '$location', '$timeout',
   function ($rootScope, $location, $timeout) {
-    // Prevent A-sync issue with Foundation.js 
+    // Prevent A-sync issue with Foundation.js
     // $timeout(function() {
       $(document).foundation({
         offcanvas : {
-          open_method: 'move', 
+          open_method: 'move',
           close_on_click : false
         }
       });
@@ -33,7 +33,7 @@ myStandApp.config(
 );
 
 myStandApp.config(['$provide', function($provide) {
-  $provide.decorator("$templateCache", ["$delegate", "$sniffer", function ($delegate, $sniffer) {
+  $provide.decorator('$templateCache', ['$delegate', '$sniffer', function ($delegate, $sniffer) {
     var originalGet = $delegate.get;
 
     $delegate.get = function(key) {
