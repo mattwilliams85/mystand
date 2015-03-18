@@ -43,6 +43,7 @@
         color: #ccc;
       }
     }
+
     &:focus {
       transition: width $tl cubic-bezier(0,1.22,.66,1.39), border-radius $tl, background $tl;
       border: none;outline: none;
@@ -58,12 +59,13 @@
         color: #bbb;
       }
     }
+
     &:not(:focus) {
       text-indent:-5000px;
     }
   }
 
-  #search-submit {
+  .search-submit {
     position: relative;left: -5000px;
   }
 

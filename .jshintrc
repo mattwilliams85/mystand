@@ -25,6 +25,7 @@
     "myStandApp",
     "myStandControllers",
     "myStandServices",
-    "JST"
+    "JST",
+    "SAILS_LOCALS"
   ]
 }
