@@ -19,6 +19,8 @@
                 <input type="submit" class="search-submit" />
               </form>
             </li>
+            <li ng-if="currentUser.is_admin"><a>Admin</a></li>
+            <li ng-if="currentUser.is_admin" class="divider">|</li>
             <li ng-if="!isSignedIn"><a ng-href="#/sign-up">Sign Up</a></li>
             <li ng-if="isSignedIn"><a ng-href="#/profile">Account</a></li>
             <li class="divider">|</li>

@@ -23,7 +23,7 @@ function CurrentUser($http, $q, $cacheFactory) {
           method: 'GET',
           url: '/profile'
         }).success(function(res) {
-          cache.put('data', res.properties);
+          cache.put('data', res.user);
           isProcessingRequest = false;
           dfr.resolve(cache.get('data'));
         }).error(function(err) {
@@ -44,7 +44,6 @@ function CurrentUser($http, $q, $cacheFactory) {
       return true;
     }
   };
-
   return service;
 }
 
