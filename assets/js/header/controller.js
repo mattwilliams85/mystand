@@ -1,15 +1,15 @@
 'use strict';
 
- function HeaderCtrl($scope, $location, $timeout) {
+ function HeaderCtrl($scope, $rootScope, $location, $timeout) {
 
    /*
     * User Sign-in Function
     */
     $scope.signOut = function() {
-      $scope.isSignedIn = false;
+      $rootScope.isSignedIn = false;
     }
  }
 
 
- HeaderCtrl.$inject = ['$scope', '$location', '$timeout'];
+ HeaderCtrl.$inject = ['$scope', '$rootScope', '$location', '$timeout'];
  myStandControllers.controller('HeaderCtrl', HeaderCtrl);

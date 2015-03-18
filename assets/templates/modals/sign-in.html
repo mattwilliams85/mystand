@@ -1,33 +1,39 @@
 <div ng-controller="SignInCtrl" id="sign-in-modal" class="reveal-modal sign-in-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
   <div class="modal-position-wrapper">
     <a class="close-reveal-modal show-for-small-only" aria-label="Close">&#215;</a>
-    <h1 class="logo">MYSTAND</h1>
     <div class="inner">
+      <h2 class="logo">MYSTAND</h2>
       <div class="login-buttons">
-        <img class="login-button" src="/images/facebook-button.png"/>
-        <img class="login-button" src="/images/google-button.png"/>
+        <div class="facebook-button modal-button">Sign in with <b>Facebook</b></div>
+        <div class="google-button modal-button">Sign in with <b>Google+</b></div>
       </div>
-      <p class='uppercase detail'><b>or</b></p>
-      <p class='detail'><a href="#">Create a new Mystand account</a></p>
-    </div>
-    <p class="already" data-reveal-id="login-modal">Already have an account? <b>LOG IN</b></p>
-  </div> 
-
-  <div id="login-modal" class="reveal-modal sign-in-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
-    <!-- <a class="close-reveal-modal" aria-label="Close">&#215;</a> -->
-    <h1 class="logo">MYSTAND</h1>
-    <div class="inner">
-      <div class="login-input-wrapper">
-        <form name="form" ng-submit="signIn()" novalidate>
-          <input ng-model='user.email' id='user_email' name='user_email' type='email' ng-required='true'></input>
-          <label>username</label>
-          <input ng-model='user.password' id='user_password' name='user_password' type='password' ng-required='true'></input>
-          <label>password</label>
-          <input class="large button" type="submit" value="Sign In"/>
-        </form>
+      <div class="row">
+        <div class="small-5 columns">
+          <hr/>
+        </div>
+        <div class="small-2 columns">
+          <h3 class='uppercase detail'><b>or</b></h3>
+        </div>
+        <div class="small-5 columns">
+          <hr/>
+        </div>
       </div>
-    </div>
-   
-    <!-- <p class="already">Forgot your password?</p> -->
+      <form name="form" ng-submit="signIn()" novalidate>
+        <label class="user-label">email</label>
+        <input class="user-input" ng-model='user.email' id='user_email' name='user_email' type='email' ng-required='true'></input>
+        <label class="user-label">password</label>
+        <input class="user-input" ng-model='user.password' id='user_password' name='user_password' type='password' ng-required='true'></input>
+        <fieldset class="switch round small show-for-medium-up" tabindex="0">
+          <span class="radio-detail user-label">Remember Me</span>
+          <input id="remember-me" type="checkbox" name="remember_me">
+          <label for="remember-me"></label>
+        </fieldset>
+        <button class="login-button modal-button" type="submit" value="Sign In">log in</button>
+      </form>
+      <p class="already"><span>Create new account</span>
+        </br>
+        <span class="show-for-medium-up">Reset Password<span>
+      </p>
+    </div> 
   </div>
 </div> 
