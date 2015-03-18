@@ -103,7 +103,7 @@ module.exports = {
       first_name: 'Matthew',
       last_name: 'Williams',
       email: 'matthew.williams@eyecuelab.com',
-      password: 'MyStand1'
+      password: 'MyStand1',
       is_admin: true
     },
     {
