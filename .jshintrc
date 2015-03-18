@@ -21,6 +21,10 @@
   "white": false,
   "predef": [
     "angular",
-    "async"
+    "async",
+    "myStandApp",
+    "myStandControllers",
+    "myStandServices",
+    "JST"
   ]
 }
