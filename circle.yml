@@ -1,0 +1,12 @@
+machine:
+  pre:
+    - curl https://raw.githubusercontent.com/creationix/nvm/v0.23.3/install.sh | bash
+  node:
+    version: 0.12
+  environment:
+    DATABASE_URL: postgres://ubuntu:@localhost:5432/circle_test
+test:
+  pre:
+    - npm run db-migrate up
+  override:
+    - grunt test

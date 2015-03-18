@@ -2,9 +2,11 @@
 
 var fs = require('fs');
 ///// Load env variables from .env.test file (This will NOT overwrite existing env vars)
-var env = require('node-env-file');
-env(__dirname + '/../.env.test');
-
+var envFilePath = __dirname + '/../.env';
+if (fs.existsSync(envFilePath)) {
+  var env = require('node-env-file');
+  env(envFilePath);
+}
 
 global.chai = require('chai');
 global.expect = global.chai.expect;

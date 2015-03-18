@@ -58,7 +58,7 @@ process.chdir(__dirname);
   var envFilePath = __dirname + '/.env';
   if (fs.existsSync(envFilePath)) {
     var env = require('node-env-file');
-    env(__dirname + '/.env');
+    env(envFilePath);
   }
   /////
 
