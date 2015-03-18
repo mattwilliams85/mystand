@@ -34,7 +34,9 @@ module.exports = {
     User.auth(req.session.user, function(err, currentUser) {
       if (err) return res.status(401).end();
 
-      res.json({user: currentUser.toJSON()});
+      var userData = currentUser.toJSON();
+      userData.is_admin = !!currentUser.is_admin;
+      res.json({user: userData});
     });
   }
 };

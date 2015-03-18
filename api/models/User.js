@@ -32,6 +32,9 @@ module.exports = {
       required: true,
       columnName: 'encrypted_password'
     },
+    is_admin: {
+      type: 'boolean'
+    },
 
     /*
      * Instance methods
@@ -78,12 +81,27 @@ module.exports = {
     });
   },
 
+  authAdmin: function(userId, callback) {
+    this.auth(userId, function(err, user) {
+      if (err) return callback(err);
+      if (!user.is_admin) return callback('Forbidden');
+
+      return callback(null, user);
+    });
+  },
+
   // Seed data (only runs if Users count is 0)
   seedData: [
     {
       first_name: 'Sasha',
       last_name: 'Shamne',
       email: 'sasha.shamne@eyecuelab.com',
+      password: 'MyStand1'
+    },
+    {
+      first_name: 'Matthew',
+      last_name: 'Williams',
+      email: 'matthew.williams@eyecuelab.com',
       password: 'MyStand1'
     }
   ]

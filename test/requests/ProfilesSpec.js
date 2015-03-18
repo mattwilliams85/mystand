@@ -7,7 +7,8 @@ var userSchema = joi.object({
     id: joi.number().integer().required(),
     email: joi.string().required(),
     first_name: joi.string().allow(null),
-    last_name: joi.string().allow(null)
+    last_name: joi.string().allow(null),
+    is_admin: joi.boolean().required()
   })
 });
 
@@ -51,6 +52,7 @@ describe('GET /profile', function() {
           var validation = userSchema.validate(res.body);
           expect(validation.error).to.be.null;
           expect(res.body.user.email).to.equal(email);
+          expect(res.body.user.is_admin).to.equal(false);
           done();
         });
     });

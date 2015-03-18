@@ -105,6 +105,7 @@ exports.up = function(db, callback) {
       image_original_url: { type: 'string' },
       email: { type: 'string' },
       encrypted_password: { type: 'string' },
+      is_admin: { type: 'boolean' },
       createdAt: { type: 'timestamp' },
       updatedAt: { type: 'timestamp' }
     }),
