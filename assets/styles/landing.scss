@@ -1,233 +1,236 @@
-//BACKGROUNDS
-.header-bg {
-  background-image: url("/images/landing/bg-1.jpg");
-  color: #fff;
-  height:100%;
-  background-repeat:no-repeat;
-  background-position:center center;
-  background-size:cover;
-}
+.ms-landing-wrapper {
 
-.city-bg {
-  background-image:linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-    url("/images/landing/city.png");
-  background-position: center center;
-  color: #fff;
-  background-repeat:no-repeat;
-  background-attachment:scroll;
-}
-
-.girl-bg {
-  background-image:linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-    url("/images/landing/girl.png");
-  background-position: center center;
-  color: #fff;
-  background-attachment:scroll;
-}
-
-.white-bg {
-  background-color:#fff;
-  padding:50px 0px;
-  font-weight:400;
-}
-
-//ELEMENTS
-.ms-button-transparent {
-  letter-spacing:.25em;
-}
-
-.youtube-player {
-  height:200px;
-  @media #{$small} {
-    height:380px;
+  //BACKGROUNDS
+  .header-bg {
+    background-image: url("/images/landing/bg-1.jpg");
+    color: #fff;
+    height:100%;
+    background-repeat:no-repeat;
+    background-position:center center;
+    background-size:cover;
   }
-}
 
-.progress {
-  border: 0;
-  padding: 0;
-  background-color: #aaa;
-  margin-bottom:1em;
-  height:.5em;
-  .meter {
-    margin: 0;
-    width:70%;
-    background-color: #933232;
+  .city-bg {
+    background-image:linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+      url("/images/landing/city.png");
+    background-position: center center;
+    color: #fff;
+    background-repeat:no-repeat;
+    background-attachment:scroll;
   }
-}
 
-iframe {
-  -webkit-box-shadow: 0px 2px 8px 1px rgba(51,51,51,.8);
--moz-box-shadow: 0px 2px 8px 1px rgba(51,51,51,.8);
-box-shadow: 0px 2px 8px 1px rgba(51,51,51,.8);
-  @media #{$small} { 
-    -webkit-box-shadow: none;
-    -moz-box-shadow: none;
-    box-shadow: none;
+  .girl-bg {
+    background-image:linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+      url("/images/landing/girl.png");
+    background-position: center center;
+    color: #fff;
+    background-attachment:scroll;
   }
-}
 
-//SECTIONS
-.header-section {
-  height:100vh;
-  span {
-    font-size: 14pt;
+  .white-bg {
+    background-color:#fff;
+    padding:50px 0px;
+    font-weight:400;
+  }
+
+  //ELEMENTS
+  .ms-button-transparent {
+    letter-spacing:.25em;
+  }
+
+  .youtube-player {
+    height:200px;
     @media #{$small} {
-      font-size: 18pt;
+      height:380px;
     }
   }
-  .narrow {
-    width:70%;
-    margin:0 auto;
-  }
-}
 
-.featured-section {
-  background-position: center 0px;
-  hr {
-    border-color:#999;
-    border-width:1px;
-  }
-
-  .slick-next {
-    right: -35px;
-  }
-
-  .ms-featured-stands {
-    margin-top:20px;
-    .featured-stand {
-      .right-part {
-        padding:15px;
-        @media #{$small} { 
-          padding:5px;
-        }
-        .right-part-inner {
-          color:#222;
-          padding:20px;
-          background-color:none;
-          background-color:#fff;
-          height:225px;
-          @media #{$small} { 
-            padding:25px;
-            height:375px;
-          }
-        }
-      }
-
+  .progress {
+    border: 0;
+    padding: 0;
+    background-color: #aaa;
+    margin-bottom:1em;
+    height:.5em;
+    .meter {
+      margin: 0;
+      width:70%;
+      background-color: #933232;
     }
   }
-}
 
-.trending-section {
-  .slick-list {
-    overflow:visible;
-  }
-  .trending-stand {
-    border:1px solid #aaa;
-    margin-top:20px;
-    -webkit-box-shadow: 0px 2px 8px 1px rgba(51,51,51,.35);
-    -moz-box-shadow: 0px 2px 8px 1px rgba(51,51,51,.35);
-    box-shadow: 0px 2px 8px 1px rgba(51,51,51,.35);
+  iframe {
+    -webkit-box-shadow: 0px 2px 8px 1px rgba(51,51,51,.8);
+  -moz-box-shadow: 0px 2px 8px 1px rgba(51,51,51,.8);
+  box-shadow: 0px 2px 8px 1px rgba(51,51,51,.8);
     @media #{$small} { 
       -webkit-box-shadow: none;
       -moz-box-shadow: none;
       box-shadow: none;
     }
-    
-    .trend-img {
-      width:100%;
-      height:200px;
+  }
+
+  //SECTIONS
+  .header-section {
+    height:100vh;
+    span {
+      font-size: 14pt;
       @media #{$small} {
-        height:220px
-      }
-      overflow:hidden;
-      img {
-        width: 100%;
-        min-height:220px;
+        font-size: 18pt;
       }
     }
-    .details {
-      padding:10px;
-      height:160px;
-      @media #{$small} {
-        padding:25px;
-        height:250px;
-      }
-      .progress {
-        margin-bottom:.5em;
-        margin-top:1em;
-        margin-bottom:0px;
-        @media #{$small} {
-          margin-bottom:20px;
-          margin-top:10px;
-        }
-      }
-      text-align:left;
-      .count-detail {
-        display:block;
-        line-height:7pt;
-        font-size:7pt;
-        @media #{$small} {
-          line-height:16pt;
-          font-size:14pt;
-        }
-        &.italic {
-          font-size:14px;
-          @media #{$small} {
-            font-size:inherit;
+    .narrow {
+      width:70%;
+      margin:0 auto;
+    }
+  }
+
+  .featured-section {
+    background-position: center 0px;
+    hr {
+      border-color:#999;
+      border-width:1px;
+    }
+
+    .slick-next {
+      right: -35px;
+    }
+
+    .ms-featured-stands {
+      margin-top:20px;
+      .featured-stand {
+        .right-part {
+          padding:15px;
+          @media #{$small} { 
+            padding:5px;
+          }
+          .right-part-inner {
+            color:#222;
+            padding:20px;
+            background-color:none;
+            background-color:#fff;
+            height:225px;
+            @media #{$small} { 
+              padding:25px;
+              height:375px;
+            }
           }
         }
-      }
-      .count {
-        font-size:20pt;
-        line-height:20pt;
-        font-weight:600;
-        margin:7px 0 5px 0;
-        display:block;
+
       }
     }
   }
-}
 
-.join-section {
-  height:400px;
-}
-
-
-h4.uppercase {
-  font-weight:300;
-}
-
-
-
-.appstore-section {
-  padding:0px 0px;
-  @media #{$medium} {
-    padding:250px 100px 121px 100px;
-  }
-  .ms-page-content {
-    position:relative;
-    padding:100px 0;
-    @media #{$medium} {
-      padding:5em 0;
+  .trending-section {
+    .slick-list {
+      overflow:visible;
     }
-
-    svg {
+    .trending-stand {
+      border:1px solid #aaa;
       margin-top:20px;
+      -webkit-box-shadow: 0px 2px 8px 1px rgba(51,51,51,.35);
+      -moz-box-shadow: 0px 2px 8px 1px rgba(51,51,51,.35);
+      box-shadow: 0px 2px 8px 1px rgba(51,51,51,.35);
+      @media #{$small} { 
+        -webkit-box-shadow: none;
+        -moz-box-shadow: none;
+        box-shadow: none;
+      }
+      
+      .trend-img {
+        width:100%;
+        height:200px;
+        @media #{$small} {
+          height:220px
+        }
+        overflow:hidden;
+        img {
+          width: 100%;
+          min-height:220px;
+        }
+      }
+      .details {
+        padding:10px;
+        height:160px;
+        @media #{$small} {
+          padding:25px;
+          height:250px;
+        }
+        .progress {
+          margin-bottom:.5em;
+          margin-top:1em;
+          margin-bottom:0px;
+          @media #{$small} {
+            margin-bottom:20px;
+            margin-top:10px;
+          }
+        }
+        text-align:left;
+        .count-detail {
+          display:block;
+          line-height:7pt;
+          font-size:7pt;
+          @media #{$small} {
+            line-height:16pt;
+            font-size:14pt;
+          }
+          &.italic {
+            font-size:14px;
+            @media #{$small} {
+              font-size:inherit;
+            }
+          }
+        }
+        .count {
+          font-size:20pt;
+          line-height:20pt;
+          font-weight:600;
+          margin:7px 0 5px 0;
+          display:block;
+        }
+      }
     }
+  }
 
-    h2 {
-      line-height:20pt;
-    }
-    h3 {
-      line-height:1em;
-    }
+  .join-section {
+    height:400px;
+  }
 
-    img.iphone {
-      width:450px;
-      position:absolute;
-      bottom:-201px;
-      left:50px;
+
+  h4.uppercase {
+    font-weight:300;
+  }
+
+
+
+  .appstore-section {
+    padding:0px 0px;
+    @media #{$medium} {
+      padding:250px 100px 121px 100px;
+    }
+    .ms-page-content {
+      position:relative;
+      padding:100px 0;
+      @media #{$medium} {
+        padding:5em 0;
+      }
+
+      svg {
+        margin-top:20px;
+      }
+
+      h2 {
+        line-height:20pt;
+      }
+      h3 {
+        line-height:1em;
+      }
+
+      img.iphone {
+        width:450px;
+        position:absolute;
+        bottom:-201px;
+        left:50px;
+      }
     }
   }
 }

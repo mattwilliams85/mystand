@@ -1,15 +1,23 @@
 'use strict';
 
- function HeaderCtrl($scope, $rootScope, $location, $timeout) {
+ function HeaderCtrl($scope, $rootScope, $location, $timeout,  $http, CurrentUser) {
 
    /*
     * User Sign-in Function
     */
     $scope.signOut = function() {
-      $rootScope.isSignedIn = false;
+      var cb = function() {
+        $rootScope.isSignedIn = false;
+        CurrentUser.clear();
+      };
+      $http.delete('/login', {
+        params: {
+          _csrf: SAILS_LOCALS._csrf
+        },
+      }).success(cb).error(cb);
     }
  }
 
 
- HeaderCtrl.$inject = ['$scope', '$rootScope', '$location', '$timeout'];
+ HeaderCtrl.$inject = ['$scope', '$rootScope', '$location', '$timeout', '$http', 'CurrentUser'];
  myStandControllers.controller('HeaderCtrl', HeaderCtrl);

@@ -1,6 +1,6 @@
 'use strict';
 
- function SignInCtrl($scope, $rootScope, $location, $timeout, $http, $route) {
+ function SignInCtrl($scope, $rootScope, $location, $timeout, $http, CurrentUser) {
 
    /*
     * User Sign-in Function
@@ -19,8 +19,10 @@
             // $(document).foundation();
           } else {
             $rootScope.isSignedIn = true;
-            console.log('logged in!');
-            $('[data-reveal]').foundation('reveal','close')
+            CurrentUser.get().then(function(data) {
+              $rootScope.currentUser = data;
+              $('[data-reveal]').foundation('reveal','close');
+            });
             // $scope.redirectToDashboardIfSignedIn();
           }
         }).
@@ -35,5 +37,5 @@
  }
 
 
- SignInCtrl.$inject = ['$scope', '$rootScope', '$location', '$timeout', '$http','$route'];
+ SignInCtrl.$inject = ['$scope', '$rootScope', '$location', '$timeout', '$http', 'CurrentUser'];
  myStandControllers.controller('SignInCtrl', SignInCtrl);
