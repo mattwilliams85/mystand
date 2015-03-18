@@ -48,5 +48,19 @@ module.exports = {
     }).catch(function() {
       return res.status(500).json({error: 'Database error'});
     });
+  },
+
+  /**
+   * @api {delete} /login Sign Out
+   * @apiName DeleteLogin
+   * @apiGroup Users
+   *
+   * @apiSuccessExample Success-Response:
+   *   HTTP/1.1 200 OK
+   *   {}
+   */
+  destroy: function(req, res) {
+    req.session.user = null;
+    return res.status(200).end();
   }
 };

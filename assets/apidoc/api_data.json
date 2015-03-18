@@ -186,6 +186,25 @@
     "groupTitle": "Stands"
   },
   {
+    "type": "delete",
+    "url": "/login",
+    "title": "Sign Out",
+    "name": "DeleteLogin",
+    "group": "Users",
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "api/controllers/SessionsController.js",
+    "groupTitle": "Users"
+  },
+  {
     "type": "get",
     "url": "/profile",
     "title": "Get Current User's Profile",
