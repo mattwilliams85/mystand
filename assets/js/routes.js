@@ -13,6 +13,11 @@ myStandApp.config(['$routeProvider', function($routeProvider) {
     controller: 'DiscoverCtrl'
   }).
 
+  when('/stands/:standId', {
+    template: JST['assets/templates/stands/show.html'],
+    controller: 'StandsCtrl'
+  }).
+
   otherwise({
     redirectTo: '/home'
   });

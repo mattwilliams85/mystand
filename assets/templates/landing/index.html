@@ -68,7 +68,7 @@
                   </div>
                   <div class="large-4 columns right-part">
                     <!-- Featured Stand Title -->
-                    <h3>{{stand.title}}</h3>
+                    <h3><a ng-href="#/stands/{{stand.id}}">{{stand.title}}</a></h3>
                     <!-- Featured Stand Tagline -->
                     <h4 class="uppercase">#{{stand.category}}</h4>
                     <hr>
@@ -106,7 +106,7 @@
                         <img ng-src='{{stand.image_original_url}}'>
                       </div>
                       <div class="details show-for-medium-up">
-                        <h4>{{stand.title}}</h4>
+                        <h4><a ng-href="#/stands/{{stand.id}}">{{stand.title}}</a></h4>
                         <p class="italic">#{{stand.category}}</p>
                         <p>{{stand.description}}</p>
                         <div class="progress">
