@@ -14,12 +14,20 @@ module.exports = {
 
   tableName: 'users',
 
+  types: {
+    password: function(password) {
+      return password === this.password_confirmation;
+    }
+  },
+
   attributes: {
     first_name: {
-      type: 'string'
+      type: 'string',
+      required: true
     },
     last_name: {
-      type: 'string'
+      type: 'string',
+      required: true
     },
     image_original_url: {
       type: 'string'
@@ -33,6 +41,7 @@ module.exports = {
       type: 'string',
       minLength: 8,
       required: true,
+      password: true,
       columnName: 'encrypted_password'
     },
     is_admin: {
@@ -44,7 +53,12 @@ module.exports = {
 
   seedData: seeder.data,
 
+  // afterValidate: function(attrs, callback) {
+  //   return callback();
+  // },
+
   beforeCreate: function(attrs, callback) {
+    // Encrypt password
     this.encryptPassword(attrs.password, function(err, hash) {
       if (err) return callback(err);
 

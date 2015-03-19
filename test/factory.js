@@ -26,7 +26,10 @@ module.exports = function() {
     opts = opts || {};
     var attributes = {
       email: chance.word({length: 8}) + '@example.com',
-      password: 'passw0rD'
+      password: 'passw0rD',
+      password_confirmation: 'passw0rD',
+      first_name: 'John',
+      last_name: 'Smith'
     };
     for (var key in opts) { attributes[key] = opts[key]; }
 

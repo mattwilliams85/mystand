@@ -22,7 +22,7 @@ describe('POST /login.json', function() {
 
     DatabaseCleaner.clean(['users'], function() {
       async.series([
-        Factory.create('user', {email: email, password: password})
+        Factory.create('user', {email: email, password: password, password_confirmation: password})
       ], function(err, data) {
         factoryData = data;
         done();
@@ -66,7 +66,7 @@ describe('DELETE /login.json', function() {
 
     DatabaseCleaner.clean(['users'], function() {
       async.series([
-        Factory.create('user', {email: email, password: password})
+        Factory.create('user', {email: email, password: password, password_confirmation: password})
       ], function() {
         done();
       });

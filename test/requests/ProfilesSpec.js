@@ -23,7 +23,7 @@ describe('GET /profile.json', function() {
 
     DatabaseCleaner.clean(['users'], function() {
       async.series([
-        Factory.create('user', {email: email, password: password}),
+        Factory.create('user', {email: email, password: password, password_confirmation: password}),
         Factory.create('user')
       ], function(err, data) {
         factoryData = data;

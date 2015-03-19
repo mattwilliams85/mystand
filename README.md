@@ -72,8 +72,14 @@ fig run web npm run db-migrate up
 
 ## Testing
 
+Run All tests
 ```bash
 fig run web grunt test
+```
+
+Run a test matching name regex
+```bash
+fig run web grunt test --grep uniqueness
 ```
 
 ## API Doc

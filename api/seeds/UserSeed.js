@@ -13,6 +13,7 @@ module.exports = {
       last_name: 'Shamne',
       email: 'sasha.shamne@eyecuelab.com',
       password: 'MyStand1',
+      password_confirmation: 'MyStand1',
       is_admin: true
     },
     {
@@ -20,13 +21,15 @@ module.exports = {
       last_name: 'Williams',
       email: 'matthew.williams@eyecuelab.com',
       password: 'MyStand1',
+      password_confirmation: 'MyStand1',
       is_admin: true
     },
     {
       first_name: 'John',
       last_name: 'Smith',
       email: 'john.smith@eyecuelab.com',
-      password: 'MyStand1'
+      password: 'MyStand1',
+      password_confirmation: 'MyStand1',
     }
   ]
 };

@@ -109,6 +109,7 @@ exports.up = function(db, callback) {
       createdAt: { type: 'timestamp' },
       updatedAt: { type: 'timestamp' }
     }),
+    db.addIndex.bind(db, 'users', 'users_email_key', ['email'], true),
 
     db.createTable.bind(db, 'user_notifications', {
       id: { type: 'int', primaryKey: true, autoIncrement: true },

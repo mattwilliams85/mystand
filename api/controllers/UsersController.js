@@ -14,7 +14,10 @@ module.exports = {
    * @apiGroup Users
    *
    * @apiParam {String} email User's email.
-   * @apiParam {String} password User's password.
+   * @apiParam {String} password Password
+   * @apiParam {String} password_confirmation Password confirmation
+   * @apiParam {String} first_name First name
+   * @apiParam {String} last_name Last name
    *
    * @apiSuccess {Object} user User profile information.
    * @apiSuccess {Number} user.id ID.
@@ -36,7 +39,10 @@ module.exports = {
   create: function(req, res) {
     User.create({
       email: req.body.email,
-      password: req.body.password
+      password: req.body.password,
+      password_confirmation: req.body.password_confirmation,
+      first_name: req.body.first_name,
+      last_name: req.body.last_name
     })
     .exec(function(err, user) {
       if (err) return res.status(500).json({error: err.invalidAttributes});
