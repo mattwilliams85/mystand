@@ -11,7 +11,7 @@ var userSchema = joi.object({
   })
 });
 
-describe('POST /login', function() {
+describe('POST /login.json', function() {
   var factoryData,
       email,
       password;
@@ -32,7 +32,7 @@ describe('POST /login', function() {
 
   it('should return user object on success', function(done) {
     agent
-      .post('/login')
+      .post('/login.json')
       .send({_csrf: csrfToken, email: email, password: password})
       .end(function(err, res) {
         expect(res.statusCode).to.eql(200);
@@ -45,7 +45,7 @@ describe('POST /login', function() {
 
   it('should return 404 on fail', function(done) {
     agent
-      .post('/login')
+      .post('/login.json')
       .send({_csrf: csrfToken, email: email, password: 'wrongpassword'})
       .end(function(err, res) {
         expect(res.statusCode).to.eql(404);
@@ -56,7 +56,7 @@ describe('POST /login', function() {
 });
 
 
-describe('DELETE /login', function() {
+describe('DELETE /login.json', function() {
   var email,
       password;
 
@@ -77,7 +77,7 @@ describe('DELETE /login', function() {
     beforeEach(function(done) {
       // Real sign in process
       agent
-        .post('/login')
+        .post('/login.json')
         .send({_csrf: csrfToken, email: email, password: password})
         .end(function(err, res) {
           expect(res.statusCode).to.eql(200);
@@ -87,7 +87,7 @@ describe('DELETE /login', function() {
 
     it('should sign user out', function(done) {
       agent
-        .del('/login')
+        .del('/login.json')
         .send({_csrf: csrfToken})
         .end(function(err, res) {
           expect(res.statusCode).to.eql(200);
@@ -95,7 +95,7 @@ describe('DELETE /login', function() {
 
           // User should be signed out by now
           agent
-            .get('/profile')
+            .get('/profile.json')
             .end(function(err, res) {
               expect(res.statusCode).to.eql(403);
               expect(Object.keys(res.body).length).to.equal(0);

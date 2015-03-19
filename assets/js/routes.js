@@ -1,6 +1,8 @@
 'use strict';
 
-myStandApp.config(['$routeProvider', function($routeProvider) {
+myStandApp.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
+
+  $locationProvider.html5Mode(true);
 
   $routeProvider.
   when('/home', {

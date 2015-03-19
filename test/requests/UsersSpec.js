@@ -11,7 +11,7 @@ var userSchema = joi.object({
   })
 });
 
-describe('POST /users', function() {
+describe('POST /users.json', function() {
   var factoryData,
       email,
       password;
@@ -27,7 +27,7 @@ describe('POST /users', function() {
 
   it('should return created user object', function(done) {
     agent
-      .post('/users')
+      .post('/users.json')
       .send({_csrf: csrfToken, email: email, password: password})
       .end(function(err, res) {
         expect(res.statusCode).to.eql(200);
@@ -50,7 +50,7 @@ describe('POST /users', function() {
 
     xit('should return an error', function(done) {
       agent
-        .post('/users')
+        .post('/users.json')
         .send({_csrf: csrfToken, email: email, password: password})
         .end(function(err, res) {
           expect(res.statusCode).to.equal(500);

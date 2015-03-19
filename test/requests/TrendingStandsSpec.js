@@ -17,9 +17,9 @@ var trendingStandsSchema = joi.object({
   trendingStands: joi.array().items(trendingStandSchema).required()
 });
 
-describe('GET /trending-stands', function() {
+describe('GET /trending-stands.json', function() {
   it('should return a list of trending stands', function(done) {
-    agent.get('/trending-stands').end(function(err, res) {
+    agent.get('/trending-stands.json').end(function(err, res) {
       expect(res.statusCode).to.eql(200);
       var validation = trendingStandsSchema.validate(res.body);
       expect(validation.error).to.be.null;

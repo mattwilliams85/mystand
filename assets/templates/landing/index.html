@@ -1,4 +1,4 @@
-<div class="off-canvas-wrap ms-landing-wrapper" data-offcanvas>
+<div class="off-canvas-wrap ms-landing-page" data-offcanvas>
   <div class="inner-wrap">
     <ng-include src="'assets/templates/shared/off-canvas-menu.html'"></ng-include>
     <ng-include src="'assets/templates/shared/header.html'"></ng-include>
@@ -31,7 +31,7 @@
               <h2>Discover your stands</h2>
               <h4 class="uppercase">Lorem ipsum dolor sit amet, consectetur adipisicing elit</h4>
               <br><br>
-              <a ng-href="#/discover" class="ms-button-transparent black uppercase">Discover</a>
+              <a ng-href="/discover" class="ms-button-transparent black uppercase">Discover</a>
             </div>
           </div>
         </div>
@@ -62,7 +62,7 @@
                   <div class="large-4 small-12 columns right-part">
                     <div class="right-part-inner">
                       <!-- Featured Stand Title -->
-                      <h3><a ng-href="#/stands/{{stand.id}}">{{stand.title}}</a></h3>
+                      <h3><a ng-href="/stands/{{stand.id}}">{{stand.title}}</a></h3>
                       <!-- Featured Stand Tagline -->
                       <h4 class="uppercase">#{{stand.category}}</h4>
                       <hr>
@@ -101,7 +101,7 @@
                         <img ng-src='{{stand.image_original_url}}'>
                       </div>
                       <div class="details show-for-medium-up">
-                        <h4><a ng-href="#/stands/{{stand.id}}">{{stand.title}}</a></h4>
+                        <h4><a ng-href="/stands/{{stand.id}}">{{stand.title}}</a></h4>
                         <p class="italic">#{{stand.category}}</p>
                         <p>{{stand.description}}</p>
                         <div class="progress">

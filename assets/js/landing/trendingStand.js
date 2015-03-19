@@ -12,7 +12,7 @@ function TrendingStand($http, $q) {
 
       $http({
         method: 'GET',
-        url: '/trending-stands'
+        url: '/trending-stands.json'
       }).success(function(res) {
         dfr.resolve(res);
       }).error(function(err) {

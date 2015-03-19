@@ -24,14 +24,14 @@ myStandApp.run(['$rootScope', '$location', '$timeout', 'CurrentUser',
     $rootScope.goTo = '';
     $rootScope.signInRedirect = function(goTo) {
       $rootScope.goTo = goTo;
-      if($rootScope.isSignedIn) { 
+      if($rootScope.isSignedIn) {
         $location.path(goTo);
       } else {
         $('#sign-in-modal').foundation('reveal','open');
       }
-    }
+    };
 
-    // Prevent A-sync issue with Foundation.js 
+    // Prevent A-sync issue with Foundation.js
     $timeout(function() {
       $(document).foundation({
         offcanvas : {

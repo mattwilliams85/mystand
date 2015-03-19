@@ -21,7 +21,7 @@ function CurrentUser($http, $q, $cacheFactory) {
         isProcessingRequest = true;
         $http({
           method: 'GET',
-          url: '/profile'
+          url: '/profile.json'
         }).success(function(res) {
           cache.put('data', res.user);
           isProcessingRequest = false;

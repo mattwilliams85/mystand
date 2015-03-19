@@ -12,7 +12,7 @@ function Stand($http, $q) {
 
       $http({
         method: 'GET',
-        url: '/stands' + id
+        url: '/stands/' + id + '.json'
       }).success(function(res) {
         dfr.resolve(res);
       }).error(function(err) {

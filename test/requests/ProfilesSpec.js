@@ -12,7 +12,7 @@ var userSchema = joi.object({
   })
 });
 
-describe('GET /profile', function() {
+describe('GET /profile.json', function() {
   var factoryData,
       email,
       password;
@@ -36,7 +36,7 @@ describe('GET /profile', function() {
     beforeEach(function(done) {
       // Real sign in process
       agent
-        .post('/login')
+        .post('/login.json')
         .send({_csrf: csrfToken, email: email, password: password})
         .end(function(err, res) {
           expect(res.statusCode).to.eql(200);
@@ -46,7 +46,7 @@ describe('GET /profile', function() {
 
     it('should return current user\'s object', function(done) {
       agent
-        .get('/profile')
+        .get('/profile.json')
         .end(function(err, res) {
           expect(res.statusCode).to.eql(200);
           var validation = userSchema.validate(res.body);
@@ -60,7 +60,7 @@ describe('GET /profile', function() {
 
   it('should return 403 forbidden', function(done) {
     agent
-      .get('/profile')
+      .get('/profile.json')
       .end(function(err, res) {
         expect(res.statusCode).to.eql(403);
         expect(Object.keys(res.body).length).to.equal(0);

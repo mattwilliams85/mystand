@@ -11,7 +11,7 @@ function HeaderCtrl($scope, $rootScope, $location, $timeout,  $http, CurrentUser
       $('#logout-modal').foundation('reveal','open');
       CurrentUser.clear();
     };
-    $http.delete('/login', {
+    $http.delete('/login.json', {
       params: {
         _csrf: SAILS_LOCALS._csrf
       },

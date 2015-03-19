@@ -6,10 +6,10 @@
       <nav class="header-nav show-for-medium-up">
         <ul>
           <div class="left-side">
-            <li class="logo"><a ng-href="#/home">MYSTAND</a></li>
-            <li><a ng-href="#/discover">Discover</a></li>
+            <li class="logo"><a ng-href="/home">MYSTAND</a></li>
+            <li><a ng-href="/discover">Discover</a></li>
             <li class="divider">|</li>
-            <li><a ng-click="signInRedirect('#/start')">Start</a></li>
+            <li><a ng-click="signInRedirect('/start')">Start</a></li>
           </div>
           <div class="right-side">
             <li>
@@ -21,8 +21,8 @@
             </li>
             <li ng-if="currentUser.is_admin"><a>Admin</a></li>
             <li ng-if="currentUser.is_admin" class="divider">|</li>
-            <li ng-if="!isSignedIn"><a ng-href="#/sign-up">Sign Up</a></li>
-            <li ng-if="isSignedIn"><a ng-href="#/profile">Account</a></li>
+            <li ng-if="!isSignedIn"><a ng-href="/sign-up">Sign Up</a></li>
+            <li ng-if="isSignedIn"><a ng-href="/profile">Account</a></li>
             <li class="divider">|</li>
             <li ng-if="!isSignedIn"><a ng-click="signInRedirect()">Log In</a></li>
             <li ng-if="isSignedIn"><a ng-click="signOut()">Logout</a></li>

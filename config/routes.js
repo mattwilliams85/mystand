@@ -32,8 +32,12 @@ module.exports.routes = {
   *                                                                          *
   ***************************************************************************/
 
-  '/': {
-    view: 'index'
+  // '/': {
+  //   view: 'index'
+  // },
+  '*': {
+    view: 'index',
+    skipAssets: true
   },
 
   /***************************************************************************
@@ -46,13 +50,13 @@ module.exports.routes = {
   *                                                                          *
   ***************************************************************************/
 
-  'post /users': 'UsersController.create',
-  'post /login': 'SessionsController.create',
-  'delete /login': 'SessionsController.destroy',
+  'post /users.json': 'UsersController.create',
+  'post /login.json': 'SessionsController.create',
+  'delete /login.json': 'SessionsController.destroy',
 
-  'get /profile': 'ProfilesController.show',
+  'get /profile.json': 'ProfilesController.show',
 
-  'get /featured-stands': 'FeaturedStandsController.index',
-  'get /trending-stands': 'TrendingStandsController.index'
+  'get /featured-stands.json': 'FeaturedStandsController.index',
+  'get /trending-stands.json': 'TrendingStandsController.index'
 
 };

@@ -12,7 +12,7 @@ function FeaturedStand($http, $q) {
 
       $http({
         method: 'GET',
-        url: '/featured-stands'
+        url: '/featured-stands.json'
       }).success(function(res) {
         dfr.resolve(res);
       }).error(function(err) {

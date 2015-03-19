@@ -7,7 +7,7 @@
     */
     $scope.signIn = function() {
       if ($scope.user && $scope.user.email && $scope.user.password) {
-        $http.post('/login', {
+        $http.post('/login.json', {
           _csrf: SAILS_LOCALS._csrf,
           email: $scope.user.email,
           password: $scope.user.password,
