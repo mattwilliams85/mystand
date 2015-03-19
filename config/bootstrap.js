@@ -18,10 +18,10 @@ module.exports.bootstrap = function(cb) {
   // cb();
 
   async.series([
-    UserSeed.seed,
-    CategorySeed.seed,
-    StandSeed.seed,
-    FeaturedStandSeed.seed
+    User.seed,
+    Category.seed,
+    Stand.seed,
+    FeaturedStand.seed
   ], cb);
 
 };

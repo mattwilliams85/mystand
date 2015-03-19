@@ -6,11 +6,8 @@
 */
 
 module.exports = {
-
-  tableName: 'users',
-
   // Seed data (only runs if Users count is 0)
-  seedData: [
+  data: [
     {
       first_name: 'Sasha',
       last_name: 'Shamne',

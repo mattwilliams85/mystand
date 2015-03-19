@@ -6,10 +6,7 @@
 */
 
 module.exports = {
-
-  tableName: 'stands',
-
-  seedData: [
+  data: [
     {
       user_id: 1,
       category: 1,

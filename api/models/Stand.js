@@ -5,6 +5,9 @@
  *
 */
 
+var presenter = require(__dirname + '/../presenters/StandPresenter');
+var seeder = require(__dirname + '/../seeds/StandSeed');
+
 module.exports = {
 
   tableName: 'stands',
@@ -52,18 +55,8 @@ module.exports = {
       type: 'boolean'
     },
 
-    toJSON: function() {
-      var obj = this.toObject();
-      return {
-        id: obj.id,
-        title: obj.title,
-        description: obj.description,
-        image_original_url: obj.image_original_url,
-        youtube: obj.youtube,
-        goal: obj.goal,
-        category: obj.category.title,
-        actions_count: obj.actions_count || 0
-      };
-    }
-  }
+    toJSON: presenter
+  },
+
+  seedData: seeder.data
 };

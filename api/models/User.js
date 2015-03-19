@@ -7,6 +7,9 @@
 
 var bcrypt = require('bcrypt');
 
+var presenter = require(__dirname + '/../presenters/UserPresenter');
+var seeder = require(__dirname + '/../seeds/UserSeed');
+
 module.exports = {
 
   tableName: 'users',
@@ -36,19 +39,10 @@ module.exports = {
       type: 'boolean'
     },
 
-    /*
-     * Instance methods
-    */
-    toJSON: function() {
-      var obj = this.toObject();
-      return {
-        id: obj.id,
-        email: obj.email,
-        first_name: obj.first_name,
-        last_name: obj.last_name
-      };
-    }
+    toJSON: presenter
   },
+
+  seedData: seeder.data,
 
   beforeCreate: function(attrs, callback) {
     this.encryptPassword(attrs.password, function(err, hash) {

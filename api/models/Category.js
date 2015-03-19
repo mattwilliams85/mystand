@@ -5,6 +5,8 @@
  *
 */
 
+var seeder = require(__dirname + '/../seeds/CategorySeed');
+
 module.exports = {
 
   tableName: 'categories',
@@ -14,5 +16,7 @@ module.exports = {
       type: 'string',
       required: true
     }
-  }
+  },
+
+  seedData: seeder.data
 };

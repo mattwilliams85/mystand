@@ -5,6 +5,9 @@
  *
 */
 
+var presenter = require(__dirname + '/../presenters/FeaturedStandPresenter');
+var seeder = require(__dirname + '/../seeds/FeaturedStandSeed');
+
 module.exports = {
 
   tableName: 'featured_stands',
@@ -22,19 +25,8 @@ module.exports = {
       type: 'integer'
     },
 
-    toJSON: function() {
-      var obj = this.toObject();
-      return {
-        id: obj.id,
-        position: obj.position,
-        title: obj.stand.title,
-        description: obj.stand.description,
-        image_original_url: obj.stand.image_original_url,
-        youtube: obj.stand.youtube,
-        goal: obj.stand.goal,
-        category: obj.category.title,
-        actions_count: obj.stand.actions_count || 0
-      };
-    }
-  }
+    toJSON: presenter
+  },
+
+  seedData: seeder.data
 };

@@ -6,11 +6,7 @@
 */
 
 module.exports = {
-
-  tableName: 'categories',
-
-  // Seed data (only runs if Categories count is 0)
-  seedData: [
+  data: [
     {title: 'biosphere'},
     {title: 'climate'},
     {title: 'energy'},

@@ -7,10 +7,7 @@
 */
 
 module.exports = {
-
-  tableName: 'featured_stands',
-
-  seedData: function(callback) {
+  data: function(callback) {
     var seedData = [];
     Stand.find().limit(5).exec(function(err, stands) {
       for (var i in stands) {
