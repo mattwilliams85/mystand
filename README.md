@@ -33,6 +33,11 @@ Install front-end dependencies(listed in bower.json):
 fig run web bower install --allow-root
 ```
 
+Run migrations
+```bash
+fig run web npm run db-migrate up
+```
+
 Start application:
 ```bash
 fig up
