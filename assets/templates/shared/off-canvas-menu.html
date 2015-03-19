@@ -1,9 +1,12 @@
 <nav class="right-off-canvas-menu" data-offcanvas>
   <ul class="off-canvas-list">
     <li class="active"><a href="#">HOME</a></li>
-    <li><a href="#">DISCOVER</a></li>
-    <li><a href="#">START</a></li>
-    <li><a href="#">SIGN-UP</a></li>
-    <li data-reveal-id="sign-in-modal"><a >LOGIN</a></li>
+    <li><a ng-href="#/discover">DISCOVER</a></li>
+    <li><a ng-click="signInRedirect('start')">START</a></li>
+    <li ng-if="currentUser.is_admin && isSignedIn"><a>Admin</a></li>
+    <li ng-if="!isSignedIn"><a ng-href="#/sign-up">SIGN UP</a></li>
+    <li ng-if="isSignedIn"><a ng-href="#/profile">ACCOUNT</a></li>
+    <li ng-if="!isSignedIn"><a ng-click="signInRedirect()">LOG IN</a></li>
+    <li ng-if="isSignedIn"><a ng-click="signOut()">LOGOUT</a></li>
   </ul>
 </nav>

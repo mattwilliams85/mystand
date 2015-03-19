@@ -1,16 +1,15 @@
-<div ng-controller="SignInCtrl" class="off-canvas-wrap ms-signup-page" data-offcanvas>
+<div class="off-canvas-wrap ms-signup-page" data-offcanvas>
   <div class="inner-wrap">
     <div class="invert-header">
-      <ng-include src="assets/templates/shared/header.html"></ng-include>
+      <ng-include src="'assets/templates/shared/header.html'"></ng-include>
     </div>
 
     <section class="signup-section">
       <div class="brown-space">
         <h1 class="title">sign up here</h1>
       </div>
-      <div class="triangle">
-      </div>
-      <div class="row">
+      <div class="triangle"></div>
+      <div class="row narrow">
         <div class="large-12 columns">
           <div class="login-buttons">
             <div class="facebook-button signup-button">Log In with <b>Facebook</b></div>
@@ -41,10 +40,6 @@
               <input class="user-input" ng-model='user.email' id='user_email' name='user_email' type='email' ng-required='true'></input>
             </div>
             <div class="field-div">
-              <label class="user-label">confirm email</label>
-              <input class="user-input" ng-model='user.confirm_email' id='user_confirm_email' name='user_confirm_email' type='email' ng-required='true'></input>
-            </div>
-            <div class="field-div">
               <label class="user-label">password</label>
               <input class="user-input" ng-model='user.password' id='user_password' name='user_password' type='password' ng-required='true'></input>
             </div>
@@ -54,13 +49,11 @@
             </div>
             <small class="signup-error">Incorrect Email or Password</small>
             <p class="detail">By clicking Sign Up, you agree to Mystand's <a class="detail-link">privacy policy.</a></p>
-            <button class="login-button signup-button" type="submit" value="Sign In">Sign Up</button>
+            <button class="login-button signup-button" value="Sign In">Sign Up</button>
           </form>
-          <p class="detail large">Already have an account? <a class="detail-link">Log in.</a></p>
+          <p class="detail large">Already have an account? <a class="detail-link" ng-click="signInRedirect('discover')">Log in.</a></p>
         </div>
       </div>
     </section>
-
-    <ng-include src="'assets/templates/shared/footer.html'"></ng-include>
   </div>
 </div>

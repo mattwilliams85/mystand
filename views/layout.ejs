@@ -18,6 +18,8 @@
   </head>
   <body>
     <ng-view autoscroll="true"></ng-view>
+    <ng-include src="'assets/templates/shared/footer.html'"></ng-include>
+    <ng-include src="'assets/templates/modals/sign-in.html'"></ng-include>
 
     <script type="text/javascript">
       SignedIn = <%=req.session.user ? 'true' : 'false' %>;
@@ -44,9 +46,10 @@
     <script src="/js/header/controller.js"></script>
     <script src="/js/landing/controller.js"></script>
     <script src="/js/landing/featuredStand.js"></script>
-    <script src="/js/landing/trendingstand.js"></script>
+    <script src="/js/landing/trendingStand.js"></script>
     <script src="/js/routes.js"></script>
     <script src="/js/sign-in/controller.js"></script>
+    <script src="/js/sign-up/controller.js"></script>
     <script src="/js/stands/controller.js"></script>
     <script src="/js/stands/service.js"></script>
     <!--SCRIPTS END-->

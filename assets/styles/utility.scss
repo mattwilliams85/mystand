@@ -1,6 +1,6 @@
 // MODALS
 .sign-in-modal {
-  background-color:transparent;
+  background-color:#404040;
   color:#fff;
   text-align:center;
   width:100%;
@@ -36,23 +36,19 @@
     padding:10px 0px;
   }
  
-  .modal-position-wrapper {
-    background-color:#484949;
-    margin-top:0px;
-    @media #{$small} { 
-      margin-top:50px;
-    }
-  }
+  // .modal-position-wrapper {
+  //   background-color:#484949;
+  //   margin-top:0px;
+  //   @media #{$small} { 
+  //     margin-top:50px;
+  //   }
+  // }
 
   .logout-wrapper {
     padding:50px;
     position:relative;
     background-color:#484949;
     border-radius:5px;
-    margin-top:0px;
-    @media #{$small} { 
-      margin-top:100px;
-    }
   }
 
 

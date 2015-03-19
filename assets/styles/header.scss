@@ -1,5 +1,16 @@
+.invert-header {
+  background-color:#fff;
+  color:#000;
+  height:100px;
+  a, li {
+    color:#000 !important;
+  }
+}
+
 .ms-header-guest {
   position:fixed;
+  background-color:transparent;
+  color:#fff;
   // background-color:rgba(0,0,0,.8);
   // height: $header-height-small;
   // @media #{$small} {
@@ -16,7 +27,7 @@
   z-index: 99;
 
   a {
-    color: #fff;
+    color: inherit;
     letter-spacing:.25em;
     &:hover {
       color: #ccc;
@@ -37,6 +48,8 @@
     cursor: pointer;
     background: rgba(0,0,0,0);
     float:left;
+    border-color:#fff !important;
+    box-shadow:none;
 
     &:hover {
       label {
@@ -70,7 +83,7 @@
   }
 
   label {
-    color: #fff;
+    color: inherit;
     position: relative;
     left:-25px;
     top:5px;
@@ -99,7 +112,7 @@
   }
 
   .header-nav {
-    color: #fff;
+    color: inherit;
     margin-right: 10px;
     text-transform: uppercase;
 
@@ -150,6 +163,7 @@
         border-radius:10px;
         border:1px solid #dedede;
       }
+
       label {
         position:absolute;
         left:67%;
@@ -161,7 +175,7 @@
       }
     }
     .fa-bars {
-      color:#fff;
+      color:inherit;
       font-size:25pt;
       position:absolute;
       top:14px;
@@ -170,3 +184,5 @@
 
   }
 }
+
+
