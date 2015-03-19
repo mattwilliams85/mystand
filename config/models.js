@@ -1,3 +1,5 @@
+'use strict';
+
 /**
  * Default model configuration
  * (sails.config.models)
@@ -58,7 +60,7 @@ module.exports.models = {
           self.seedObject(callback);
         }
       } else {
-        sails.log.debug(modelName + ' had models, so no seed needed');
+        sails.log.debug(modelName + ' had records, so no seed needed');
         callback();
       }
     });
@@ -66,7 +68,7 @@ module.exports.models = {
   seedArray: function(callback) {
     var self = this;
     var modelName = self.adapter.identity.charAt(0).toUpperCase() + self.adapter.identity.slice(1);
-    self.createEach(self.seedData).exec(function(err, results) {
+    self.createEach(self.seedData).exec(function(err) {
       if (err) {
         sails.log.debug(err);
         callback();
@@ -79,7 +81,7 @@ module.exports.models = {
   seedObject: function(callback) {
     var self = this;
     var modelName = self.adapter.identity.charAt(0).toUpperCase() + self.adapter.identity.slice(1);
-    self.create(self.seedData).exec(function(err, results) {
+    self.create(self.seedData).exec(function(err) {
       if (err) {
         sails.log.debug(err);
         callback();

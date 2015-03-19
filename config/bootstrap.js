@@ -1,3 +1,5 @@
+'use strict';
+
 /**
  * Bootstrap
  * (sails.config.bootstrap)
@@ -16,10 +18,10 @@ module.exports.bootstrap = function(cb) {
   // cb();
 
   async.series([
-    User.seed,
-    Category.seed,
-    Stand.seed,
-    FeaturedStand.seed
+    UserSeed.seed,
+    CategorySeed.seed,
+    StandSeed.seed,
+    FeaturedStandSeed.seed
   ], cb);
 
 };
