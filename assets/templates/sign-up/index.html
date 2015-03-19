@@ -12,8 +12,8 @@
       <div class="row narrow">
         <div class="large-12 columns">
           <div class="login-buttons">
-            <div class="facebook-button signup-button">Log In with <b>Facebook</b></div>
-            <div class="google-button signup-button">Log In with <b>Google+</b></div>
+            <div class="facebook-button signup-button" ng-click="signUp()">Sign Up with <b>Facebook</b></div>
+            <div class="google-button signup-button">Sign Up with <b>Google+</b></div>
           </div>
           <div class="row">
             <div class="small-5 columns">
@@ -26,26 +26,26 @@
               <hr/>
             </div>
           </div>
-          <form name="form" ng-submit="signUp()" novalidate>
+          <form name="form.user" ng-submit="userSignUp()" novalidate>
             <div class="field-div">
               <label class="user-label">first name</label>
-              <input class="user-input" ng-model='user.first' id='user_first' name='user_first' type='text' ng-required='true'></input>
+              <input class="user-input" ng-model='newUser.first' id='user_first' name='user_first' type='text' ng-required='true'></input>
             </div>
             <div class="field-div">
               <label class="user-label">last name</label>
-              <input class="user-input" ng-model='user.last' id='user_last' name='user_last' type='text' ng-required='true'></input>
+              <input class="user-input" ng-model='newUser.last' id='user_last' name='user_last' type='text' ng-required='true'></input>
             </div>
             <div class="field-div">
               <label class="user-label">email</label>
-              <input class="user-input" ng-model='user.email' id='user_email' name='user_email' type='email' ng-required='true'></input>
+              <input class="user-input" ng-model='newUser.email' id='user_email' name='user_email' type='email' ng-required='true'></input>
             </div>
             <div class="field-div">
               <label class="user-label">password</label>
-              <input class="user-input" ng-model='user.password' id='user_password' name='user_password' type='password' ng-required='true'></input>
+              <input class="user-input" ng-model='newUser.password' id='user_password' name='user_password' type='password' ng-required='true'></input>
             </div>
             <div class="field-div">
               <label class="user-label">confirm password</label>
-              <input class="user-input" ng-model='user.confirm_password' id='user_confirm_password' name='user_confirm_password' type='password' ng-required='true'></input>
+              <input class="user-input" ng-model='newUser.confirm_password' id='user_confirm_password' name='user_confirm_password' type='password' ng-required='true'></input>
             </div>
             <small class="signup-error">Incorrect Email or Password</small>
             <p class="detail">By clicking Sign Up, you agree to Mystand's <a class="detail-link">privacy policy.</a></p>
