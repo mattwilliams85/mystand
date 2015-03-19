@@ -1,0 +1,150 @@
+.ms-signup-page {
+
+  .signup-section {
+    .row {
+      &:first-child {
+        width:50%;
+        max-width:600px;
+      }
+    } 
+
+    .brown-space {
+      background-color:#b89b86;
+      .title {
+        color:#fff;
+        text-align:center;
+        padding:100px 0px;
+      }
+    }
+
+    hr {
+      margin:.7em 0px;
+      @media #{$small} { 
+        margin:1.8em 0px;
+      }
+    }
+
+    .signup-error {
+      display:none;
+      background-color:#B5D4DE;
+      color:#000;
+      font-size:14pt;
+      padding:10px 0px;
+    }
+
+    .signup-button {
+      color:#fff;
+      text-align:center;
+      padding:5px 0;
+      @media #{$small} { 
+        padding:10px 0;
+      }
+      border-radius:5px;
+      font-size:16px;
+      letter-spacing:.1em;
+      cursor:pointer;
+      width:100%;
+      -o-transition:.5s;
+      -ms-transition:.5s;
+      -moz-transition:.5s;
+      -webkit-transition:.5s;
+      transition:.5s;
+      b {
+        font-weight:400;
+      }
+      &:not(b) {
+        font-weight:300;
+      }
+    }
+
+    .field-div {
+      position:relative;
+    }
+
+    .detail {
+      padding:10px 0;
+      text-align:center;
+      &.large {
+        font-size:15pt;
+        margin-top:10px;
+      }
+      .detail-link {
+        color:#008aff;
+      }
+    }
+
+
+    .user-label {
+      color: #000;
+      text-align: right;
+      width:100%;
+      left:-101%;
+      position:absolute;
+      text-transform: uppercase;
+      height:20px;
+      padding:0px 0px 20px 5px;
+      @media #{$small} { 
+        padding:10px 0px 25px 5px;
+      }
+      font-size:10pt;
+      letter-spacing:.2em;
+    }
+
+    .login-buttons {
+      margin-top:0px;
+      padding:0px;
+      @media #{$small} { 
+        margin-top:20px;
+        padding:0px 0px;
+      }
+      .facebook-button {
+        background-color:#3b5998;
+        margin:10px 0;
+        @media #{$small} { 
+          margin:70px 0px 30px 0px;
+        }
+        &:hover {
+          background-color:#4061A6;
+        }
+      }
+      .google-button {
+        background-color:#d34836;
+        margin:10px 0;
+        @media #{$small} { 
+          margin:30px 0px 10px 0px;
+        }
+        &:hover {
+          background-color:#EB503C;
+        }
+      }
+    }
+
+    .login-button {
+      background-color:#008aff;
+      text-transform: uppercase;
+      margin:10px 0px;
+      @media #{$small} { 
+        margin:0px 0px 10px 0px; 
+      }
+      &:hover {
+        background-color:#289EFF;
+      }
+    }
+
+    .user-input {
+      border:none;
+      background-color:#eee;
+      border-radius:7px;
+      font-size:17pt;
+      height:30px;
+      padding:0px 20px;
+      margin-bottom:.3em;
+      @media #{$small} { 
+        height:37px;
+        margin-bottom:.7em;
+      }
+    }
+  }
+
+  
+}

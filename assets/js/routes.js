@@ -15,6 +15,11 @@ myStandApp.config(['$routeProvider', '$locationProvider', function($routeProvide
     controller: 'DiscoverCtrl'
   }).
 
+  when('/sign-up', {
+    template: JST['assets/templates/sign-up/index.html'],
+    controller: 'SignUpCtrl'
+  }).
+
   when('/stands/:standId', {
     template: JST['assets/templates/stands/show.html'],
     controller: 'StandsCtrl'
