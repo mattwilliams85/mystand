@@ -2,7 +2,7 @@
 
 var fs = require('fs');
 ///// Load env variables from .env.test file (This will NOT overwrite existing env vars)
-var envFilePath = __dirname + '/../.env';
+var envFilePath = __dirname + '/../.env.test';
 if (fs.existsSync(envFilePath)) {
   var env = require('node-env-file');
   env(envFilePath);
