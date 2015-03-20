@@ -15,10 +15,24 @@ module.exports = {
       required: true
     },
     full_description: {
-      type: 'text'
+      type: 'text',
+      required: true
     },
     petition: {
-      type: 'text'
+      type: 'text',
+      required: true
+    }
+  },
+
+  validationMessages: {
+    stand: {
+      required: 'Stand id is required'
+    },
+    full_description: {
+      required: 'Full description is required'
+    },
+    petition: {
+      required: 'Petition is required'
     }
   }
 };

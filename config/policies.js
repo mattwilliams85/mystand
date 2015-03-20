@@ -53,6 +53,11 @@ module.exports.policies = {
     '*': 'sessionAuth'
   },
   SessionsController: {
-    'destroy': 'sessionAuth'
+    destroy: 'sessionAuth'
+  },
+  StandsController: {
+    '*': 'sessionAuth',
+    index: [],
+    show: []
   }
 };

@@ -58,5 +58,32 @@ module.exports = {
     toJSON: presenter
   },
 
+  validationMessages: {
+    user: {
+      required: 'User is required'
+    },
+    category: {
+      required: 'Category is required'
+    },
+    title: {
+      required: 'Title is required'
+    },
+    image_original_url: {
+      required: 'Image is required'
+    },
+    description: {
+      required: 'Description is required'
+    },
+    goal_result: {
+      required: 'Goal result is required'
+    },
+    goal: {
+      required: 'Goal is required'
+    },
+    duration: {
+      required: 'Duration is required'
+    }
+  },
+
   seedData: seeder.data
 };

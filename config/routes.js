@@ -57,6 +57,10 @@ module.exports.routes = {
   'get /profile.json': 'ProfilesController.show',
 
   'get /featured-stands.json': 'FeaturedStandsController.index',
-  'get /trending-stands.json': 'TrendingStandsController.index'
+  'get /trending-stands.json': 'TrendingStandsController.index',
+
+  'get /stands.json': 'StandsController.index',
+  'get /stands/:id.json': 'StandsController.show',
+  'post /stands.json': 'StandsController.create'
 
 };
