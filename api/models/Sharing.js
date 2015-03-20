@@ -13,12 +13,12 @@ module.exports = {
     uuid: {
       type: 'string'
     },
-    user_id: {
-      type: 'integer',
+    user: {
+      model: 'User',
       required: true
     },
-    stand_id: {
-      type: 'integer',
+    stand: {
+      model: 'Stand',
       required: true
     }
   }

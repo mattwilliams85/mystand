@@ -23,7 +23,7 @@ exports.up = function(db, callback) {
 
     db.createTable.bind(db, 'stands', {
       id: { type: 'int', primaryKey: true, autoIncrement: true },
-      user_id: { type: 'int' },
+      user: { type: 'int' },
       category: { type: 'int' },
       title: { type: 'string' },
       image_original_url: { type: 'string' },

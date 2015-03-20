@@ -10,12 +10,12 @@ module.exports = {
   tableName: 'stand_flags',
 
   attributes: {
-    stand_id: {
-      type: 'integer',
+    stand: {
+      model: 'Stand',
       required: true
     },
-    user_id: {
-      type: 'integer',
+    user: {
+      model: 'User',
       required: true
     }
   }

@@ -10,8 +10,8 @@ module.exports = {
   tableName: 'user_notifications',
 
   attributes: {
-    user_id: {
-      type: 'integer',
+    user: {
+      model: 'User',
       required: true
     },
     announcements: {

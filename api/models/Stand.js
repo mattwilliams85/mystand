@@ -13,8 +13,8 @@ module.exports = {
   tableName: 'stands',
 
   attributes: {
-    user_id: {
-      type: 'integer',
+    user: {
+      model: 'User',
       required: true
     },
     category: {

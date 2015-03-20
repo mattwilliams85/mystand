@@ -10,8 +10,8 @@ module.exports = {
   tableName: 'stand_updates',
 
   attributes: {
-    stand_id: {
-      type: 'integer',
+    stand: {
+      model: 'Stand',
       required: true
     },
     text: {

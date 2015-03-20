@@ -13,9 +13,8 @@ module.exports = {
    * @apiName GetTrendingStands
    * @apiGroup Stands
    *
-   * @apiSuccess {Object[]} trendingStands List of featured stands.
+   * @apiSuccess {Object[]} trendingStands List of trending stands.
    * @apiSuccess {Number} trendingStands.id Stand ID.
-   * @apiSuccess {Number} trendingStands.position Position.
    * @apiSuccess {String} trendingStands.title Title.
    * @apiSuccess {String} trendingStands.description Description.
    * @apiSuccess {String} trendingStands.image_original_url Image URL.
@@ -30,7 +29,6 @@ module.exports = {
    *     "trendingStands": [
    *       {
    *         "id": 123,
-   *         "position": 1,
    *         "title": "Save The Planet",
    *         "description": "Some description",
    *         "image_original_url": "http://www.mystand.herokuapp.com/img.jpg",

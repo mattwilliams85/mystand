@@ -10,12 +10,12 @@ module.exports = {
   tableName: 'stand_comments',
 
   attributes: {
-    user_id: {
-      type: 'integer',
+    stand: {
+      model: 'Stand',
       required: true
     },
-    stand_id: {
-      type: 'integer',
+    user: {
+      model: 'User',
       required: true
     },
     parent_id: {
