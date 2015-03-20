@@ -51,6 +51,25 @@ module.exports = {
     toJSON: presenter
   },
 
+  validationMessages: {
+    first_name: {
+      required: 'First Name is required'
+    },
+    last_name: {
+      required: 'Last Name is required'
+    },
+    email: {
+      required: 'Email is required',
+      email: 'Provide valid email address',
+      unique: 'Email address is already taken'
+    },
+    password: {
+      minLength: 'Password minimum length is 8 characters',
+      required: 'Password is required',
+      password: 'Password confirmation doesn\'t match',
+    }
+  },
+
   seedData: seeder.data,
 
   // afterValidate: function(attrs, callback) {

@@ -45,10 +45,10 @@ describe('POST /users.json', function() {
         .send({_csrf: csrfToken})
         .end(function(err, res) {
           expect(res.statusCode).to.equal(500);
-          expect(res.body.error.email[0].message).to.equal('`undefined` should be a email (instead of "null", which is a object)');
-          expect(res.body.error.password[0].message).to.equal('`undefined` should be a string (instead of "null", which is a object)');
-          expect(res.body.error.first_name[0].message).to.equal('`undefined` should be a string (instead of "null", which is a object)');
-          expect(res.body.error.last_name[0].message).to.equal('`undefined` should be a string (instead of "null", which is a object)');
+          expect(res.body.error.email[0].message).to.equal('Provide valid email address');
+          expect(res.body.error.password[0].message).to.equal('Password minimum length is 8 characters');
+          expect(res.body.error.first_name[0].message).to.equal('First Name is required');
+          expect(res.body.error.last_name[0].message).to.equal('Last Name is required');
           done();
         });
     });

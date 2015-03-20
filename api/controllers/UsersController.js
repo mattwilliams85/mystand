@@ -45,7 +45,7 @@ module.exports = {
       last_name: req.body.last_name
     })
     .exec(function(err, user) {
-      if (err) return res.status(500).json({error: err.invalidAttributes});
+      if (err) return res.status(500).json({error: err.Errors});
 
       res.json({user: user.toJSON()});
     });

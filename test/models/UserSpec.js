@@ -40,8 +40,8 @@ describe('User', function() {
         first_name: 'Bob',
         last_name: 'Smith'
       })
-      .exec(function(err, user) {
-        expect(err.invalidAttributes.password[0].message).to.equal('"password" validation rule failed for input: \'password\'');
+      .exec(function(err) {
+        expect(err.Errors.password[0].message).to.equal('Password confirmation doesn\'t match');
 
         done();
       });
@@ -55,7 +55,7 @@ describe('User', function() {
 
         async.series([
           Factory.create('user', {email: email})
-        ], function(err, data) {
+        ], function() {
           done();
         });
       });
@@ -68,8 +68,8 @@ describe('User', function() {
           first_name: 'Bob',
           last_name: 'Smith'
         })
-        .exec(function(err, user) {
-          expect(err.invalidAttributes.email[0].message).to.equal('A record with that `email` already exists (`email@example.com`).');
+        .exec(function(err) {
+          expect(err.Errors.email[0].message).to.equal('Email address is already taken');
 
           done();
         });
