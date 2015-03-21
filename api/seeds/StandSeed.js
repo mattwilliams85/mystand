@@ -8,7 +8,7 @@
 module.exports = {
   data: [
     {
-      user_id: 1,
+      user: 1,
       category: 1,
       title: 'Save the planet',
       image_original_url: 'http://lorempixel.com/output/nature-q-c-640-480-1.jpg',
@@ -20,7 +20,7 @@ module.exports = {
       is_public: true
     },
     {
-      user_id: 1,
+      user: 1,
       category: 2,
       title: 'Oceans are awesome',
       image_original_url: 'http://lorempixel.com/output/nature-q-c-640-480-2.jpg',
@@ -32,7 +32,7 @@ module.exports = {
       is_public: true
     },
     {
-      user_id: 1,
+      user: 1,
       category: 3,
       title: 'Antarctica',
       image_original_url: 'http://lorempixel.com/output/nature-q-c-640-480-3.jpg',
