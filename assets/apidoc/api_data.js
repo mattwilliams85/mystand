@@ -592,6 +592,70 @@ define({ "api": [
     "groupTitle": "Stands"
   },
   {
+    "type": "put",
+    "url": "/stands/:id/publish",
+    "title": "Publish a Stand",
+    "name": "PublishStand",
+    "group": "Stands",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": false,
+            "field": "id",
+            "description": "<p>Stand ID</p> "
+          }
+        ]
+      }
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "api/controllers/StandsController.js",
+    "groupTitle": "Stands"
+  },
+  {
+    "type": "put",
+    "url": "/stands/:id/unpublish",
+    "title": "Unpublish a Stand",
+    "name": "UnpublishStand",
+    "group": "Stands",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": false,
+            "field": "id",
+            "description": "<p>Stand ID</p> "
+          }
+        ]
+      }
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "api/controllers/StandsController.js",
+    "groupTitle": "Stands"
+  },
+  {
     "type": "delete",
     "url": "/login",
     "title": "Sign Out",
