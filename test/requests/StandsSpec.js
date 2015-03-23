@@ -91,8 +91,7 @@ describe('POST /stands.json', function() {
         goal: 100,
         actions_count: 0,
         duration: 30,
-        full_description: 'text',
-        petition: 'text'
+        full_description: 'text'
       };
 
   beforeEach(function(done) {

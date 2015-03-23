@@ -125,7 +125,6 @@ module.exports = {
    * @apiParam {Number} goal Goal number
    * @apiParam {String} goal_result Goal result
    * @apiParam {Number} category Category ID
-   * @apiParam {String} petition Petition
    *
    * @apiSuccess {Object} stand Stand object
    * @apiSuccess {Number} stand.id Stand ID
@@ -157,8 +156,7 @@ module.exports = {
     var createStandProfile = function(stand) {
       StandProfile.create({
         stand: stand.id,
-        full_description: req.body.full_description,
-        petition: req.body.petition
+        full_description: req.body.full_description
       })
       .exec(function(err) {
         if (err) return res.status(500).json({error: err.Errors});

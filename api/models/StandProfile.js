@@ -17,10 +17,6 @@ module.exports = {
     full_description: {
       type: 'text',
       required: true
-    },
-    petition: {
-      type: 'text',
-      required: true
     }
   },
 
@@ -30,9 +26,6 @@ module.exports = {
     },
     full_description: {
       required: 'Full description is required'
-    },
-    petition: {
-      required: 'Petition is required'
     }
   }
 };

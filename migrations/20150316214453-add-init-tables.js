@@ -85,7 +85,6 @@ exports.up = function(db, callback) {
       id: { type: 'int', primaryKey: true, autoIncrement: true },
       stand: { type: 'int' },
       full_description: { type: 'text' },
-      petition: { type: 'text' },
       createdAt: { type: 'timestamp' },
       updatedAt: { type: 'timestamp' }
     }),
