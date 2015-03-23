@@ -1,4 +1,4 @@
-/*global Stand: true */
+/*global Stand: true, StandProfile: true */
 'use strict';
 
 var joi = require('joi');
@@ -401,6 +401,106 @@ describe('PUT /stands/:id/unpublish.json', function() {
       it('should return 403 forbidden', function(done) {
         agent
           .put('/stands/' + factoryData[0].id + '/unpublish.json')
+          .send({_csrf: csrfToken})
+          .end(function(err, res) {
+            expect(res.statusCode).to.eql(403);
+            expect(Object.keys(res.body).length).to.equal(0);
+            done();
+        });
+      });
+    });
+  });
+});
+
+
+describe('PUT /stands/:id.json', function() {
+  var factoryData,
+      standData = {
+        title: 'New title',
+        image_original_url: 'http://eyecuelab.com/newimage.jpg',
+        youtube: 'newidhere',
+        description: 'newdescr',
+        goal_result: 'newresult',
+        goal: 101,
+        duration: 31,
+        full_description: 'newfulldescr'
+      };
+
+  beforeEach(function(done) {
+    standData._csrf = csrfToken;
+
+    DatabaseCleaner.clean(['stands', 'users'], function() {
+      done();
+    });
+  });
+
+  describe('signed in user', function() {
+    var user;
+    beforeEach(function(done) {
+      withSignIn(function(err, data) {
+        user = data;
+        // Create stand
+        async.series([
+          Factory.create('stand', {user: user.id}),
+          Factory.create('stand', {user: user.id})
+        ], function(err, data) {
+          factoryData = data;
+          // Create a stand profile
+          async.series([
+            Factory.create('standProfile', {stand: factoryData[0].id})
+          ], function() {
+            done();
+          });
+        });
+      });
+    });
+
+    it('should update a stand', function(done) {
+      agent
+        .put('/stands/' + factoryData[0].id + '.json')
+        .send(standData)
+        .end(function(err, res) {
+          expect(res.statusCode).to.eql(200);
+          expect(res.body).to.eql({});
+
+          // Making sure stand was updated
+          Stand.findOneById(factoryData[0].id).exec(function(err, stand) {
+            var savedData = {
+              title: stand.title,
+              image_original_url: stand.image_original_url,
+              youtube: stand.youtube,
+              description: stand.description,
+              goal_result: stand.goal_result,
+              goal: stand.goal,
+              duration: stand.duration
+            };
+            var fullDescription = standData.full_description;
+            delete standData._csrf;
+            delete standData.full_description;
+            expect(savedData).to.be.eql(standData);
+
+            // Making sure Stand Profile was updated
+            StandProfile.find({stand: factoryData[0].id}).exec(function(err, standProfile) {
+              expect(standProfile[0].full_description).to.eql(fullDescription);
+              done();
+            });
+          });
+      });
+    });
+
+    describe('user does not own a stand', function() {
+      beforeEach(function(done) {
+        async.series([
+          Factory.create('stand', {user: 123})
+        ], function(err, data) {
+          factoryData = data;
+          done();
+        });
+      });
+
+      it('should return 403 forbidden', function(done) {
+        agent
+          .put('/stands/' + factoryData[0].id + '.json')
           .send({_csrf: csrfToken})
           .end(function(err, res) {
             expect(res.statusCode).to.eql(403);

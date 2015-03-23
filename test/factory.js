@@ -1,4 +1,4 @@
-/*global User: true, Stand: true, Category: true, FeaturedStand: true */
+/*global User: true, Stand: true, StandProfile: true, Category: true, FeaturedStand: true */
 'use strict';
 
 var chance = require('chance').Chance();
@@ -56,6 +56,19 @@ module.exports = function() {
     for (var key in opts) { attributes[key] = opts[key]; }
 
     Stand.create(attributes).exec(function(err, obj) {
+      return callback(err, obj);
+    });
+  };
+
+  Factory.standProfile = function(opts, callback) {
+    opts = opts || {};
+    var attributes = {
+      stand: 1,
+      full_description: 'Full Description ...'
+    };
+    for (var key in opts) { attributes[key] = opts[key]; }
+
+    StandProfile.create(attributes).exec(function(err, obj) {
       return callback(err, obj);
     });
   };

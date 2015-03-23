@@ -270,6 +270,74 @@ module.exports = {
 
 
   /**
+   * @api {put} /stands/:id Update a Stand
+   * @apiName UpdateStand
+   * @apiGroup Stands
+   *
+   * @apiParam {Number} id Stand ID
+   * @apiParam {String} title Title
+   * @apiParam {String} description Description
+   * @apiParam {String} full_description Full Description
+   * @apiParam {String} image_original_url Image url
+   * @apiParam {String} youtube Youtube video ID
+   * @apiParam {Number} duration Duration in days
+   * @apiParam {Number} goal Goal number
+   * @apiParam {String} goal_result Goal result
+   *
+   * @apiSuccessExample Success-Response:
+   *   HTTP/1.1 200 OK
+   *   {}
+   */
+  update: function(req, res) {
+    var updateStandProfile = function(stand) {
+      StandProfile.update({
+        stand: stand.id
+      }, {
+        full_description: req.body.full_description
+      })
+      .exec(function(err) {
+        if (err) return res.status(500).json({error: err.Errors});
+
+        return res.status(200).end();
+      });
+    };
+
+    var updateStand = function() {
+      Stand.update({
+        id: req.param('id')
+      }, {
+        title: req.body.title,
+        image_original_url: req.body.image_original_url,
+        youtube: req.body.youtube,
+        description: req.body.description,
+        duration: req.body.duration,
+        goal: req.body.goal,
+        goal_result: req.body.goal_result
+      })
+      .exec(function(err, stand) {
+        if (err) return res.status(500).json({error: err.Errors});
+
+        return updateStandProfile(stand[0]);
+      });
+    };
+
+    User.auth(req.session.user, function(err, currentUser) {
+      if (err) return res.forbidden();
+
+      Stand.findOneById(req.param('id')).exec(function(err, stand) {
+        if (err) {
+          console.log(err);
+          return res.status(500).json({error: 'Database error'});
+        }
+        if (currentUser.id !== stand.user) return res.forbidden();
+
+        return updateStand();
+      });
+    });
+  },
+
+
+  /**
    * @api {delete} /stands/:id Delete a Stand
    * @apiName DeleteStand
    * @apiGroup Stands
