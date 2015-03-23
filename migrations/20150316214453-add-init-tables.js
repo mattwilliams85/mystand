@@ -8,6 +8,7 @@ exports.up = function(db, callback) {
     db.createTable.bind(db, 'categories', {
       id: { type: 'int', primaryKey: true, autoIncrement: true },
       title: { type: 'string' },
+      position: { type: 'int' },
       createdAt: { type: 'timestamp' },
       updatedAt: { type: 'timestamp' }
     }),

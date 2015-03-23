@@ -15,6 +15,16 @@ module.exports = {
     title: {
       type: 'string',
       required: true
+    },
+    position: {
+      type: 'integer'
+    },
+
+    toJSON: function() {
+      return {
+        id: this.id,
+        title: this.title
+      };
     }
   },
 

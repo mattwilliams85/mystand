@@ -7,15 +7,15 @@
 
 module.exports = {
   data: [
-    {title: 'biosphere'},
-    {title: 'climate'},
-    {title: 'energy'},
-    {title: 'food'},
-    {title: 'population'},
-    {title: 'consumerism'},
-    {title: 'poverty'},
-    {title: 'social justice'},
-    {title: 'war and conflict'},
-    {title: 'secure our future'}
+    {title: 'biosphere', position: 1},
+    {title: 'climate', position: 2},
+    {title: 'energy', position: 3},
+    {title: 'food', position: 4},
+    {title: 'population', position: 5},
+    {title: 'consumerism', position: 6},
+    {title: 'poverty', position: 7},
+    {title: 'social justice', position: 8},
+    {title: 'war and conflict', position: 9},
+    {title: 'secure our future', position: 10}
   ]
 };

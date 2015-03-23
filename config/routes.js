@@ -59,6 +59,8 @@ module.exports.routes = {
   'get /featured-stands.json': 'FeaturedStandsController.index',
   'get /trending-stands.json': 'TrendingStandsController.index',
 
+  'get /categories.json': 'CategoriesController.index',
+
   'get /stands.json': 'StandsController.index',
   'get /stands/:id.json': 'StandsController.show',
   'post /stands.json': 'StandsController.create',

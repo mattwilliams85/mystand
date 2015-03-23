@@ -1,5 +1,49 @@
 define({ "api": [
   {
+    "type": "get",
+    "url": "/categories",
+    "title": "Categories",
+    "name": "GetCategories",
+    "group": "Categories",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Object[]",
+            "optional": false,
+            "field": "categories",
+            "description": "<p>List of categories</p> "
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "categories.id",
+            "description": "<p>Category ID</p> "
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "categories.title",
+            "description": "<p>Title</p> "
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n  \"categories\": [\n    {\n      \"id\": 123,\n      \"title\": \"Planet\"\n    }\n  ]\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "api/controllers/CategoriesController.js",
+    "groupTitle": "Categories"
+  },
+  {
     "type": "delete",
     "url": "/stands/:id",
     "title": "Delete a Stand",
@@ -500,13 +544,6 @@ define({ "api": [
             "optional": false,
             "field": "category",
             "description": "<p>Category ID</p> "
-          },
-          {
-            "group": "Parameter",
-            "type": "String",
-            "optional": false,
-            "field": "petition",
-            "description": "<p>Petition</p> "
           }
         ]
       }
@@ -638,6 +675,94 @@ define({ "api": [
             "optional": false,
             "field": "id",
             "description": "<p>Stand ID</p> "
+          }
+        ]
+      }
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "api/controllers/StandsController.js",
+    "groupTitle": "Stands"
+  },
+  {
+    "type": "put",
+    "url": "/stands/:id",
+    "title": "Update a Stand",
+    "name": "UpdateStand",
+    "group": "Stands",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": false,
+            "field": "id",
+            "description": "<p>Stand ID</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "title",
+            "description": "<p>Title</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "description",
+            "description": "<p>Description</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "full_description",
+            "description": "<p>Full Description</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "image_original_url",
+            "description": "<p>Image url</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "youtube",
+            "description": "<p>Youtube video ID</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": false,
+            "field": "duration",
+            "description": "<p>Duration in days</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": false,
+            "field": "goal",
+            "description": "<p>Goal number</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "goal_result",
+            "description": "<p>Goal result</p> "
           }
         ]
       }
