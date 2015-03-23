@@ -22,8 +22,8 @@
             </li>
             <li ng-if="currentUser.is_admin && isSignedIn"><a>Admin</a></li>
             <li ng-if="currentUser.is_admin && isSignedIn" class="divider">|</li>
-            <li ng-if="!isSignedIn"><a ng-href="#/sign-up">Sign Up</a></li>
-            <li ng-if="isSignedIn"><a ng-href="#/profile">Account</a></li>
+            <li ng-if="!isSignedIn"><a ng-href="/sign-up">Sign Up</a></li>
+            <li ng-if="isSignedIn"><a ng-href="/profile">Account</a></li>
             <li class="divider">|</li>
             <li ng-if="!isSignedIn"><a ng-click="signInRedirect()">Log In</a></li>
             <li ng-if="isSignedIn"><a ng-click="signOut()">Logout</a></li>
@@ -45,4 +45,3 @@
 </header>
 
 <ng-include src="'assets/templates/modals/sign-in.html'"></ng-include>
-<ng-include src="'assets/templates/modals/logout.html'"></ng-include>

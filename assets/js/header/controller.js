@@ -8,7 +8,8 @@ function HeaderCtrl($scope, $rootScope, $location, $timeout,  $http, CurrentUser
   $scope.signOut = function() {
     var cb = function() {
       $rootScope.isSignedIn = false;
-      $('#logout-modal').foundation('reveal','open');
+      $location.path('/home')
+      $rootScope.showModal('You have succesfully logged out!','/home');
       CurrentUser.clear();
     };
     $http.delete('/login.json', {

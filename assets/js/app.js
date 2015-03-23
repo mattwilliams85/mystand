@@ -31,6 +31,18 @@ myStandApp.run(['$rootScope', '$location', '$timeout', 'CurrentUser',
       }
     };
 
+    $rootScope.modalText = ''
+    $rootScope.modalPath = ''
+    $rootScope.showModal = function(text, modalPath, okCallback, cancelCallback) {
+      $rootScope.modalText = text;
+      $rootScope.modalPath = modalPath
+      $('#dialogue-modal').foundation('reveal', 'open');
+    }
+
+    $rootScope.closeModal = function(){
+      $('#dialogue-modal').foundation('reveal', 'close');
+    }
+
     // Prevent A-sync issue with Foundation.js
     $timeout(function() {
       $(document).foundation({

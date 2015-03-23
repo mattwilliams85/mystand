@@ -95,6 +95,7 @@
       text-align: right;
       width:100%;
       left:-101%;
+      top:0px;
       position:absolute;
       text-transform: uppercase;
       height:20px;
@@ -104,6 +105,15 @@
       }
       font-size:10pt;
       letter-spacing:.2em;
+      transition: .3s linear;
+    }
+
+    .validation-error {
+      font-style:italic;
+    }
+
+    .ng-invalid.ng-dirty + .user-label {
+      color:#ff0000;
     }
 
     .login-buttons {
@@ -154,10 +164,21 @@
       font-size:17pt;
       height:30px;
       padding:0px 20px;
-      margin-bottom:.3em;
+      margin-top:.3em;
       @media #{$small} { 
         height:37px;
-        margin-bottom:.7em;
+        margin-top:.7em;
+      }
+      
+      &.input-alert.ng-dirty {
+        + label {
+          color: #ff0000;
+        }
+      }
+      &.ng-valid {
+        + label {
+          color: #4FCD6E;
+        }
       }
     }
   }

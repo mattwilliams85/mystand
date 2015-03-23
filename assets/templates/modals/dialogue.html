@@ -1,0 +1,10 @@
+<div id="dialogue-modal" class="reveal-modal dialogue-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+  <div class="inner-wrapper">
+    <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+    <br>
+    <h3>{{modalText}}</h3>
+    <br>
+    <button class="dialogue-button" ng-show="okCallback" ng-click="closeModal()" ng-href="modalPath">Make it so</button>
+    <button class="dialogue-button cancel" ng-show="cancelCallback" ng-click="closeModal()">What was I thinking! Cancel!</button>
+  </div>
+</div> 

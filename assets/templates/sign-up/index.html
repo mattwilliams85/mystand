@@ -26,30 +26,77 @@
               <hr/>
             </div>
           </div>
-          <form name="form.user" ng-submit="userSignUp()" novalidate>
+          <form name="form.user" ng-submit="userSignUp()" novalidate autocomplete='off'>
             <div class="field-div">
-              <label class="user-label">first name</label>
-              <input class="user-input" ng-model='newUser.first' id='user_first' name='user_first' type='text' ng-required='true'></input>
+              <input 
+                class="user-input" 
+                ng-class="{'input-alert': formErrorMessages['first_name']}" 
+                ng-model='newUser.first_name' 
+                id='user_first' 
+                name='user_first' 
+                type='text' 
+                ng-required='true'>
+              </input>
+              <label class="user-label">first name</label> 
+              <span ng-show="formErrorMessages['first_name']" class="validation-error">{{formErrorMessages['first_name'].message}}</span>
+
             </div>
             <div class="field-div">
+              <input 
+                class="user-input" 
+                ng-class="{'input-alert': formErrorMessages['last_name']}" 
+                ng-model='newUser.last_name' 
+                id='user_last' 
+                name='user_last' 
+                type='text' 
+                ng-required='true'>
+              </input>
               <label class="user-label">last name</label>
-              <input class="user-input" ng-model='newUser.last' id='user_last' name='user_last' type='text' ng-required='true'></input>
+              <span ng-show="formErrorMessages['last_name']" class="validation-error">{{formErrorMessages['last_name'].message}}</span>
             </div>
             <div class="field-div">
+              <input 
+                class="user-input" 
+                ng-class="{'input-alert': formErrorMessages['email']}" 
+                ng-model='newUser.email' 
+                id='user_email' 
+                name='user_email' 
+                type='email' 
+                ng-required='true'>
+              </input>
               <label class="user-label">email</label>
-              <input class="user-input" ng-model='newUser.email' id='user_email' name='user_email' type='email' ng-required='true'></input>
+              <span ng-show="formErrorMessages['email']" class="validation-error">{{formErrorMessages['email'].message}}</span>
             </div>
             <div class="field-div">
+              <input 
+                class="user-input" 
+                ng-minlength="8" 
+                ng-model='newUser.password' 
+                id='user_password' 
+                name='user_password' 
+                type='password' 
+                ng-required='true'>
+              </input>
               <label class="user-label">password</label>
-              <input class="user-input" ng-model='newUser.password' id='user_password' name='user_password' type='password' ng-required='true'></input>
+              <span ng-show="formErrorMessages['password']" class="validation-error">{{formErrorMessages['password'].message}}</span>
             </div>
             <div class="field-div">
+              <input 
+                class="user-input" 
+                same-as='{{newUser.password}}' 
+                ng-minlength="8" 
+                class="user-input" 
+                ng-model='newUser.password_confirmation' 
+                id='user_confirm_password'
+                name='user_confirm_password' 
+                type='password' 
+                ng-required='true'>
+              </input>
               <label class="user-label">confirm password</label>
-              <input class="user-input" ng-model='newUser.confirm_password' id='user_confirm_password' name='user_confirm_password' type='password' ng-required='true'></input>
             </div>
             <small class="signup-error">Incorrect Email or Password</small>
             <p class="detail">By clicking Sign Up, you agree to Mystand's <a class="detail-link">privacy policy.</a></p>
-            <button class="login-button signup-button" value="Sign In">Sign Up</button>
+            <input class="login-button signup-button" value="Sign In" type="submit" />
           </form>
           <p class="detail large">Already have an account? <a class="detail-link" ng-click="signInRedirect('discover')">Log in.</a></p>
         </div>

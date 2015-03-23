@@ -1,34 +1,38 @@
 'use strict';
 
-function SignUpCtrl($scope, $rootScope, $location, $timeout,  $http) {
+function SignUpCtrl($scope, $rootScope, $location, $timeout,  $http, Profile) {
   $scope.newUser = {}
+  $scope.isSubmitDisabled = false;
+
+  var signUpSuccessCallback = function(data) {
+    $location.path('/home');
+    $rootScope.showModal('You have successfully created an account. Feel free to log in!');
+  }
 
   $scope.userSignUp = function() {
-    if($scope.newUser.email && $scope.newUser.password) {
-      $http.post('/users.json', {
-        _csrf: SAILS_LOCALS._csrf,
-        email: $scope.newUser.email,
-        password: $scope.newUser.password
-      }).
-      success(function(data) {
-        if (data.error) {
-          console.log('invalid username or password')
-            // $scope.showModal('Oops, wrong email or password');
-            // $(document).foundation();
-        } else {
-          console.log('newUser created!')
-          $location.path('discover')
-        }
-      }).
-      error(function() {
-        console.log('Log In Error');
-      });
-    } else {
-      console.log('fields missing')
+    if ($scope.newUser) {
+      $scope.isSubmitDisabled = true;
+      Profile.create($scope.newUser).then(signUpSuccessCallback, signUpErrorCallback);
     }
   };
 
 }
 
-SignUpCtrl.$inject = ['$scope', '$rootScope', '$location', '$timeout', '$http'];
-myStandControllers.controller('SignUpCtrl', SignUpCtrl);
+SignUpCtrl.$inject = ['$scope', '$rootScope', '$location', '$timeout', '$http', 'Profile'];
+myStandControllers.controller('SignUpCtrl', SignUpCtrl)
+  .directive('sameAs', function() {
+    return {
+      require: 'ngModel',
+      link: function(scope, elm, attrs, ctrl) {
+        ctrl.$parsers.unshift(function(viewValue) {
+          if (viewValue === attrs.sameAs) {
+            ctrl.$setValidity('sameAs', true);
+            return viewValue;
+          } else {
+            ctrl.$setValidity('sameAs', false);
+            return undefined;
+          }
+        });
+      }
+    };
+  });
