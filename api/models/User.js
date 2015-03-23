@@ -103,6 +103,7 @@ module.exports = {
         console.log(err);
         return callback(err);
       }
+      if (!user) return callback('Forbidden');
 
       return callback(null, user);
     });

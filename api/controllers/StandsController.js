@@ -198,5 +198,40 @@ module.exports = {
         return createStand(currentUser);
       });
     });
+  },
+
+
+  /**
+   * @api {delete} /stands/:id Delete a Stand
+   * @apiName DeleteStand
+   * @apiGroup Stands
+   *
+   * @apiParam {Number} id Stand ID
+   *
+   * @apiSuccessExample Success-Response:
+   *   HTTP/1.1 200 OK
+   *   {}
+   */
+  destroy: function(req, res) {
+    User.auth(req.session.user, function(err, currentUser) {
+      if (err) return res.forbidden();
+
+      Stand.findOneById(req.param('id')).exec(function(err, stand) {
+        if (err) {
+          console.log(err);
+          return res.status(500).json({error: 'Database error'});
+        }
+        if (currentUser.id !== stand.user) return res.forbidden();
+
+        stand.destroy(function(err) {
+          if (err) {
+            console.log(err);
+            return res.status(500).json({error: 'Database error'});
+          }
+
+          return res.status(200).end();
+        });
+      });
+    });
   }
 };

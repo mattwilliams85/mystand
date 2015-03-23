@@ -61,6 +61,7 @@ module.exports.routes = {
 
   'get /stands.json': 'StandsController.index',
   'get /stands/:id.json': 'StandsController.show',
-  'post /stands.json': 'StandsController.create'
+  'post /stands.json': 'StandsController.create',
+  'delete /stands/:id.json': 'StandsController.destroy'
 
 };

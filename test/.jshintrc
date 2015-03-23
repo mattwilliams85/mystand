@@ -35,6 +35,7 @@
     "xdescribe",
     "DatabaseCleaner",
     "Factory",
-    "async"
+    "async",
+    "withSignIn"
   ]
 }

@@ -1,5 +1,37 @@
 define({ "api": [
   {
+    "type": "delete",
+    "url": "/stands/:id",
+    "title": "Delete a Stand",
+    "name": "DeleteStand",
+    "group": "Stands",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": false,
+            "field": "id",
+            "description": "<p>Stand ID</p> "
+          }
+        ]
+      }
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "api/controllers/StandsController.js",
+    "groupTitle": "Stands"
+  },
+  {
     "type": "get",
     "url": "/featured-stands",
     "title": "Featured Stands",
@@ -95,7 +127,7 @@ define({ "api": [
   {
     "type": "get",
     "url": "/stands/:id",
-    "title": "Stand",
+    "title": "Show Stand",
     "name": "GetStand",
     "group": "Stands",
     "parameter": {
@@ -395,6 +427,168 @@ define({ "api": [
     },
     "version": "0.0.0",
     "filename": "api/controllers/TrendingStandsController.js",
+    "groupTitle": "Stands"
+  },
+  {
+    "type": "post",
+    "url": "/stands",
+    "title": "Create a Stand",
+    "name": "PostStands",
+    "group": "Stands",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "title",
+            "description": "<p>Title</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "description",
+            "description": "<p>Description</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "full_description",
+            "description": "<p>Full Description</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "image_original_url",
+            "description": "<p>Image url</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "youtube",
+            "description": "<p>Youtube video ID</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": false,
+            "field": "duration",
+            "description": "<p>Duration in days</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": false,
+            "field": "goal",
+            "description": "<p>Goal number</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "goal_result",
+            "description": "<p>Goal result</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": false,
+            "field": "category",
+            "description": "<p>Category ID</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "petition",
+            "description": "<p>Petition</p> "
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Object",
+            "optional": false,
+            "field": "stand",
+            "description": "<p>Stand object</p> "
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "stand.id",
+            "description": "<p>Stand ID</p> "
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "stand.title",
+            "description": "<p>Title</p> "
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "stand.description",
+            "description": "<p>Description</p> "
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "stand.image_original_url",
+            "description": "<p>Image URL</p> "
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "stand.youtube",
+            "description": "<p>Youtube video ID</p> "
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "stand.goal",
+            "description": "<p>Goal number</p> "
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "stand.category",
+            "description": "<p>Category name</p> "
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "stand.actions_count",
+            "description": "<p>Actions count</p> "
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n  \"stand\": {\n    \"id\": 123,\n    \"title\": \"Save The Planet\",\n    \"description\": \"Some description\",\n    \"image_original_url\": \"http://www.mystand.herokuapp.com/img.jpg\",\n    \"youtube\": \"43T5K8D3h\",\n    \"goal\": 100,\n    \"category\": \"Planet\",\n    \"actions_count\": 95\n  }\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "api/controllers/StandsController.js",
     "groupTitle": "Stands"
   },
   {

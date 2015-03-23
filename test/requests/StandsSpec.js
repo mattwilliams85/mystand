@@ -1,3 +1,4 @@
+/*global Stand: true */
 'use strict';
 
 var joi = require('joi');
@@ -191,6 +192,86 @@ describe('POST /stands.json', function() {
     it('should return 403 forbidden', function(done) {
       agent
         .post('/stands.json')
+        .end(function(err, res) {
+          expect(res.statusCode).to.eql(403);
+          expect(Object.keys(res.body).length).to.equal(0);
+          done();
+        });
+    });
+  });
+});
+
+
+describe('DELETE /stands/:id.json', function() {
+  var factoryData;
+
+  beforeEach(function(done) {
+    DatabaseCleaner.clean(['stands', 'users'], function() {
+      done();
+    });
+  });
+
+  describe('signed in user', function() {
+    var user;
+    beforeEach(function(done) {
+      withSignIn(function(err, data) {
+        user = data;
+        async.series([
+          Factory.create('stand', {user: user.id}),
+          Factory.create('stand', {user: user.id})
+        ], function(err, data) {
+          factoryData = data;
+          done();
+        });
+      });
+    });
+
+    it('should delete a stand', function(done) {
+      agent
+        .del('/stands/' + factoryData[0].id + '.json')
+        .send({_csrf: csrfToken})
+        .end(function(err, res) {
+          expect(res.statusCode).to.eql(200);
+          expect(res.body).to.eql({});
+
+          // Making sure stand was deleted from database
+          Stand.findOneById(factoryData[0].id).exec(function(err, stand) {
+            expect(err).to.be.null;
+            expect(stand).to.be.undefined;
+
+            done();
+          });
+      });
+    });
+
+    describe('user does not own a stand', function() {
+      beforeEach(function(done) {
+        async.series([
+          Factory.create('stand', {user: 123})
+        ], function(err, data) {
+          factoryData = data;
+          done();
+        });
+      });
+
+      it('should return 403 forbidden', function(done) {
+        agent
+          .del('/stands/' + factoryData[0].id + '.json')
+          .send({_csrf: csrfToken})
+          .end(function(err, res) {
+            expect(res.statusCode).to.eql(403);
+            expect(Object.keys(res.body).length).to.equal(0);
+            done();
+        });
+      });
+    });
+  });
+
+  describe('guest user', function() {
+    it('should return 403 forbidden', function(done) {
+      agent
+        .del('/stands/1.json')
+        .send({_csrf: csrfToken})
         .end(function(err, res) {
           expect(res.statusCode).to.eql(403);
           expect(Object.keys(res.body).length).to.equal(0);

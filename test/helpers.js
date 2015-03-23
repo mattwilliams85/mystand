@@ -19,3 +19,28 @@ global.request = require('supertest');
 
 global.DatabaseCleaner = require(__dirname + '/../lib/DatabaseCleaner')();
 global.Factory = require('./factory')();
+
+global.withSignIn = function(userData, cb) {
+  if (typeof(userData) === 'function') {
+    cb = userData;
+    userData = {};
+  }
+  var data = {
+    email: 'email@example.com',
+    password: 'password',
+    password_confirmation: 'password'
+  };
+  for (var key in userData) { data[key] = userData[key]; }
+
+  async.series([
+    Factory.create('user', data)
+  ], function(err, factoryData) {
+    agent
+      .post('/login.json')
+      .send({_csrf: csrfToken, email: data.email, password: data.password})
+      .end(function(err, res) {
+        expect(res.statusCode).to.eql(200);
+        return cb(null, factoryData[0]);
+      });
+  });
+};

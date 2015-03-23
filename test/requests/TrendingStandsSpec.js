@@ -18,6 +18,22 @@ var trendingStandsSchema = joi.object({
 });
 
 describe('GET /trending-stands.json', function() {
+  beforeEach(function(done) {
+    DatabaseCleaner.clean(['stands', 'categories'], function() {
+      // Create category
+      Factory.create('category')(function(err, category) {
+        // Create stands
+        async.series([
+          Factory.create('stand', {category: category.id}),
+          Factory.create('stand', {category: category.id}),
+          Factory.create('stand', {category: category.id})
+        ], function() {
+          done();
+        });
+      });
+    });
+  });
+
   it('should return a list of trending stands', function(done) {
     agent.get('/trending-stands.json').end(function(err, res) {
       expect(res.statusCode).to.eql(200);
