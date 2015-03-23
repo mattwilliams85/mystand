@@ -20,6 +20,11 @@ myStandApp.config(['$routeProvider', '$locationProvider', function($routeProvide
     controller: 'SignUpCtrl'
   }).
 
+  when('/welcome', {
+    template: JST['assets/templates/sign-up/show.html'],
+    controller: 'SignUpCtrl'
+  }).
+
   when('/stands/:standId', {
     template: JST['assets/templates/stands/show.html'],
     controller: 'StandsCtrl'

@@ -46,6 +46,19 @@ a {
   color:inherit;
 }
 
+.off-canvas-wrap {
+  .inner-wrap {
+    padding-bottom:200px;
+  }
+}
+
+.off-canvas-wrap.fill {
+  height:100%;
+  .inner-wrap {
+    height:100%;
+  }
+}
+
 .detail-text {
   font-size:13pt;
   line-height:21pt;

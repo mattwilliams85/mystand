@@ -23,7 +23,7 @@
             CurrentUser.get().then(function(data) {
               $rootScope.currentUser = data;
               $('[data-reveal]').foundation('reveal','close');
-              if($rootScope.goTo) $location.path($rootScope.goTo);
+              $location.path('welcome');
             });
             // $scope.redirectToDashboardIfSignedIn();
           }

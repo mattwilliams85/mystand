@@ -1,36 +1,84 @@
-.ms-signup-page {
+.header-space {
+  background-color:#b89b86;
+  &.blue {
+    background-color:#95cfca;
+  }
+}
 
+.off-canvas-wrap.fill {
+  height:100%;
+  .inner-wrap {
+    height:100%;
+  }
+}
+
+.triangle {
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 30px 30px 0 30px;
+  border-color: #b89b86 transparent transparent transparent;
+  margin-bottom:50px; 
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+  position:absolute;
+  transition:all .15s linear;
+  &.blue {
+    border-color: #95cfca transparent transparent transparent;
+  }
+}
+
+.title {
+  color:#fff;
+  text-align:center;
+  padding:100px 0px;
+  margin:0px;
+}
+
+.ms-welcome-page {
+  .welcome-section {
+    .welcome-box {
+      border:1px solid #eee;
+      border-radius:5px;
+      text-align:center;
+      text-transform:uppercase;
+      padding:50px;
+      margin:100px;
+      background:url('/images/geopattern.jpg');
+
+      .classic-link {
+        color:#00b4ff;
+        text-decoration: underline;
+      }
+
+      .start-button {
+        color:#fff;
+        background-color:#933232;
+        padding:20px 30px;
+        width:250px;
+        margin:0 auto;
+        border-radius:5px;
+        cursor:pointer;
+        transition:.15s linear;
+        &:hover {
+          background-color:#B23D3D;
+        }
+        h4 {
+          font-weight:400;
+        }
+      }
+    }
+  }
+}
+
+.ms-signup-page {
   .signup-section {
     padding-bottom:50px;
     .narrow {
       width:50%;
       max-width:600px;
-    } 
-
-    .brown-space {
-      background-color:#b89b86;
-      
-      .title {
-        color:#fff;
-        text-align:center;
-        padding:100px 0px;
-        margin:0px;
-      }
-    }
-
-    .triangle {
-      width: 0;
-      height: 0;
-      border-style: solid;
-      border-width: 30px 30px 0 30px;
-      border-color: #b89b86 transparent transparent transparent;
-      margin-bottom:50px; 
-      margin-left: auto;
-      margin-right: auto;
-      left: 0;
-      right: 0;
-      position:absolute;
-      transition:all .15s linear;
     }
 
     hr {
