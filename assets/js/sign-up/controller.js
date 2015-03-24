@@ -5,8 +5,7 @@ function SignUpCtrl($scope, $rootScope, $location, $timeout,  $http, Profile) {
   $scope.isSubmitDisabled = false;
 
   var signUpSuccessCallback = function(data) {
-    $location.path('/home');
-    $rootScope.showModal('You have successfully created an account. Feel free to log in!');
+    $location.path('welcome');
   }
 
   $scope.userSignUp = function() {

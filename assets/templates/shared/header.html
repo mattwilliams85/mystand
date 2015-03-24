@@ -20,13 +20,21 @@
                 <input type="submit" class="search-submit" />
               </form>
             </li>
-            <li ng-if="currentUser.is_admin && isSignedIn"><a>Admin</a></li>
-            <li ng-if="currentUser.is_admin && isSignedIn" class="divider">|</li>
+<!--             <li ng-if="currentUser.is_admin && isSignedIn"><a>Admin</a></li>
+            <li ng-if="currentUser.is_admin && isSignedIn" class="divider">|</li> -->
             <li ng-if="!isSignedIn"><a ng-href="/sign-up">Sign Up</a></li>
-            <li ng-if="isSignedIn"><a ng-href="/profile">Account</a></li>
-            <li class="divider">|</li>
+            <li ng-if="isSignedIn && currentUser.image_original_url"><img class="avatar" ng-src="{{currentUser.image_original_url}}" ng-href="/profile"/></li>
+            <li ng-if="isSignedIn && !currentUser.image_original_url"><img class="avatar" src="http://www.musica100.com/assets/images/default_avatar.jpg" ng-href="/profile"/></li>
+            <li ng-if="!isSignedIn" class="divider">|</li>
             <li ng-if="!isSignedIn"><a ng-click="signInRedirect()">Log In</a></li>
-            <li ng-if="isSignedIn"><a ng-click="signOut()">Logout</a></li>
+            <li ng-if="isSignedIn">
+              <div class="activism-score-box">
+                <span class="number">234</span>
+                <span>activism score</span>
+              </div>
+            </li>
+            <li><i class="fa fa-chevron-down"></i></li>
+            <!-- <li ng-if="isSignedIn"><a ng-click="signOut()">Logout</a></li> -->
           </div>
         </ul>
       </nav>
