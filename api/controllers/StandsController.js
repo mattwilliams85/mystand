@@ -16,9 +16,9 @@ module.exports = {
    * @apiGroup Stands
    *
    * @apiParam {Number} page Page number
-   * @apiParam {Number} categoryId Category ID
-   * @apiParam {String} sort Sort type
-   * @apiParam {String} search Search query
+   * @apiParam {Number} category Category ID
+   * @apiParam {String} sort Sort type(latest/oldest/popular)
+   * @apiParam {String} query Search query
    *
    * @apiSuccess {Object[]} stands List of stands.
    * @apiSuccess {Number} stands.id Stand ID.
@@ -48,22 +48,49 @@ module.exports = {
    *   }
    */
   index: function(req, res) {
-    var items = [];
-    Stand.find()
-    .populate('category')
-    .sort('id DESC')
-    .limit(this.perPage)
-    .exec(function(err, stands) {
-      if (err) {
-        console.log(err);
-        return res.status(500).json({error: 'Database error'});
-      }
+    var items = [],
+        options = {
+          where: {},
+          sort: 'id DESC',
+          limit: this.perPage
+        };
 
-      for (var stand of stands) {
-        items.push(stand.toJSON());
-      }
-      return res.json({stands: items});
-    });
+    var findStands = function() {
+      Stand.find()
+      .where(options.where)
+      .populate('category')
+      .sort(options.sort)
+      .limit(options.limit)
+      .exec(function(err, stands) {
+        if (err) {
+          console.log(err);
+          return res.status(500).json({error: 'Database error'});
+        }
+
+        for (var stand of stands) {
+          items.push(stand.toJSON());
+        }
+        return res.json({stands: items});
+      });
+    };
+
+    if (req.param('category')) options.where.category = req.param('category');
+    if (req.param('sort') === 'oldest') options.sort = 'id ASC';
+    if (req.param('sort') === 'popular') options.sort = 'actions_count DESC';
+
+    if (req.param('query')) {
+      Stand.search(req.param('query'), function(err, ids) {
+        if (err) {
+          console.log(err);
+          return res.status(500).json({error: 'Search error'});
+        }
+
+        options.where.id = ids;
+        return findStands();
+      });
+    } else {
+      return findStands();
+    }
   },
 
 

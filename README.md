@@ -23,6 +23,8 @@ Build a Docker image with fig:
 fig build
 ```
 
+Create .env and .env.test out of .env.example, make changes if necessary
+
 Install back-end dependencies(listed in package.json):
 ```bash
 fig run web npm install

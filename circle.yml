@@ -5,8 +5,10 @@ machine:
     version: 0.12
   environment:
     DATABASE_URL: postgres://ubuntu:@localhost:5432/circle_test
+    REDISGREEN_URL: redis://ubuntu:@localhost:6379/0
 test:
   pre:
     - npm run db-migrate up
+    - npm install -g grunt-cli
   override:
     - grunt test

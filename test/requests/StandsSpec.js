@@ -18,25 +18,34 @@ var standsSchema = joi.object({
   stands: joi.array().items(standSchema).required()
 });
 
+
 describe('GET /stands.json', function() {
-  var factoryData;
+  var factoryData, category;
+
   beforeEach(function(done) {
     DatabaseCleaner.clean(['stands', 'categories'], function() {
-      // Create category
-      Factory.create('category')(function(err, category) {
+
+      // Create categories
+      async.series([
+        Factory.create('category'),
+        Factory.create('category')
+      ], function(err, data) {
+        category = data[0];
         // Create stands with category
         async.series([
-          Factory.create('stand', {category: category.id}),
-          Factory.create('stand', {category: category.id})
+          Factory.create('stand', {title: 'mahalo luau', category: category.id}),
+          Factory.create('stand', {title: 'luau', category: category.id}),
+          Factory.create('stand', {title: 'pakalolo mahalo', category: data[1].id})
         ], function(err, data) {
           factoryData = data;
           done();
         });
       });
+
     });
   });
 
-  it('should return a list of stands', function(done) {
+  it('should return valid stands data format', function(done) {
     agent.get('/stands.json').end(function(err, res) {
       expect(res.statusCode).to.eql(200);
       var validation = standsSchema.validate(res.body);
@@ -44,7 +53,54 @@ describe('GET /stands.json', function() {
       done();
     });
   });
+
+  it('should return latest stands by default', function(done) {
+    agent.get('/stands.json').end(function(err, res) {
+      expect(res.statusCode).to.eql(200);
+      expect(res.body.stands.length).to.eql(3);
+      expect(res.body.stands[0].id).to.eql(factoryData[2].id);
+      expect(res.body.stands[1].id).to.eql(factoryData[1].id);
+      expect(res.body.stands[2].id).to.eql(factoryData[0].id);
+      done();
+    });
+  });
+
+  it('should return oldest stands from a category', function(done) {
+    agent.get('/stands.json')
+    .query('sort=oldest&category=' + category.id)
+    .end(function(err, res) {
+      expect(res.statusCode).to.eql(200);
+      expect(res.body.stands.length).to.eql(2);
+      expect(res.body.stands[0].id).to.eql(factoryData[0].id);
+      expect(res.body.stands[1].id).to.eql(factoryData[1].id);
+      done();
+    });
+  });
+
+  it('should search stands by a query string', function(done) {
+    agent.get('/stands.json')
+    .query('query=luau')
+    .end(function(err, res) {
+      expect(res.statusCode).to.eql(200);
+      expect(res.body.stands.length).to.eql(2);
+      expect(res.body.stands[0].id).to.eql(factoryData[1].id);
+      expect(res.body.stands[1].id).to.eql(factoryData[0].id);
+      done();
+    });
+  });
+
+  it('should search stands by a query string within category', function(done) {
+    agent.get('/stands.json')
+    .query('query=mahalo&category=' + category.id)
+    .end(function(err, res) {
+      expect(res.statusCode).to.eql(200);
+      expect(res.body.stands.length).to.eql(1);
+      expect(res.body.stands[0].id).to.eql(factoryData[0].id);
+      done();
+    });
+  });
 });
+
 
 describe('GET /stands/:id.json', function() {
   var factoryData;
@@ -74,6 +130,7 @@ describe('GET /stands/:id.json', function() {
     });
   });
 });
+
 
 describe('POST /stands.json', function() {
   var category,

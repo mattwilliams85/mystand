@@ -6,5 +6,8 @@ web:
     - .:/code
   links:
     - db
+    - redis
 db:
   image: postgres:latest
+redis:
+  image: redis:latest
