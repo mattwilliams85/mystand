@@ -30,6 +30,11 @@ myStandApp.config(['$routeProvider', '$locationProvider', function($routeProvide
     controller: 'StandsCtrl'
   }).
 
+  when('/profile/:profileMode?', {
+    template: JST['assets/templates/profile/show.html'],
+    controller: 'ProfileCtrl'
+  }).
+
   otherwise({
     redirectTo: '/home'
   });

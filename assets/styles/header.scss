@@ -1,12 +1,3 @@
-.invert-header {
-  background-color:#fff;
-  color:#000;
-  height:100px;
-  a, li {
-    color:#000 !important;
-  }
-}
-
 .ms-header-guest {
   position:fixed;
   background-color:transparent;
@@ -39,6 +30,7 @@
     width:45px;
     border-radius:100%;
     margin-bottom:25px;
+    cursor:pointer;
   }
 
   // SEARCH BOX ANIMATION //
@@ -138,16 +130,36 @@
       }
     }
 
+    .header-dropdown {
+      padding:10px;
+      line-height:10pt;
+      border-color:#fff;
+      margin:15px 0px 0px -9px;
+      @media screen and (min-width: 1800px) { 
+        margin:15px 0px 0px 7px;
+      }
+      li {
+        display:block;
+        a {
+          padding:.3em;
+          &:hover {
+            color:#000;
+          }
+        }
+      }
+    }
+
     .activism-score-box {
       span {
         display:block;
         line-height:15pt;
+        font-size:11pt;
         text-transform: uppercase;
         text-align:right;
         margin:0 20px;
-        letter-spacing:.1em;
+        letter-spacing:.25em;
         &.number {
-          font-size:17pt;
+          font-size:15pt;
         }
       }
     }
@@ -156,8 +168,13 @@
       padding:5px;
       background-color:transparent;
       font-size:15pt;
-      color:#888;
+      color:#fff;
       border-radius:100%;
+      cursor:pointer;
+      transition: .15s linear;
+      &:hover {
+        background-color:#888;
+      }
     }
 
     .left-side {
@@ -168,7 +185,7 @@
     .right-side {
       display:inline-block;
       float:right;
-      li {
+      .first {
         &:first-child {
           float:left;
           margin:34px 0px 0 0;
@@ -211,7 +228,34 @@
       top:14px;
       right:5px;
     }
+  }
+}
 
+.invert-header {
+  background-color:#fff;
+  color:#000;
+  height:100px;
+  .ms-header-guest {
+    border-bottom: 2px solid #ccc;
+  }
+  a, li {
+    color:#000 !important;
+  }
+
+  .header-dropdown {
+    border-color:#ccc !important;
+    background-color:#ccc;
+    box-shadow: -5px 5px 5px 3px rgba(0,0,0,0.3);
+    &.open:before {
+      border-color: transparent transparent #ccc transparent;
+    }
+    li {
+      a {
+        &:hover {
+          color:#000;
+        }
+      }
+    }
   }
 }
 

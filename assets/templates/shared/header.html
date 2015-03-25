@@ -13,7 +13,7 @@
             <li><a ng-click="signInRedirect('start')">Start</a></li>
           </div>
           <div class="right-side">
-            <li>
+            <li class="first">
               <form class="search-container" name="headerSearchForm" ng-submit="headerSearch()" novalidate>
                 <input id="header_search_query" class="search-box" ng-model="headerSearchQuery" type="text" />
                 <label for="header_search_query"><i class="fa fa-search"></i></label>
@@ -23,8 +23,7 @@
 <!--             <li ng-if="currentUser.is_admin && isSignedIn"><a>Admin</a></li>
             <li ng-if="currentUser.is_admin && isSignedIn" class="divider">|</li> -->
             <li ng-if="!isSignedIn"><a ng-href="/sign-up">Sign Up</a></li>
-            <li ng-if="isSignedIn && currentUser.image_original_url"><img class="avatar" ng-src="{{currentUser.image_original_url}}" ng-href="/profile"/></li>
-            <li ng-if="isSignedIn && !currentUser.image_original_url"><img class="avatar" src="http://www.musica100.com/assets/images/default_avatar.jpg" ng-href="/profile"/></li>
+
             <li ng-if="!isSignedIn" class="divider">|</li>
             <li ng-if="!isSignedIn"><a ng-click="signInRedirect()">Log In</a></li>
             <li ng-if="isSignedIn">
@@ -33,8 +32,15 @@
                 <span>activism score</span>
               </div>
             </li>
-            <li><i class="fa fa-chevron-down"></i></li>
-            <!-- <li ng-if="isSignedIn"><a ng-click="signOut()">Logout</a></li> -->
+           <li ng-if="isSignedIn && currentUser.image_original_url" ><img  data-dropdown="drop1" class="avatar" ng-src="{{currentUser.image_original_url}}" ng-href="/profile"/></li>
+           <li ng-if="isSignedIn && !currentUser.image_original_url"><img data-dropdown="drop1" class="avatar" src="http://www.musica100.com/assets/images/default_avatar.jpg" ng-href="/profile"/></li>
+            <ul id="drop1" class="f-dropdown small header-dropdown" data-dropdown-content>
+              <li><a ng-href="profile">Profile</a></li>
+              <li><a ng-href="profile/manage">Manage Stands</a></li>
+              <li><a ng-href="profile/activity">My Activity</a></li>
+              <li><a ng-href="profile/notifications">Notifications</a></li>
+              <li><a ng-click="signOut()">Log Out</a></li>
+            </ul>
           </div>
         </ul>
       </nav>
