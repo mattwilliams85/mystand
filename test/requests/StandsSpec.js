@@ -18,6 +18,7 @@ var standsSchema = joi.object({
   stands: joi.array().items(standSchema).required()
 });
 
+
 describe('GET /stands.json', function() {
   var factoryData;
   beforeEach(function(done) {
@@ -44,7 +45,24 @@ describe('GET /stands.json', function() {
       done();
     });
   });
+
+  xit('should return latest stands by default', function(done) {
+    done();
+  });
+
+  xit('should return oldest stands from a category', function(done) {
+    done();
+  });
+
+  xit('should search stands by a query string', function(done) {
+    done();
+  });
+
+  xit('should search stands by a query string within category', function(done) {
+    done();
+  });
 });
+
 
 describe('GET /stands/:id.json', function() {
   var factoryData;
@@ -74,6 +92,7 @@ describe('GET /stands/:id.json', function() {
     });
   });
 });
+
 
 describe('POST /stands.json', function() {
   var category,
