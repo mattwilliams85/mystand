@@ -1,6 +1,94 @@
 .ms-stands-show-page {
-  .title-box {
-    text-align:center;
-    margin-top:100px;
+  padding-bottom:250px;
+
+  .ms-stand {
+    background-color:#f6f6f6;
+    margin-bottom:100px;
+
+    .title-box {
+      text-align:center;
+      padding-top:100px;
+    }
+    .youtube-player {
+      height:380px;
+      margin-bottom:15px;
+    }
+    .details-box {
+      border-bottom:1px solid #ccc;
+      .count {
+        line-height:1em;
+      }
+    }
+    .action-button {
+      background-color:#933232;
+      color:#fff;
+      border-radius:5px;
+      padding:10px;
+      text-align:center;
+      margin:60px 0px;
+    }
+    .impact {
+      display:block;
+      clear:both;
+      background-color:#eee;
+      padding:3px 7px;
+      margin:10px 0px;
+      float:left;
+    }
+    .avatar {
+      height:45px;
+      width:45px;
+      border-radius:100%;
+      margin-bottom:10px;
+      cursor:pointer;
+      margin-right:10px;
+    }
+
+    .left {
+      float:left;
+      .fa {
+        margin:0px 5px;
+      }
+      .share-detail {
+        margin-right:10px;
+      }
+    }
+    .right {
+      float:right;
+      .fa {
+        margin:0px 15px 0px 10px;
+      }
+    }
+  }
+
+  .center-nav-bar {
+    background-color:#fff;
+    margin-top:50px;
+    border-top:1px solid #ccc;
+    border-bottom:1px solid #ccc;    
+    li {
+      display:inline-block;
+      text-decoration: none;
+      padding:15px;
+      width:135px;
+      text-align:center;
+      text-transform: uppercase;
+      border-right:1px solid #ccc;
+      &:first-child {
+        border-left:1px solid #ccc;
+      }
+    }
+  }
+
+  .nav-box {
+    background-color:#fff;
+    height:100%;
+  }
+
+  .detail {
+    display:block;
+    &.link {
+      margin-bottom:5px;
+    }
   }
 }

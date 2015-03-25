@@ -81,6 +81,18 @@ a {
   font-style: italic;
 }
 
+.bold {
+  font-weight: 600;
+}
+
+.inline {
+  display:inline-block;
+}
+
+.clear-fix {
+  clear:both;
+}
+
 .invert-header {
   color:#000;
 }
