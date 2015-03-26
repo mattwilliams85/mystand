@@ -1,3 +1,4 @@
+/*global Stand: true */
 'use strict';
 
 /*
@@ -29,6 +30,16 @@ module.exports = {
     full_description: {
       required: 'Full description is required'
     }
+  },
+
+  /**
+   * Lifecycle Callbacks
+   *
+   */
+  afterCreate: function(standProfile, callback) {
+    Stand.update({id: standProfile.stand}, {profile: standProfile.id}).exec(function() {
+      return callback();
+    });
   },
 
   seedData: seeder.data

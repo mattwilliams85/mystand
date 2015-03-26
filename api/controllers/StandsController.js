@@ -192,15 +192,10 @@ module.exports = {
         stand: stand.id,
         full_description: req.body.full_description
       })
-      .exec(function(err, standProfile) {
+      .exec(function(err) {
         if (err) return res.status(500).json({error: err.Errors});
 
-        // Update stand with profile id
-        Stand.update({id: stand.id}, {profile: standProfile.id}).exec(function(err) {
-          if (err) return res.status(500).json({error: err.Errors});
-
-          return res.json({stand: stand.toJSON()});
-        });
+        return res.json({stand: stand.toJSON()});
       });
     };
 
