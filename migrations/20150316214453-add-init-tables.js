@@ -105,6 +105,7 @@ exports.up = function(db, callback) {
 
     db.createTable.bind(db, 'users', {
       id: { type: 'int', primaryKey: true, autoIncrement: true },
+      profile: { type: 'int' },
       first_name: { type: 'string' },
       last_name: { type: 'string' },
       image_original_url: { type: 'string' },

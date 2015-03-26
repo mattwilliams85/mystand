@@ -9,6 +9,48 @@
 module.exports = {
 
   /**
+   * @api {get} /users/:id Show User
+   * @apiName GetUser
+   * @apiGroup Users
+   *
+   * @apiParam {Number} id User ID
+   *
+   * @apiSuccess {Object} user User object
+   * @apiSuccess {Number} user.id User ID
+   * @apiSuccess {String} user.first_name First name
+   * @apiSuccess {String} user.last_name Last name
+   * @apiSuccess {String} user.website Website
+   * @apiSuccess {Number} user.stands_count Created stands count
+   * @apiSuccess {Number} user.score Activism score
+   * @apiSuccess {String} user.bio Bio
+   *
+   * @apiSuccessExample Success-Response:
+   *   HTTP/1.1 200 OK
+   *   {
+   *     "user": {
+   *       "id": 123,
+   *       "first_name": "Bob",
+   *       "last_name": "White",
+   *       "website": "http://www.google.com/",
+   *       "stands_count": 5,
+   *       "score": 100,
+   *       "bio": "Bio here ..."
+   *     }
+   *   }
+   */
+  show: function(req, res) {
+    User.findOneById(req.param('id')).populate('profile').exec(function(err, user) {
+      if (err) {
+        console.log(err);
+        return res.status(500).json({error: 'Database error'});
+      }
+
+      return res.json({user: user.toJSON({publicProfile: true})});
+    });
+  },
+
+
+  /**
    * @api {post} /users Sign Up
    * @apiName PostUsers
    * @apiGroup Users

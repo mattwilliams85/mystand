@@ -1148,6 +1148,98 @@
     "groupTitle": "Users"
   },
   {
+    "type": "get",
+    "url": "/users/:id",
+    "title": "Show User",
+    "name": "GetUser",
+    "group": "Users",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": false,
+            "field": "id",
+            "description": "<p>User ID</p> "
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Object",
+            "optional": false,
+            "field": "user",
+            "description": "<p>User object</p> "
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "user.id",
+            "description": "<p>User ID</p> "
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "user.first_name",
+            "description": "<p>First name</p> "
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "user.last_name",
+            "description": "<p>Last name</p> "
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "user.website",
+            "description": "<p>Website</p> "
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "user.stands_count",
+            "description": "<p>Created stands count</p> "
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "user.score",
+            "description": "<p>Activism score</p> "
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "user.bio",
+            "description": "<p>Bio</p> "
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n  \"user\": {\n    \"id\": 123,\n    \"first_name\": \"Bob\",\n    \"last_name\": \"White\",\n    \"website\": \"http://www.google.com/\",\n    \"stands_count\": 5,\n    \"score\": 100,\n    \"bio\": \"Bio here ...\"\n  }\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "api/controllers/UsersController.js",
+    "groupTitle": "Users"
+  },
+  {
     "type": "post",
     "url": "/login",
     "title": "Sign In",

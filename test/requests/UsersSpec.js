@@ -11,6 +11,18 @@ var userSchema = joi.object({
   })
 });
 
+var userPublicSchema = joi.object({
+  user: joi.object({
+    id: joi.number().integer().required(),
+    first_name: joi.string().allow(null),
+    last_name: joi.string().allow(null),
+    bio: joi.string().allow(null),
+    website: joi.string().allow(null),
+    stands_count: joi.number().integer().required(),
+    score: joi.number().integer().required(),
+  })
+});
+
 describe('POST /users.json', function() {
   var factoryData,
       email,
@@ -52,5 +64,40 @@ describe('POST /users.json', function() {
           done();
         });
     });
+  });
+});
+
+
+describe('GET /users/:id.json', function() {
+  var factoryData;
+
+  beforeEach(function(done) {
+    DatabaseCleaner.clean(['users', 'user_profiles'], function() {
+      async.series([
+        Factory.create('user'),
+        Factory.create('user')
+      ], function(err, data) {
+        factoryData = data;
+        // Create user profile
+        async.series([
+          Factory.create('userProfile', {user: factoryData[0].id}),
+          Factory.create('userProfile')
+        ], function() {
+          done();
+        });
+      });
+    });
+  });
+
+  it('should return public user object', function(done) {
+    agent
+      .get('/users/' + factoryData[0].id + '.json')
+      .end(function(err, res) {
+        expect(res.statusCode).to.eql(200);
+        var validation = userPublicSchema.validate(res.body);
+        expect(validation.error).to.be.null;
+        expect(res.body.user.id).to.equal(factoryData[0].id);
+        done();
+      });
   });
 });

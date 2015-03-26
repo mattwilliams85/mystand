@@ -37,6 +37,7 @@ module.exports = {
    *
    */
   afterCreate: function(standProfile, callback) {
+    // Update stand with profile ID
     Stand.update({id: standProfile.stand}, {profile: standProfile.id}).exec(function() {
       return callback();
     });

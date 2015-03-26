@@ -21,6 +21,9 @@ module.exports = {
   },
 
   attributes: {
+    profile: {
+      model: 'UserProfile'
+    },
     first_name: {
       type: 'string',
       required: true

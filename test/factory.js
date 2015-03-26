@@ -1,4 +1,4 @@
-/*global User: true, Stand: true, StandProfile: true, StandUpdate: true, StandAction: true, Category: true, FeaturedStand: true */
+/*global User: true, UserProfile: true, Stand: true, StandProfile: true, StandUpdate: true, StandAction: true, Category: true, FeaturedStand: true */
 'use strict';
 
 var chance = require('chance').Chance();
@@ -34,6 +34,20 @@ module.exports = function() {
     for (var key in opts) { attributes[key] = opts[key]; }
 
     User.create(attributes).exec(function(err, obj) {
+      return callback(err, obj);
+    });
+  };
+
+  Factory.userProfile = function(opts, callback) {
+    opts = opts || {};
+    var attributes = {
+      user: 1,
+      bio: 'bio ...',
+      website: 'http://www.google.com'
+    };
+    for (var key in opts) { attributes[key] = opts[key]; }
+
+    UserProfile.create(attributes).exec(function(err, obj) {
       return callback(err, obj);
     });
   };

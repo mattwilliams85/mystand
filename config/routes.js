@@ -52,6 +52,7 @@ module.exports.routes = {
 
   // Users
   'post /users.json': 'UsersController.create',
+  'get /users/:id.json': 'UsersController.show',
   'post /login.json': 'SessionsController.create',
   'delete /login.json': 'SessionsController.destroy',
   'get /profile.json': 'ProfilesController.show',

@@ -20,6 +20,7 @@ module.exports.bootstrap = function(cb) {
   // Order matters
   async.series([
     User.seed,
+    UserProfile.seed,
     Category.seed,
     Stand.seed,
     StandProfile.seed,
