@@ -1,4 +1,4 @@
-/*global User: true, Stand: true, StandProfile: true, StandUpdate: true, Category: true, FeaturedStand: true */
+/*global User: true, Stand: true, StandProfile: true, StandUpdate: true, StandAction: true, Category: true, FeaturedStand: true */
 'use strict';
 
 var chance = require('chance').Chance();
@@ -83,6 +83,22 @@ module.exports = function() {
     for (var key in opts) { attributes[key] = opts[key]; }
 
     StandUpdate.create(attributes).exec(function(err, obj) {
+      return callback(err, obj);
+    });
+  };
+
+  Factory.standAction = function(opts, callback) {
+    opts = opts || {};
+    var attributes = {
+      stand: 1,
+      user: 1,
+      image_original_url: 'http://lorempixel.com/output/nature-q-c-640-480-2.jpg',
+      youtube: 'JtJgbd1Jfuk',
+      description: 'Content here ...'
+    };
+    for (var key in opts) { attributes[key] = opts[key]; }
+
+    StandAction.create(attributes).exec(function(err, obj) {
       return callback(err, obj);
     });
   };

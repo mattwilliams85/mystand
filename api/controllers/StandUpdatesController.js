@@ -36,21 +36,21 @@ module.exports = {
    *   }
    */
   index: function(req, res) {
-    var items = [];
+    var updates = [];
     StandUpdate.find()
     .where({stand: req.param('standId')})
     .sort('id DESC')
     .limit(this.perPage)
-    .exec(function(err, updates) {
+    .exec(function(err, items) {
       if (err) {
         console.log(err);
         return res.status(500).json({error: 'Database error'});
       }
 
-      for (var update of updates) {
-        items.push(update.toJSON());
+      for (var item of items) {
+        updates.push(item.toJSON());
       }
-      return res.json({standUpdates: items});
+      return res.json({standUpdates: updates});
     });
   }
 };

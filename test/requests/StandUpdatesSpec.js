@@ -12,7 +12,7 @@ var standUpdatesSchema = joi.object({
   standUpdates: joi.array().items(standUpdateSchema).required()
 });
 
-describe('GET /stands/:standId/updates.json jhegerkdfh', function() {
+describe('GET /stands/:standId/updates.json', function() {
   var stands, standUpdates;
 
   beforeEach(function(done) {

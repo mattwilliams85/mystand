@@ -70,6 +70,7 @@ module.exports.routes = {
   'put /stands/:id.json': 'StandsController.update',
   'delete /stands/:id.json': 'StandsController.destroy',
 
-  'get /stands/:standId/updates.json': 'StandUpdatesController.index'
+  'get /stands/:standId/updates.json': 'StandUpdatesController.index',
+  'get /stands/:standId/actions.json': 'StandActionsController.index'
 
 };

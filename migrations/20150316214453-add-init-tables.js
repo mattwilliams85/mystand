@@ -52,6 +52,9 @@ exports.up = function(db, callback) {
       id: { type: 'int', primaryKey: true, autoIncrement: true },
       user: { type: 'int' },
       stand: { type: 'int' },
+      image_original_url: { type: 'string' },
+      youtube: { type: 'string' },
+      description: { type: 'text' },
       createdAt: { type: 'timestamp' },
       updatedAt: { type: 'timestamp' }
     }),
