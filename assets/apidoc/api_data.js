@@ -44,6 +44,204 @@ define({ "api": [
     "groupTitle": "Categories"
   },
   {
+    "type": "get",
+    "url": "/stands/:standId/actions",
+    "title": "Stand Actions",
+    "name": "GetStandActions",
+    "group": "Stand_Actions",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": false,
+            "field": "page",
+            "description": "<p>Page number</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": false,
+            "field": "standId",
+            "description": "<p>Stand ID</p> "
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Object[]",
+            "optional": false,
+            "field": "standActions",
+            "description": "<p>List of stand actions</p> "
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "standActions.id",
+            "description": "<p>Stand Action ID</p> "
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "standActions.stand",
+            "description": "<p>Stand ID</p> "
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "standActions.user",
+            "description": "<p>User ID</p> "
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "standActions.image_original_url",
+            "description": "<p>Image url</p> "
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "standActions.youtube",
+            "description": "<p>Youtube ID</p> "
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "standActions.description",
+            "description": "<p>Description</p> "
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n  \"standUpdates\": [\n    {\n      \"id\": 123,\n      \"stand\": 123,\n      \"user\": 123,\n      \"image_original_url\": \"http://www.mystand.herokuapp.com/img.jpg\",\n      \"youtube\": \"43T5K8D3h\",\n      \"description\": \"Description here ...\"\n    }\n  ]\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "api/controllers/StandActionsController.js",
+    "groupTitle": "Stand_Actions"
+  },
+  {
+    "type": "post",
+    "url": "/stands/:standId/actions",
+    "title": "Create a Stand Action",
+    "name": "PostStandActions",
+    "group": "Stand_Actions",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": false,
+            "field": "standId",
+            "description": "<p>Stand ID</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "image_original_url",
+            "description": "<p>Image url</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "youtube",
+            "description": "<p>Youtube video ID</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "description",
+            "description": "<p>Description</p> "
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Object",
+            "optional": false,
+            "field": "standAction",
+            "description": "<p>Stand Action object</p> "
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "standAction.id",
+            "description": "<p>Stand Action ID</p> "
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "standAction.stand",
+            "description": "<p>Stand ID</p> "
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "standAction.user",
+            "description": "<p>User ID</p> "
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "standAction.image_original_url",
+            "description": "<p>Image url</p> "
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "standAction.youtube",
+            "description": "<p>Youtube ID</p> "
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "standAction.description",
+            "description": "<p>Description</p> "
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n  \"standAction\": {\n    \"id\": 123,\n    \"stand\": 123,\n    \"user\": 123,\n    \"image_original_url\": \"http://www.mystand.herokuapp.com/img.jpg\",\n    \"youtube\": \"43T5K8D3h\",\n    \"description\": \"Description here ...\"\n  }\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "api/controllers/StandActionsController.js",
+    "groupTitle": "Stand_Actions"
+  },
+  {
     "type": "delete",
     "url": "/stands/:id",
     "title": "Delete a Stand",
@@ -202,161 +400,83 @@ define({ "api": [
             "type": "Number",
             "optional": false,
             "field": "stand.id",
-            "description": "<p>Stand ID.</p> "
+            "description": "<p>Stand ID</p> "
           },
           {
             "group": "Success 200",
             "type": "String",
             "optional": false,
             "field": "stand.title",
-            "description": "<p>Title.</p> "
+            "description": "<p>Title</p> "
           },
           {
             "group": "Success 200",
             "type": "String",
             "optional": false,
             "field": "stand.description",
-            "description": "<p>Description.</p> "
+            "description": "<p>Description</p> "
           },
           {
             "group": "Success 200",
             "type": "String",
             "optional": false,
             "field": "stand.image_original_url",
-            "description": "<p>Image URL.</p> "
+            "description": "<p>Image URL</p> "
           },
           {
             "group": "Success 200",
             "type": "String",
             "optional": false,
             "field": "stand.youtube",
-            "description": "<p>Youtube ID.</p> "
+            "description": "<p>Youtube ID</p> "
           },
           {
             "group": "Success 200",
             "type": "Number",
             "optional": false,
             "field": "stand.goal",
-            "description": "<p>Goal number.</p> "
+            "description": "<p>Goal number</p> "
           },
           {
             "group": "Success 200",
             "type": "String",
             "optional": false,
             "field": "stand.category",
-            "description": "<p>Category name.</p> "
+            "description": "<p>Category name</p> "
+          },
+          {
+            "group": "Success 200",
+            "type": "Object",
+            "optional": false,
+            "field": "stand.profile",
+            "description": "<p>Profile object</p> "
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "stand.profile.full_description",
+            "description": "<p>Full Description</p> "
           },
           {
             "group": "Success 200",
             "type": "Number",
             "optional": false,
             "field": "stand.actions_count",
-            "description": "<p>Actions count.</p> "
+            "description": "<p>Actions count</p> "
           }
         ]
       },
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n  \"stand\": {\n    \"id\": 123,\n    \"title\": \"Save The Planet\",\n    \"description\": \"Some description\",\n    \"image_original_url\": \"http://www.mystand.herokuapp.com/img.jpg\",\n    \"youtube\": \"43T5K8D3h\",\n    \"goal\": 100,\n    \"category\": \"Planet\",\n    \"actions_count\": 95\n  }\n}",
+          "content": "HTTP/1.1 200 OK\n{\n  \"stand\": {\n    \"id\": 123,\n    \"title\": \"Save The Planet\",\n    \"description\": \"Some description\",\n    \"image_original_url\": \"http://www.mystand.herokuapp.com/img.jpg\",\n    \"youtube\": \"43T5K8D3h\",\n    \"goal\": 100,\n    \"category\": \"Planet\",\n    \"profile\": {\n      \"full_description\": \"Full description here ...\",\n    },\n    \"actions_count\": 95\n  }\n}",
           "type": "json"
         }
       ]
     },
     "version": "0.0.0",
     "filename": "api/controllers/StandsController.js",
-    "groupTitle": "Stands"
-  },
-  {
-    "type": "get",
-    "url": "/stands/:standId/actions",
-    "title": "Stand Actions",
-    "name": "GetStandActions",
-    "group": "Stands",
-    "parameter": {
-      "fields": {
-        "Parameter": [
-          {
-            "group": "Parameter",
-            "type": "Number",
-            "optional": false,
-            "field": "page",
-            "description": "<p>Page number</p> "
-          },
-          {
-            "group": "Parameter",
-            "type": "Number",
-            "optional": false,
-            "field": "standId",
-            "description": "<p>Stand ID</p> "
-          }
-        ]
-      }
-    },
-    "success": {
-      "fields": {
-        "Success 200": [
-          {
-            "group": "Success 200",
-            "type": "Object[]",
-            "optional": false,
-            "field": "standActions",
-            "description": "<p>List of stand actions</p> "
-          },
-          {
-            "group": "Success 200",
-            "type": "Number",
-            "optional": false,
-            "field": "standActions.id",
-            "description": "<p>Stand Action ID</p> "
-          },
-          {
-            "group": "Success 200",
-            "type": "Number",
-            "optional": false,
-            "field": "standActions.stand",
-            "description": "<p>Stand ID</p> "
-          },
-          {
-            "group": "Success 200",
-            "type": "Number",
-            "optional": false,
-            "field": "standActions.user",
-            "description": "<p>User ID</p> "
-          },
-          {
-            "group": "Success 200",
-            "type": "String",
-            "optional": false,
-            "field": "standActions.image_original_url",
-            "description": "<p>Image url</p> "
-          },
-          {
-            "group": "Success 200",
-            "type": "String",
-            "optional": false,
-            "field": "standActions.youtube",
-            "description": "<p>Youtube ID</p> "
-          },
-          {
-            "group": "Success 200",
-            "type": "String",
-            "optional": false,
-            "field": "standActions.description",
-            "description": "<p>Description</p> "
-          }
-        ]
-      },
-      "examples": [
-        {
-          "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n  \"standUpdates\": [\n    {\n      \"id\": 123,\n      \"stand\": 123,\n      \"user\": 123,\n      \"image_original_url\": \"http://www.mystand.herokuapp.com/img.jpg\",\n      \"youtube\": \"43T5K8D3h\",\n      \"description\": \"Description here ...\"\n    }\n  ]\n}",
-          "type": "json"
-        }
-      ]
-    },
-    "version": "0.0.0",
-    "filename": "api/controllers/StandActionsController.js",
     "groupTitle": "Stands"
   },
   {

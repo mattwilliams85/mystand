@@ -1,6 +1,6 @@
 # myStand
 
-API Doc available [here](https://mystand.herokuapp.com/apidoc)
+API Doc available [here](https://mystand.herokuapp.com/apidoc/index.html)
 
 ## Setting up Development environment
 
