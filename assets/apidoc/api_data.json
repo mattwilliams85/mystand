@@ -446,6 +446,13 @@
           },
           {
             "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "stand.user",
+            "description": "<p>User ID</p> "
+          },
+          {
+            "group": "Success 200",
             "type": "Object",
             "optional": false,
             "field": "stand.profile",
@@ -470,7 +477,7 @@
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n  \"stand\": {\n    \"id\": 123,\n    \"title\": \"Save The Planet\",\n    \"description\": \"Some description\",\n    \"image_original_url\": \"http://www.mystand.herokuapp.com/img.jpg\",\n    \"youtube\": \"43T5K8D3h\",\n    \"goal\": 100,\n    \"category\": \"Planet\",\n    \"profile\": {\n      \"full_description\": \"Full description here ...\",\n    },\n    \"actions_count\": 95\n  }\n}",
+          "content": "HTTP/1.1 200 OK\n{\n  \"stand\": {\n    \"id\": 123,\n    \"title\": \"Save The Planet\",\n    \"description\": \"Some description\",\n    \"image_original_url\": \"http://www.mystand.herokuapp.com/img.jpg\",\n    \"youtube\": \"43T5K8D3h\",\n    \"goal\": 100,\n    \"category\": \"Planet\",\n    \"user\": 123,\n    \"profile\": {\n      \"full_description\": \"Full description here ...\",\n    },\n    \"actions_count\": 95\n  }\n}",
           "type": "json"
         }
       ]

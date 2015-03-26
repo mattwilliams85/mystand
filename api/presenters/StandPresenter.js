@@ -6,6 +6,7 @@
 */
 
 module.exports = function toJSON(opts) {
+  opts = opts || {};
   var obj = this.toObject();
   var data = {
     id: obj.id,
@@ -17,10 +18,13 @@ module.exports = function toJSON(opts) {
     category: obj.category.title,
     actions_count: obj.actions_count || 0
   };
-  if (obj.profile !== null && typeof obj.profile === 'object') {
-    data.profile = {
-      full_description: obj.profile.full_description
-    };
+  if (opts.withProfile) {
+    data.user = obj.user;
+    if (obj.profile !== null && typeof obj.profile === 'object') {
+      data.profile = {
+        full_description: obj.profile.full_description
+      };
+    }
   }
   return data;
 };

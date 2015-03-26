@@ -109,6 +109,7 @@ module.exports = {
    * @apiSuccess {String} stand.youtube Youtube ID
    * @apiSuccess {Number} stand.goal Goal number
    * @apiSuccess {String} stand.category Category name
+   * @apiSuccess {Number} stand.user User ID
    * @apiSuccess {Object} stand.profile Profile object
    * @apiSuccess {String} stand.profile.full_description Full Description
    * @apiSuccess {Number} stand.actions_count Actions count
@@ -124,6 +125,7 @@ module.exports = {
    *       "youtube": "43T5K8D3h",
    *       "goal": 100,
    *       "category": "Planet",
+   *       "user": 123,
    *       "profile": {
    *         "full_description": "Full description here ...",
    *       },
@@ -138,7 +140,7 @@ module.exports = {
         return res.status(500).json({error: 'Database error'});
       }
 
-      return res.json({stand: stand.toJSON()});
+      return res.json({stand: stand.toJSON({withProfile: true})});
     });
   },
 
