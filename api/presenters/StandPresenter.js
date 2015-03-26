@@ -7,7 +7,7 @@
 
 module.exports = function toJSON(opts) {
   var obj = this.toObject();
-  return {
+  var data = {
     id: obj.id,
     title: obj.title,
     description: obj.description,
@@ -17,4 +17,10 @@ module.exports = function toJSON(opts) {
     category: obj.category.title,
     actions_count: obj.actions_count || 0
   };
+  if (obj.profile !== null && typeof obj.profile === 'object') {
+    data.profile = {
+      full_description: obj.profile.full_description
+    };
+  }
+  return data;
 };

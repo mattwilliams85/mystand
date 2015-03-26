@@ -69,7 +69,10 @@ module.exports = function() {
     for (var key in opts) { attributes[key] = opts[key]; }
 
     StandProfile.create(attributes).exec(function(err, obj) {
-      return callback(err, obj);
+      // Update stand with profile id
+      Stand.update({id: obj.stand}, {profile: obj.id}).exec(function(err) {
+        return callback(err, obj);
+      });
     });
   };
 

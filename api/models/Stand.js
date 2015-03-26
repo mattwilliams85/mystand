@@ -23,6 +23,9 @@ module.exports = {
       model: 'Category',
       required: true
     },
+    profile: {
+      model: 'StandProfile'
+    },
     title: {
       type: 'string',
       required: true

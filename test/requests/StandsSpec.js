@@ -14,6 +14,12 @@ var standSchema = joi.object({
   actions_count: joi.number().integer().required()
 });
 
+var standFullSchema = standSchema.keys({
+  profile: joi.object({
+    full_description: joi.string().required()
+  }).required()
+});
+
 var standsSchema = joi.object({
   stands: joi.array().items(standSchema).required()
 });
@@ -105,7 +111,7 @@ describe('GET /stands.json', function() {
 describe('GET /stands/:id.json', function() {
   var factoryData;
   beforeEach(function(done) {
-    DatabaseCleaner.clean(['stands', 'categories'], function() {
+    DatabaseCleaner.clean(['stands', 'stand_profiles', 'categories'], function() {
       // Create category
       Factory.create('category')(function(err, category) {
         // Create stands with category
@@ -114,7 +120,11 @@ describe('GET /stands/:id.json', function() {
           Factory.create('stand', {category: category.id})
         ], function(err, data) {
           factoryData = data;
-          done();
+
+          // Create stand profile
+          Factory.create('standProfile', {stand: factoryData[0].id})(function() {
+            done();
+          });
         });
       });
     });
@@ -123,7 +133,7 @@ describe('GET /stands/:id.json', function() {
   it('should return a stand', function(done) {
     agent.get('/stands/' + factoryData[0].id + '.json').end(function(err, res) {
       expect(res.statusCode).to.eql(200);
-      var validation = standSchema.validate(res.body.stand);
+      var validation = standFullSchema.validate(res.body.stand);
       expect(validation.error).to.be.null;
       expect(res.body.stand.id).to.eql(factoryData[0].id);
       done();

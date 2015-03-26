@@ -102,14 +102,16 @@ module.exports = {
    * @apiParam {Number} id Stand ID
    *
    * @apiSuccess {Object} stand Stand object
-   * @apiSuccess {Number} stand.id Stand ID.
-   * @apiSuccess {String} stand.title Title.
-   * @apiSuccess {String} stand.description Description.
-   * @apiSuccess {String} stand.image_original_url Image URL.
-   * @apiSuccess {String} stand.youtube Youtube ID.
-   * @apiSuccess {Number} stand.goal Goal number.
-   * @apiSuccess {String} stand.category Category name.
-   * @apiSuccess {Number} stand.actions_count Actions count.
+   * @apiSuccess {Number} stand.id Stand ID
+   * @apiSuccess {String} stand.title Title
+   * @apiSuccess {String} stand.description Description
+   * @apiSuccess {String} stand.image_original_url Image URL
+   * @apiSuccess {String} stand.youtube Youtube ID
+   * @apiSuccess {Number} stand.goal Goal number
+   * @apiSuccess {String} stand.category Category name
+   * @apiSuccess {Object} stand.profile Profile object
+   * @apiSuccess {String} stand.profile.full_description Full Description
+   * @apiSuccess {Number} stand.actions_count Actions count
    *
    * @apiSuccessExample Success-Response:
    *   HTTP/1.1 200 OK
@@ -122,12 +124,15 @@ module.exports = {
    *       "youtube": "43T5K8D3h",
    *       "goal": 100,
    *       "category": "Planet",
+   *       "profile": {
+   *         "full_description": "Full description here ...",
+   *       },
    *       "actions_count": 95
    *     }
    *   }
    */
   show: function(req, res) {
-    Stand.findOneById(req.param('id')).populate('category').exec(function(err, stand) {
+    Stand.findOneById(req.param('id')).populate('category').populate('profile').exec(function(err, stand) {
       if (err) {
         console.log(err);
         return res.status(500).json({error: 'Database error'});
@@ -185,11 +190,15 @@ module.exports = {
         stand: stand.id,
         full_description: req.body.full_description
       })
-      .exec(function(err) {
+      .exec(function(err, standProfile) {
         if (err) return res.status(500).json({error: err.Errors});
 
-        stand.category = category;
-        return res.json({stand: stand.toJSON()});
+        // Update stand with profile id
+        Stand.update({id: stand.id}, {profile: standProfile.id}).exec(function(err) {
+          if (err) return res.status(500).json({error: err.Errors});
+
+          return res.json({stand: stand.toJSON()});
+        });
       });
     };
 
@@ -208,6 +217,7 @@ module.exports = {
       .exec(function(err, stand) {
         if (err) return res.status(500).json({error: err.Errors});
 
+        stand.category = category;
         return createStandProfile(stand);
       });
     };

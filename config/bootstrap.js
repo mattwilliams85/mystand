@@ -22,6 +22,7 @@ module.exports.bootstrap = function(cb) {
     User.seed,
     Category.seed,
     Stand.seed,
+    StandProfile.seed,
     FeaturedStand.seed,
     StandUpdate.seed,
     StandAction.seed

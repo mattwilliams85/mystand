@@ -26,6 +26,7 @@ exports.up = function(db, callback) {
       id: { type: 'int', primaryKey: true, autoIncrement: true },
       user: { type: 'int' },
       category: { type: 'int' },
+      profile: { type: 'int' },
       title: { type: 'string' },
       image_original_url: { type: 'string' },
       youtube: { type: 'string' },

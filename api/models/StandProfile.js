@@ -5,6 +5,8 @@
  *
 */
 
+var seeder = require(__dirname + '/../seeds/StandProfileSeed');
+
 module.exports = {
 
   tableName: 'stand_profiles',
@@ -27,5 +29,7 @@ module.exports = {
     full_description: {
       required: 'Full description is required'
     }
-  }
+  },
+
+  seedData: seeder.data
 };
