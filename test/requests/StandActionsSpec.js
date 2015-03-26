@@ -52,3 +52,75 @@ describe('GET /stands/:standId/actions.json', function() {
     });
   });
 });
+
+
+describe('POST /stands/:standId/actions.json', function() {
+  var stand,
+      user,
+      standActionData = {
+        image_original_url: 'http://lorempixel.com/output/nature-q-c-640-480-2.jpg',
+        youtube: 'JtJgbd1Jfuk',
+        description: 'text'
+      };
+
+  beforeEach(function(done) {
+    standActionData._csrf = csrfToken;
+
+    DatabaseCleaner.clean(['stands', 'stand_actions', 'users'], function() {
+      async.series([
+        Factory.create('stand')
+      ], function(err, data) {
+        stand = data[0];
+        done();
+      });
+    });
+  });
+
+  describe('signed in user', function() {
+    beforeEach(function(done) {
+      withSignIn(function(err, data) {
+        user = data;
+        done();
+      });
+    });
+
+    it('should return created stand action object on success', function(done) {
+      agent
+        .post('/stands/' + stand.id + '/actions.json')
+        .send(standActionData)
+        .end(function(err, res) {
+          expect(res.statusCode).to.eql(200);
+          var validation = standActionSchema.validate(res.body.stand);
+          expect(validation.error).to.be.null;
+          expect(res.body.standAction.description).to.equal(standActionData.description);
+          done();
+        });
+    });
+
+    describe('stand validation', function() {
+      it('should return error message', function(done) {
+        // Using stand that doesn't exist
+        agent
+          .post('/stands/12345/actions.json')
+          .send(standActionData)
+          .end(function(err, res) {
+            expect(res.statusCode).to.equal(500);
+            expect(res.body.error.stand[0].message).to.equal('Specified stand does not exist');
+            done();
+          });
+      });
+    });
+  });
+
+  describe('guest user', function() {
+    it('should return 403 forbidden', function(done) {
+      agent
+        .post('/stands/1/actions.json')
+        .end(function(err, res) {
+          expect(res.statusCode).to.eql(403);
+          expect(Object.keys(res.body).length).to.equal(0);
+          done();
+        });
+    });
+  });
+});

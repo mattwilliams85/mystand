@@ -50,15 +50,13 @@ module.exports.routes = {
   *                                                                          *
   ***************************************************************************/
 
+  // Users
   'post /users.json': 'UsersController.create',
   'post /login.json': 'SessionsController.create',
   'delete /login.json': 'SessionsController.destroy',
-
   'get /profile.json': 'ProfilesController.show',
 
-  'get /featured-stands.json': 'FeaturedStandsController.index',
-  'get /trending-stands.json': 'TrendingStandsController.index',
-
+  // Categories
   'get /categories.json': 'CategoriesController.index',
 
   // Stands
@@ -69,8 +67,14 @@ module.exports.routes = {
   'put /stands/:id/unpublish.json': 'StandsController.unpublish',
   'put /stands/:id.json': 'StandsController.update',
   'delete /stands/:id.json': 'StandsController.destroy',
+  'get /featured-stands.json': 'FeaturedStandsController.index',
+  'get /trending-stands.json': 'TrendingStandsController.index',
 
+  // Stand Updates
   'get /stands/:standId/updates.json': 'StandUpdatesController.index',
-  'get /stands/:standId/actions.json': 'StandActionsController.index'
+
+  // Stand Actions
+  'get /stands/:standId/actions.json': 'StandActionsController.index',
+  'post /stands/:standId/actions.json': 'StandActionsController.create'
 
 };
