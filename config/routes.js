@@ -61,12 +61,15 @@ module.exports.routes = {
 
   'get /categories.json': 'CategoriesController.index',
 
+  // Stands
   'get /stands.json': 'StandsController.index',
   'get /stands/:id.json': 'StandsController.show',
   'post /stands.json': 'StandsController.create',
   'put /stands/:id/publish.json': 'StandsController.publish',
   'put /stands/:id/unpublish.json': 'StandsController.unpublish',
   'put /stands/:id.json': 'StandsController.update',
-  'delete /stands/:id.json': 'StandsController.destroy'
+  'delete /stands/:id.json': 'StandsController.destroy',
+
+  'get /stands/:standId/updates.json': 'StandUpdatesController.index'
 
 };

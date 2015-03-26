@@ -269,6 +269,77 @@ define({ "api": [
   },
   {
     "type": "get",
+    "url": "/stands/:standId/updates",
+    "title": "Stand Updates",
+    "name": "GetStandUpdates",
+    "group": "Stands",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": false,
+            "field": "page",
+            "description": "<p>Page number</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": false,
+            "field": "standId",
+            "description": "<p>Stand ID</p> "
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Object[]",
+            "optional": false,
+            "field": "standUpdates",
+            "description": "<p>List of stand updates</p> "
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "standUpdates.id",
+            "description": "<p>Stand Update ID</p> "
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "standUpdates.title",
+            "description": "<p>Title</p> "
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "standUpdates.text",
+            "description": "<p>Content text</p> "
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n  \"standUpdates\": [\n    {\n      \"id\": 123,\n      \"title\": \"Update #1\",\n      \"text\": \"Some content here\"\n    }\n  ]\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "api/controllers/StandUpdatesController.js",
+    "groupTitle": "Stands"
+  },
+  {
+    "type": "get",
     "url": "/stands",
     "title": "Stands",
     "name": "GetStands",
@@ -287,7 +358,7 @@ define({ "api": [
             "group": "Parameter",
             "type": "Number",
             "optional": false,
-            "field": "categoryId",
+            "field": "category",
             "description": "<p>Category ID</p> "
           },
           {
@@ -295,13 +366,13 @@ define({ "api": [
             "type": "String",
             "optional": false,
             "field": "sort",
-            "description": "<p>Sort type</p> "
+            "description": "<p>Sort type(latest/oldest/popular)</p> "
           },
           {
             "group": "Parameter",
             "type": "String",
             "optional": false,
-            "field": "search",
+            "field": "query",
             "description": "<p>Search query</p> "
           }
         ]

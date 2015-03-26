@@ -93,6 +93,7 @@ exports.up = function(db, callback) {
     db.createTable.bind(db, 'stand_updates', {
       id: { type: 'int', primaryKey: true, autoIncrement: true },
       stand: { type: 'int' },
+      title: { type: 'string' },
       text: { type: 'text' },
       createdAt: { type: 'timestamp' },
       updatedAt: { type: 'timestamp' }
