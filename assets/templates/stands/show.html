@@ -7,17 +7,18 @@
     <div class="ms-stand">
       <div class="row">
         <div class="large-12 columns title-box">
-          <h2>RESURRECT KEYBOARD CAT</h2>
-          <p class="uppercase">By John Doe</p>
+          <h2>{{stand.title}}</h2>
+          <p class="uppercase">By {{stand.user}}</p>
         </div>
       </div>
       <div class="row">
-        <div class="large-8 columns">
-         <iframe id="player" 
+        <div class="large-8 columns movie-part">
+         <iframe ng-if="stand.youtube"
+                 id="player" 
                  type="text/html" 
                  class="youtube-player" 
                  width="100%"
-                 ng-src="https://www.youtube.com/embed/J---aiyznGQ"
+                 ng-src="{{stand.youtube}}"
                  frameborder="0"  
                  modestbranding="1" 
                  autohide="1" 
@@ -44,8 +45,7 @@
             <span class="uppercase inline">flag <i class="fa fa-flag"></i></span>
           </div>
           <span class="uppercase impact"><span class="bold">my impact:</span> <b>453</b> bystanders <b>25</b> mystanders</span>
-          <div class="clear-fix"></div>
-          <span>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Donec id elit non mi porta gravida at eget metus.</span>
+          <span class="left">{{stand.description}}</span>
         </div>
         <div class="large-4 columns">
           <div class="profile-box">
@@ -53,16 +53,17 @@
             <span class="detail link">www.whatever.com</span>
             <span class="detail"><b>34</b> Stands created | <b>23</b> Activism Score</span>
             <span class="detail">Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Donec id elit non mi porta gravida at eget metus.</span>
+          </div>
         </div>
         </div>
       </div>
     </div>
     <div class="center-nav-bar">
       <div class="row">
-      <li>details</li>
-      <li>updates</li>
-      <li>actions</li>
-      <li>comments</li>
+      <li class="active">details</li>
+      <li>updates(2)</li>
+      <li>actions(27)</li>
+      <li>comments(144)</li>
       </div>
     </div>
     <div class="nav-box">
