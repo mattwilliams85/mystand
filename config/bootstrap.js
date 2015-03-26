@@ -17,11 +17,14 @@ module.exports.bootstrap = function(cb) {
   // with the bootstrap!  (otherwise your server will never lift, since it's waiting on the bootstrap)
   // cb();
 
+  // Order matters
   async.series([
     User.seed,
     Category.seed,
     Stand.seed,
-    FeaturedStand.seed
+    FeaturedStand.seed,
+    StandUpdate.seed,
+    StandAction.seed
   ], cb);
 
 };

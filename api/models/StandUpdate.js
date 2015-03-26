@@ -5,6 +5,8 @@
  *
 */
 
+var seeder = require(__dirname + '/../seeds/StandUpdateSeed');
+
 module.exports = {
 
   tableName: 'stand_updates',
@@ -43,5 +45,7 @@ module.exports = {
     text: {
       required: 'Text is required'
     }
-  }
+  },
+
+  seedData: seeder.data
 };

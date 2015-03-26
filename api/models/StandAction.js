@@ -5,6 +5,8 @@
  *
 */
 
+var seeder = require(__dirname + '/../seeds/StandActionSeed');
+
 module.exports = {
 
   tableName: 'stand_actions',
@@ -48,5 +50,7 @@ module.exports = {
     user: {
       required: 'User is required'
     }
-  }
+  },
+
+  seedData: seeder.data
 };
