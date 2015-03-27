@@ -5,7 +5,8 @@ var joi = require('joi');
 var standUpdateSchema = joi.object({
   id: joi.number().integer().required(),
   title: joi.string().required(),
-  text: joi.string().required()
+  text: joi.string().required(),
+  createdAt: joi.number().integer().required()
 });
 
 var standUpdatesSchema = joi.object({

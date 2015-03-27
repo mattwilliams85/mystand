@@ -30,7 +30,8 @@ module.exports = {
       return {
         id: obj.id,
         title: obj.title,
-        text: obj.text
+        text: obj.text,
+        createdAt: obj.createdAt.valueOf()
       };
     }
   },
