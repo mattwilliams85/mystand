@@ -34,7 +34,7 @@ module.exports = {
             seedData.push({
               stand: stand.id,
               user: user.id,
-              image_original_url: 'http://lorempixel.com/output/nature-q-c-640-480-4.jpg',
+              image_original_url: 'http://lorempixel.com/output/nature-q-c-640-480-1.jpg',
               description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit'
             });
           }

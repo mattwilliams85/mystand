@@ -1,0 +1,25 @@
+<div class="row">
+  <ul class="large-block-grid-4">
+    <li class="action" ng-repeat="action in tabData">
+      <div class="action-box">
+        <img ng-if="action.image_original_url" ng-src="{{action.image_original_url}}"/>
+        <img ng-if="action.youtube" ng-src="{{action.thumbnail}}"/>
+        <div class="details-box">
+          <span class="detail"><i class="fa fa-facebook"></i><i class="fa fa-twitter"></i><i class="fa fa-google-plus"></i><i class="fa fa-flag"></i></span>
+        </div>
+      </div>
+    </li>
+  </ul>
+</div>
+
+<!-- <iframe ng-if="action.youtube"
+        id="player" 
+        type="text/html" 
+        class="youtube-player" 
+        width="100%"
+        ng-src="{{stand.youtube}}"
+        frameborder="0"  
+        modestbranding="1" 
+        autohide="1" 
+        showinfo="1" 
+        controls="1";></iframe> -->

@@ -103,10 +103,45 @@
     padding:100px 0px;
   }
 
+
   .detail {
     display:block;
     &.link {
       margin-bottom:5px;
     }
   }
+}
+
+.stand-update {
+  padding-bottom:20px;
+}
+
+.action {
+  .action-box {
+    border:1px solid #ccc;
+  }
+  .details-box {
+    padding: 20px 15px 30px 10px;
+    .fa {
+      padding:0px 5px;
+    }
+    .fa-facebook, .fa-twitter, .fa-google-plus {
+      float:left;
+    }
+    .fa-flag {
+      float:right;
+    }
+  }
+}
+
+.disqus-thread {
+  padding:0px 100px;
+}
+
+.disqus-box {
+  display:none;
+}
+
+.sticky {
+  // position:fixed;
 }
