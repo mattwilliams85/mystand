@@ -9,7 +9,7 @@
         <div class="row">
           <div class="large-12 columns title-box">
             <h2>{{stand.title}}</h2>
-            <p class="uppercase">By {{stand.user}}</p>
+            <h5 class="uppercase">By {{author.first_name}} {{author.last_name}}</h5>
           </div>
         </div>
         <div class="row">
@@ -28,8 +28,9 @@
           </div>
           <div class="large-4 columns">
             <div class="details-box">
-              <h1 class="count">234</h1>
-              <span class="uppercase count-detail">heroes of 1420</span>
+              <h1 class="count">{{stand.actions_count}}</h1>
+              <span class="uppercase count-detail">heroes of <b>{{stand.goal}}</b></span>
+              <!-- MISSING DAY COUNT -->
               <h1 class="count">29</h1>
               <span class="uppercase count-detail">days to go</span>
             <div class="uppercase action-button">take action</div>
@@ -38,22 +39,23 @@
         <div class="row">
           <div class="large-8 columns">
             <div class="left">
-              <span class="uppercase inline share-detail">share on</span>
-              <span class="uppercase inline"><i class="fa fa-facebook"></i><i class="fa fa-twitter"></i><i class="fa fa-google-plus"></i></span>
+              <span class="uppercase inline share-detail left">share on</span>
+              <span class="uppercase inline"><img class="social-icon" src="/images/facebook_icon.png"><img class="social-icon" src="/images/twitter_icon.png"><img class="social-icon" src="/images/google_icon.png"></span>
             </div>
             <div class="right">
               <span class="uppercase inline">bookmark <i class="fa fa-bookmark"></i></span>
               <span class="uppercase inline">flag <i class="fa fa-flag"></i></span>
             </div>
             <span class="uppercase impact"><span class="bold">my impact:</span> <b>453</b> bystanders <b>25</b> mystanders</span>
-            <span class="left">{{stand.description}}</span>
+            <span class="left stand-description">{{stand.description}}</span>
           </div>
           <div class="large-4 columns">
             <div class="profile-box">
-              <img class="avatar" src="http://www.musica100.com/assets/images/default_avatar.jpg"/><h4 class="uppercase inline">John Doe</h4>
-              <span class="detail link">www.whatever.com</span>
-              <span class="detail"><b>34</b> Stands created | <b>23</b> Activism Score</span>
-              <span class="detail">Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Donec id elit non mi porta gravida at eget metus.</span>
+              <!-- MISSING AVATAR -->
+              <a ng-href="users/{{stand.user}}"><img class="avatar" src="http://www.musica100.com/assets/images/default_avatar.jpg"/><span class="uppercase inline author-title">{{author.first_name}} {{author.last_name}}</span></a>
+              <a href="{{author.website}}"><span class="detail link">{{author.website}}</span></a>
+              <span class="detail record"><b>{{author.stands_count}}</b> Stands created | <b>{{author.score}}</b> Activism Score</span>
+              <span class="detail">{{author.bio}}</span>
             </div>
           </div>
           </div>
@@ -62,15 +64,18 @@
       <div class="center-nav-bar">
         <div class="row">
         <li ng-class="{'active': isActive('details')}" ng-click="changeTab('details')">details</li>
-        <li ng-class="{'active': isActive('updates')}" ng-click="changeTab('updates')">updates(2)</li>
-        <li ng-class="{'active': isActive('actions')}" ng-click="changeTab('actions')">actions(27)</li>
+        <!-- MISSING UPDATES COUNT -->
+        <li ng-class="{'active': isActive('updates')}" ng-click="changeTab('updates')">updates(5)</li>
+        <li ng-class="{'active': isActive('actions')}" ng-click="changeTab('actions')">actions({{stand.actions_count}})</li>
         <li ng-class="{'active': isActive('comments')}" ng-click="changeTab('comments')">comments</li>
         </div>
       </div>
     </div>
     <div class="nav-box">
-      <ng-include src="tabUrl" onload="loadDisqus()"></ng-include>
-      <div id="disqus-box" class="row"></div>
+      <ng-include src="tabUrl"></ng-include>
+      <div class="row disqus-box">
+        <div id="disqus_thread"></div>
+      </div>
     </div>
   </div>
 </div>

@@ -1,5 +1,6 @@
 .ms-stands-show-page {
   padding-bottom:200px;
+  font-size:13pt;
 
   .ms-stand {
     background-color:#f6f6f6;
@@ -7,7 +8,7 @@
 
     .title-box {
       text-align:center;
-      padding-top:100px;
+      padding:100px 0px 20px 0px;
     }
 
     .movie-part {
@@ -21,9 +22,31 @@
     .details-box {
       border-bottom:1px solid #ccc;
       .count {
-        line-height:1em;
+        color:#333;
+        font-size:60pt;
+        font-weight:800;
+        line-height:.7em;
+        &:last-of-type {
+          padding-top:20px;
+        }
+      }
+      .count-detail {
+        font-size:16pt;
       }
     }
+
+    .profile-box {
+
+      .author-title {
+        font-size:21pt;
+        letter-spacing:.1em;
+        font-weight:600;
+        margin:10px 0px 0px 50px;
+        width:500px;
+        cursor:pointer;
+      }
+    }
+
     .action-button {
       background-color:#933232;
       color:#fff;
@@ -32,12 +55,13 @@
       text-align:center;
       margin:60px 0px;
       cursor: pointer;
+      font-size:16pt;
       &:hover {
         background-color:#B03C3C;
       }
     }
     .impact {
-      display:block;
+      display:none;
       clear:both;
       background-color:#eee;
       padding:3px 7px;
@@ -48,9 +72,7 @@
       height:45px;
       width:45px;
       border-radius:100%;
-      margin-bottom:10px;
-      cursor:pointer;
-      margin-right:10px;
+      position:absolute
     }
 
     .left {
@@ -60,14 +82,23 @@
         margin:0px 5px;
       }
       .share-detail {
-        margin-right:10px;
+        margin: 3px 5px 15px 0px;
       }
     }
     .right {
       float:right;
       .fa {
         margin:0px 15px 0px 10px;
+        cursor:pointer;
       }
+      span { 
+        cursor:pointer;
+      }
+    }
+    .stand-description {
+      font-size:18pt;
+      font-weight:600;
+      line-height:36px;
     }
   }
 
@@ -100,7 +131,12 @@
   .nav-box {
     background-color:#fff;
     height:100%;
-    padding:100px 0px;
+    padding:50px 0px 200px 0px;
+
+    .tab-detail {
+      font-size:14pt;
+      line-height:21pt;
+    }
   }
 
 
@@ -108,6 +144,11 @@
     display:block;
     &.link {
       margin-bottom:5px;
+      cursor:pointer;
+    }
+    &.record { 
+      margin-bottom:10px;
+      letter-spacing:.1em;
     }
   }
 }
@@ -119,19 +160,22 @@
 .action {
   .action-box {
     border:1px solid #ccc;
+    margin-top:20px;
   }
   .details-box {
-    padding: 20px 15px 30px 10px;
-    .fa {
-      padding:0px 5px;
-    }
-    .fa-facebook, .fa-twitter, .fa-google-plus {
-      float:left;
-    }
+    padding: 15px 15px 40px 10px;
     .fa-flag {
       float:right;
+      padding-top:3px;
     }
   }
+}
+
+.social-icon {
+  float:left;
+  padding:0 7px 0px 7px;
+  margin-top:2px;
+  cursor:pointer;
 }
 
 .disqus-thread {
@@ -141,6 +185,12 @@
 .disqus-box {
   display:none;
 }
+
+.fa-flag, .fa-bookmark {
+  color:#555;
+  font-size:15pt;
+}
+
 
 .sticky {
   // position:fixed;
