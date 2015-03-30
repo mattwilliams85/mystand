@@ -35,31 +35,6 @@
       }
     }
 
-    .profile-box {
-
-      .author-title {
-        font-size:21pt;
-        letter-spacing:.1em;
-        font-weight:600;
-        margin:10px 0px 0px 50px;
-        width:500px;
-        cursor:pointer;
-      }
-    }
-
-    .action-button {
-      background-color:#933232;
-      color:#fff;
-      border-radius:5px;
-      padding:10px;
-      text-align:center;
-      margin:60px 0px;
-      cursor: pointer;
-      font-size:16pt;
-      &:hover {
-        background-color:#B03C3C;
-      }
-    }
     .impact {
       display:none;
       clear:both;
@@ -68,12 +43,7 @@
       margin:10px 0px;
       float:left;
     }
-    .avatar {
-      height:45px;
-      width:45px;
-      border-radius:100%;
-      position:absolute
-    }
+
 
     .left {
       float:left;
@@ -116,6 +86,11 @@
       border-right:1px solid #ccc;
       cursor:pointer;
       transition:.15s linear;
+      &.scroll-top-button {
+        margin-left: 200px;
+        border-right: 0px;
+        width: 200px;
+      }
       &:first-child {
         border-left:1px solid #ccc;
       }
@@ -137,8 +112,50 @@
       font-size:14pt;
       line-height:21pt;
     }
+    .tab-date {
+      color: #999;
+      margin:-10px 0px 35px 0px;
+    }
+    .tab-divider {
+      width:40%;
+      border-color: #333;
+      margin:50px 0px;
+    }
   }
 
+  .stand-update {
+    padding-bottom:40px;
+  }
+
+
+  .action {
+    .action-box {
+      border:1px solid #ccc;
+      margin-top:20px;
+    }
+    .details-box {
+      padding: 15px 15px 40px 10px;
+      .fa-flag {
+        float:right;
+        padding-top:3px;
+      }
+    }
+  }
+
+  .social-icon {
+    float:left;
+    padding:0 7px 0px 7px;
+    margin-top:2px;
+    cursor:pointer;
+  }
+
+  .disqus-thread {
+    padding:0px 100px;
+  }
+
+  .disqus-box {
+    display:none;
+  }
 
   .detail {
     display:block;
@@ -151,47 +168,42 @@
       letter-spacing:.1em;
     }
   }
-}
 
-.stand-update {
-  padding-bottom:20px;
-}
-
-.action {
-  .action-box {
-    border:1px solid #ccc;
-    margin-top:20px;
+  .author-title {
+    font-size:21pt;
+    letter-spacing:.1em;
+    font-weight:600;
+    margin:10px 0px 0px 50px;
+    width:500px;
+    cursor:pointer;
   }
-  .details-box {
-    padding: 15px 15px 40px 10px;
-    .fa-flag {
-      float:right;
-      padding-top:3px;
+
+  .action-button {
+    background-color:#933232;
+    color:#fff;
+    border-radius:5px;
+    padding:10px;
+    width:280px;
+    text-align:center;
+    margin:60px 0px;
+    cursor: pointer;
+    font-size:16pt;
+    &:hover {
+      background-color:#B03C3C;
+    }
+    &.alt {
+      margin: 100px auto 0px auto;
     }
   }
-}
 
-.social-icon {
-  float:left;
-  padding:0 7px 0px 7px;
-  margin-top:2px;
-  cursor:pointer;
-}
-
-.disqus-thread {
-  padding:0px 100px;
-}
-
-.disqus-box {
-  display:none;
-}
-
-.fa-flag, .fa-bookmark {
-  color:#555;
-  font-size:15pt;
-}
+  .fa-flag, .fa-bookmark {
+    color:#555;
+    font-size:15pt;
+  }
 
 
-.sticky {
-  // position:fixed;
+  .sticky {
+    position:fixed;
+    width:100%;
+  }
 }

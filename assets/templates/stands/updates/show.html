@@ -1,6 +1,8 @@
 <div class="row">
   <div class="stand-update" ng-repeat="update in tabData">
     <h2>{{update.title}}</h2>
+    <p class="tab-date">posted date {{update.createdAt | date:'yyyy-MM-dd'}}</p>
     <p class="tab-detail">{{update.text}}</p>
+    <hr class="tab-divider">
   </div>
 </div>

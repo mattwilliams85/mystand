@@ -259,3 +259,62 @@
     }
   }
 }
+
+
+.media-modal {
+  padding:0px;
+  background-color:#555;
+  border:0px;
+
+  .author-title {
+    font-size:21pt;
+    letter-spacing:.1em;
+    font-weight:600;
+    margin:10px 0px 5px 50px;
+    width:500px;
+    cursor:pointer;
+  }
+
+  .modal-youtube-player {
+    height:450px;
+  }
+  
+  .inner-wrapper {
+    margin:0px;
+    .image-part {
+      background-color:#000;
+      padding:0px;
+    }
+  }
+
+  .detail {
+    display:block;
+  }
+
+  .details-box {
+    padding:20px;
+    color:#fff;
+  }
+
+  .icons-box {
+    position:absolute;
+    bottom:15px;
+    left:0px;
+    width:100%;
+    padding-left:15px;;
+
+    .fa-flag {
+      float:right;
+      padding-top:3px;
+      margin-right:25px;
+      font-size:15pt;
+      cursor:pointer;
+    }
+    .social-icon {
+      float:left;
+      padding:0 7px 0px 7px;
+      margin-top:2px;
+      cursor:pointer;
+    }
+  }
+}
