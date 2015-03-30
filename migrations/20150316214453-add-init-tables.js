@@ -78,10 +78,12 @@ exports.up = function(db, callback) {
       updatedAt: { type: 'timestamp' }
     }),
 
-    db.createTable.bind(db, 'stand_flags', {
+    db.createTable.bind(db, 'flags', {
       id: { type: 'int', primaryKey: true, autoIncrement: true },
       user: { type: 'int' },
-      stand: { type: 'int' },
+      content: { type: 'json' },
+      content_id: { type: 'int' },
+      content_type: { type: 'string' },
       createdAt: { type: 'timestamp' },
       updatedAt: { type: 'timestamp' }
     }),

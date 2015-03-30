@@ -62,5 +62,8 @@ module.exports.policies = {
   },
   StandActionsController: {
     create: 'sessionAuth'
+  },
+  FlagsController: {
+    create: 'sessionAuth'
   }
 };
