@@ -78,6 +78,9 @@ module.exports.routes = {
   'get /stands/:standId/actions.json': 'StandActionsController.index',
   'post /stands/:standId/actions.json': 'StandActionsController.create',
 
+  // Stand Bookmarks
+  'post /stands/:standId/bookmarks.json': 'StandBookmarksController.create',
+
   // Flags
   'post /flags.json': 'FlagsController.create'
 

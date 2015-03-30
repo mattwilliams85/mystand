@@ -1,9 +1,9 @@
 'use strict';
 
-/*
+/**
  * StandBookmark.js
  *
-*/
+ */
 
 module.exports = {
 
@@ -17,6 +17,15 @@ module.exports = {
     user: {
       model: 'User',
       required: true
+    }
+  },
+
+  validationMessages: {
+    stand: {
+      required: 'Stand is required'
+    },
+    user: {
+      required: 'User is required'
     }
   }
 };

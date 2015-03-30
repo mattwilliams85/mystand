@@ -63,6 +63,9 @@ module.exports.policies = {
   StandActionsController: {
     create: 'sessionAuth'
   },
+  StandBookmarksController: {
+    create: 'sessionAuth'
+  },
   FlagsController: {
     create: 'sessionAuth'
   }
