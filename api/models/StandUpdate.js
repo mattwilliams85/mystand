@@ -1,3 +1,4 @@
+/*global Stand: true */
 'use strict';
 
 /*
@@ -33,6 +34,29 @@ module.exports = {
         text: obj.text,
         createdAt: obj.createdAt.valueOf()
       };
+    },
+
+    // Increase or decrease the updates_count on a stand
+    changeUpdatesCount: function(num, callback) {
+      Stand.findOneById(this.stand).exec(function(err, stand) {
+        if (err) {
+          console.log(err);
+          return callback(err);
+        }
+
+        var count = stand.updates_count || 0;
+        count += num;
+        if (count < 0) count = 0;
+
+        Stand.update({id: stand.id}, {updates_count: count}, function(err) {
+          if (err) {
+            console.log(err);
+            return callback(err);
+          }
+
+          return callback();
+        });
+      });
     }
   },
 
@@ -46,6 +70,23 @@ module.exports = {
     text: {
       required: 'Text is required'
     }
+  },
+
+  /**
+   * Lifecycle Callbacks
+   *
+   */
+  afterCreate: function(standUpdate, callback) {
+    standUpdate.changeUpdatesCount = this.attributes.changeUpdatesCount;
+    standUpdate.changeUpdatesCount(1, function() {
+      return callback();
+    });
+  },
+  afterDestroy: function(records, callback) {
+    records[0].changeUpdatesCount = this.attributes.changeUpdatesCount;
+    records[0].changeUpdatesCount(-1, function() {
+      return callback();
+    });
   },
 
   seedData: seeder.data

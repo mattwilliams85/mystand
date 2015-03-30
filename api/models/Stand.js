@@ -52,6 +52,9 @@ module.exports = {
     actions_count: {
       type: 'integer'
     },
+    updates_count: {
+      type: 'integer'
+    },
     duration: {
       type: 'integer',
       required: true

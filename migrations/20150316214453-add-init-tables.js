@@ -34,6 +34,7 @@ exports.up = function(db, callback) {
       goal_result: { type: 'text' },
       goal: { type: 'int' },
       actions_count: { type: 'int' },
+      updates_count: { type: 'int' },
       duration: { type: 'int' },
       is_public: { type: 'boolean' },
       createdAt: { type: 'timestamp' },

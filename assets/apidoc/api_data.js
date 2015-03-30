@@ -409,6 +409,13 @@ define({ "api": [
             "optional": false,
             "field": "featuredStands.actions_count",
             "description": "<p>Actions count.</p> "
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "featuredStands.updates_count",
+            "description": "<p>Updates count</p> "
           }
         ]
       },
@@ -529,6 +536,13 @@ define({ "api": [
             "optional": false,
             "field": "stand.actions_count",
             "description": "<p>Actions count</p> "
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "stand.updates_count",
+            "description": "<p>Updates count</p> "
           }
         ]
       },
@@ -720,6 +734,13 @@ define({ "api": [
             "optional": false,
             "field": "stands.actions_count",
             "description": "<p>Actions count.</p> "
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "stands.updates_count",
+            "description": "<p>Updates count</p> "
           }
         ]
       },
@@ -806,6 +827,13 @@ define({ "api": [
             "optional": false,
             "field": "trendingStands.actions_count",
             "description": "<p>Actions count.</p> "
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "trendingStands.updates_count",
+            "description": "<p>Updates count</p> "
           }
         ]
       },
@@ -961,6 +989,13 @@ define({ "api": [
             "optional": false,
             "field": "stand.actions_count",
             "description": "<p>Actions count</p> "
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "stand.updates_count",
+            "description": "<p>Updates count</p> "
           }
         ]
       },

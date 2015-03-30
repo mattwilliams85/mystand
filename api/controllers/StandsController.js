@@ -29,6 +29,7 @@ module.exports = {
    * @apiSuccess {Number} stands.goal Goal number.
    * @apiSuccess {String} stands.category Category name.
    * @apiSuccess {Number} stands.actions_count Actions count.
+   * @apiSuccess {Number} stands.updates_count Updates count
    *
    * @apiSuccessExample Success-Response:
    *   HTTP/1.1 200 OK
@@ -113,6 +114,7 @@ module.exports = {
    * @apiSuccess {Object} stand.profile Profile object
    * @apiSuccess {String} stand.profile.full_description Full Description
    * @apiSuccess {Number} stand.actions_count Actions count
+   * @apiSuccess {Number} stand.updates_count Updates count
    *
    * @apiSuccessExample Success-Response:
    *   HTTP/1.1 200 OK
@@ -169,6 +171,7 @@ module.exports = {
    * @apiSuccess {Number} stand.goal Goal number
    * @apiSuccess {String} stand.category Category name
    * @apiSuccess {Number} stand.actions_count Actions count
+   * @apiSuccess {Number} stand.updates_count Updates count
    *
    * @apiSuccessExample Success-Response:
    *   HTTP/1.1 200 OK

@@ -17,7 +17,8 @@ module.exports = function toJSON(opts) {
     youtube: obj.youtube,
     goal: obj.goal,
     category: obj.category.title,
-    actions_count: obj.actions_count || 0
+    actions_count: obj.actions_count || 0,
+    updates_count: obj.updates_count || 0
   };
   if (opts.withProfile) {
     data.user = obj.user;

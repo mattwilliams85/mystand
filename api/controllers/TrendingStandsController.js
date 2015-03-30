@@ -22,6 +22,7 @@ module.exports = {
    * @apiSuccess {Number} trendingStands.goal Goal number.
    * @apiSuccess {String} trendingStands.category Category name.
    * @apiSuccess {Number} trendingStands.actions_count Actions count.
+   * @apiSuccess {Number} trendingStands.updates_count Updates count
    *
    * @apiSuccessExample Success-Response:
    *   HTTP/1.1 200 OK
