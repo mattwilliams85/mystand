@@ -17,7 +17,7 @@
       </div>
       <div class="large-5 columns details-box">
         <img class="avatar-tiny" src="http://www.musica100.com/assets/images/default_avatar.jpg"/><span class="uppercase inline author-title">{{actionUser.first_name}} {{actionUser.last_name}}</span>
-        <a ng-href="actionUser.website" ng-if="actionUser.website"><span class="detail" >{{actionUser.website}}</span></a>
+        <a ng-href="{{actionUser.website}}" ng-if="actionUser.website"><span class="detail" >{{actionUser.website}}</span></a>
         <br>
         <span class="detail">{{action.description}}</span>
         <div class="icons-box">

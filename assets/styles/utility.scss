@@ -263,7 +263,7 @@
 
 .media-modal {
   padding:0px;
-  background-color:#555;
+  background-color:#fff;
   border:0px;
 
   .author-title {
@@ -284,6 +284,7 @@
     .image-part {
       background-color:#000;
       padding:0px;
+      margin-left:-1px;
     }
   }
 
@@ -293,7 +294,7 @@
 
   .details-box {
     padding:20px;
-    color:#fff;
+    color:#333;
   }
 
   .icons-box {
@@ -308,6 +309,7 @@
       padding-top:3px;
       margin-right:25px;
       font-size:15pt;
+      color:#555;
       cursor:pointer;
     }
     .social-icon {
@@ -316,5 +318,48 @@
       margin-top:2px;
       cursor:pointer;
     }
+  }
+}
+
+.create-action-modal {
+  .upload-input {
+    display:none;
+  }
+  .input-path {
+    width:300px;
+    float:left;
+    font-size:24pt;
+    margin-right:10px;
+    border-radius:5px;
+    width:67%;
+  }
+  .upload-button {
+    border:3px solid #fff;
+    padding:10px;
+    border-radius:5px; 
+    width: 150px;
+    color: #fff;
+    float:right;
+    transition:.15s linear;
+    &:hover {
+      background-color:#fff;
+      color:#555;
+    }
+  }
+
+  .cancel {
+    margin-right:20px;
+    font-size:12pt;
+  }
+
+  .right {
+    margin-top:40px;
+    cursor:pointer;
+  }
+
+  .dialogue-button {
+    border: 0px;
+    width: 150px;
+    color: #fff;
   }
 }

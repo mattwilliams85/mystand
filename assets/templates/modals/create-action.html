@@ -1,0 +1,30 @@
+<div id="create-action-modal" class="reveal-modal dialogue-modal create-action-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+  <div class="inner-wrapper">
+    <h3> upload photo </h3>
+    <br>
+    <form name="form" ng-submit="fileUpload()" novalidate autocomplete='off'>
+     <div class="field-div">
+<!--        <input 
+         class="user-input" 
+         ng-class="{'input-alert': formErrorMessages['first_name']}" 
+         ng-model='newUser.first_name' 
+         id='user_first' 
+         name='user_first' 
+         type='text' 
+         ng-required='true'>
+       </input> -->
+       <input ng-model="$newAction.file[0].name" class="input-path"></input>
+       <label class="upload-button">
+           <input onchange="angular.element(this).scope().onSelect(this.files)" class="upload-input" type="file" name="file" ng-required="true"/>
+           <span>BROWSE</span>
+       </label>
+       <!-- <span ng-show="formErrorMessages['first_name']" class="validation-error">{{formErrorMessages['first_name'].message}}</span> -->
+     </div>
+     <div class="clearfix"></div>
+     <div class="right">
+       <span class="cancel uppercase" ng-click="closeModal()"><u>Cancel</u></span>
+       <input class="dialogue-button" ng-click="closeModal()" value="Submit" type="submit" />
+     </div>
+   </form>
+  </div>
+</div> 

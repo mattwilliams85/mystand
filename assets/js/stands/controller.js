@@ -16,6 +16,7 @@ StandsCtrl.prototype.fetch = function($rootScope, $scope, $location, $routeParam
     $scope.author = {};
     $scope.tabData = {};
     $scope.actionUser = {};
+    $scope.newAction = {};
     $scope.tabUrl = "assets/templates/stands/details/show.html"
 
     $scope.changeTab = function(section) {
@@ -56,6 +57,14 @@ StandsCtrl.prototype.fetch = function($rootScope, $scope, $location, $routeParam
       $("body").animate({scrollTop: 0}, "slow");
     }
 
+    $scope.fileUpload = function() {
+      
+    }
+
+    $scope.onSelect = function(file) {
+      $scope.newAction.file = file;
+    }
+
     //Watches and locks Center-Nav-Bar when scrolling down 
     $(function () {
         var top = 1050;
@@ -63,8 +72,10 @@ StandsCtrl.prototype.fetch = function($rootScope, $scope, $location, $routeParam
         $(window).on('scroll', function () {
           if (top <= $(window).scrollTop()) {
             $('.center-nav-bar').addClass('fixed');
+            $('.scroll-top-button').show().css("display","inline-block");
           } else {
             $('.center-nav-bar').removeClass('fixed');
+            $('.scroll-top-button').hide()
           }
         })
     });
@@ -74,7 +85,7 @@ StandsCtrl.prototype.fetch = function($rootScope, $scope, $location, $routeParam
         $('body').scrollTop(0)
         $('#sign-in-modal').foundation('reveal','open');
       } else {
-        //CREATE ACTION
+        $('#create-action-modal').foundation('reveal','open');
       }
     }
 
