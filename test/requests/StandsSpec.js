@@ -16,6 +16,7 @@ var standSchema = joi.object({
 });
 
 var standFullSchema = standSchema.keys({
+  duration: joi.number().integer().required(),
   user: joi.number().integer().required(),
   profile: joi.object({
     full_description: joi.string().required()

@@ -110,11 +110,12 @@ module.exports = {
    * @apiSuccess {String} stand.youtube Youtube ID
    * @apiSuccess {Number} stand.goal Goal number
    * @apiSuccess {String} stand.category Category name
+   * @apiSuccess {Number} stand.actions_count Actions count
+   * @apiSuccess {Number} stand.updates_count Updates count
+   * @apiSuccess {Number} stand.duration Duration in days
    * @apiSuccess {Number} stand.user User ID
    * @apiSuccess {Object} stand.profile Profile object
    * @apiSuccess {String} stand.profile.full_description Full Description
-   * @apiSuccess {Number} stand.actions_count Actions count
-   * @apiSuccess {Number} stand.updates_count Updates count
    *
    * @apiSuccessExample Success-Response:
    *   HTTP/1.1 200 OK

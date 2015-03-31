@@ -20,6 +20,7 @@ module.exports = function toJSON(opts) {
     updates_count: obj.updates_count || 0
   };
   if (opts.withProfile) {
+    data.duration = obj.duration;
     data.user = obj.user;
     if (obj.profile !== null && typeof obj.profile === 'object') {
       data.profile = {

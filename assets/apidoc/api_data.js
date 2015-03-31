@@ -409,13 +409,6 @@ define({ "api": [
             "optional": false,
             "field": "featuredStands.actions_count",
             "description": "<p>Actions count.</p> "
-          },
-          {
-            "group": "Success 200",
-            "type": "Number",
-            "optional": false,
-            "field": "featuredStands.updates_count",
-            "description": "<p>Updates count</p> "
           }
         ]
       },
@@ -513,6 +506,27 @@ define({ "api": [
             "group": "Success 200",
             "type": "Number",
             "optional": false,
+            "field": "stand.actions_count",
+            "description": "<p>Actions count</p> "
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "stand.updates_count",
+            "description": "<p>Updates count</p> "
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "stand.duration",
+            "description": "<p>Duration in days</p> "
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
             "field": "stand.user",
             "description": "<p>User ID</p> "
           },
@@ -529,20 +543,6 @@ define({ "api": [
             "optional": false,
             "field": "stand.profile.full_description",
             "description": "<p>Full Description</p> "
-          },
-          {
-            "group": "Success 200",
-            "type": "Number",
-            "optional": false,
-            "field": "stand.actions_count",
-            "description": "<p>Actions count</p> "
-          },
-          {
-            "group": "Success 200",
-            "type": "Number",
-            "optional": false,
-            "field": "stand.updates_count",
-            "description": "<p>Updates count</p> "
           }
         ]
       },
