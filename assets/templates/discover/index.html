@@ -3,12 +3,10 @@
     <div class="invert-header">
       <ng-include src="'assets/templates/shared/header.html'"></ng-include>
     </div>
-
     <section class="discover-categories">
       <div class="row">
         <div class="large-12 columns">
           <h3>Discover stands</h3>
-
           <ul class="categories-list">
             <li ng-repeat="category in categories" class="category-{{category.id}}">
               <button ng-click="selectCategory(category.id)">{{category.title}}</button>

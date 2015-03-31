@@ -130,6 +130,10 @@
 
 
   .action {
+    .action-image-wrapper {
+      max-height: 175px;
+      overflow: hidden;
+    }
     .action-box {
       border:1px solid #ccc;
       margin-top:20px;

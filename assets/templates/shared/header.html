@@ -32,15 +32,16 @@
                 <span>activism score</span>
               </div>
             </li>
-           <li ng-if="isSignedIn && currentUser.image_original_url" ><img  data-dropdown="drop1" class="avatar" ng-src="{{currentUser.image_original_url}}" ng-href="/profile"/></li>
-           <li ng-if="isSignedIn && !currentUser.image_original_url"><img data-dropdown="drop1" class="avatar" src="http://www.musica100.com/assets/images/default_avatar.jpg" ng-href="/profile"/></li>
-            <ul id="drop1" class="f-dropdown small header-dropdown" data-dropdown-content>
+           <li ng-if="isSignedIn && currentUser.image_original_url" ><img  data-dropdown="drop1" data-options="pip:center" class="avatar" ng-src="{{currentUser.image_original_url}}" ng-href="/profile"/></li>
+           <li ng-if="isSignedIn && !currentUser.image_original_url"><img data-dropdown="drop1" data-options="pip:center" class="avatar" src="http://www.musica100.com/assets/images/default_avatar.jpg" ng-href="/profile"/>
+            <ul id="drop1" class="f-dropdown small header-dropdown drop-bottom" data-dropdown-content>
               <li><a ng-href="profile">Profile</a></li>
               <li><a ng-href="profile/manage">Manage Stands</a></li>
               <li><a ng-href="profile/activity">My Activity</a></li>
               <li><a ng-href="profile/notifications">Notifications</a></li>
               <li><a ng-click="signOut()">Log Out</a></li>
-            </ul>
+             </ul>
+           </li>        
           </div>
         </ul>
       </nav>

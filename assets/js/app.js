@@ -43,6 +43,11 @@ myStandApp.run(['$rootScope', '$location', '$timeout', 'CurrentUser',
       $('#dialogue-modal').foundation('reveal', 'close');
     };
 
+    $rootScope.readyHeader = function() {
+      $(document).foundation();
+      console.log('hi')
+    }
+
     // Prevent A-sync issue with Foundation.js
     $timeout(function() {
       $(document).foundation({

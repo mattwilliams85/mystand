@@ -4,16 +4,8 @@
     <br>
     <form name="form" ng-submit="fileUpload()" novalidate autocomplete='off'>
      <div class="field-div">
-<!--        <input 
-         class="user-input" 
-         ng-class="{'input-alert': formErrorMessages['first_name']}" 
-         ng-model='newUser.first_name' 
-         id='user_first' 
-         name='user_first' 
-         type='text' 
-         ng-required='true'>
-       </input> -->
-       <input ng-model="$newAction.file[0].name" class="input-path"></input>
+       <input class="input-path" ng-model="newAction.image_original_url" name="image_original_url" type="text"></input>
+       <!-- <input ng-model="$newAction.file[0].name" class="input-path"></input> -->
        <label class="upload-button">
            <input onchange="angular.element(this).scope().onSelect(this.files)" class="upload-input" type="file" name="file" ng-required="true"/>
            <span>BROWSE</span>

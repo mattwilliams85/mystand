@@ -3,9 +3,10 @@
     <li class="action" ng-repeat="action in tabData">
       <ng-include src="'assets/templates/modals/media.html'"></ng-include>
       <div class="action-box">
-        <img ng-click="showMedia(action.id, action.user)" ng-if="action.image_original_url" ng-src="{{action.image_original_url}}"/>
-        <img ng-click="showMedia(action.id, action.user)" ng-if="!action.image_original_url" ng-src="{{action.thumbnail}}"/>
-        
+        <div class="action-image-wrapper">
+          <img ng-click="showMedia(action.id, action.user)" ng-if="action.image_original_url" ng-src="{{action.image_original_url}}"/>
+          <img ng-click="showMedia(action.id, action.user)" ng-if="!action.image_original_url" ng-src="{{action.thumbnail}}"/>
+        </div>
         <div class="details-box">
           <span class="detail"><img class="social-icon" src="/images/facebook_icon.png"><img class="social-icon" src="/images/twitter_icon.png"><img class="social-icon" src="/images/google_icon.png"><i class="fa fa-flag"></i></span>
         </div>

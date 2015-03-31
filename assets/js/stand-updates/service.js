@@ -1,6 +1,6 @@
 'use strict';
 
-function StandUpdates($http, $q) {
+function StandUpdate($http, $q) {
 
   var service = {
 
@@ -27,5 +27,5 @@ function StandUpdates($http, $q) {
   return service;
 }
 
-StandUpdates.$inject = ['$http', '$q'];
-myStandServices.factory('StandUpdates', StandUpdates);
+StandUpdate.$inject = ['$http', '$q'];
+myStandServices.factory('StandUpdate', StandUpdate);

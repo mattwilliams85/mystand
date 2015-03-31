@@ -129,15 +129,20 @@
         font-size:15px;
       }
     }
-
+    .dropdown-wrapper {
+      position:absolute;
+    }
     .header-dropdown {
       padding:10px;
       line-height:10pt;
       border-color:#fff;
       margin:15px 0px 0px -9px;
-      @media screen and (min-width: 1800px) { 
+      @media screen and (min-width: 1600px) { 
         margin:15px 0px 0px 7px;
       }
+      // @media screen and (min-width: 1435px) { 
+      //   margin:15px 0px 0px 7px;
+      // }
       li {
         display:block;
         a {
