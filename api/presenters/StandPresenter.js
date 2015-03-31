@@ -10,7 +10,6 @@ module.exports = function toJSON(opts) {
   var obj = this.toObject();
   var data = {
     id: obj.id,
-    user: obj.user,
     title: obj.title,
     description: obj.description,
     image_original_url: obj.image_original_url,

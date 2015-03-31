@@ -5,7 +5,6 @@ var joi = require('joi');
 
 var standSchema = joi.object({
   id: joi.number().integer().required(),
-  user: joi.number().integer().required(),
   title: joi.string().required(),
   description: joi.string().required(),
   image_original_url: joi.string().required(),

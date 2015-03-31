@@ -63,7 +63,6 @@ module.exports = function() {
       description: 'Description ...',
       goal_result: 'Result text goes here ...',
       goal: 100,
-      actions_count: 0,
       duration: 30,
       is_public: true
     };
