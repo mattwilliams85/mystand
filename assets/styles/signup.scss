@@ -1,5 +1,5 @@
-.ms-signup-page,
-.ms-welcome-page {
+.ms-create-page {
+  padding-bottom:200px;
 
   .header-space {
     background-color:#b89b86;
@@ -14,7 +14,7 @@
     border-style: solid;
     border-width: 30px 30px 0 30px;
     border-color: #b89b86 transparent transparent transparent;
-    margin-bottom:50px;
+    margin-bottom:50px; 
     margin-left: auto;
     margin-right: auto;
     left: 0;
@@ -26,16 +26,167 @@
     }
   }
 
-  .title {
+  .input-error {
+    display:none;
+    background-color:#B5D4DE;
+    color:#000;
+    font-size:14pt;
+    padding:10px 0px;
+  }
+
+  .input-label {
+    color: #000;
+    text-align: right;
+    width:100%;
+    left:-101%;
+    top:0px;
+    position:absolute;
+    text-transform: uppercase;
+    height:20px;
+    padding:0px 0px 20px 5px;
+    @media #{$small} { 
+      padding:10px 0px 25px 5px;
+    }
+    font-size:10pt;
+    letter-spacing:.2em;
+    transition: .3s linear;
+  }
+
+  .validation-error {
+    font-style:italic;
+  }
+
+  .ng-invalid.ng-dirty + .input-label {
+    color:#ff0000;
+  }
+
+  .header-space-title {
     color:#fff;
     text-align:center;
     padding:100px 0px;
     margin:0px;
   }
-}
 
-.ms-welcome-page {
+  .field-div {
+    position:relative;
+  }
+
+  .detail {
+    padding:10px 0;
+    text-align:center;
+    &.large {
+      font-size:15pt;
+      margin-top:10px;
+    }
+    .detail-link {
+      color:#008aff;
+    }
+  }
+
+  .input-field {
+    border:none;
+    background-color:#eee;
+    border-radius:7px;
+    font-size:17pt;
+    height:30px;
+    padding:0px 20px;
+    margin-top:.3em;
+    @media #{$small} { 
+      height:37px;
+      margin-top:.7em;
+    }
+    
+    &.input-alert.ng-dirty {
+      + label {
+        color: #ff0000;
+      }
+    }
+    &.ng-valid {
+      + label {
+        color: #4FCD6E;
+      }
+    }
+  }
+
+  .signup-section {
+    padding-bottom:100px;
+
+    hr {
+      margin:.7em 0px;
+      @media #{$small} { 
+        margin:1.8em 0px;
+      }
+    }
+
+    .signup-button {
+      color:#fff;
+      text-align:center;
+      padding:5px 0;
+      @media #{$small} { 
+        padding:10px 0;
+      }
+      border-radius:5px;
+      font-size:16px;
+      letter-spacing:.1em;
+      cursor:pointer;
+      width:100%;
+      -o-transition:.5s;
+      -ms-transition:.5s;
+      -moz-transition:.5s;
+      -webkit-transition:.5s;
+      transition:.5s;
+      b {
+        font-weight:400;
+      }
+      &:not(b) {
+        font-weight:300;
+      }
+    }
+
+    .login-buttons {
+      margin-top:0px;
+      padding:0px;
+      @media #{$small} { 
+        margin-top:100px;
+        padding:0px 0px;
+      }
+      .facebook-button {
+        background-color:#3b5998;
+        margin:10px 0;
+        @media #{$small} { 
+          margin:70px 0px 30px 0px;
+        }
+        &:hover {
+          background-color:#4061A6;
+        }
+      }
+      .google-button {
+        background-color:#d34836;
+        margin:10px 0;
+        @media #{$small} { 
+          margin:30px 0px 10px 0px;
+        }
+        &:hover {
+          background-color:#EB503C;
+        }
+      }
+    }
+
+    .login-button {
+      background-color:#008aff;
+      text-transform: uppercase;
+      margin:10px 0px;
+      @media #{$small} { 
+        margin:0px 0px 10px 0px; 
+      }
+      &:hover {
+        background-color:#289EFF;
+      }
+    }
+  }
+
   .welcome-section {
+    padding-bottom:200px;
     .welcome-box {
       border:1px solid #eee;
       border-radius:5px;
@@ -64,167 +215,6 @@
         }
         h4 {
           font-weight:400;
-        }
-      }
-    }
-  }
-}
-
-.ms-signup-page {
-  padding-bottom:200px;
-
-  .signup-section {
-    padding-bottom:100px;
-    .narrow {
-      width:50%;
-      max-width:600px;
-    }
-
-    hr {
-      margin:.7em 0px;
-      @media #{$small} {
-        margin:1.8em 0px;
-      }
-    }
-
-    .signup-error {
-      display:none;
-      background-color:#B5D4DE;
-      color:#000;
-      font-size:14pt;
-      padding:10px 0px;
-    }
-
-    .signup-button {
-      color:#fff;
-      text-align:center;
-      padding:5px 0;
-      @media #{$small} {
-        padding:10px 0;
-      }
-      border-radius:5px;
-      font-size:16px;
-      letter-spacing:.1em;
-      cursor:pointer;
-      width:100%;
-      -o-transition:.5s;
-      -ms-transition:.5s;
-      -moz-transition:.5s;
-      -webkit-transition:.5s;
-      transition:.5s;
-      b {
-        font-weight:400;
-      }
-      &:not(b) {
-        font-weight:300;
-      }
-    }
-
-    .field-div {
-      position:relative;
-    }
-
-    .detail {
-      padding:10px 0;
-      text-align:center;
-      &.large {
-        font-size:15pt;
-        margin-top:10px;
-      }
-      .detail-link {
-        color:#008aff;
-      }
-    }
-
-
-    .user-label {
-      color: #000;
-      text-align: right;
-      width:100%;
-      left:-101%;
-      top:0px;
-      position:absolute;
-      text-transform: uppercase;
-      height:20px;
-      padding:0px 0px 20px 5px;
-      @media #{$small} {
-        padding:10px 0px 25px 5px;
-      }
-      font-size:10pt;
-      letter-spacing:.2em;
-      transition: .3s linear;
-    }
-
-    .validation-error {
-      font-style:italic;
-    }
-
-    .ng-invalid.ng-dirty + .user-label {
-      color:#ff0000;
-    }
-
-    .login-buttons {
-      margin-top:0px;
-      padding:0px;
-      @media #{$small} {
-        margin-top:100px;
-        padding:0px 0px;
-      }
-      .facebook-button {
-        background-color:#3b5998;
-        margin:10px 0;
-        @media #{$small} {
-          margin:70px 0px 30px 0px;
-        }
-        &:hover {
-          background-color:#4061A6;
-        }
-      }
-      .google-button {
-        background-color:#d34836;
-        margin:10px 0;
-        @media #{$small} {
-          margin:30px 0px 10px 0px;
-        }
-        &:hover {
-          background-color:#EB503C;
-        }
-      }
-    }
-
-    .login-button {
-      background-color:#008aff;
-      text-transform: uppercase;
-      margin:10px 0px;
-      @media #{$small} {
-        margin:0px 0px 10px 0px;
-      }
-      &:hover {
-        background-color:#289EFF;
-      }
-    }
-
-    .user-input {
-      border:none;
-      background-color:#eee;
-      border-radius:7px;
-      font-size:17pt;
-      height:30px;
-      padding:0px 20px;
-      margin-top:.3em;
-      @media #{$small} {
-        height:37px;
-        margin-top:.7em;
-      }
-
-      &.input-alert.ng-dirty {
-        + label {
-          color: #ff0000;
-        }
-      }
-      &.ng-valid {
-        + label {
-          color: #4FCD6E;
         }
       }
     }

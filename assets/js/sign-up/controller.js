@@ -11,7 +11,7 @@ function SignUpCtrl($scope, $rootScope, $location, $timeout,  $http, Profile) {
   $scope.userSignUp = function() {
     if ($scope.newUser) {
       $scope.isSubmitDisabled = true;
-      Profile.create($scope.newUser).then(signUpSuccessCallback, signUpErrorCallback);
+      Profile.create($scope.newUser).then(signUpSuccessCallback);
     }
   };
 

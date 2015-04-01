@@ -206,9 +206,38 @@
     font-size:15pt;
   }
 
-
   .sticky {
     position:fixed;
     width:100%;
+  }
+}
+
+.create-stand-section {
+  .narrow {
+    margin-top: 100px;
+    padding-bottom: 250px;
+  }
+  .input-field.area {
+    resize: none;
+    height:200px;
+    padding:5px 15px;
+    font-size:14pt;
+  }
+  input.ms-button-transparent {
+    line-height:1.5em;
+  }
+  .ms-button-transparent {
+    margin: 50px 0px 0px 20px;
+    padding: 10px 40px;
+    border-radius: 4px;
+    border-width: 3px;
+  }
+  .input-label {
+    &.select {
+      top:13px;
+    }
+    &.area {
+      top:-6px;
+    }
   }
 }

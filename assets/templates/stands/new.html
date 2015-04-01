@@ -1,0 +1,137 @@
+<div class="off-canvas-wrap full ms-create-page" data-offcanvas>
+  <div class="inner-wrap">
+    <div class="invert-header">
+      <ng-include onload="readyHeader()" src="'assets/templates/shared/header.html'"></ng-include></ng-include></ng-include>
+    </div>
+
+    <section class="create-stand-section">
+      <div class="header-space">
+        <div class="row">
+          <h2 class="header-space-title">Maecenas sed diam eget risus varius blandit sit amet non magna</h2>
+        </div>
+      </div>
+      <div class="triangle"></div>
+      <div class="row narrow">
+        <div class="large-12 columns">
+          <form name="form.user" ng-submit="userSignUp()" novalidate autocomplete='off'>
+            <div class="field-div">
+              <input 
+                class="input-field" 
+                ng-class="{'input-alert': formErrorMessages['title']}" 
+                ng-model='newStand.title' 
+                id='stand_title' 
+                name='stand_title' 
+                type='text' 
+                ng-required='true'>
+              </input>
+              <label class="input-label">title</label> 
+              <span ng-show="formErrorMessages['title']" class="validation-error">{{formErrorMessages['title'].message}}</span>
+            </div>
+            <div class="field-div">
+              <select 
+                class="input-field" 
+                ng-class="{'input-alert': formErrorMessages['featured']}" 
+                ng-model='newStand.featured' 
+                id='stand_featured' 
+                name='stand_featured' 
+                type='text' 
+                ng-required='true'>
+              </select>
+              <label class="input-label select">Featured Image/Video</label> 
+              <span ng-show="formErrorMessages['title']" class="validation-error">{{formErrorMessages['featured'].message}}</span>
+            </div>
+            <div class="field-div">
+              <textarea 
+                class="input-field area" 
+                ng-class="{'input-alert': formErrorMessages['short_description']}" 
+                ng-model='newStand.short_description' 
+                id='stand_short' 
+                name='stand_short' 
+                type='text' 
+                ng-required='true'>
+              </textarea>
+              <label class="input-label area">short description</label>
+              <span ng-show="formErrorMessages['short_description']" class="validation-error">{{formErrorMessages['short_description'].message}}</span>
+            </div>
+            <div class="field-div">
+              <textarea 
+                class="input-field area" 
+                ng-class="{'input-alert': formErrorMessages['full_description']}" 
+                ng-model='newStand.full_description' 
+                id='stand_full' 
+                name='stand_full' 
+                type='text' 
+                ng-required='true'>
+              </textarea>
+              <label class="input-label area">full description</label>
+              <span ng-show="formErrorMessages['full_description']" class="validation-error">{{formErrorMessages['full_description'].message}}</span>
+            </div>
+            <div class="field-div">
+              <select 
+                class="input-field" 
+                ng-class="{'input-alert': formErrorMessages['category']}" 
+                id='stand_category' 
+                name='stand_category' 
+                type='text' 
+                ng-required='true'
+                ng-model='newStand.category'
+                ng-options="opt as opt.label for opt in options.category"
+                >
+              </select>
+              <label class="input-label select">Category</label> 
+              <span ng-show="formErrorMessages['title']" class="validation-error">{{formErrorMessages['category'].message}}</span>
+            </div>
+            <div class="field-div">
+              <select 
+                class="input-field" 
+                ng-class="{'input-alert': formErrorMessages['type']}" 
+                id='stand_type' 
+                name='stand_type' 
+                type='text' 
+                ng-required='true'>
+                <option ng-model='newStand.type' value="photo">PHOTO</option>
+                <option ng-model='newStand.type' value="video">VIDEO</option>
+              </select>
+              <label class="input-label select">stand type</label> 
+              <span ng-show="formErrorMessages['title']" class="validation-error">{{formErrorMessages['type'].message}}</span>
+            </div>
+            <div class="field-div">
+              <select 
+                class="input-field" 
+                ng-class="{'input-alert': formErrorMessages['duration']}" 
+                id='stand_duration' 
+                name='stand_duration' 
+                type='text' 
+                ng-required='true'>
+                <option ng-model='newStand.duration' value="30">30 DAYS</option>
+                <option ng-model='newStand.duration' value="60">60 DAYS</option>
+                <option ng-model='newStand.duration' value="90">90 DAYS</option>
+              </select>
+              <label class="input-label select">duration</label> 
+              <span ng-show="formErrorMessages['title']" class="validation-error">{{formErrorMessages['duration'].message}}</span>
+            </div>
+            <div class="field-div">
+              <select 
+                class="input-field" 
+                ng-class="{'input-alert': formErrorMessages['goal']}" 
+                id='stand_goal' 
+                name='stand_goal' 
+                type='text' 
+                ng-required='true'>
+                <option ng-model='newStand.duration' ng-value="100">100 ACTIONS</option>
+                <option ng-model='newStand.duration' ng-value="250">250 ACTIONS</option>
+                <option ng-model='newStand.duration' ng-value="500">500 ACTIONS</option>
+              </select>
+              <label class="input-label select">goal</label> 
+              <span ng-show="formErrorMessages['title']" class="validation-error">{{formErrorMessages['goal'].message}}</span>
+            </div>
+            <input class="ms-button-transparent black right" value="Publish" type="submit" />
+            <div class="ms-button-transparent black right save">Save</div>
+            <div class="ms-button-transparent black right cancel">Cancel</div>
+            
+          </form>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>

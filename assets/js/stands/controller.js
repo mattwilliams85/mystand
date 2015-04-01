@@ -1,7 +1,7 @@
 'use strict';
 
 function StandsCtrl($rootScope, $scope, $location, $routeParams, Stand, StandUpdate, StandAction, Profile) {
-  this.init($scope);
+  this.init($scope, $location);
   this.fetch($rootScope, $scope, $location, $routeParams, Stand, StandUpdate, StandAction, Profile);
 
   $scope.stand = {};
@@ -82,9 +82,11 @@ function StandsCtrl($rootScope, $scope, $location, $routeParams, Stand, StandUpd
 
 
 
-StandsCtrl.prototype.init = function($scope) {
+StandsCtrl.prototype.init = function($scope, $location) {
   // Setting mode based on the url
-  $scope.mode = 'show';
+  $scope.mode = '';
+  if (/\/stands/.test($location.path())) return $scope.mode = 'show';
+  if (/\/start/.test($location.path())) return $scope.mode = 'new';
 };
 
 StandsCtrl.prototype.fetch = function($rootScope, $scope, $location, $routeParams, Stand, StandUpdate, StandAction, Profile) {
@@ -123,6 +125,17 @@ StandsCtrl.prototype.fetch = function($rootScope, $scope, $location, $routeParam
 
       })();
     });
+  }
+
+  if ($scope.mode === 'new') {
+    $scope.options = {};
+    $scope.options.category = [{ label: 'BIOSPHERE', value: 'biosphere'},{ label: 'CLIMATE', value: 'climate'},{ label: 'ENERGY', value: 'energy'},{ label: 'FOOD', value: 'food'},{ label: 'POPULATION', value: 'population'},{ label: 'CONSUMERISM', value: 'consumerism'},{ label: 'POVERTY', value: 'poverty'},{ label: 'SOCIAL JUSTICE', value: 'social justice'},{ label: 'WAR AND CONFLICT', value: 'war and conflict'},{ label: 'SECURE OUR FUTURE', value: 'secure our future'}];
+    $scope.options.type = ['PHOTO','VIDEO'];
+    $scope.options.duration = ['30 DAYS','60 DAYS','90 DAYS'];
+    $scope.options.goal = ['100 ACTIONS','250 ACTIONS','500 ACTIONS'];
+
+    $scope.newStand = {};
+    $scope.newStand.category = $scope.options.category[0]
   }
 };
 

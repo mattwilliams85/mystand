@@ -16,7 +16,7 @@ myStandApp.config(['$routeProvider', '$locationProvider', function($routeProvide
   }).
 
   when('/sign-up', {
-    template: JST['assets/templates/sign-up/index.html'],
+    template: JST['assets/templates/sign-up/new.html'],
     controller: 'SignUpCtrl'
   }).
 
@@ -33,6 +33,11 @@ myStandApp.config(['$routeProvider', '$locationProvider', function($routeProvide
   when('/profile/:profileMode?', {
     template: JST['assets/templates/profile/show.html'],
     controller: 'ProfileCtrl'
+  }).
+
+  when('/start', {
+    template: JST['assets/templates/stands/new.html'],
+    controller: 'StandsCtrl'
   }).
 
   otherwise({
