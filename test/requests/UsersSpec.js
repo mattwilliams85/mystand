@@ -7,7 +7,8 @@ var userSchema = joi.object({
     id: joi.number().integer().required(),
     email: joi.string().required(),
     first_name: joi.string().allow(null),
-    last_name: joi.string().allow(null)
+    last_name: joi.string().allow(null),
+    image_original_url: joi.string().allow(null)
   })
 });
 
@@ -16,6 +17,7 @@ var userPublicSchema = joi.object({
     id: joi.number().integer().required(),
     first_name: joi.string().allow(null),
     last_name: joi.string().allow(null),
+    image_original_url: joi.string().allow(null),
     bio: joi.string().allow(null),
     website: joi.string().allow(null),
     stands_count: joi.number().integer().required(),

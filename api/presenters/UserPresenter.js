@@ -11,7 +11,8 @@ module.exports = function toJSON(opts) {
   var data = {
     id: obj.id,
     first_name: obj.first_name,
-    last_name: obj.last_name
+    last_name: obj.last_name,
+    image_original_url: obj.image_original_url
   };
   if (opts.publicProfile) {
     if (obj.profile !== null && typeof obj.profile === 'object') {

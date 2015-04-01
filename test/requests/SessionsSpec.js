@@ -7,7 +7,8 @@ var userSchema = joi.object({
     id: joi.number().integer().required(),
     email: joi.string().required(),
     first_name: joi.string().allow(null),
-    last_name: joi.string().allow(null)
+    last_name: joi.string().allow(null),
+    image_original_url: joi.string().allow(null)
   })
 });
 

@@ -8,6 +8,7 @@ var userSchema = joi.object({
     email: joi.string().required(),
     first_name: joi.string().allow(null),
     last_name: joi.string().allow(null),
+    image_original_url: joi.string().allow(null),
     is_admin: joi.boolean().required()
   })
 });
