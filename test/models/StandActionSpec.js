@@ -18,7 +18,7 @@ describe('StandAction', function() {
 
     it('should increment actions count', function(done) {
       Stand.findOneById(stand.id).exec(function(err, stand) {
-        expect(stand.actions_count).to.be.null;
+        expect(stand.actions_count).to.eql(0);
 
         Factory.create('standAction', {stand: stand.id})(function(err) {
           expect(err).to.be.null;
