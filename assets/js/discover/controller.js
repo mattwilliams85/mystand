@@ -10,7 +10,7 @@ function DiscoverCtrl($scope, $routeParams, $timeout, Stand, Category) {
 
   $scope.loadMore = function() {
     $scope.page += 1;
-    Stand.list({page: $scope.page, query: $scope.searchQuery, categories: $scope.selectedCategories}).then(function(data) {
+    Stand.list({page: $scope.page, query: $scope.searchQuery, categories: $scope.selectedCategories, sort: $scope.sortBy}).then(function(data) {
       for (var i in data.stands) {
         // Calculate progress
         data.stands[i].progressPercent = Math.round((data.stands[i].actions_count*100)/data.stands[i].goal);
@@ -25,10 +25,48 @@ function DiscoverCtrl($scope, $routeParams, $timeout, Stand, Category) {
     });
   };
 
-  $scope.selectCategory = function(categoryId) {
+  $scope.selectSort = function(sort) {
+    if (sort === 'newest') {
+      $scope.sortBy = null;
+    } else {
+      $scope.sortBy = sort;
+    }
     $scope.stands = [];
     $scope.page = 0;
+    $scope.showLoadMore = true;
+    $scope.loadMore();
+  };
+
+  $scope.selectCategory = function(categoryId) {
+    if ($scope.selectedCategories.indexOf(categoryId) > -1) return false; // Skip duplicates
     $scope.selectedCategories.push(categoryId);
+    $scope.stands = [];
+    $scope.page = 0;
+    $scope.showLoadMore = true;
+    $scope.loadMore();
+  };
+
+  $scope.unSelectCategory = function(categoryId) {
+    $scope.selectedCategories.splice($scope.selectedCategories.indexOf(categoryId), 1);
+    $scope.stands = [];
+    $scope.page = 0;
+    $scope.showLoadMore = true;
+    $scope.loadMore();
+  };
+
+  $scope.categoryName = function(categoryId) {
+    for (var i in $scope.categories) {
+      if ($scope.categories[i].id === categoryId) {
+        return $scope.categories[i].title;
+      }
+    }
+    return categoryId;
+  };
+
+  $scope.unSelectQuery = function() {
+    $scope.searchQuery = null;
+    $scope.stands = [];
+    $scope.page = 0;
     $scope.showLoadMore = true;
     $scope.loadMore();
   };

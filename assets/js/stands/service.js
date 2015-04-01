@@ -14,6 +14,7 @@ function Stand($http, $q) {
       if (opts.page && opts.page > 1) params.page = opts.page;
       if (opts.categories && opts.categories.length) params.categories = opts.categories.join(',');
       if (opts.query) params.query = opts.query;
+      if (opts.sort) params.sort = opts.sort;
 
       $http({
         method: 'GET',

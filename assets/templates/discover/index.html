@@ -21,6 +21,31 @@
 
     <section class="discover-stands">
       <div class="row">
+        <div class="large-8 columns">
+          <div class="selected-keywords">
+            <span ng-if="searchQuery" class="keyword">
+              <a ng-click="unSelectQuery()" class="unselect">x</a>
+              <span>{{searchQuery}}</span>
+            </span>
+
+            <span ng-repeat="categoryId in selectedCategories" class="keyword">
+              <a ng-click="unSelectCategory(categoryId)" class="unselect">x</a>
+              <span>{{categoryName(categoryId)}}</span>
+            </span>
+          </div>
+        </div>
+
+        <div class="large-4 columns">
+          <a data-options="align:bottom; pip: center" data-dropdown="sort_by_dropdown" class="button sort-by">Sort By</a>
+          <ul id="sort_by_dropdown" class="f-dropdown" data-dropdown-content>
+            <li ng-class="{'selected': !sortBy}"><a ng-click="selectSort('newest')">newest</a></li>
+            <li ng-class="{'selected': sortBy === 'oldest'}"><a ng-click="selectSort('oldest')">oldest</a></li>
+            <li ng-class="{'selected': sortBy === 'popular'}"><a ng-click="selectSort('popular')">popularity</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="row">
         <div ng-repeat="stand in stands" class="large-3 columns left">
           <div class="stand-item">
             <div class="image-wrapper">

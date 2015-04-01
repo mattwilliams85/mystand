@@ -124,6 +124,7 @@ module.exports = {
     });
   },
   afterUpdate: function(stand, callback) {
+    // TODO: make sure it only runs reindex when title and description changes
     stand.updateSearchIndex = this.attributes.updateSearchIndex;
     stand.updateSearchIndex(function() {
       return callback();
