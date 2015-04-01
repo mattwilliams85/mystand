@@ -70,13 +70,15 @@ module.exports = {
      *
      */
     updateSearchIndex: function(callback) {
-      var that = this;
+      var that = this,
+          searchText;
 
       if (this.id) {
         // Remove all indexed data for the stand by it's id
         search.remove(this.id, function() {
           // Create a new index of a stand
-          search.index(that.title, that.id, function() {
+          searchText = that.title + ' ' + that.description;
+          search.index(searchText, that.id, function() {
             return callback();
           });
         });
