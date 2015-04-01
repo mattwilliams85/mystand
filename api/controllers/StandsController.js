@@ -16,7 +16,7 @@ module.exports = {
    * @apiGroup Stands
    *
    * @apiParam {Number} page Page number
-   * @apiParam {Number} category Category ID
+   * @apiParam {Number[]} categories Category IDs
    * @apiParam {String} sort Sort type(latest/oldest/popular)
    * @apiParam {String} query Search query
    *
@@ -53,6 +53,7 @@ module.exports = {
         options = {
           where: {},
           sort: 'id DESC',
+          page: req.param('page') || 1,
           limit: this.perPage
         };
 
@@ -61,7 +62,7 @@ module.exports = {
       .where(options.where)
       .populate('category')
       .sort(options.sort)
-      .limit(options.limit)
+      .paginate({page: options.page, limit: options.limit})
       .exec(function(err, stands) {
         if (err) {
           console.log(err);
@@ -75,7 +76,7 @@ module.exports = {
       });
     };
 
-    if (req.param('category')) options.where.category = req.param('category');
+    if (req.param('categories')) options.where.category = req.param('categories').split(',');
     if (req.param('sort') === 'oldest') options.sort = 'id ASC';
     if (req.param('sort') === 'popular') options.sort = 'actions_count DESC';
 

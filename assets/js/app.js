@@ -13,7 +13,7 @@ myStandApp.run(['$rootScope', '$location', '$timeout', 'CurrentUser',
     /*
      * Fill in User object with data if user is signed in but object is empty
     */
-    $rootScope.$on('$includeContentLoaded', function(event, next, current) {
+    $rootScope.$on('$includeContentLoaded', function(event) {
       if ($rootScope.isSignedIn) {
         CurrentUser.get().then(function(data) {
           $rootScope.currentUser = data;
@@ -31,17 +31,17 @@ myStandApp.run(['$rootScope', '$location', '$timeout', 'CurrentUser',
       }
     };
 
-    $rootScope.modalText = ''
-    $rootScope.modalPath = ''
-    $rootScope.showModal = function(text, modalPath, okCallback, cancelCallback) {
+    $rootScope.modalText = '';
+    $rootScope.modalPath = '';
+    $rootScope.showModal = function(text, modalPath) {
       $rootScope.modalText = text;
-      $rootScope.modalPath = modalPath
+      $rootScope.modalPath = modalPath;
       $('#dialogue-modal').foundation('reveal', 'open');
-    }
+    };
 
     $rootScope.closeModal = function(){
       $('#dialogue-modal').foundation('reveal', 'close');
-    }
+    };
 
     // Prevent A-sync issue with Foundation.js
     $timeout(function() {
@@ -52,7 +52,6 @@ myStandApp.run(['$rootScope', '$location', '$timeout', 'CurrentUser',
         }
       });
     }, 100);
-    //
   }
 ]);
 

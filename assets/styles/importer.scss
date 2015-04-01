@@ -14,15 +14,6 @@
  * or any other Grunt tasks you like.)
  */
 
-
-@mixin vertical-align-center {
-  position: relative;
-  top: 50%;
-  -webkit-transform: translateY(-50%);
-  -ms-transform: translateY(-50%);
-  transform: translateY(-50%);
-}
-
 // Foundation Settings
 $top-offset: 50px !important;
 $switch-active-color: #ade279;
@@ -69,4 +60,3 @@ $header-height-small: 60px;
 @import 'stands.scss';
 @import 'utility.scss';
 @import 'signup.scss';
-

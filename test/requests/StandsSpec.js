@@ -76,7 +76,7 @@ describe('GET /stands.json', function() {
 
   it('should return oldest stands from a category', function(done) {
     agent.get('/stands.json')
-    .query('sort=oldest&category=' + category.id)
+    .query('sort=oldest&categories=' + category.id)
     .end(function(err, res) {
       expect(res.statusCode).to.eql(200);
       expect(res.body.stands.length).to.eql(2);
@@ -100,7 +100,7 @@ describe('GET /stands.json', function() {
 
   it('should search stands by a query string within category', function(done) {
     agent.get('/stands.json')
-    .query('query=mahalo&category=' + category.id)
+    .query('query=mahalo&categories=' + category.id)
     .end(function(err, res) {
       expect(res.statusCode).to.eql(200);
       expect(res.body.stands.length).to.eql(1);

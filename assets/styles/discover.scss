@@ -1,3 +1,169 @@
 .ms-discover-page {
-  border: 1px solid green;
+  padding-bottom: 200px;
+
+  .discover-categories {
+    background-image: url('/images/discover/categories-bg.png');
+    border-bottom: 1px solid #dedede;
+    padding-bottom: 4em;
+    position: relative;
+
+    h3 {
+      display: block;
+      text-align: center;
+      margin-top: 4em;
+      margin-bottom: 1em;
+    }
+
+    &:before, &:after {
+      // Triangle
+      content: "";
+      position: absolute;
+      width: 0;
+      height: 0;
+      border-style: solid;
+      border-color: transparent;
+      border-bottom: 0;
+    }
+    &:before {
+      // Triangle
+      bottom: -16px;
+      left: 49%;
+      border-top-color: #dedede;
+      border-width: 16px;
+    }
+    &:after {
+      // Triangle
+      bottom: -15px;
+      left: 49%;
+      border-top-color: #f7f8f9;
+      border-width: 16px;
+    }
+
+    .categories-list {
+      list-style: none;
+      margin: 0;
+
+      li {
+        display: block;
+        float: left;
+        margin: 0 10px 10px 0;
+        text-align: center;
+        width: 184px;
+
+        &.category-1 {
+          background-image: url('/images/categories/biosphere.png');
+        }
+        &.category-2 {
+          background-image: url('/images/categories/climate.png');
+        }
+        &.category-3 {
+          background-image: url('/images/categories/energy.png');
+        }
+        &.category-4 {
+          background-image: url('/images/categories/food.png');
+        }
+        &.category-5 {
+          background-image: url('/images/categories/population.png');
+        }
+        &.category-6 {
+          background-image: url('/images/categories/consumerism.png');
+        }
+        &.category-7 {
+          background-image: url('/images/categories/poverty.png');
+        }
+        &.category-8 {
+          background-image: url('/images/categories/social-justice.png');
+        }
+        &.category-9 {
+          background-image: url('/images/categories/war-and-conflict.png');
+        }
+        &.category-10 {
+          background-image: url('/images/categories/secure-our-future.png');
+        }
+
+        button {
+          background: none;
+          display: block;
+          height: 125px;
+          line-height: 125px;
+          margin: 0;
+          padding: 0;
+          text-transform: uppercase;
+          width: 100%;
+        }
+      }
+    }
+  }
+
+  .discover-stands {
+    padding: 4em 0;
+
+    .stand-item {
+      border: 1px solid #d8d8d8;
+      height: 405px;
+      overflow: hidden;
+      margin-bottom: 30px;
+
+      .image-wrapper {
+        height: 165px;
+
+        img {
+          width: 100%;
+        }
+      }
+
+      .info-wrapper {
+        padding: 20px;
+      }
+
+      h6 {
+        margin-bottom: 0;
+        text-transform: uppercase;
+      }
+
+      i {
+        font-size: .8em;
+      }
+
+      .description {
+        color: #949494;
+        display: block;
+        font-size: .8em;
+        height: 85px;
+        margin-bottom: 5px;
+        overflow: hidden;
+      }
+
+      .count-detail {
+        color: #949494;
+        font-size: .8em;
+      }
+
+      .goal-progress {
+        background-color: #b8b8b8;
+        height: 10px;
+        margin-bottom: 5px;
+
+        .inner {
+          height: 100%;
+          width: 0px;
+          background-color: #933232;
+        }
+      }
+    }
+
+    .load-more-wrapper {
+      text-align: center;
+      overflow: hidden;
+
+      .load-more {
+        background: none;
+        border: 2px solid #000;
+        color: #000;
+        text-transform: uppercase;
+        padding: .8em 2em;
+        font-size: .8em;
+      }
+    }
+  }
 }

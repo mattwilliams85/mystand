@@ -1,14 +1,48 @@
 <div class="off-canvas-wrap ms-discover-page" data-offcanvas>
   <div class="inner-wrap">
-    <ng-include src="'assets/templates/shared/off-canvas-menu.html'"></ng-include>
-    <ng-include src="'assets/templates/shared/header.html'"></ng-include>
-
-    <div class="row">
-      <div class="large-12 columns">
-        <h2>Discover stands page. Coming soon ....</h2>
-      </div>
+    <div class="invert-header">
+      <ng-include src="'assets/templates/shared/header.html'"></ng-include>
     </div>
 
-    <ng-include src="'assets/templates/shared/footer.html'"></ng-include>
+    <section class="discover-categories">
+      <div class="row">
+        <div class="large-12 columns">
+          <h3>Discover stands</h3>
+
+          <ul class="categories-list">
+            <li ng-repeat="category in categories" class="category-{{category.id}}">
+              <button ng-click="selectCategory(category.id)">{{category.title}}</button>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="triangle"></div>
+    </section>
+
+    <section class="discover-stands">
+      <div class="row">
+        <div ng-repeat="stand in stands" class="large-3 columns left">
+          <div class="stand-item">
+            <div class="image-wrapper">
+              <a ng-href="/stands/{{stand.id}}"><img ng-src='{{stand.image_original_url}}' /></a>
+            </div>
+            <div class="info-wrapper">
+              <h6><a ng-href="/stands/{{stand.id}}">{{stand.title}}</a></h6>
+              <i>#{{stand.category}}</i>
+              <p class="description">{{stand.description}}</p>
+              <div class="goal-progress"><div class="inner" style="width: {{stand.progressPercent}}%"></div></div>
+              <span class="count-detail">{{stand.actions_count}} {{stand.actions_count === 1 ? 'hero' : 'heroes'}} have taken this stand.</span>
+              <span class="count-detail">Let's get to {{stand.goal}}.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="clearfix"></div>
+
+      <div ng-if="showLoadMore" class="load-more-wrapper">
+        <button ng-click="loadMore()" class="load-more">Load more</button>
+      </div>
+    </section>
   </div>
 </div>

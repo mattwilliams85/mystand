@@ -96,7 +96,7 @@
               <div class="row">
                 <div class="ms-trending-stands">
                   <div class="large-4 columns" ng-repeat="stand in trendingStands">
-                  <div class="trending-stand">
+                    <div class="trending-stand">
                       <div class="trend-img">
                         <img ng-src='{{stand.image_original_url}}'>
                       </div>
@@ -111,7 +111,7 @@
                         <span class="count-detail">Let's get to {{stand.goal}}.</span>
                       </div>
                       <div class="details show-for-small-only">
-                        <h4>{{stand.title}}</h4>
+                        <h4><a ng-href="/stands/{{stand.id}}">{{stand.title}}</a></h4>
                         <span class="italic">#{{stand.category}}</span>
                         <div class="progress">
                           <span class="meter"></span>

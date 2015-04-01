@@ -1,9 +1,9 @@
 'use strict';
 
-/*
+/**
  * CategorySeed.js
  *
-*/
+ */
 
 module.exports = {
   data: [

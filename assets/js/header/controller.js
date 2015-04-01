@@ -1,6 +1,6 @@
 'use strict';
 
-function HeaderCtrl($scope, $rootScope, $location, $timeout,  $http, CurrentUser) {
+function HeaderCtrl($scope, $rootScope, $location,  $http, CurrentUser) {
   /*
    * Sign Out click handler
    *
@@ -8,7 +8,7 @@ function HeaderCtrl($scope, $rootScope, $location, $timeout,  $http, CurrentUser
   $scope.signOut = function() {
     var cb = function() {
       $rootScope.isSignedIn = false;
-      $location.path('/home')
+      $location.path('/home');
       $rootScope.showModal('You have succesfully logged out!','/home');
       CurrentUser.clear();
     };
@@ -25,12 +25,15 @@ function HeaderCtrl($scope, $rootScope, $location, $timeout,  $http, CurrentUser
    *
    */
   $scope.headerSearch = function() {
-    if ($scope.headerSearchQuery) {
+    if (/\/discover/.test($location.path())) {
+      $scope.$emit('headerSearchSubmit', {query: $scope.headerSearchQuery});
+    } else if ($scope.headerSearchQuery) {
       $location.search('q', $scope.headerSearchQuery).path('/discover');
     }
     return false;
   };
+
 }
 
-HeaderCtrl.$inject = ['$scope', '$rootScope', '$location', '$timeout', '$http', 'CurrentUser'];
+HeaderCtrl.$inject = ['$scope', '$rootScope', '$location', '$http', 'CurrentUser'];
 myStandControllers.controller('HeaderCtrl', HeaderCtrl);

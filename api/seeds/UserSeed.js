@@ -25,6 +25,14 @@ module.exports = {
       is_admin: true
     },
     {
+      first_name: 'Keith',
+      last_name: 'Burgess',
+      email: 'keith.burgess@eyecuelab.com',
+      password: 'MyStand1',
+      password_confirmation: 'MyStand1',
+      is_admin: true
+    },
+    {
       first_name: 'John',
       last_name: 'Smith',
       email: 'john.smith@eyecuelab.com',
