@@ -68,7 +68,21 @@ module.exports.models = {
   seedArray: function(callback) {
     var self = this;
     var modelName = self.adapter.identity.charAt(0).toUpperCase() + self.adapter.identity.slice(1);
-    self.createEach(self.seedData).exec(function(err) {
+
+    var asyncItems = [];
+    var seedItem;
+    for (var data of self.seedData) {
+      seedItem = function(data) {
+        return function(callback) {
+          self.create(data).exec(function(err) {
+            callback(err);
+          });
+        };
+      };
+      asyncItems.push(seedItem(data));
+    }
+
+    async.series(asyncItems, function(err) {
       if (err) {
         sails.log.debug(err);
         callback();

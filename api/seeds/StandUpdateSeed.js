@@ -1,4 +1,4 @@
-/*global Stand: true, User: true */
+/*global Stand: true */
 'use strict';
 
 /*
