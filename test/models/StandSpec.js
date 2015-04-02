@@ -6,6 +6,7 @@ describe('Stand', function() {
 
   describe('.update', function() {
     beforeEach(function(done) {
+      redisClient.flushdb();
       DatabaseCleaner.clean(['stands'], function() {
         // Create stands
         async.series([
