@@ -23,7 +23,6 @@ StandsCtrl.prototype.fetch = function($rootScope, $scope, $location, $routeParam
       if(section === 'updates') {
         StandUpdates.get($routeParams.standId).then(function(data) {
           $scope.tabData = data.standUpdates;
-          // console.log($scope.tabData)
         });
       }
       if(section === 'actions') {
@@ -32,7 +31,6 @@ StandsCtrl.prototype.fetch = function($rootScope, $scope, $location, $routeParam
             data.standActions[i].thumbnail =  "http://img.youtube.com/vi/" +  data.standActions[i].youtube + "/hqdefault.jpg"
             if(data.standActions[i].youtube) data.standActions[i].youtube = 'https://www.youtube.com/embed/' + data.standActions[i].youtube + '?modestbranding=1;controls=1;showinfo=0;rel=0;fs=1';
           }
-          console.log(data.standActions)
           $scope.tabData = data.standActions;
         });
       }
@@ -58,14 +56,14 @@ StandsCtrl.prototype.fetch = function($rootScope, $scope, $location, $routeParam
     }
 
     $scope.fileUpload = function() {
-      
+
     }
 
     $scope.onSelect = function(file) {
       $scope.newAction.file = file;
     }
 
-    //Watches and locks Center-Nav-Bar when scrolling down 
+    //Watches and locks Center-Nav-Bar when scrolling down
     $(function () {
         var top = 1050;
 
@@ -92,7 +90,6 @@ StandsCtrl.prototype.fetch = function($rootScope, $scope, $location, $routeParam
     $scope.showMedia = function(action_id, user_id) {
       Profile.get(user_id).then(function(data) {
         $scope.actionUser = data.user;
-        console.log($scope.actionUser)
       });
       $('#media-modal-' + action_id).foundation('reveal', 'open', {animation: 'fade'});
 
@@ -101,12 +98,10 @@ StandsCtrl.prototype.fetch = function($rootScope, $scope, $location, $routeParam
     Stand.get($routeParams.standId).then(function(data) {
       data.stand.youtube = 'https://www.youtube.com/embed/' + data.stand.youtube + '?modestbranding=1;controls=0;showinfo=0;rel=0;fs=1';
       $scope.stand = data.stand;
-      // console.log($scope.stand)
 
       Profile.get(data.stand.user).then(function(data) {
         $scope.author = data.user;
         if($scope.author.bio.length > 50) $scope.author.bio = $scope.author.bio.substring(0,143) + "...";
-        console.log($scope.author)
       });
     });
 
@@ -117,7 +112,7 @@ StandsCtrl.prototype.fetch = function($rootScope, $scope, $location, $routeParam
           var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
           dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
           $('#disqus_thread').append(dsq)
-         
+
       })();
     });
 

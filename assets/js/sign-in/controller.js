@@ -15,7 +15,6 @@
         }).
         success(function(data) {
           if (data.error) {
-            console.log('oop')
             // $scope.showModal('Oops, wrong email or password');
             // $(document).foundation();
           } else {
