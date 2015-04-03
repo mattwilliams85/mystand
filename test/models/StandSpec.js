@@ -35,7 +35,18 @@ describe('Stand', function() {
     });
 
     xit('should reset closed_at timestamp based on provided duration', function(done) {
+      var fiveDaysAgo = datePlusDays(new Date(), -5);
+      var twoDaysAgo = datePlusDays(new Date(), -2);
 
+      Stand.update({id: factoryData[0].id}, {createdAt: fiveDaysAgo, duration: 3}).exec(function(err) {
+        expect(err).to.be.null;
+
+        Stand.update({id: factoryData[0].id}, {title: 'Something'}).exec(function(err, stands) {
+          expect(err).to.be.null;
+          expect(formattedDate(stands[0].closed_at)).to.be.eql(formattedDate(twoDaysAgo));
+          done();
+        });
+      });
     });
   });
 

@@ -123,20 +123,23 @@ module.exports = {
    *
    */
   beforeCreate: function(values, callback) {
+    // Set closed_at
     values.closed_at = this.calculateClosedAtFromDuration(values.duration);
     return callback();
   },
   afterCreate: function(stand, callback) {
+    // Update Search Index
     stand.updateSearchIndex = this.attributes.updateSearchIndex;
     stand.updateSearchIndex(function() {
       return callback();
     });
   },
   beforeUpdate: function(values, callback) {
-    values.closed_at = this.calculateClosedAtFromDuration(values.duration);
+    // TODO Reset closed_at if duration changed
     return callback();
   },
   afterUpdate: function(stand, callback) {
+    // Update Search Index
     // TODO: make sure it only runs reindex when title and description changes
     stand.updateSearchIndex = this.attributes.updateSearchIndex;
     stand.updateSearchIndex(function() {
@@ -144,6 +147,7 @@ module.exports = {
     });
   },
   afterDestroy: function(records, callback) {
+    // Remove Search Index
     for (var stand of records) {
       // Remove all indexed data for the stand by it's id
       search.remove(stand.id, callback);
@@ -171,10 +175,10 @@ module.exports = {
    *
    * @return {Date}
    */
-  calculateClosedAtFromDuration: function(duration) {
+  calculateClosedAtFromDuration: function(duration, dateFrom) {
     if (!duration) return;
 
-    var dateFrom = new Date();
+    dateFrom = dateFrom || new Date();
     var dateTo = new Date(dateFrom);
     dateTo.setDate(dateFrom.getDate() + duration);
     return dateTo;
