@@ -7,12 +7,17 @@ function StandUpdate($http, $q) {
     /*
     * Get a stand
     */
-    get: function(id) {
+    list: function(id, opts) {
       var dfr = $q.defer();
+      opts = opts || {};
+      var params = {};
+      
+      if (opts.page && opts.page > 1) params.page = opts.page;
 
       $http({
         method: 'GET',
-        url: '/stands/' + id + '/updates.json'
+        url: '/stands/' + id + '/updates.json',
+        params: params
       }).success(function(res) {
         dfr.resolve(res);
       }).error(function(err) {

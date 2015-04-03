@@ -1,30 +1,31 @@
 'use strict';
 
-function StandsCtrl($rootScope, $scope, $location, $routeParams, Stand, StandUpdate, StandAction, Profile, Category) {
+function StandsCtrl($rootScope, $scope, $location, $routeParams, Stand, StandUpdate, StandAction, Profile, Category, Flag) {
   this.init($scope, $location);
-  this.fetch($rootScope, $scope, $location, $routeParams, Stand, StandUpdate, StandAction, Profile, Category);
+  this.fetch($rootScope, $scope, $location, $routeParams, Stand, StandUpdate, StandAction, Profile, Category, Flag);
 
   $scope.stand = {};
   $scope.author = {};
-  $scope.tabData = {};
+  $scope.tabData = {
+    actions: [],
+    updates: []
+  };
   $scope.actionUser = {};
   $scope.newAction = {};
   $scope.tabUrl = "assets/templates/stands/details/show.html"
   $scope.formErrorMessages = {};
   $scope.page = 0;
-  $scope.showLoadMore = true;
 
   $scope.changeTab = function(section) {
+    $scope.page = 0;
+
     if(section === 'updates') {
-      StandUpdate.get($routeParams.standId).then(function(data) {
-        $scope.tabData['updates'] = data.standUpdates;
-        // console.log($scope.tabData)
-      });
+      $scope.tabData['updates'] = [];
+      $scope.loadMore('updates');
     }
     if(section === 'actions') {
       $scope.tabData['actions'] = [];
-      $scope.page = 0;
-      $scope.loadMore();
+      $scope.loadMore('actions');
     }
     if(section === 'comments') {
       $('.disqus-box').show()
@@ -60,6 +61,20 @@ function StandsCtrl($rootScope, $scope, $location, $routeParams, Stand, StandUpd
     $scope.newAction.file = file;
   }
 
+  $scope.bookmarkStand = function() {
+    Stand.bookmark($scope.stand);
+  }
+
+  $scope.flagStand = function() {
+    var flag = {
+      user: $rootScope.currentUser.id,
+      content: $location.path,
+      content_id: $routeParams.standId,
+      content_type: "stand"
+    };
+    Flag.create(flag);
+  }
+
   $scope.takeAction = function() {
     if(!$rootScope.isSignedIn) {
       $('body').scrollTop(0)
@@ -72,7 +87,6 @@ function StandsCtrl($rootScope, $scope, $location, $routeParams, Stand, StandUpd
   $scope.showMedia = function(actionId, userId) {
     Profile.get(userId).then(function(data) {
       $scope.actionUser = data.user;
-      console.log($scope.actionUser)
     });
     $('#media-modal-' + actionId).foundation('reveal', 'open', {animation: 'fade'});
   }
@@ -121,23 +135,37 @@ function StandsCtrl($rootScope, $scope, $location, $routeParams, Stand, StandUpd
     $rootScope.showModal("Are you sure?", undefined, clearForm, undefined) 
   }
 
-  $scope.loadMore = function() {
-    // debugger
+  $scope.loadMore = function(tab) {
+    $scope.showLoadMore = true;
     $scope.page += 1;
-    StandAction.list($scope.stand.id, {page: $scope.page}).then(function(data) {
-      // debugger
-      for (var i in data.standActions) {
-        data.standActions[i].thumbnail =  "http://img.youtube.com/vi/" +  data.standActions[i].youtube + "/hqdefault.jpg"
-        if(data.standActions[i].youtube) data.standActions[i].youtube = 'https://www.youtube.com/embed/' + data.standActions[i].youtube + '?modestbranding=1;controls=1;showinfo=0;rel=0;fs=1';
-      }
-      $scope.tabData['actions'] = $scope.tabData['actions'].concat(data.standActions);
-      debugger
-      if ($scope.page === 1 && $scope.tabData['actions'] < 13) {
-        $scope.showLoadMore = false;
-      } else if ($scope.stand.actions_count ===  $scope.tabData['actions'].length) {
-        $scope.showLoadMore = false;
-      }
-    });
+
+    if(tab === 'actions') {
+      StandAction.list($scope.stand.id, {page: $scope.page}).then(function(data) {
+        for (var i in data.standActions) {
+          data.standActions[i].thumbnail =  "http://img.youtube.com/vi/" +  data.standActions[i].youtube + "/hqdefault.jpg"
+          if(data.standActions[i].youtube) data.standActions[i].youtube = 'https://www.youtube.com/embed/' + data.standActions[i].youtube + '?modestbranding=1;controls=1;showinfo=0;rel=0;fs=1';
+        }
+        $scope.tabData[tab] = $scope.tabData[tab].concat(data.standActions);
+
+        if ($scope.page === 1 && $scope.tabData[tab] < 13) {
+          $scope.showLoadMore = false;
+        } else if ($scope.stand.actions_count ===  $scope.tabData[tab].length) {
+          $scope.showLoadMore = false;
+        }
+      });
+    }
+    if(tab === 'updates') {
+      StandUpdate.list($scope.stand.id, {page: $scope.page}).then(function(data) {
+        $scope.tabData[tab] = $scope.tabData[tab].concat(data.standUpdates);
+
+        if ($scope.page === 1 && $scope.tabData[tab] < 6) {
+          $scope.showLoadMore = false;
+        } else if ($scope.stand.updates_count ===  $scope.tabData[tab].length) {
+          $scope.showLoadMore = false;
+        }
+      });
+    }
+
   };
 }
 
@@ -148,7 +176,7 @@ StandsCtrl.prototype.init = function($scope, $location) {
   if (/\/start/.test($location.path())) return $scope.mode = 'new';
 };
 
-StandsCtrl.prototype.fetch = function($rootScope, $scope, $location, $routeParams, Stand, StandUpdate, StandAction, Profile, Category) {
+StandsCtrl.prototype.fetch = function($rootScope, $scope, $location, $routeParams, Stand, StandUpdate, StandAction, Profile, Category, Flag) {
   if ($scope.mode === 'show') {
 
     //Watches and locks Center-Nav-Bar when scrolling down 
@@ -167,7 +195,7 @@ StandsCtrl.prototype.fetch = function($rootScope, $scope, $location, $routeParam
     Stand.get($routeParams.standId).then(function(data) {
       if(data.stand.youtube) data.stand.youtube = 'https://www.youtube.com/embed/' + data.stand.youtube + '?modestbranding=1;controls=0;showinfo=0;rel=0;fs=1';
       $scope.stand = data.stand;
-
+      console.log($scope.stand)
       Profile.get(data.stand.user).then(function(data) {
         $scope.author = data.user;
         if($scope.author.bio.length > 50) $scope.author.bio = $scope.author.bio.substring(0,143) + "...";
@@ -205,5 +233,5 @@ StandsCtrl.prototype.fetch = function($rootScope, $scope, $location, $routeParam
   }
 };
 
-StandsCtrl.$inject = ['$rootScope', '$scope', '$location', '$routeParams', 'Stand', 'StandUpdate', 'StandAction', 'Profile','Category'];
+StandsCtrl.$inject = ['$rootScope', '$scope', '$location', '$routeParams', 'Stand', 'StandUpdate', 'StandAction', 'Profile','Category','Flag'];
 myStandControllers.controller('StandsCtrl', StandsCtrl);

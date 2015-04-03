@@ -44,16 +44,16 @@
             <span class="uppercase inline"><img class="social-icon" src="/images/facebook_icon.png"><img class="social-icon" src="/images/twitter_icon.png"><img class="social-icon" src="/images/google_icon.png"></span>
           </div>
           <div class="right">
-            <span class="uppercase inline">bookmark <i class="fa fa-bookmark"></i></span>
-            <span class="uppercase inline">flag <i class="fa fa-flag"></i></span>
+            <span class="uppercase inline" ng-click="bookmarkStand()">bookmark <i class="fa fa-bookmark"></i></span>
+            <span class="uppercase inline" ng-click="flagStand()">flag <i class="fa fa-flag"></i></span>
           </div>
-          <span class="uppercase impact"><span class="bold">my impact:</span> <b>453</b> bystanders <b>25</b> mystanders</span>
+          <span class="uppercase impact" ng-if="stand.currentUser"><span class="bold">my impact:</span> <b>453</b> bystanders <b>25</b> mystanders</span>
           <span class="left stand-description">{{stand.description}}</span>
         </div>
         <div class="large-4 columns">
           <div class="profile-box">
             <!-- MISSING AVATAR -->
-            <a ng-href="users/{{stand.user}}"><img class="avatar-tiny" src="http://www.musica100.com/assets/images/default_avatar.jpg"/><span class="uppercase inline author-title">{{author.first_name}} {{author.last_name}}</span></a>
+            <a ng-href="users/{{stand.user}}"><img class="avatar-tiny" src="{{author.image_original_url}}"/><span class="uppercase inline author-title">{{author.first_name}} {{author.last_name}}</span></a>
             <a href="{{author.website}}"><span class="detail link">{{author.website}}</span></a>
             <span class="detail record"><b>{{author.stands_count}}</b> Stands created | <b>{{author.score}}</b> Activism Score</span>
             <span class="detail">{{author.bio}}</span>
@@ -74,7 +74,7 @@
     </div>
     <div class="nav-box">
       <ng-include src="tabUrl"></ng-include>
-      <div class="row disqus-box">
+      <div ng-if="stand.currentUser" class="row disqus-box">
         <div id="disqus_thread"></div>
       </div>
     </div>

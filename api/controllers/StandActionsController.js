@@ -42,11 +42,18 @@ module.exports = {
    *   }
    */
   index: function(req, res) {
-    var actions = [];
+    var actions = [],
+        options = {
+          where: {},
+          sort: 'id DESC',
+          page: req.param('page') || 1,
+          limit: this.perPage
+        };
     StandAction.find()
     .where({stand: req.param('standId')})
     .sort('id DESC')
     .limit(this.perPage)
+    .paginate({page: options.page, limit: options.limit})
     .exec(function(err, items) {
       if (err) {
         console.log(err);

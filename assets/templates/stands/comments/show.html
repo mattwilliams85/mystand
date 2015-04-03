@@ -1,4 +1,6 @@
 <div class="row">
+ <h5 ng-if="!isSignedIn">LOGIN AND TAKE ACTION TO SEE COMMENTS</h5>
+ <h5 ng-if="isSignedIn && !stand.currentUser">TAKE ACTION TO SEE COMMENTS</h5>
  <!--  <div id="disqus_thread">
     <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
   </div> -->

@@ -1,8 +1,10 @@
 <div class="row">
-  <div class="stand-update" ng-repeat="update in tabData">
+  <h5 ng-if="tabData['updates'].length === 0">NO UPDATES AT THIS TIME</h5>
+  <div class="stand-update" ng-repeat="update in tabData['updates']">
     <h2>{{update.title}}</h2>
     <p class="tab-date">posted date {{update.createdAt | date:'yyyy-MM-dd'}}</p>
     <p class="tab-detail">{{update.text}}</p>
     <hr class="tab-divider">
   </div>
+  <div class="ms-button-transparent black" ng-if="showLoadMore" ng-click="loadMore('updates')">SHOW MORE</div>
 </div>

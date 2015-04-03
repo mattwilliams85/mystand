@@ -41,7 +41,6 @@
     }
 
     .impact {
-      display:none;
       clear:both;
       background-color:#eee;
       padding:3px 7px;
@@ -171,6 +170,10 @@
 
   .disqus-box {
     display:none;
+  }
+
+  .anchor-link {
+    color: #008CBA;
   }
 
   .detail {

@@ -1,4 +1,5 @@
 <div class="row">
+  <h5 ng-if="tabData['actions'].length === 0">NO ACTIONS TAKEN, LETS <a class="anchor-link" ng-click="takeAction()">CHANGE</a> THAT</h5>
   <ul class="large-block-grid-4">
     <li class="action" ng-repeat="action in tabData['actions']">
       <ng-include src="'assets/templates/modals/media.html'"></ng-include>
@@ -13,5 +14,5 @@
       </div>
     </li>
   </ul>
-  <div class="ms-button-transparent black" ng-if="showLoadMore" ng-click="loadMore()">SHOW MORE</div>
+  <div class="ms-button-transparent black" ng-if="showLoadMore" ng-click="loadMore('actions')">SHOW MORE</div>
 </div>

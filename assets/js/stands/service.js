@@ -68,6 +68,27 @@ function Stand($http, $q) {
       return dfr.promise;
     },
 
+    /*
+    * Bookmark a Stand
+    */
+    bookmark: function(data) {
+      var dfr = $q.defer();
+      data._csrf = SAILS_LOCALS._csrf;
+
+      $http({
+        method: 'POST',
+        url: '/stands/' + data.id +'/bookmarks.json',
+        data: data
+      }).success(function(res) {
+        dfr.resolve(res);
+      }).error(function(err) {
+        console.log('エラー', err);
+        dfr.reject(err);
+      });
+
+      return dfr.promise;
+    },
+
     /**
      * Get a stand
      */
