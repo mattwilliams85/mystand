@@ -44,3 +44,14 @@ global.withSignIn = function(userData, cb) {
       });
   });
 };
+
+global.formattedDate = function(date) {
+  return (date.getMonth() + 1) + '/' + date.getDate() + '/' + date.getFullYear();
+};
+
+global.datePlusDays = function(date, days) {
+  var dateFrom = date;
+  var dateTo = new Date(dateFrom);
+  dateTo.setDate(dateFrom.getDate() + days);
+  return dateTo;
+};

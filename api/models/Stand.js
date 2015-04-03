@@ -59,6 +59,9 @@ module.exports = {
       type: 'integer',
       required: true
     },
+    closed_at: {
+      type: 'datetime'
+    },
     is_public: {
       type: 'boolean'
     },
@@ -119,11 +122,19 @@ module.exports = {
    * Lifecycle Callbacks
    *
    */
+  beforeCreate: function(values, callback) {
+    values.closed_at = this.calculateClosedAtFromDuration(values.duration);
+    return callback();
+  },
   afterCreate: function(stand, callback) {
     stand.updateSearchIndex = this.attributes.updateSearchIndex;
     stand.updateSearchIndex(function() {
       return callback();
     });
+  },
+  beforeUpdate: function(values, callback) {
+    values.closed_at = this.calculateClosedAtFromDuration(values.duration);
+    return callback();
   },
   afterUpdate: function(stand, callback) {
     // TODO: make sure it only runs reindex when title and description changes
@@ -153,6 +164,20 @@ module.exports = {
       }
       return callback(null, ids);
     });
+  },
+
+  /**
+   * Returns a Date based on provided duration
+   *
+   * @return {Date}
+   */
+  calculateClosedAtFromDuration: function(duration) {
+    if (!duration) return;
+
+    var dateFrom = new Date();
+    var dateTo = new Date(dateFrom);
+    dateTo.setDate(dateFrom.getDate() + duration);
+    return dateTo;
   },
 
   seedData: seeder.data

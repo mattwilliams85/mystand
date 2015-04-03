@@ -36,6 +36,7 @@ exports.up = function(db, callback) {
       actions_count: { type: 'int', defaultValue: 0 },
       updates_count: { type: 'int', defaultValue: 0 },
       duration: { type: 'int' },
+      closed_at: { type: 'timestamp' },
       is_public: { type: 'boolean' },
       createdAt: { type: 'timestamp' },
       updatedAt: { type: 'timestamp' }

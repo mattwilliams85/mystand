@@ -37,6 +37,8 @@
     "Factory",
     "async",
     "withSignIn",
-    "redisClient"
+    "redisClient",
+    "formattedDate",
+    "datePlusDays"
   ]
 }

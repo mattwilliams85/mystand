@@ -81,6 +81,9 @@ module.exports.routes = {
   // Stand Bookmarks
   'post /stands/:standId/bookmarks.json': 'StandBookmarksController.create',
 
+  // User Stands
+  'get /users/:userId/stands.json': 'UserStandsController.index',
+
   // Flags
   'post /flags.json': 'FlagsController.create'
 

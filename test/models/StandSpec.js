@@ -33,6 +33,10 @@ describe('Stand', function() {
         });
       });
     });
+
+    xit('should reset closed_at timestamp based on provided duration', function(done) {
+
+    });
   });
 
   describe('.create', function() {
@@ -40,9 +44,9 @@ describe('Stand', function() {
       DatabaseCleaner.clean(['stands'], function() {
         // Create stands
         async.series([
-          Factory.create('stand', {title: 'apple banana'}),
-          Factory.create('stand', {title: 'apple beet'}),
-          Factory.create('stand', {title: 'kiwi potato'})
+          Factory.create('stand', {title: 'apple banana', duration: 5}),
+          Factory.create('stand', {title: 'apple beet', duration: 10}),
+          Factory.create('stand', {title: 'kiwi potato', duration: 15})
         ], function(err, data) {
           factoryData = data;
           done();
@@ -55,6 +59,21 @@ describe('Stand', function() {
         expect(ids).to.be.eql([factoryData[1].id.toString()]);
         Stand.search('apple', function(err, ids) {
           expect(ids).to.be.eql([factoryData[1].id.toString(), factoryData[0].id.toString()]);
+          done();
+        });
+      });
+    });
+
+    it('should set closed_at timestamp based on provided duration', function(done) {
+      var now = new Date();
+
+      Stand.findOneById(factoryData[0].id).exec(function(err, stand) {
+        expect(err).to.be.null;
+        expect(formattedDate(stand.closed_at)).to.be.eql(formattedDate(datePlusDays(now, 5)));
+
+        Stand.findOneById(factoryData[1].id).exec(function(err, stand) {
+          expect(err).to.be.null;
+          expect(formattedDate(stand.closed_at)).to.be.eql(formattedDate(datePlusDays(now, 10)));
           done();
         });
       });
