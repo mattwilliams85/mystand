@@ -19,6 +19,9 @@ function StandsCtrl($rootScope, $scope, $location, $routeParams, Stand, StandUpd
   $scope.changeTab = function(section) {
     $scope.page = 0;
 
+    if(section === 'details') {
+      $scope.tabUrl =  $scope.createTabUrl(section)
+    }
     if(section === 'updates') {
       $scope.tabData['updates'] = [];
       $scope.loadMore('updates');
@@ -28,12 +31,12 @@ function StandsCtrl($rootScope, $scope, $location, $routeParams, Stand, StandUpd
       $scope.loadMore('actions');
     }
     if(section === 'comments') {
+      $scope.tabUrl =  $scope.createTabUrl(section)
       $('.disqus-box').show()
     } else {
       $('.disqus-box').hide()
     }
 
-    $scope.tabUrl =  $scope.createTabUrl(section)
   }
 
   $scope.createTabUrl = function(section) {
@@ -152,6 +155,7 @@ function StandsCtrl($rootScope, $scope, $location, $routeParams, Stand, StandUpd
         } else if ($scope.stand.actions_count ===  $scope.tabData[tab].length) {
           $scope.showLoadMore = false;
         }
+        $scope.tabUrl =  $scope.createTabUrl(tab)
       });
     }
     if(tab === 'updates') {
@@ -163,9 +167,9 @@ function StandsCtrl($rootScope, $scope, $location, $routeParams, Stand, StandUpd
         } else if ($scope.stand.updates_count ===  $scope.tabData[tab].length) {
           $scope.showLoadMore = false;
         }
+        $scope.tabUrl =  $scope.createTabUrl(tab)
       });
     }
-
   };
 }
 
@@ -193,16 +197,19 @@ StandsCtrl.prototype.fetch = function($rootScope, $scope, $location, $routeParam
     })
 
     Stand.get($routeParams.standId).then(function(data) {
-      if(data.stand.youtube) data.stand.youtube = 'https://www.youtube.com/embed/' + data.stand.youtube + '?modestbranding=1;controls=0;showinfo=0;rel=0;fs=1';
-      $scope.stand = data.stand;
-      console.log($scope.stand)
-      Profile.get(data.stand.user).then(function(data) {
+      var stand = data.stand
+      if(stand.youtube) stand.youtube = 'https://www.youtube.com/embed/' + stand.youtube + '?modestbranding=1;controls=0;showinfo=0;rel=0;fs=1';
+      // Calculate Days Left
+      stand.days_count = stand.duration - (((new Date()) - (new Date(stand.created_at))) / 86400000);
+      stand.days_count = Math.round(Math.abs(stand.days_count))
+      //
+      $scope.stand = stand;
+      Profile.get(stand.user).then(function(data) {
         $scope.author = data.user;
+        console.log($scope.author)
         if($scope.author.bio.length > 50) $scope.author.bio = $scope.author.bio.substring(0,143) + "...";
       });
     });
-
-
 
     angular.element(document).ready(function () {
       var disqus_shortname = 'mystandcomments';

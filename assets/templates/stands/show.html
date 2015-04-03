@@ -31,8 +31,7 @@
           <div class="details-box">
             <h1 class="count">{{stand.actions_count}}</h1>
             <span class="uppercase count-detail">heroes of <b>{{stand.goal}}</b></span>
-            <!-- MISSING DAY COUNT -->
-            <h1 class="count">29</h1>
+            <h1 class="count">{{stand.days_count}}</h1>
             <span class="uppercase count-detail">days to go</span>
           <div class="uppercase action-button" ng-click="takeAction()">take action</div>
         </div>
@@ -52,7 +51,6 @@
         </div>
         <div class="large-4 columns">
           <div class="profile-box">
-            <!-- MISSING AVATAR -->
             <a ng-href="users/{{stand.user}}"><img class="avatar-tiny" src="{{author.image_original_url}}"/><span class="uppercase inline author-title">{{author.first_name}} {{author.last_name}}</span></a>
             <a href="{{author.website}}"><span class="detail link">{{author.website}}</span></a>
             <span class="detail record"><b>{{author.stands_count}}</b> Stands created | <b>{{author.score}}</b> Activism Score</span>
@@ -65,7 +63,6 @@
     <div class="center-nav-bar">
       <div class="row">
       <li ng-class="{'active': isActive('details')}" ng-click="changeTab('details')">details</li>
-      <!-- MISSING UPDATES COUNT -->
       <li ng-class="{'active': isActive('updates')}" ng-click="changeTab('updates')">UPDATES({{stand.updates_count}})</li>
       <li ng-class="{'active': isActive('actions')}" ng-click="changeTab('actions')">actions({{stand.actions_count}})</li>
       <li ng-class="{'active': isActive('comments')}" ng-click="changeTab('comments')">comments</li>

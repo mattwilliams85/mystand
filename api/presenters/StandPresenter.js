@@ -15,6 +15,7 @@ module.exports = function toJSON(opts) {
     image_original_url: obj.image_original_url,
     youtube: obj.youtube,
     goal: obj.goal,
+    created_at: obj.createdAt,
     actions_count: obj.actions_count || 0,
     updates_count: obj.updates_count || 0
   };

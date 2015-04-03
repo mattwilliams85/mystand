@@ -62,6 +62,9 @@ module.exports = {
     closed_at: {
       type: 'datetime'
     },
+    createdAt: {
+      type: 'datetime'
+    },
     is_public: {
       type: 'boolean'
     },
