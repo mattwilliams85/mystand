@@ -2,9 +2,53 @@
   padding-bottom:200px;
 
   .header-space {
-    background-color:#b89b86;
+    background-color:#333;
+    padding:40px 0px;
+    z-index:0;
+
     &.blue {
       background-color:#95cfca;
+    }
+    &.trees {
+      background-position: center; 
+      background-image: url('/images/create/palms.png')
+    }
+  }
+
+  .mask-block {
+    position:relative;
+    .rect {
+      height:40px;
+      width:5000px;
+      background-color:#fff;
+      position:absolute;
+      z-index:1;
+    }
+    .inverted-triangle-box {
+      position:relative;
+      width:155px;
+      margin:0 auto;
+    }
+    .inverted-triangle {
+      width: 0;
+      height: 0;
+      border-style: solid;
+      border-width: 0 40px 40px 40px;
+      border-color: transparent transparent #fff transparent;
+      position:absolute;
+      z-index:2;
+      &.lefty {
+        left:0;
+        .rect {
+          right:0;
+        }
+      }
+      &.righty {
+        right:0;
+        .rect {
+          left:0;
+        }
+      } 
     }
   }
 
@@ -24,6 +68,21 @@
     &.blue {
       border-color: #95cfca transparent transparent transparent;
     }
+    &.trees {
+      border-color: transparent #fff #fff #fff;
+      // overflow:hidden;
+    }
+    .tree-block {
+      background-image: url('/images/geopattern.jpg');
+      height:30px;
+      width:30px;
+    }
+  }
+
+
+  .narrow {
+    width:50%;
+    max-width:600px;
   }
 
   .input-error {
@@ -50,6 +109,9 @@
     font-size:10pt;
     letter-spacing:.2em;
     transition: .3s linear;
+    &.input-alert {
+      color:#ff0000;
+    }
   }
 
   .validation-error {
@@ -63,7 +125,7 @@
   .header-space-title {
     color:#fff;
     text-align:center;
-    padding:100px 0px;
+    padding:100px 0px 120px 0px;
     margin:0px;
   }
 
@@ -193,7 +255,7 @@
       text-align:center;
       text-transform:uppercase;
       padding:50px;
-      margin:100px;
+      margin:100px 0px;
       background:url('/images/geopattern.jpg');
 
       .classic-link {

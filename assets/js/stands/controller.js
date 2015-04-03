@@ -1,8 +1,8 @@
 'use strict';
 
-function StandsCtrl($rootScope, $scope, $location, $routeParams, Stand, StandUpdate, StandAction, Profile) {
+function StandsCtrl($rootScope, $scope, $location, $routeParams, Stand, StandUpdate, StandAction, Profile, Category) {
   this.init($scope, $location);
-  this.fetch($rootScope, $scope, $location, $routeParams, Stand, StandUpdate, StandAction, Profile);
+  this.fetch($rootScope, $scope, $location, $routeParams, Stand, StandUpdate, StandAction, Profile, Category);
 
   $scope.stand = {};
   $scope.author = {};
@@ -10,23 +10,21 @@ function StandsCtrl($rootScope, $scope, $location, $routeParams, Stand, StandUpd
   $scope.actionUser = {};
   $scope.newAction = {};
   $scope.tabUrl = "assets/templates/stands/details/show.html"
+  $scope.formErrorMessages = {};
+  $scope.page = 0;
+  $scope.showLoadMore = true;
 
   $scope.changeTab = function(section) {
     if(section === 'updates') {
       StandUpdate.get($routeParams.standId).then(function(data) {
-        $scope.tabData = data.standUpdates;
+        $scope.tabData['updates'] = data.standUpdates;
         // console.log($scope.tabData)
       });
     }
     if(section === 'actions') {
-      StandAction.list($routeParams.standId).then(function(data) {
-        for (var i in data.standActions) {
-          data.standActions[i].thumbnail =  "http://img.youtube.com/vi/" +  data.standActions[i].youtube + "/hqdefault.jpg"
-          if(data.standActions[i].youtube) data.standActions[i].youtube = 'https://www.youtube.com/embed/' + data.standActions[i].youtube + '?modestbranding=1;controls=1;showinfo=0;rel=0;fs=1';
-        }
-        console.log(data.standActions)
-        $scope.tabData = data.standActions;
-      });
+      $scope.tabData['actions'] = [];
+      $scope.page = 0;
+      $scope.loadMore();
     }
     if(section === 'comments') {
       $('.disqus-box').show()
@@ -78,9 +76,70 @@ function StandsCtrl($rootScope, $scope, $location, $routeParams, Stand, StandUpd
     });
     $('#media-modal-' + actionId).foundation('reveal', 'open', {animation: 'fade'});
   }
+
+  var createFailureCallback = function(data) {
+    if(data.error) {
+      for(var error in data.error) {
+        $scope.formErrorMessages[error] = data.error[error][0];
+      }
+    }
+  }
+
+  var saveSuccessCallback = function(data) {
+    $location.path('stands/'+data.stand.id)
+  }
+
+  var publishSuccessCallback = function(data) {
+     Stand.publish(data.stand)
+    $location.path('stands/'+data.stand.id)
+  }
+
+  $scope.publishStand = function() {
+    if ($scope.newStand) {
+      //REGEX for YOUTUBE LINKS
+      var regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+      var match = $scope.newStand.image_original_url.match(regExp);
+      if (match && match[2].length == 11) {
+        $scope.newStand.image_original_url = "http://img.youtube.com/vi/" + match[2] + "/hqdefault.jpg"
+        $scope.newStand.youtube = match[2];
+      }
+      Stand.create($scope.newStand).then(publishSuccessCallback, createFailureCallback)
+    }
+  }
+  $scope.saveStand = function() {
+    if ($scope.newStand) {
+      Stand.create($scope.newStand).then(saveSuccessCallback, createFailureCallback)
+    }
+  }
+
+  var clearForm = function() {
+    $scope.form.$setPristine(true)
+    $scope.newStand = {};
+  }
+
+  $scope.cancelStand = function() {
+    $rootScope.showModal("Are you sure?", undefined, clearForm, undefined) 
+  }
+
+  $scope.loadMore = function() {
+    // debugger
+    $scope.page += 1;
+    StandAction.list($scope.stand.id, {page: $scope.page}).then(function(data) {
+      // debugger
+      for (var i in data.standActions) {
+        data.standActions[i].thumbnail =  "http://img.youtube.com/vi/" +  data.standActions[i].youtube + "/hqdefault.jpg"
+        if(data.standActions[i].youtube) data.standActions[i].youtube = 'https://www.youtube.com/embed/' + data.standActions[i].youtube + '?modestbranding=1;controls=1;showinfo=0;rel=0;fs=1';
+      }
+      $scope.tabData['actions'] = $scope.tabData['actions'].concat(data.standActions);
+      debugger
+      if ($scope.page === 1 && $scope.tabData['actions'] < 13) {
+        $scope.showLoadMore = false;
+      } else if ($scope.stand.actions_count ===  $scope.tabData['actions'].length) {
+        $scope.showLoadMore = false;
+      }
+    });
+  };
 }
-
-
 
 StandsCtrl.prototype.init = function($scope, $location) {
   // Setting mode based on the url
@@ -89,7 +148,7 @@ StandsCtrl.prototype.init = function($scope, $location) {
   if (/\/start/.test($location.path())) return $scope.mode = 'new';
 };
 
-StandsCtrl.prototype.fetch = function($rootScope, $scope, $location, $routeParams, Stand, StandUpdate, StandAction, Profile) {
+StandsCtrl.prototype.fetch = function($rootScope, $scope, $location, $routeParams, Stand, StandUpdate, StandAction, Profile, Category) {
   if ($scope.mode === 'show') {
 
     //Watches and locks Center-Nav-Bar when scrolling down 
@@ -106,7 +165,7 @@ StandsCtrl.prototype.fetch = function($rootScope, $scope, $location, $routeParam
     })
 
     Stand.get($routeParams.standId).then(function(data) {
-      data.stand.youtube = 'https://www.youtube.com/embed/' + data.stand.youtube + '?modestbranding=1;controls=0;showinfo=0;rel=0;fs=1';
+      if(data.stand.youtube) data.stand.youtube = 'https://www.youtube.com/embed/' + data.stand.youtube + '?modestbranding=1;controls=0;showinfo=0;rel=0;fs=1';
       $scope.stand = data.stand;
 
       Profile.get(data.stand.user).then(function(data) {
@@ -114,6 +173,8 @@ StandsCtrl.prototype.fetch = function($rootScope, $scope, $location, $routeParam
         if($scope.author.bio.length > 50) $scope.author.bio = $scope.author.bio.substring(0,143) + "...";
       });
     });
+
+
 
     angular.element(document).ready(function () {
       var disqus_shortname = 'mystandcomments';
@@ -129,15 +190,20 @@ StandsCtrl.prototype.fetch = function($rootScope, $scope, $location, $routeParam
 
   if ($scope.mode === 'new') {
     $scope.options = {};
-    $scope.options.category = [{ label: 'BIOSPHERE', value: 'biosphere'},{ label: 'CLIMATE', value: 'climate'},{ label: 'ENERGY', value: 'energy'},{ label: 'FOOD', value: 'food'},{ label: 'POPULATION', value: 'population'},{ label: 'CONSUMERISM', value: 'consumerism'},{ label: 'POVERTY', value: 'poverty'},{ label: 'SOCIAL JUSTICE', value: 'social justice'},{ label: 'WAR AND CONFLICT', value: 'war and conflict'},{ label: 'SECURE OUR FUTURE', value: 'secure our future'}];
-    $scope.options.type = ['PHOTO','VIDEO'];
-    $scope.options.duration = ['30 DAYS','60 DAYS','90 DAYS'];
-    $scope.options.goal = ['100 ACTIONS','250 ACTIONS','500 ACTIONS'];
+    $scope.options.categories = [];
+    $scope.options.type = [{label: 'photo', value: 'photo'}, {label: 'video', value: 'video'}];
+    $scope.options.duration = [{label: '30 days', value: 30}, {label: '60 days', value: 60}, {label: '90 days', value: 90}];
+    $scope.options.goal = [{label: '100 actions', value: 100}, {label: '300 actions', value: 300}, {label: '500 actions', value: 500}, {label: '1000 actions', value: 1000}];
 
     $scope.newStand = {};
-    $scope.newStand.category = $scope.options.category[0]
+    
+    Category.list().then(function(data) {
+      for(var i in data.categories) {
+        $scope.options.categories.push({label: data.categories[i].title, value: data.categories[i].title, id: data.categories[i].id});
+      }
+    });
   }
 };
 
-StandsCtrl.$inject = ['$rootScope', '$scope', '$location', '$routeParams', 'Stand', 'StandUpdate', 'StandAction', 'Profile'];
+StandsCtrl.$inject = ['$rootScope', '$scope', '$location', '$routeParams', 'Stand', 'StandUpdate', 'StandAction', 'Profile','Category'];
 myStandControllers.controller('StandsCtrl', StandsCtrl);

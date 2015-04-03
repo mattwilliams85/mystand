@@ -227,6 +227,8 @@ module.exports = {
     User.auth(req.session.user, function(err, currentUser) {
       if (err) return res.forbidden();
 
+      if (!req.body.category) return res.status(500).json({error: {category: [{message: 'Category is not specified'}]}});
+
       // Make sure category exist
       Category.findOneById(req.body.category).exec(function(err, data) {
         if (err || !data) return res.status(500).json({error: {category: [{message: 'Specified category does not exist'}]}});

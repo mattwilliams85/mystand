@@ -30,6 +30,44 @@ function Stand($http, $q) {
       return dfr.promise;
     },
 
+    /*
+    * Create a Stand
+    */
+    create: function(data) {
+      var dfr = $q.defer();
+      data._csrf = SAILS_LOCALS._csrf;
+
+      $http.post('/stands.json', data).success(function(res) {
+        dfr.resolve(res);
+      }).error(function(err) {
+        console.log('エラー', err);
+        dfr.reject(err);
+      });
+
+      return dfr.promise;
+    },
+
+    /*
+    * Publish a Stand
+    */
+    publish: function(data) {
+      var dfr = $q.defer();
+      data._csrf = SAILS_LOCALS._csrf;
+
+      $http({
+        method: 'PUT',
+        url: '/stands/' + data.id +'/publish.json',
+        data: data
+      }).success(function(res) {
+        dfr.resolve(res);
+      }).error(function(err) {
+        console.log('エラー', err);
+        dfr.reject(err);
+      });
+
+      return dfr.promise;
+    },
+
     /**
      * Get a stand
      */

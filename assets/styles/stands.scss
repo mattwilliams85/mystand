@@ -13,9 +13,14 @@
 
     .movie-part {
       padding-left:0px;
+      height:380px;
+      overflow:hidden; 
+      margin-bottom:25px;
       .youtube-player {
         height:380px;
-        margin-bottom:15px;
+      }
+      .stand-image {
+        
       }
     }
  
@@ -109,6 +114,12 @@
     height:100%;
     padding:50px 0px 200px 0px;
 
+    .ms-button-transparent {
+      margin:0 auto;
+      margin-top:50px;
+      width:185px;
+    }
+
     .tab-detail {
       font-size:14pt;
       line-height:21pt;
@@ -190,7 +201,7 @@
     padding:10px;
     width:280px;
     text-align:center;
-    margin:60px 0px;
+    margin: 60px 0px;
     cursor: pointer;
     font-size:16pt;
     &:hover {
@@ -222,7 +233,22 @@
     height:200px;
     padding:5px 15px;
     font-size:14pt;
+    &:focus {
+      background-color:#f7f7f7;
+    }
   }
+  select {
+    text-transform: uppercase;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    background-image:url('/images/create/arrow.png');
+    background-position: right 15px top 15px;
+  }
+
+  // .ng-untouched + .input-label.select {
+  //   color:#000 !important;
+  // }
+
   input.ms-button-transparent {
     line-height:1.5em;
   }

@@ -4,7 +4,7 @@
     <br>
     <h3>{{modalText}}</h3>
     <br>
-    <button class="dialogue-button" ng-show="okCallback" ng-click="closeModal()" ng-href="modalPath">Make it so</button>
-    <button class="dialogue-button cancel" ng-show="cancelCallback" ng-click="closeModal()">What was I thinking! Cancel!</button>
+    <button class="dialogue-button" ng-show="okCallback" ng-click="okCallback(); closeModal();" ng-href="modalPath">Make it so</button>
+    <button class="dialogue-button cancel" ng-show="okCallback" ng-click="closeModal()">What was I thinking! Abort!</button>
   </div>
 </div> 

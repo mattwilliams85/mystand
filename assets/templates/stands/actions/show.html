@@ -1,6 +1,6 @@
 <div class="row">
   <ul class="large-block-grid-4">
-    <li class="action" ng-repeat="action in tabData">
+    <li class="action" ng-repeat="action in tabData['actions']">
       <ng-include src="'assets/templates/modals/media.html'"></ng-include>
       <div class="action-box">
         <div class="action-image-wrapper">
@@ -13,4 +13,5 @@
       </div>
     </li>
   </ul>
+  <div class="ms-button-transparent black" ng-if="showLoadMore" ng-click="loadMore()">SHOW MORE</div>
 </div>
