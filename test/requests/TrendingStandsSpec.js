@@ -11,7 +11,8 @@ var trendingStandSchema = joi.object({
   goal: joi.number().integer().required(),
   category: joi.string().required(),
   actions_count: joi.number().integer().required(),
-  updates_count: joi.number().integer().required()
+  updates_count: joi.number().integer().required(),
+  closed_at: joi.number().integer().required()
 });
 
 var trendingStandsSchema = joi.object({
