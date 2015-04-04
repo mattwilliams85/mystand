@@ -134,10 +134,6 @@ module.exports = {
       return callback();
     });
   },
-  beforeUpdate: function(values, callback) {
-    // TODO Reset closed_at if duration changed
-    return callback();
-  },
   afterUpdate: function(stand, callback) {
     // Update Search Index
     // TODO: make sure it only runs reindex when title and description changes

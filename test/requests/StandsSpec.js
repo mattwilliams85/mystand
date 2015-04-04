@@ -485,20 +485,20 @@ describe('PUT /stands/:id/unpublish.json', function() {
 
 
 describe('PUT /stands/:id.json', function() {
-  var factoryData,
-      standData = {
-        title: 'New title',
-        image_original_url: 'http://eyecuelab.com/newimage.jpg',
-        youtube: 'newidhere',
-        description: 'newdescr',
-        goal_result: 'newresult',
-        goal: 101,
-        duration: 31,
-        full_description: 'newfulldescr'
-      };
+  var factoryData, standData;
 
   beforeEach(function(done) {
-    standData._csrf = csrfToken;
+    standData = {
+      _csrf: csrfToken,
+      title: 'New title',
+      image_original_url: 'http://eyecuelab.com/newimage.jpg',
+      youtube: 'newidhere',
+      description: 'newdescr',
+      goal_result: 'newresult',
+      goal: 101,
+      duration: 31,
+      full_description: 'newfulldescr'
+    };
 
     DatabaseCleaner.clean(['stands', 'users'], function() {
       done();
@@ -528,34 +528,57 @@ describe('PUT /stands/:id.json', function() {
 
     it('should update a stand', function(done) {
       agent
+      .put('/stands/' + factoryData[0].id + '.json')
+      .send(standData)
+      .end(function(err, res) {
+        expect(res.statusCode).to.eql(200);
+        expect(res.body).to.eql({});
+
+        // Making sure stand was updated
+        Stand.findOneById(factoryData[0].id).exec(function(err, stand) {
+          var savedData = {
+            title: stand.title,
+            image_original_url: stand.image_original_url,
+            youtube: stand.youtube,
+            description: stand.description,
+            goal_result: stand.goal_result,
+            goal: stand.goal,
+            duration: stand.duration
+          };
+          var fullDescription = standData.full_description;
+          delete standData._csrf;
+          delete standData.full_description;
+          expect(savedData).to.be.eql(standData);
+
+          // Making sure Stand Profile was updated
+          StandProfile.find({stand: factoryData[0].id}).exec(function(err, standProfile) {
+            expect(standProfile[0].full_description).to.eql(fullDescription);
+            done();
+          });
+        });
+      });
+    });
+
+    it('should reset closed_at timestamp based on duration', function(done) {
+      var fiveDaysAgo = daysFromDate(new Date(), -5);
+      var twoDaysAgo = daysFromDate(new Date(), -2);
+
+      Stand.update({id: factoryData[0].id}, {createdAt: fiveDaysAgo, duration: 1}).exec(function(err) {
+        expect(err).to.be.null;
+
+        standData.duration = 3;
+        agent
         .put('/stands/' + factoryData[0].id + '.json')
         .send(standData)
         .end(function(err, res) {
           expect(res.statusCode).to.eql(200);
-          expect(res.body).to.eql({});
 
-          // Making sure stand was updated
+          // Making sure closed_at was updated
           Stand.findOneById(factoryData[0].id).exec(function(err, stand) {
-            var savedData = {
-              title: stand.title,
-              image_original_url: stand.image_original_url,
-              youtube: stand.youtube,
-              description: stand.description,
-              goal_result: stand.goal_result,
-              goal: stand.goal,
-              duration: stand.duration
-            };
-            var fullDescription = standData.full_description;
-            delete standData._csrf;
-            delete standData.full_description;
-            expect(savedData).to.be.eql(standData);
-
-            // Making sure Stand Profile was updated
-            StandProfile.find({stand: factoryData[0].id}).exec(function(err, standProfile) {
-              expect(standProfile[0].full_description).to.eql(fullDescription);
-              done();
-            });
+            expect(formattedDate(stand.closed_at)).to.be.eql(formattedDate(twoDaysAgo));
+            done();
           });
+        });
       });
     });
 

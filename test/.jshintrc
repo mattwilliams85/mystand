@@ -39,6 +39,6 @@
     "withSignIn",
     "redisClient",
     "formattedDate",
-    "datePlusDays"
+    "daysFromDate"
   ]
 }

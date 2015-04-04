@@ -33,21 +33,6 @@ describe('Stand', function() {
         });
       });
     });
-
-    xit('should reset closed_at timestamp based on provided duration', function(done) {
-      var fiveDaysAgo = datePlusDays(new Date(), -5);
-      var twoDaysAgo = datePlusDays(new Date(), -2);
-
-      Stand.update({id: factoryData[0].id}, {createdAt: fiveDaysAgo, duration: 3}).exec(function(err) {
-        expect(err).to.be.null;
-
-        Stand.update({id: factoryData[0].id}, {title: 'Something'}).exec(function(err, stands) {
-          expect(err).to.be.null;
-          expect(formattedDate(stands[0].closed_at)).to.be.eql(formattedDate(twoDaysAgo));
-          done();
-        });
-      });
-    });
   });
 
   describe('.create', function() {
@@ -80,11 +65,11 @@ describe('Stand', function() {
 
       Stand.findOneById(factoryData[0].id).exec(function(err, stand) {
         expect(err).to.be.null;
-        expect(formattedDate(stand.closed_at)).to.be.eql(formattedDate(datePlusDays(now, 5)));
+        expect(formattedDate(stand.closed_at)).to.be.eql(formattedDate(daysFromDate(now, 5)));
 
         Stand.findOneById(factoryData[1].id).exec(function(err, stand) {
           expect(err).to.be.null;
-          expect(formattedDate(stand.closed_at)).to.be.eql(formattedDate(datePlusDays(now, 10)));
+          expect(formattedDate(stand.closed_at)).to.be.eql(formattedDate(daysFromDate(now, 10)));
           done();
         });
       });

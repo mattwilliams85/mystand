@@ -343,15 +343,16 @@ module.exports = {
       });
     };
 
-    var updateStand = function() {
+    var updateStand = function(stand) {
       Stand.update({
-        id: req.param('id')
+        id: stand.id
       }, {
         title: req.body.title,
         image_original_url: req.body.image_original_url,
         youtube: req.body.youtube,
         description: req.body.description,
         duration: req.body.duration,
+        closed_at: Stand.calculateClosedAtFromDuration(req.body.duration, stand.createdAt),
         goal: req.body.goal,
         goal_result: req.body.goal_result
       })
@@ -372,7 +373,7 @@ module.exports = {
         }
         if (currentUser.id !== stand.user) return res.forbidden();
 
-        return updateStand();
+        return updateStand(stand);
       });
     });
   },
