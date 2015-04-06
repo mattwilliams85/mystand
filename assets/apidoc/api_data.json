@@ -281,6 +281,105 @@
     "groupTitle": "Stand_Actions"
   },
   {
+    "type": "get",
+    "url": "/users/:userId/bookmarks",
+    "title": "User's Bookmarks",
+    "name": "GetUserBookmarks",
+    "group": "Stand_Bookmarks",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": false,
+            "field": "page",
+            "description": "<p>Page number</p> "
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Object[]",
+            "optional": false,
+            "field": "stands",
+            "description": "<p>List of stands.</p> "
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "stands.id",
+            "description": "<p>Stand ID.</p> "
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "stands.title",
+            "description": "<p>Title.</p> "
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "stands.description",
+            "description": "<p>Description.</p> "
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "stands.image_original_url",
+            "description": "<p>Image URL.</p> "
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "stands.youtube",
+            "description": "<p>Youtube ID.</p> "
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "stands.goal",
+            "description": "<p>Goal number.</p> "
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "stands.actions_count",
+            "description": "<p>Actions count.</p> "
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "stands.updates_count",
+            "description": "<p>Updates count</p> "
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n  \"stands\": [\n    {\n      \"id\": 123,\n      \"title\": \"Save The Planet\",\n      \"description\": \"Some description\",\n      \"image_original_url\": \"http://www.mystand.herokuapp.com/img.jpg\",\n      \"youtube\": \"43T5K8D3h\",\n      \"goal\": 100,\n      \"actions_count\": 95,\n      \"updates_count\": 5\n    }\n  ]\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "api/controllers/StandBookmarksController.js",
+    "groupTitle": "Stand_Bookmarks"
+  },
+  {
     "type": "post",
     "url": "/stands/:standId/bookmarks",
     "title": "Create a Bookmark",
@@ -647,10 +746,10 @@
           },
           {
             "group": "Parameter",
-            "type": "Number",
+            "type": "Number[]",
             "optional": false,
-            "field": "category",
-            "description": "<p>Category ID</p> "
+            "field": "categories",
+            "description": "<p>Category IDs</p> "
           },
           {
             "group": "Parameter",
@@ -1330,6 +1429,112 @@
     },
     "version": "0.0.0",
     "filename": "api/controllers/UsersController.js",
+    "groupTitle": "Users"
+  },
+  {
+    "type": "get",
+    "url": "/users/:userId/stands",
+    "title": "User Stands",
+    "name": "GetUserStands",
+    "group": "Users",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": false,
+            "field": "page",
+            "description": "<p>Page number</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "filter",
+            "description": "<p>Filter type(incomplete/active/closed)</p> "
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Object[]",
+            "optional": false,
+            "field": "stands",
+            "description": "<p>List of stands.</p> "
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "stands.id",
+            "description": "<p>Stand ID.</p> "
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "stands.title",
+            "description": "<p>Title.</p> "
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "stands.description",
+            "description": "<p>Description.</p> "
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "stands.image_original_url",
+            "description": "<p>Image URL.</p> "
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "stands.youtube",
+            "description": "<p>Youtube ID.</p> "
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "stands.goal",
+            "description": "<p>Goal number.</p> "
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "stands.actions_count",
+            "description": "<p>Actions count.</p> "
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "stands.updates_count",
+            "description": "<p>Updates count</p> "
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n  \"stands\": [\n    {\n      \"id\": 123,\n      \"title\": \"Save The Planet\",\n      \"description\": \"Some description\",\n      \"image_original_url\": \"http://www.mystand.herokuapp.com/img.jpg\",\n      \"youtube\": \"43T5K8D3h\",\n      \"goal\": 100,\n      \"actions_count\": 95,\n      \"updates_count\": 5\n    }\n  ]\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "api/controllers/UserStandsController.js",
     "groupTitle": "Users"
   },
   {
