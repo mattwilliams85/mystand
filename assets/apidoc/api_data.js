@@ -84,6 +84,71 @@ define({ "api": [
   },
   {
     "type": "get",
+    "url": "/uploader-config",
+    "title": "Get Direct Uploader Config",
+    "name": "GetDirectUploderConfig",
+    "group": "Media",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Object",
+            "optional": false,
+            "field": "config",
+            "description": "<p>Config object</p> "
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "config.key",
+            "description": "<p>Key</p> "
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "config.awsAccessKeyId",
+            "description": "<p>AWS Access Key Id</p> "
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "config.s3Policy",
+            "description": "<p>S3 Policy</p> "
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "config.s3Signature",
+            "description": "<p>S3 Signature</p> "
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "config.s3Bucket",
+            "description": "<p>S3 Bucket</p> "
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n  \"config\": {\n    \"key\": \"uploads/abc/${filename}\",\n    \"awsAccessKeyId\": \"abc\",\n    \"s3Policy\": \"abc\",\n    \"s3Signature\": \"abc\",\n    \"s3Bucket\": \"bucketname\"\n  }\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "api/controllers/MediaController.js",
+    "groupTitle": "Media"
+  },
+  {
+    "type": "get",
     "url": "/stands/:standId/actions",
     "title": "Stand Actions",
     "name": "GetStandActions",

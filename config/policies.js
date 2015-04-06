@@ -71,5 +71,8 @@ module.exports.policies = {
   },
   FlagsController: {
     create: 'sessionAuth'
+  },
+  MediaController: {
+    '*': 'sessionAuth'
   }
 };

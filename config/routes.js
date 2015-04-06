@@ -86,6 +86,9 @@ module.exports.routes = {
   'get /users/:userId/stands.json': 'UserStandsController.index',
 
   // Flags
-  'post /flags.json': 'FlagsController.create'
+  'post /flags.json': 'FlagsController.create',
+
+  // Media Uploader config
+  'get /uploader-config.json': 'MediaController.uploaderConfig'
 
 };
