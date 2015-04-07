@@ -89,7 +89,11 @@ module.exports = {
     .exec(function(err, user) {
       if (err) return res.status(500).json({error: err.Errors});
 
-      res.json({user: user.toJSON()});
+      sails.config.kue.create('signUpEmailConfirmation', {
+        email: user.email
+      }).save(function() {
+        res.json({user: user.toJSON()});
+      });
     });
   }
 };

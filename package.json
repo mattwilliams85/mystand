@@ -10,6 +10,7 @@
     "npm": "2.6.0"
   },
   "dependencies": {
+    "aws-sdk": "^2.1.21",
     "bcrypt": "^0.8.1",
     "bower": "1.3.12",
     "chance": "^0.7.3",

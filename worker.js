@@ -51,7 +51,15 @@ require('sails').load({
   kueEngine.on('job complete', function(id) {
     sails.log.info('Removing completed job: ' + id);
     kue.Job.get(id, function(err, job) {
-      job.remove();
+      if (err) return;
+
+      job.remove(function(err) {
+        if (err) {
+          sails.log.error(err);
+          return;
+        }
+        sails.log.info('Removed completed job: ' + id);
+      });
     });
   });
 
