@@ -55,6 +55,13 @@ function StandsCtrl($rootScope, $scope, $location, $routeParams, Stand, StandUpd
     if($scope.newAction) {
       $scope.newAction.id = $scope.stand.id
       $scope.newAction.userId = $rootScope.currentUser.id
+      if($scope.newAction.youtube) {
+        var regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+        var match = $scope.newAction.youtube.match(regExp);
+        if (match && match[2].length == 11) {
+          $scope.newAction.youtube = match[2];
+        }
+      }
       StandAction.create($scope.newAction)
       // ADD SUCCESS FAIL OPTIONS WITH .then()
     }
@@ -71,9 +78,8 @@ function StandsCtrl($rootScope, $scope, $location, $routeParams, Stand, StandUpd
   $scope.flagStand = function() {
     var flag = {
       user: $rootScope.currentUser.id,
-      content: $location.path,
-      content_id: $routeParams.standId,
-      content_type: "stand"
+      contentId: $scope.stand.id,
+      contentType: "Stand"
     };
     Flag.create(flag);
   }
@@ -149,6 +155,7 @@ function StandsCtrl($rootScope, $scope, $location, $routeParams, Stand, StandUpd
           if(data.standActions[i].youtube) data.standActions[i].youtube = 'https://www.youtube.com/embed/' + data.standActions[i].youtube + '?modestbranding=1;controls=1;showinfo=0;rel=0;fs=1';
         }
         $scope.tabData[tab] = $scope.tabData[tab].concat(data.standActions);
+        console.log($scope.tabData[tab])
 
         if ($scope.page === 1 && $scope.tabData[tab] < 13) {
           $scope.showLoadMore = false;

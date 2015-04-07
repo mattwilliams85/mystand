@@ -1,6 +1,12 @@
 .ms-create-page {
   padding-bottom:200px;
 
+  .btn-default.active {
+    color: #333 !important;
+    background-color: #ccc !important;
+    box-shadow: inset 0 3px 5px rgba(0,0,0,.125);
+  }
+
   .header-space {
     background-color:#333;
     padding:40px 0px;

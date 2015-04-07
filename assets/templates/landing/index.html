@@ -96,39 +96,41 @@
               <div class="row">
                 <div class="ms-trending-stands">
                   <div class="large-4 columns" ng-repeat="stand in trendingStands">
-                    <div class="trending-stand">
-                      <div class="trend-img">
-                        <img ng-src='{{stand.image_original_url}}'>
-                      </div>
-                      <div class="details show-for-medium-up">
-                        <h4><a ng-href="/stands/{{stand.id}}">{{stand.title}}</a></h4>
-                        <p class="italic">#{{stand.category}}</p>
-                        <p>{{stand.description}}</p>
-                        <div class="bottom-part">
+                    <a ng-href="stands/{{stand.id}}">
+                      <div class="trending-stand">
+                        <div class="trend-img">
+                          <img ng-src='{{stand.image_original_url}}'>
+                        </div>
+                        <div class="details show-for-medium-up">
+                          <h4><a ng-href="/stands/{{stand.id}}">{{stand.title}}</a></h4>
+                          <p class="italic">#{{stand.category}}</p>
+                          <p>{{stand.description}}</p>
+                          <div class="bottom-part">
+                            <div class="progress">
+                              <span class="meter"></span>
+                            </div>
+                            <span class="count-detail">{{stand.actions_count}} heroes have taken this stand.</span>
+                            <span class="count-detail">Let's get to {{stand.goal}}.</span>
+                          </div>
+                        </div>
+                        <div class="details show-for-small-only">
+                          <h4><a ng-href="/stands/{{stand.id}}">{{stand.title}}</a></h4>
+                          <span class="italic">#{{stand.category}}</span>
                           <div class="progress">
                             <span class="meter"></span>
                           </div>
-                          <span class="count-detail">{{stand.actions_count}} heroes have taken this stand.</span>
-                          <span class="count-detail">Let's get to {{stand.goal}}.</span>
-                        </div>
-                      </div>
-                      <div class="details show-for-small-only">
-                        <h4><a ng-href="/stands/{{stand.id}}">{{stand.title}}</a></h4>
-                        <span class="italic">#{{stand.category}}</span>
-                        <div class="progress">
-                          <span class="meter"></span>
-                        </div>
-                        <div class="row">
-                          <div class="small-6 columns">
-                            <span class="count">{{stand.actions_count}}</span>
-                            <span class="count-detail">heroes have taken this stand.</span>
-                          </div>
-                          <div class="small-6 columns">
-                            <span class="count">{{stand.goal}}</span>
-                            <span class="count-detail">needed to complete.</span>
+                          <div class="row">
+                            <div class="small-6 columns">
+                              <span class="count">{{stand.actions_count}}</span>
+                              <span class="count-detail">heroes have taken this stand.</span>
+                            </div>
+                            <div class="small-6 columns">
+                              <span class="count">{{stand.goal}}</span>
+                              <span class="count-detail">needed to complete.</span>
+                            </div>
                           </div>
                         </div>
-                      </div>
+                      </a>
                     </div>
                   </div>
                 </div>
