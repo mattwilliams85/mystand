@@ -182,6 +182,7 @@ StandsCtrl.prototype.init = function($scope, $location) {
 
 StandsCtrl.prototype.fetch = function($rootScope, $scope, $location, $routeParams, Stand, StandUpdate, StandAction, Profile, Category, Flag) {
   if ($scope.mode === 'show') {
+    $scope.fullDetailsHtml = "";
 
     //Watches and locks Center-Nav-Bar when scrolling down 
     var top = 1050;
@@ -200,13 +201,14 @@ StandsCtrl.prototype.fetch = function($rootScope, $scope, $location, $routeParam
       var stand = data.stand
       if(stand.youtube) stand.youtube = 'https://www.youtube.com/embed/' + stand.youtube + '?modestbranding=1;controls=0;showinfo=0;rel=0;fs=1';
       // Calculate Days Left
-      stand.days_count = stand.duration - (((new Date()) - (new Date(stand.created_at))) / 86400000);
+      stand.days_count = (new Date() - new Date(stand.closed_at)) / 86400000;
       stand.days_count = Math.round(Math.abs(stand.days_count))
       //
+      $scope.fullDetailsHtml = stand.profile.full_description;
       $scope.stand = stand;
+
       Profile.get(stand.user).then(function(data) {
         $scope.author = data.user;
-        console.log($scope.author)
         if($scope.author.bio.length > 50) $scope.author.bio = $scope.author.bio.substring(0,143) + "...";
       });
     });

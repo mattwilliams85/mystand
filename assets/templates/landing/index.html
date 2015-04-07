@@ -104,11 +104,13 @@
                         <h4><a ng-href="/stands/{{stand.id}}">{{stand.title}}</a></h4>
                         <p class="italic">#{{stand.category}}</p>
                         <p>{{stand.description}}</p>
-                        <div class="progress">
-                          <span class="meter"></span>
+                        <div class="bottom-part">
+                          <div class="progress">
+                            <span class="meter"></span>
+                          </div>
+                          <span class="count-detail">{{stand.actions_count}} heroes have taken this stand.</span>
+                          <span class="count-detail">Let's get to {{stand.goal}}.</span>
                         </div>
-                        <span class="count-detail">{{stand.actions_count}} heroes have taken this stand.</span>
-                        <span class="count-detail">Let's get to {{stand.goal}}.</span>
                       </div>
                       <div class="details show-for-small-only">
                         <h4><a ng-href="/stands/{{stand.id}}">{{stand.title}}</a></h4>

@@ -52,26 +52,35 @@
             </div>
             <div class="field-div">
               <textarea 
-                class="input-field area" 
-                ng-class="{'input-alert': formErrorMessages['short_description']}" 
+                class="input-field area short" 
+                ng-minlength="1"
+                ng-class="{'input-alert': formErrorMessages['description'], 'ng-invalid': newStand.description.length > 144}" 
                 ng-model='newStand.description' 
-                id='stand_short' 
-                name='stand_short' 
+                id='stand_description' 
+                name='stand_description' 
                 type='text' 
                 ng-required='true'>
               </textarea>
               <label ng-class="{'input-alert': formErrorMessages['description']}" class="input-label area">short description</label>
+              <span class="counter">{{144 - newStand.description.length}} Characters</span>
             </div>
-            <div class="field-div">
-              <textarea 
-                class="input-field area" 
+            <div class="field-div text-angular-wrapper">
+              <div 
+                text-angular
+                class="input-field area long" 
                 ng-class="{'input-alert': formErrorMessages['full_description']}" 
                 ng-model='newStand.full_description' 
                 id='stand_full' 
                 name='stand_full' 
                 type='text' 
-                ng-required='true'>
-              </textarea>
+                ng-required='true'
+                ta-toolbar="[
+                  ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p', 'pre'],
+                  ['bold', 'italics', 'underline', 'strikeThrough', 'ul', 'ol', 'redo', 'undo', 'clear'],
+                  ['justifyLeft', 'justifyCenter', 'justifyRight', 'indent', 'outdent'],
+                  ['html', 'insertImage','insertLink', 'insertVideo']
+                ]">
+              </div>
               <label ng-class="{'input-alert': formErrorMessages['full_description']}" class="input-label area">full description</label>
             </div>
             <div class="field-div">
@@ -89,20 +98,6 @@
               </select>
               <label ng-class="{'input-alert': formErrorMessages['category']}" class="input-label select">Category</label> 
             </div>
-           <!--  <div class="field-div">
-              <select 
-                class="input-field" 
-                ng-class="{'input-alert': formErrorMessages['type']}" 
-                ng-model='newStand.type'
-                id='stand_type' 
-                name='stand_type' 
-                type='text' 
-                ng-required='false'
-                ng-options="opt.value as opt.label for opt in options.type">
-              </select>
-              <label class="input-label select">stand type</label> 
-              <span ng-show="formErrorMessages['title']" class="validation-error">{{formErrorMessages['type'].message}}</span>
-            </div> -->
             <div class="field-div">
               <select 
                 class="input-field" 
@@ -131,20 +126,21 @@
             </div>
             <div class="field-div">
               <textarea 
-                class="input-field area" 
-                ng-class="{'input-alert': formErrorMessages['goal_result']}" 
+                class="input-field area short" 
+                my-maxlength="144"
+                ng-class="{'input-alert': formErrorMessages['goal_result'], 'ng-invalid': newStand.goal_result.length > 144}"  
                 ng-model='newStand.goal_result' 
-                id='stand_full' 
-                name='stand_full' 
+                id='stand_result' 
+                name='stand_result' 
                 type='text' 
                 ng-required='true'>
               </textarea>
               <label ng-class="{'input-alert': formErrorMessages['goal_result']}" class="input-label area">action description</label>
+              <span class="counter">{{144 - newStand.goal_result.length}} Characters</span>
             </div>
             <input class="ms-button-transparent black right" value="Publish" type="submit" />
             <div class="ms-button-transparent black right save" ng-click="saveStand()">Save</div>
             <div class="ms-button-transparent black right cancel" ng-click="cancelStand()">Cancel</div>
-            
           </form>
         </div>
       </div>

@@ -26,6 +26,9 @@ LandingCtrl.prototype.fetch = function($scope, $timeout, FeaturedStand, Trending
 
     TrendingStand.index().then(function(data) {
       $scope.trendingStands = data.trendingStands;
+      for (var i in data.trendingStands) {
+        if(data.trendingStands[i].title.length > 27) data.trendingStands[i].title = data.trendingStands[i].title.substring(0,24) + "...";
+      }
     });
 
     // initialize Featured Stands carousel

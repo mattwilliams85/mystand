@@ -123,6 +123,9 @@
       font-size:14pt;
       line-height:21pt;
     }
+    .tab-detail * {
+      background-color:#fff !important;
+    }
     .tab-date {
       color: #999;
       margin:-10px 0px 35px 0px;
@@ -231,13 +234,44 @@
     margin-top: 100px;
     padding-bottom: 250px;
   }
+  .counter {
+    color:#999;
+    position: absolute;
+    right: 10px;
+    bottom: 5px;
+  }
   .input-field.area {
-    resize: none;
-    height:200px;
-    padding:5px 15px;
-    font-size:14pt;
+    resize: none;    
+    height:100%;
+    padding:0;
+    &.short {
+      height:200px;
+      padding: 12px 12px 40px 12px;
+    }
     &:focus {
       background-color:#f7f7f7;
+    }
+    //SHORT TEXTAREA VALIDATION COLORS
+    .ng-valid-maxlength {
+      + label {
+        color: #4FCD6E;
+      }
+    }
+    .ng-invalid-maxlength {
+      + label {
+        color: #ff0000;
+      }
+    }
+    //LONG TEXTAREA VALIDATION COLORS
+    &.long.ng-untouched.ng-valid {
+      + label {
+        color: #333;
+      }
+    }
+    &.long.focussed.ng-valid {
+      + label {
+        color: #4FCD6E;
+      }
     }
   }
   select {
@@ -247,10 +281,6 @@
     background-image:url('/images/create/arrow.png');
     background-position: right 15px top 15px;
   }
-
-  // .ng-untouched + .input-label.select {
-  //   color:#000 !important;
-  // }
 
   input.ms-button-transparent {
     line-height:1.5em;
@@ -266,7 +296,7 @@
       top:13px;
     }
     &.area {
-      top:-6px;
+      top:-3px;
     }
   }
 }

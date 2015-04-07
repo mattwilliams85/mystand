@@ -15,7 +15,8 @@
 // (if you're using LESS with the built-in default config, you'll want
 //  to change `assets/styles/importer.less` instead.)
 var cssFilesToInject = [
-  'styles/**/*.css'
+  'styles/**/*.css',
+  'bower_components/textAngular/src/textAngular.css'
 ];
 
 
@@ -34,6 +35,7 @@ var jsFilesToInject = [
   'bower_components/jquery/dist/jquery.min.js',
   'bower_components/foundation/js/foundation.min.js',
   'bower_components/slick-carousel/slick/slick.min.js',
+  'bower_components/textAngular/dist/*.js',
 
   // Load main Angular app config
   'js/app.js',
