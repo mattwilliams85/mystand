@@ -62,8 +62,9 @@ function StandsCtrl($rootScope, $scope, $location, $routeParams, Stand, StandUpd
           $scope.newAction.youtube = match[2];
         }
       }
-      StandAction.create($scope.newAction)
-      // ADD SUCCESS FAIL OPTIONS WITH .then()
+      StandAction.create($scope.newAction).then(function() {
+        $scope.changeTab('actions')
+      });
     }
   }
 
