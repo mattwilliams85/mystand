@@ -72,7 +72,8 @@ passport.use(new FacebookStrategy({
           password: password,
           password_confirmation: password,
           first_name: profile._json.first_name,
-          last_name: profile._json.last_name
+          last_name: profile._json.last_name,
+          image_original_url: 'http://graph.facebook.com/' + profile.id + '/picture?type=normal'
         }).exec(function(err, user) {
           if (err || !user) return done(err);
 
