@@ -53,7 +53,7 @@ passport.use(new FacebookStrategy({
 
     findByEmail(profile._json.email, function (err, user) {
       sails.log.info('Passport calling findByEmail: ', err, user);
-      if (err || !user) return done(err);
+      if (err) return done(err);
 
       if (user) {
         // If user was found by email we update facebook_id
