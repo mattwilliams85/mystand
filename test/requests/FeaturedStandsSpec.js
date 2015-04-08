@@ -4,6 +4,7 @@ var joi = require('joi');
 
 var featuredStandSchema = joi.object({
   id: joi.number().integer().required(),
+  stand_id: joi.number().integer().required(),
   position: joi.number().integer().required(),
   title: joi.string().required(),
   description: joi.string().required(),
