@@ -16,7 +16,7 @@
       background-color:#95cfca;
     }
     &.trees {
-      background-position: center; 
+      background-position: center;
       background-image: url('/images/create/palms.png')
     }
   }
@@ -54,7 +54,7 @@
         .rect {
           left:0;
         }
-      } 
+      }
     }
   }
 
@@ -64,7 +64,7 @@
     border-style: solid;
     border-width: 30px 30px 0 30px;
     border-color: #b89b86 transparent transparent transparent;
-    margin-bottom:50px; 
+    margin-bottom:50px;
     margin-left: auto;
     margin-right: auto;
     left: 0;
@@ -109,7 +109,7 @@
     text-transform: uppercase;
     height:20px;
     padding:0px 0px 20px 5px;
-    @media #{$small} { 
+    @media #{$small} {
       padding:10px 0px 25px 5px;
     }
     font-size:10pt;
@@ -187,11 +187,11 @@
     height:30px;
     padding:0px 20px;
     margin-top:.3em;
-    @media #{$small} { 
+    @media #{$small} {
       height:37px;
       margin-top:.7em;
     }
-    
+
     &.input-alert.ng-dirty {
       + label {
         color: #ff0000;
@@ -209,7 +209,7 @@
 
     hr {
       margin:.7em 0px;
-      @media #{$small} { 
+      @media #{$small} {
         margin:1.8em 0px;
       }
     }
@@ -219,7 +219,7 @@
       color:#fff;
       text-align:center;
       padding:5px 0;
-      @media #{$small} { 
+      @media #{$small} {
         padding:10px 0;
       }
       border-radius:5px;
@@ -243,28 +243,35 @@
     .login-buttons {
       margin-top:0px;
       padding:0px;
-      @media #{$small} { 
+      @media #{$small} {
         margin-top:100px;
         padding:0px 0px;
       }
       .facebook-button {
-        background-color:#3b5998;
-        margin:10px 0;
-        @media #{$small} { 
-          margin:70px 0px 30px 0px;
+        display: block;
+        background-color: #3b5998;
+        margin: 10px 0;
+
+        @media #{$small} {
+          margin: 70px 0px 30px 0px;
         }
         &:hover {
-          background-color:#4061A6;
+          background-color: #4061A6;
+          color: #fff;
         }
       }
+
       .google-button {
-        background-color:#d34836;
-        margin:10px 0;
-        @media #{$small} { 
+        display: block;
+        background-color: #d34836;
+        margin: 10px 0;
+
+        @media #{$small} {
           margin:30px 0px 10px 0px;
         }
         &:hover {
           background-color:#EB503C;
+          color: #fff;
         }
       }
     }
@@ -273,8 +280,8 @@
       background-color:#008aff;
       text-transform: uppercase;
       margin:10px 0px;
-      @media #{$small} { 
-        margin:0px 0px 10px 0px; 
+      @media #{$small} {
+        margin:0px 0px 10px 0px;
       }
       &:hover {
         background-color:#289EFF;
