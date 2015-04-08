@@ -8,6 +8,7 @@ function DiscoverCtrl($scope, $routeParams, $timeout, Stand, Category) {
   $scope.searchQuery = $routeParams.q;
   $scope.hoverCategory = null;
   $scope.showLoadMore = true;
+  $scope.freshPage = true;
 
   $scope.loadMore = function() {
     $scope.page += 1;
@@ -39,10 +40,12 @@ function DiscoverCtrl($scope, $routeParams, $timeout, Stand, Category) {
   };
 
   $scope.selectCategory = function(categoryId) {
-    $('.category-'+categoryId+'.color').toggleClass('active')
+    $scope.freshPage = false;
+    $scope.categories[categoryId]['active'] = true;
     if ($scope.selectedCategories.indexOf(categoryId) > -1) {
       $scope.selectedCategories.splice($scope.selectedCategories.indexOf(categoryId), 1);
-      $scope.unSelectCategory(categoryId)
+      $scope.unSelectCategory(categoryId);
+      $scope.categories[categoryId]['active'] = false;
       return;
     } 
     $scope.selectedCategories.push(categoryId);
@@ -98,11 +101,6 @@ DiscoverCtrl.prototype.fetch = function($scope, Category) {
   Category.list().then(function(data) {
     $scope.categories = data.categories;
   });
-
-  $('.category-bg').hover(function(e){
-    $(this).toggleClass('zoom-out')
-    $(this).find('.button-title').toggleClass('zoom-in')
-  })
 
 };
 

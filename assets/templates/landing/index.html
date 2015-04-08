@@ -48,36 +48,38 @@
               <h4 class="uppercase">Lorem ipsum dolor sit amet, consectetur adipisicing elit</h4>
             </div>
           </div>
-          <div class="row">
-            <!-- Slick Carousel <http://kenwheeler.github.io/slick/> -->
-            <div class="ms-featured-stands">
-              <!-- Featured Stand -->
-              <div class="featured-stand" ng-repeat="stand in featuredStands">
-                  <div class="large-8 small-12 columns">
-                    <iframe id="player" type="text/html" class="youtube-player" width="100%"
-                      ng-src="{{stand.youtube}}"
-                      frameborder="0"  modestbranding="1" autohide="1" showinfo="1" controls="1";></iframe>
-                  </div>
-
-                  <div class="large-4 small-12 columns right-part">
-                    <div class="right-part-inner">
-                      <!-- Featured Stand Title -->
-                      <h3><a ng-href="/stands/{{stand.stand_id}}">{{stand.title}}</a></h3>
-                      <!-- Featured Stand Tagline -->
-                      <h4 class="uppercase">#{{stand.category}}</h4>
-                      <hr>
-                      <!-- Featured Stand Description -->
-                      <p class="show-for-medium-up">
-                        {{stand.description}}
-                      </p>
-                      <!-- Featured Stand Progress Meter -->
-                      <div class="progress">
-                        <span class="meter"></span>
-                      </div>
-                      <!-- Featured Stand Progress Numbers -->
-                      <span>{{stand.actions_count}} heroes have taken this stand.</span>
-                      <span>Let's get to {{stand.goal}}.</span>
+          <div class="hide-overflow">
+            <div class="row">
+              <!-- Slick Carousel <http://kenwheeler.github.io/slick/> -->
+              <div class="ms-featured-stands">
+                <!-- Featured Stand -->
+                <div class="featured-stand" ng-repeat="stand in featuredStands">
+                    <div class="large-8 small-12 columns">
+                      <iframe id="player" type="text/html" class="youtube-player" width="100%"
+                        ng-src="{{stand.youtube}}"
+                        frameborder="0"  modestbranding="1" autohide="1" showinfo="1" controls="1";></iframe>
                     </div>
+
+                    <div class="large-4 small-12 columns right-part">
+                      <div class="right-part-inner">
+                        <!-- Featured Stand Title -->
+                        <h3><a ng-href="/stands/{{stand.stand_id}}">{{stand.title}}</a></h3>
+                        <!-- Featured Stand Tagline -->
+                        <h4 class="uppercase">#{{stand.category}}</h4>
+                        <hr>
+                        <!-- Featured Stand Description -->
+                        <p class="show-for-medium-up">
+                          {{stand.description}}
+                        </p>
+                        <!-- Featured Stand Progress Meter -->
+                        <div class="progress">
+                          <span class="meter"></span>
+                        </div>
+                        <!-- Featured Stand Progress Numbers -->
+                        <span>{{stand.actions_count}} heroes have taken this stand.</span>
+                        <span>Let's get to {{stand.goal}}.</span>
+                      </div>
+                  </div>
                 </div>
               </div>
             </div>

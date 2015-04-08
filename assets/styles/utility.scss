@@ -1,3 +1,41 @@
+//SECTION TRIANGLE
+.triangle-mask-block {
+  position:relative;
+  .rect {
+    height:40px;
+    width:5000px;
+    background-color:#fff;
+    position:absolute;
+    z-index:1;
+  }
+  .inverted-triangle-box {
+    position:relative;
+    width:155px;
+    margin:0 auto;
+  }
+  .inverted-triangle {
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 40px 40px 40px;
+    border-color: transparent transparent #fff transparent;
+    position:absolute;
+    z-index:2;
+    &.lefty {
+      left:0;
+      .rect {
+        right:0;
+      }
+    }
+    &.righty {
+      right:0;
+      .rect {
+        left:0;
+      }
+    } 
+  }
+}
+
 // MODALS
 .dialogue-modal {
   background-color:#404040;
