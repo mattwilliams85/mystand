@@ -212,7 +212,7 @@ StandsCtrl.prototype.fetch = function($rootScope, $scope, $location, $routeParam
       stand.days_count = (new Date() - new Date(stand.closed_at)) / 86400000;
       stand.days_count = Math.round(Math.abs(stand.days_count))
       //
-      $scope.fullDetailsHtml = stand.profile.full_description;
+      if(stand.profile) $scope.fullDetailsHtml = stand.profile.full_description;
       $scope.stand = stand;
 
       Profile.get(stand.user).then(function(data) {
