@@ -85,8 +85,7 @@ module.exports = {
       password_confirmation: req.body.password_confirmation,
       first_name: req.body.first_name,
       last_name: req.body.last_name
-    })
-    .exec(function(err, user) {
+    }).exec(function(err, user) {
       if (err) return res.status(500).json({error: err.Errors});
 
       sails.config.kue.create('signUpEmailConfirmation', {

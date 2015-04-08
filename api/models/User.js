@@ -50,6 +50,10 @@ module.exports = {
     is_admin: {
       type: 'boolean'
     },
+    facebook_id: {
+      type: 'string',
+      unique: true
+    },
 
     toJSON: presenter
   },
@@ -70,6 +74,9 @@ module.exports = {
       minLength: 'Password minimum length is 8 characters',
       required: 'Password is required',
       password: 'Password confirmation doesn\'t match',
+    },
+    facebook_id: {
+      unique: 'FacebookID is already taken'
     }
   },
 

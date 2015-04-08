@@ -1,3 +1,5 @@
+'use strict';
+
 /**
  * HTTP Server Settings
  * (sails.config.http)
@@ -8,6 +10,9 @@
  * For more information on configuration, check out:
  * http://sailsjs.org/#/documentation/reference/sails.config/sails.config.http.html
  */
+
+var passport = require('passport');
+
 
 module.exports.http = {
 
@@ -58,6 +63,17 @@ module.exports.http = {
     //     console.log("Requested :: ", req.method, req.url);
     //     return next();
     // }
+
+  customMiddleware: function(app) {
+    // Passport
+    app.use(passport.initialize());
+    app.use(passport.session());
+    app.use(function(req, res, next){
+      res.locals.user = req.session.user;
+      next();
+    });
+
+  }
 
 
   /***************************************************************************

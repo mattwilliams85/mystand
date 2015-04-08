@@ -32,13 +32,10 @@ module.exports.routes = {
   *                                                                          *
   ***************************************************************************/
 
-  // '/': {
-  //   view: 'index'
+  // '*': {
+  //   view: 'index',
+  //   skipAssets: true
   // },
-  '*': {
-    view: 'index',
-    skipAssets: true
-  },
 
   /***************************************************************************
   *                                                                          *
@@ -89,6 +86,9 @@ module.exports.routes = {
   'post /flags.json': 'FlagsController.create',
 
   // Media Uploader config
-  'get /uploader-config.json': 'MediaController.uploaderConfig'
+  'get /uploader-config.json': 'MediaController.uploaderConfig',
 
+  // Facebook auth
+  'get /auth/facebook': 'SessionsController.facebook',
+  'get /auth/facebook/callback': 'SessionsController.facebookCallback'
 };

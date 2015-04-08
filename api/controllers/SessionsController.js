@@ -7,6 +7,7 @@
  */
 
 var bcrypt = require('bcrypt');
+var passport = require('passport');
 
 module.exports = {
 
@@ -64,5 +65,33 @@ module.exports = {
     req.session.user = null;
     req.session.authenticated = false;
     return res.status(200).end();
+  },
+
+  /**
+   * @api {get} /auth/facebook Facebook Sign In/Up
+   * @apiName LoginFacebook
+   * @apiGroup Users
+   */
+  facebook: function(req, res, next) {
+    passport.authenticate('facebook', function(err, user) {
+      //
+    })(req, res, next);
+  },
+
+  /**
+   * @api {get} /auth/facebook/callback Facebook Sign In/Up Callback
+   * @apiName LoginFacebookCallback
+   * @apiGroup Users
+   */
+  facebookCallback: function(req, res, next) {
+    passport.authenticate('facebook', function(err, user) {
+      if (err) {
+        res.redirect('/sign-up');
+      } else {
+        req.session.user = user.id;
+        req.session.authenticated = true;
+        res.redirect('/home');
+      }
+    })(req, res, next);
   }
 };
