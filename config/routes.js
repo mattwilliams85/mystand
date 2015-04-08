@@ -32,11 +32,6 @@ module.exports.routes = {
   *                                                                          *
   ***************************************************************************/
 
-  // '*': {
-  //   view: 'index',
-  //   skipAssets: true
-  // },
-
   /***************************************************************************
   *                                                                          *
   * Custom routes here...                                                    *
@@ -90,5 +85,11 @@ module.exports.routes = {
 
   // Facebook auth
   'get /auth/facebook': 'SessionsController.facebook',
-  'get /auth/facebook/callback': 'SessionsController.facebookCallback'
+  'get /auth/facebook/callback': 'SessionsController.facebookCallback',
+
+  // All other non asset routes will render a default layout with no content
+  '*': {
+    view: 'index',
+    skipAssets: true
+  }
 };

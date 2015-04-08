@@ -1,7 +1,7 @@
 'use strict';
 
 describe('POST /flags.json', function() {
-  var factoryData, user;
+  var factoryData;
 
   describe('flag a stand', function() {
     beforeEach(function(done) {
@@ -23,8 +23,7 @@ describe('POST /flags.json', function() {
 
     describe('signed in user', function() {
       beforeEach(function(done) {
-        withSignIn(function(err, data) {
-          user = data;
+        withSignIn(function() {
           done();
         });
       });

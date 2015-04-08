@@ -37,7 +37,8 @@ module.exports = {
    *   }
    */
   create: function(req, res) {
-    User.findOne().where({email: req.body.email}).then(function(user) {
+    User.findOne({email: req.body.email}).exec(function(err, user) {
+      if (err) return res.status(500).json({error: 'Database error'});
       if (!user) return res.status(404).json({error: 'Invalid email or password'});
 
       bcrypt.compare(req.body.password, user.password, function(err, match) {
@@ -47,8 +48,6 @@ module.exports = {
         req.session.authenticated = true;
         res.json({user: user.toJSON()});
       });
-    }).catch(function() {
-      return res.status(500).json({error: 'Database error'});
     });
   },
 
