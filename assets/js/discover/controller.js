@@ -41,11 +41,11 @@ function DiscoverCtrl($scope, $routeParams, $timeout, Stand, Category) {
 
   $scope.selectCategory = function(categoryId) {
     $scope.freshPage = false;
-    $scope.categories[categoryId]['active'] = true;
+    $scope.categories[categoryId - 1]['active'] = true;
     if ($scope.selectedCategories.indexOf(categoryId) > -1) {
       $scope.selectedCategories.splice($scope.selectedCategories.indexOf(categoryId), 1);
       $scope.unSelectCategory(categoryId);
-      $scope.categories[categoryId]['active'] = false;
+      $scope.categories[categoryId - 1]['active'] = false;
       return;
     } 
     $scope.selectedCategories.push(categoryId);

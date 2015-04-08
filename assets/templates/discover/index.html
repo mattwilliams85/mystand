@@ -10,7 +10,7 @@
           <ul class="categories-list">
             <li ng-repeat="category in categories" ng-mouseenter="hoverEffect(category.id)" ng-mouseleave="hoverEffect(0)">
               <div class="category-wrapper">
-                <div class="category-bg category-{{category.id}} color" ng-class="{'zoom-out': hoverCategory == category.id, 'active': freshPage || categories[category.id].active}"></div>
+                <div class="category-bg category-{{category.id}} color" ng-class="{'zoom-out': hoverCategory == category.id, 'active': freshPage || categories[category.id - 1].active}"></div>
                 <div class="category-bg category-{{category.id}} bw" ng-class="{'zoom-out': hoverCategory == category.id}"></div>
                 <button ng-click="selectCategory(category.id)" class="button-title">{{category.title}}</button>
               </div>
@@ -49,8 +49,11 @@
 
       <div class="row">
         <div ng-if="!stands.length" class="large-12 columns">
-          <h6>How fascinating! You are the first person to think of this. Now it's your turn to create a stand and make the world a better place!</h6>
-          <a ng-href="" class="button large">Get Started</a>
+          <div class="get-started-box">
+            <h4>How fascinating! You are the first person to think of this. Now it's your turn to create a stand and make the world a better place!</h4>
+            <br>
+            <button class="start-button uppercase" ng-href="start"><h4>get started</h4></button>
+          </div>
         </div>
 
         <div ng-repeat="stand in stands" class="large-3 columns left">
