@@ -12,7 +12,7 @@ module.exports = function toJSON(opts) {
     id: obj.id,
     first_name: obj.first_name,
     last_name: obj.last_name,
-    image_original_url: obj.image_original_url
+    image_original_url: obj.image_original_url || 'http://actualidadmedieval.com/img/avatar.png'
   };
   if (opts.publicProfile) {
     if (obj.profile !== null && typeof obj.profile === 'object') {

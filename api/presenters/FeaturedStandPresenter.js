@@ -9,6 +9,7 @@ module.exports = function toJSON(opts) {
   var obj = this.toObject();
   return {
     id: obj.id,
+    stand_id: obj.stand.id,
     position: obj.position,
     title: obj.stand.title,
     description: obj.stand.description,

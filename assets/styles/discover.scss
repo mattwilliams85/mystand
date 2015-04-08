@@ -13,18 +13,20 @@
   .button-title {
     position:absolute;
     top:0;
+    z-index:2;
   }
 
   .category-wrapper {
+    position:relative;
     overflow:hidden;
     width: 184px;
   }
    
   .zoom-out {
-    -webkit-transform: scale(1.2); 
-    -moz-transform: scale(1.2);
-    -o-transform: scale(1.2);
-    transform: scale(1.2);
+    -webkit-transform: scale(1.15); 
+    -moz-transform: scale(1.15);
+    -o-transform: scale(1.15);
+    transform: scale(1.15);
   }
 
   .discover-categories {
@@ -77,35 +79,100 @@
         width: 184px;
         position:relative;
 
+        &:hover {
+          .color {
+            opacity:1;
+          }
+        }
+
+        .color {
+          opacity:0;
+          position:absolute;
+          z-index:1;
+          &.active {
+            opacity:1;
+          }
+        }
+
         .category-1 {
-          background-image: url('/images/categories/biosphere.png');
+          &.color {  
+            background-image: url('/images/categories/biosphere.png');
+          }
+          &.bw {
+            background-image: url('/images/categories/biosphere-bw.png');
+          }
         }
         .category-2 {
-          background-image: url('/images/categories/climate.png');
+          &.color {  
+            background-image: url('/images/categories/climate.png');
+          }
+          &.bw {
+            background-image: url('/images/categories/climate-bw.png');
+          }
         }
         .category-3 {
-          background-image: url('/images/categories/energy.png');
+          &.color {  
+            background-image: url('/images/categories/energy.png');
+          }
+          &.bw {
+            background-image: url('/images/categories/energy-bw.png');
+          }
         }
         .category-4 {
-          background-image: url('/images/categories/food.png');
+          &.color {  
+            background-image: url('/images/categories/food.png');
+          }
+          &.bw {
+            background-image:  url('/images/categories/food-bw.png');
+          }
         }
         .category-5 {
-          background-image: url('/images/categories/population.png');
+          &.color {  
+            background-image: url('/images/categories/population.png');
+          }
+          &.bw {
+            background-image: url('/images/categories/population-bw.png');
+          }
         }
         .category-6 {
-          background-image: url('/images/categories/consumerism.png');
+          &.color {  
+            background-image: url('/images/categories/consumerism.png');
+          }
+          &.bw {
+            background-image: url('/images/categories/consumerism-bw.png');
+          }
         }
         .category-7 {
-          background-image: url('/images/categories/poverty.png');
+          &.color {  
+            background-image: url('/images/categories/poverty.png');
+          }
+          &.bw {
+            background-image: url('/images/categories/poverty-bw.png');
+          }
         }
         .category-8 {
-          background-image: url('/images/categories/social-justice.png');
+          &.color {  
+            background-image: url('/images/categories/social-justice.png');
+          }
+          &.bw {
+            background-image: url('/images/categories/social-justice-bw.png');
+          }
         }
         .category-9 {
-          background-image: url('/images/categories/war-and-conflict.png');
+          &.color {  
+            background-image: url('/images/categories/war-and-conflict.png');
+          }
+          &.bw {
+            background-image: url('/images/categories/war-and-conflict-bw.png');
+          }
         }
         .category-10 {
-          background-image: url('/images/categories/secure-our-future.png');
+          &.color {  
+            background-image: url('/images/categories/secure-our-future.png');
+          }
+          &.bw {
+            background-image: url('/images/categories/secure-our-future-bw.png');
+          }
         }
 
         button {

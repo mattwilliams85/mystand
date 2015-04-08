@@ -10,7 +10,8 @@
           <ul class="categories-list">
             <li ng-repeat="category in categories" ng-mouseenter="hoverEffect(category.id)" ng-mouseleave="hoverEffect(0)">
               <div class="category-wrapper">
-                <div class="category-bg category-{{category.id}}" ng-class="{'zoom-out': hoverCategory == category.id}"></div>
+                <div class="category-bg category-{{category.id}} color" ng-class="{'zoom-out': hoverCategory == category.id}"></div>
+                <div class="category-bg category-{{category.id}} bw" ng-class="{'zoom-out': hoverCategory == category.id}"></div>
                 <button ng-click="selectCategory(category.id)" class="button-title">{{category.title}}</button>
               </div>
             </li>
@@ -28,7 +29,7 @@
               <span>{{searchQuery}}</span>
             </span>
 
-           <!--  <span ng-repeat="categoryId in selectedCategories" class="keyword">
+          <!--   <span ng-repeat="categoryId in selectedCategories" class="keyword">
               <a ng-click="unSelectCategory(categoryId)" class="unselect">x</a>
               <span>{{categoryName(categoryId)}}</span>
             </span> -->

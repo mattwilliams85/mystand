@@ -52,7 +52,6 @@
   padding:0px;
   border-width:0px;
   font-weight:400;
-  position:fixed;
   @media #{$small} { 
     width:40%;
     left:0px;
@@ -78,13 +77,9 @@
     padding:10px 0px;
   }
  
-  // .modal-position-wrapper {
-  //   background-color:#484949;
-  //   margin-top:0px;
-  //   @media #{$small} { 
-  //     margin-top:50px;
-  //   }
-  // }
+  .modal-position-wrapper {
+    margin-top: -10vh;
+  }
 
   .logout-wrapper {
     padding:50px;

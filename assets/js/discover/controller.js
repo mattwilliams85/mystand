@@ -39,7 +39,7 @@ function DiscoverCtrl($scope, $routeParams, $timeout, Stand, Category) {
   };
 
   $scope.selectCategory = function(categoryId) {
-    $('.category-'+categoryId).toggleClass('inactive')
+    $('.category-'+categoryId+'.color').toggleClass('active')
     if ($scope.selectedCategories.indexOf(categoryId) > -1) {
       $scope.selectedCategories.splice($scope.selectedCategories.indexOf(categoryId), 1);
       $scope.unSelectCategory(categoryId)
