@@ -206,16 +206,15 @@ StandsCtrl.prototype.fetch = function($rootScope, $scope, $location, $routeParam
     })
 
     Stand.get($routeParams.standId).then(function(data) {
-      var stand = data.stand
-      if(stand.youtube) stand.youtube = 'https://www.youtube.com/embed/' + stand.youtube + '?modestbranding=1;controls=0;showinfo=0;rel=0;fs=1';
+      $scope.stand = data.stand
+      if($scope.stand.youtube) $scope.stand.youtube = 'https://www.youtube.com/embed/' + $scope.stand.youtube + '?modestbranding=1;controls=0;showinfo=0;rel=0;fs=1';
       // Calculate Days Left
-      stand.days_count = (new Date() - new Date(stand.closed_at)) / 86400000;
-      stand.days_count = Math.round(Math.abs(stand.days_count))
+      $scope.stand.days_count = (new Date() - new Date($scope.stand.closed_at)) / 86400000;
+      $scope.stand.days_count = Math.round(Math.abs($scope.stand.days_count))
       //
-      if(stand.profile) $scope.fullDetailsHtml = stand.profile.full_description;
-      $scope.stand = stand;
+      if($scope.stand.profile) $scope.fullDetailsHtml = $scope.stand.profile.full_description;
 
-      Profile.get(stand.user).then(function(data) {
+      Profile.get($scope.stand.user).then(function(data) {
         $scope.author = data.user;
         if($scope.author.bio.length > 50) $scope.author.bio = $scope.author.bio.substring(0,143) + "...";
       });

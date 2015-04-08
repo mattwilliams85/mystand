@@ -6,6 +6,7 @@ function DiscoverCtrl($scope, $routeParams, $timeout, Stand, Category) {
   $scope.selectedCategories = [];
   $scope.page = 0;
   $scope.searchQuery = $routeParams.q;
+  $scope.hoverCategory = null;
   $scope.showLoadMore = true;
 
   $scope.loadMore = function() {
@@ -74,6 +75,10 @@ function DiscoverCtrl($scope, $routeParams, $timeout, Stand, Category) {
     $scope.showLoadMore = true;
     $scope.loadMore();
   };
+
+  $scope.hoverEffect = function(categoryId) {
+    $scope.hoverCategory = categoryId
+  }
 
   $scope.$on('headerSearchSubmit', function(event, args) {
     $scope.searchQuery = args.query;
