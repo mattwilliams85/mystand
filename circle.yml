@@ -6,6 +6,9 @@ machine:
   environment:
     DATABASE_URL: postgres://ubuntu:@localhost:5432/circle_test
     REDISGREEN_URL: redis://ubuntu:@localhost:6379/0
+    FACEBOOK_CLIENT_ID: 1423746114594711
+    FACEBOOK_CLIENT_SECRET: 45cf27451fbb2dc029abe824df8b2827
+    AUTH_CALLBACK_HOST_WITH_PORT: localhost:1337
 test:
   pre:
     - npm run db-migrate up
