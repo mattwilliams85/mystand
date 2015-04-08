@@ -72,8 +72,9 @@ module.exports = {
    * @apiGroup Users
    */
   facebook: function(req, res, next) {
-    passport.authenticate('facebook', function(err, user) {
-      //
+    passport.authenticate('facebook', {scope: ['email']}, function(err, user) {
+      // Request will be redirected to Facebook for authentication,
+      // so this function will not be called.
     })(req, res, next);
   },
 
