@@ -38,7 +38,12 @@ function DiscoverCtrl($scope, $routeParams, $timeout, Stand, Category) {
   };
 
   $scope.selectCategory = function(categoryId) {
-    if ($scope.selectedCategories.indexOf(categoryId) > -1) return false; // Skip duplicates
+    $('.category-'+categoryId).toggleClass('inactive')
+    if ($scope.selectedCategories.indexOf(categoryId) > -1) {
+      $scope.selectedCategories.splice($scope.selectedCategories.indexOf(categoryId), 1);
+      $scope.unSelectCategory(categoryId)
+      return;
+    } 
     $scope.selectedCategories.push(categoryId);
     $scope.stands = [];
     $scope.page = 0;
@@ -47,7 +52,6 @@ function DiscoverCtrl($scope, $routeParams, $timeout, Stand, Category) {
   };
 
   $scope.unSelectCategory = function(categoryId) {
-    $scope.selectedCategories.splice($scope.selectedCategories.indexOf(categoryId), 1);
     $scope.stands = [];
     $scope.page = 0;
     $scope.showLoadMore = true;
@@ -89,6 +93,12 @@ DiscoverCtrl.prototype.fetch = function($scope, Category) {
   Category.list().then(function(data) {
     $scope.categories = data.categories;
   });
+
+  $('.category-bg').hover(function(e){
+    $(this).toggleClass('zoom-out')
+    $(this).find('.button-title').toggleClass('zoom-in')
+  })
+
 };
 
 DiscoverCtrl.$inject = ['$scope', '$routeParams', '$timeout', 'Stand', 'Category'];
