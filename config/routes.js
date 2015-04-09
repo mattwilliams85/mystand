@@ -87,6 +87,10 @@ module.exports.routes = {
   'get /auth/facebook': 'SessionsController.facebook',
   'get /auth/facebook/callback': 'SessionsController.facebookCallback',
 
+  // Google auth
+  'get /auth/google': 'SessionsController.google',
+  'get /auth/google/callback': 'SessionsController.googleCallback',
+
   // All other non asset routes will render a default layout with no content
   '*': {
     view: 'index',

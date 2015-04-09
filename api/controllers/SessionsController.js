@@ -67,7 +67,7 @@ module.exports = {
   },
 
   /**
-   * @api {get} /auth/facebook Facebook Sign In/Up
+   * @api {get} /auth/facebook Facebook Auth
    * @apiName LoginFacebook
    * @apiGroup Users
    */
@@ -79,12 +79,41 @@ module.exports = {
   },
 
   /**
-   * @api {get} /auth/facebook/callback Facebook Sign In/Up Callback
+   * @api {get} /auth/facebook/callback Facebook Auth Callback
    * @apiName LoginFacebookCallback
    * @apiGroup Users
    */
   facebookCallback: function(req, res, next) {
     passport.authenticate('facebook', function(err, user) {
+      if (err) {
+        res.redirect('/sign-up');
+      } else {
+        req.session.user = user.id;
+        req.session.authenticated = true;
+        res.redirect('/home');
+      }
+    })(req, res, next);
+  },
+
+  /**
+   * @api {get} /auth/google Google Auth
+   * @apiName LoginGoogle
+   * @apiGroup Users
+   */
+  google: function(req, res, next) {
+    passport.authenticate('google', {scope: [
+      'https://www.googleapis.com/auth/plus.login',
+      'https://www.googleapis.com/auth/plus.profile.emails.read'
+    ]})(req, res, next);
+  },
+
+  /**
+   * @api {get} /auth/google/callback Google Auth Callback
+   * @apiName LoginGoogleCallback
+   * @apiGroup Users
+   */
+  googleCallback: function(req, res, next) {
+    passport.authenticate('google', function(err, user) {
       if (err) {
         res.redirect('/sign-up');
       } else {

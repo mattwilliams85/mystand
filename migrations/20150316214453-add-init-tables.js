@@ -117,11 +117,13 @@ exports.up = function(db, callback) {
       encrypted_password: { type: 'string' },
       is_admin: { type: 'boolean' },
       facebook_id: { type: 'string' },
+      google_id: { type: 'string' },
       createdAt: { type: 'timestamp' },
       updatedAt: { type: 'timestamp' }
     }),
     db.addIndex.bind(db, 'users', 'users_email_key', ['email'], true),
     db.addIndex.bind(db, 'users', 'users_facebook_id_key', ['facebook_id'], true),
+    db.addIndex.bind(db, 'users', 'users_google_id_key', ['google_id'], true),
 
     db.createTable.bind(db, 'user_notifications', {
       id: { type: 'int', primaryKey: true, autoIncrement: true },

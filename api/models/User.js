@@ -54,6 +54,10 @@ module.exports = {
       type: 'string',
       unique: true
     },
+    google_id: {
+      type: 'string',
+      unique: true
+    },
 
     toJSON: presenter
   },
@@ -77,6 +81,9 @@ module.exports = {
     },
     facebook_id: {
       unique: 'FacebookID is already taken'
+    },
+    google_id: {
+      unique: 'GoogleID is already taken'
     }
   },
 
