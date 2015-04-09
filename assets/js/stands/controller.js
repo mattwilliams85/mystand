@@ -121,11 +121,13 @@ function StandsCtrl($rootScope, $scope, $location, $routeParams, Stand, StandUpd
   $scope.publishStand = function() {
     if ($scope.newStand) {
       //REGEX for YOUTUBE LINKS
-      var regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
-      var match = $scope.newStand.image_original_url.match(regExp);
-      if (match && match[2].length == 11) {
-        $scope.newStand.image_original_url = "http://img.youtube.com/vi/" + match[2] + "/hqdefault.jpg"
-        $scope.newStand.youtube = match[2];
+      if($scope.newStand.iamge_original_url) {
+        var regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+        var match = $scope.newStand.image_original_url.match(regExp);
+        if (match && match[2].length == 11) {
+          $scope.newStand.image_original_url = "http://img.youtube.com/vi/" + match[2] + "/hqdefault.jpg"
+          $scope.newStand.youtube = match[2];
+        }
       }
       Stand.create($scope.newStand).then(publishSuccessCallback, createFailureCallback)
     }
