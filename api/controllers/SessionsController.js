@@ -90,7 +90,7 @@ module.exports = {
       } else {
         req.session.user = user.id;
         req.session.authenticated = true;
-        res.redirect('/home');
+        res.redirect('/welcome');
       }
     })(req, res, next);
   },
@@ -119,7 +119,7 @@ module.exports = {
       } else {
         req.session.user = user.id;
         req.session.authenticated = true;
-        res.redirect('/home');
+        res.redirect('/welcome');
       }
     })(req, res, next);
   }
