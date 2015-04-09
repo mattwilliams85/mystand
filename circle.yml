@@ -17,6 +17,7 @@ machine:
 test:
   pre:
     - npm run db-migrate up
-    - npm install -g grunt-cli
+    - npm install -g grunt-cli protractor
   override:
     - grunt test
+    - npm run test-frontend
