@@ -23,7 +23,6 @@ before(function(done) {
     // Request csrftoken
     agent.get('/').end(function(err, res) {
       var regExp = /\_csrf\:\ \"([^"]+)/g;
-console.log('here ---', res.text);
       csrfToken = regExp.exec(res.text)[1];
 
       done(err, sails);

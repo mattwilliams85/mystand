@@ -104,6 +104,10 @@ module.exports.models = {
         callback();
       }
     });
+  },
+
+  errorMessagesJson: function(err) {
+    return err.Errors || err.toJSON().raw || {};
   }
 
 };

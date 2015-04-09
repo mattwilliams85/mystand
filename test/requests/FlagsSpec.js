@@ -5,7 +5,7 @@ describe('POST /flags.json', function() {
 
   describe('flag a stand', function() {
     beforeEach(function(done) {
-      DatabaseCleaner.clean(['stands', 'categories', 'users'], function() {
+      DatabaseCleaner.clean(['stands', 'categories', 'users', 'flags'], function() {
         // Create category
         async.series([
           Factory.create('category')
@@ -47,6 +47,21 @@ describe('POST /flags.json', function() {
           expect(res.statusCode).to.equal(500);
           expect(res.body.error.content_id[0].message).to.equal('Specified content does not exist');
           done();
+        });
+      });
+
+      it('should return error message if submitting a duplicate', function(done) {
+        async.series([
+          Factory.create('flag', {content_id: factoryData[0].id, content_type: 'Stand'})
+        ], function() {
+          agent
+          .post('/flags.json')
+          .send({_csrf: csrfToken, contentId: factoryData[0].id, contentType: 'Stand'})
+          .end(function(err, res) {
+            expect(res.statusCode).to.equal(500);
+            expect(res.body.error.content_id[0].message).to.equal('Content already flagged');
+            done();
+          });
         });
       });
     });

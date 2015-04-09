@@ -111,7 +111,7 @@ module.exports = {
         if (err || !data) return res.status(500).json({error: {stand: [{message: 'Specified stand does not exist'}]}});
 
         createBookmark(currentUser, data, function(err) {
-          if (err) return res.status(500).json({error: err.Errors});
+          if (err) return res.status(500).json({error: sails.config.models.errorMessagesJson(err)});
 
           return res.status(200).end();
         });

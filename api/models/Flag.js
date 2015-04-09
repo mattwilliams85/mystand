@@ -1,3 +1,4 @@
+/*global Flag: true */
 'use strict';
 
 /**
@@ -41,5 +42,27 @@ module.exports = {
     content_type: {
       required: 'Content type is required'
     }
+  },
+
+  afterValidate: function(values, cb) {
+    Flag.validateUniqueContentIdAndType(values, cb);
+  },
+
+  /**
+   * Validate unique Content Id And Content Type
+   *
+   */
+  validateUniqueContentIdAndType: function(values, cb) {
+    if (!values.content_id || !values.content_type) return cb(null, values);
+
+    Flag.findOne({
+      content_id: values.content_id,
+      content_type: values.content_type
+    }).exec(function(err, item){
+      if (err) return cb(err);
+      if (item) return cb({content_id: [{message: 'Content already flagged'}]});
+
+      return cb(null, values);
+    });
   }
 };

@@ -125,7 +125,7 @@ describe('POST /stands/:standId/bookmarks.json', function() {
   var factoryData, user;
 
   beforeEach(function(done) {
-    DatabaseCleaner.clean(['users'], function() {
+    DatabaseCleaner.clean(['users', 'stand_bookmarks'], function() {
       async.series([
         Factory.create('stand')
       ], function(err, data) {
@@ -162,6 +162,21 @@ describe('POST /stands/:standId/bookmarks.json', function() {
         expect(res.statusCode).to.equal(500);
         expect(res.body.error.stand[0].message).to.equal('Specified stand does not exist');
         done();
+      });
+    });
+
+    it('should return error message if submitting a duplicate', function(done) {
+      async.series([
+        Factory.create('standBookmark', {stand: factoryData[0].id, user: user.id})
+      ], function() {
+        agent
+        .post('/stands/' + factoryData[0].id + '/bookmarks.json')
+        .send({_csrf: csrfToken})
+        .end(function(err, res) {
+          expect(res.statusCode).to.equal(500);
+          expect(res.body.error.stand[0].message).to.equal('Stand already bookmarked');
+          done();
+        });
       });
     });
   });

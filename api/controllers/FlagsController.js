@@ -63,7 +63,7 @@ module.exports = {
         content = data;
 
         createFlag(currentUser, function(err) {
-          if (err) return res.status(500).json({error: err.Errors});
+          if (err) return res.status(500).json({error: sails.config.models.errorMessagesJson(err)});
 
           return res.status(200).end();
         });
