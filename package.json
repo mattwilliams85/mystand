@@ -46,10 +46,12 @@
   "devDependencies": {
     "apidoc": "^0.12.1",
     "chai": "^2.1.1",
+    "chai-as-promised": "^4.3.0",
     "grunt-mocha-test": "^0.12.7",
     "joi": "^6.0.8",
     "mocha": "^2.2.1",
     "node-env-file": "0.1.7",
+    "protractor": "^2.0.0",
     "sinon": "^1.13.0",
     "sinon-chai": "^2.7.0",
     "supertest": "^0.15.0"
@@ -60,6 +62,7 @@
     "dev": "node app.js",
     "prod": "node app.js --prod",
     "db-migrate": "node ./node_modules/db-migrate/bin/db-migrate",
+    "test-frontend": "./script/test_frontend.sh",
     "postinstall": "bower install"
   },
   "main": "app.js",
