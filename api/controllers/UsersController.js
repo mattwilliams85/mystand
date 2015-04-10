@@ -49,7 +49,6 @@ module.exports = {
     });
   },
 
-
   /**
    * @api {post} /users Sign Up
    * @apiName PostUsers
@@ -92,6 +91,49 @@ module.exports = {
         email: user.email
       }).save(function() {
         res.json({user: user.toJSON()});
+      });
+    });
+  },
+
+  /**
+   * @api {put} /users/:id Update User
+   * @apiName PutUsers
+   * @apiGroup Users
+   *
+   * @apiParam {String} email User's email.
+   * @apiParam {String} password Password
+   * @apiParam {String} password_confirmation Password confirmation
+   * @apiParam {String} first_name First name
+   * @apiParam {String} last_name Last name
+   * @apiParam {String} image_original_url Profile image
+   *
+   * @apiSuccessExample Success-Response:
+   *   HTTP/1.1 200 OK
+   *   {}
+   */
+  update: function(req, res) {
+    User.auth(req.session.user, function(err, currentUser) {
+      if (err || parseInt(req.param('id')) !== currentUser.id) return res.forbidden();
+
+      var data = {
+        email: req.body.email,
+        password: req.body.password,
+        password_confirmation: req.body.password_confirmation,
+        first_name: req.body.first_name,
+        last_name: req.body.last_name,
+        image_original_url: req.body.image_original_url
+      };
+      // Remove empty keys
+      for (var key in data) {
+        if (!data[key]) delete data[key];
+      }
+
+      User.update({
+        id: currentUser.id
+      }, data).exec(function(err) {
+        if (err) return res.status(500).json({error: sails.config.models.errorMessagesJson(err)});
+
+        return res.status(200).end();
       });
     });
   }

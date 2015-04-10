@@ -89,12 +89,18 @@ module.exports = {
 
   seedData: seeder.data,
 
-  // afterValidate: function(attrs, callback) {
-  //   return callback();
-  // },
-
   beforeCreate: function(attrs, callback) {
-    // Encrypt password
+    this.encryptPassword(attrs.password, function(err, hash) {
+      if (err) return callback(err);
+
+      attrs.password = hash;
+      return callback();
+    });
+  },
+
+  beforeUpdate: function(attrs, callback) {
+    if (!attrs.password) return callback();
+
     this.encryptPassword(attrs.password, function(err, hash) {
       if (err) return callback(err);
 

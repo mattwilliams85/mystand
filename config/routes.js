@@ -44,10 +44,15 @@ module.exports.routes = {
 
   // Users
   'post /users.json': 'UsersController.create',
+  'put /users/:id.json': 'UsersController.update',
   'get /users/:id.json': 'UsersController.show',
+
+  // User profiles
+  'get /profile.json': 'ProfilesController.show',
+
+  // Sessions
   'post /login.json': 'SessionsController.create',
   'delete /login.json': 'SessionsController.destroy',
-  'get /profile.json': 'ProfilesController.show',
 
   // Categories
   'get /categories.json': 'CategoriesController.index',

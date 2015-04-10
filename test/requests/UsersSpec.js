@@ -1,3 +1,4 @@
+/*global User: true */
 'use strict';
 
 var joi = require('joi');
@@ -26,8 +27,7 @@ var userPublicSchema = joi.object({
 });
 
 describe('POST /users.json', function() {
-  var factoryData,
-      email,
+  var email,
       password;
 
   beforeEach(function(done) {
@@ -70,8 +70,62 @@ describe('POST /users.json', function() {
 });
 
 
+describe('PUT /users/:id.json', function() {
+  var user, updateUserData;
+
+  beforeEach(function(done) {
+    updateUserData = {
+      _csrf: csrfToken,
+      email: 'newemail@example.com',
+      password: 'newpassword',
+      password_confirmation: 'newpassword',
+      first_name: 'Chad',
+      last_name: 'Whiteface',
+      image_original_url: 'http://example.com/newone.png'
+    };
+
+    DatabaseCleaner.clean(['users'], function() {
+      withSignIn(function(err, data) {
+        user = data;
+        done();
+      });
+    });
+  });
+
+  it('should return 200 on success', function(done) {
+    agent
+    .put('/users/' + user.id + '.json')
+    .send(updateUserData)
+    .end(function(err, res) {
+      expect(res.statusCode).to.eql(200);
+      expect(Object.keys(res.body).length).to.equal(0);
+
+      User.findOneById(user.id).exec(function(err, user) {
+        expect(user.email).to.eql(updateUserData.email);
+        expect(user.first_name).to.eql(updateUserData.first_name);
+        expect(user.last_name).to.eql(updateUserData.last_name);
+        expect(user.image_original_url).to.eql(updateUserData.image_original_url);
+
+        done();
+      });
+    });
+  });
+
+  it('should return 403 forbidden if updating other user', function(done) {
+    agent
+    .put('/users/123.json')
+    .send(updateUserData)
+    .end(function(err, res) {
+      expect(res.statusCode).to.eql(403);
+      expect(Object.keys(res.body).length).to.equal(0);
+      done();
+    });
+  });
+});
+
+
 describe('GET /users/:id.json', function() {
-  var factoryData;
+  var user;
 
   beforeEach(function(done) {
     DatabaseCleaner.clean(['users', 'user_profiles'], function() {
@@ -79,26 +133,31 @@ describe('GET /users/:id.json', function() {
         Factory.create('user'),
         Factory.create('user')
       ], function(err, data) {
-        factoryData = data;
+        user = data[0];
         // Create user profile
         async.series([
-          Factory.create('userProfile', {user: factoryData[0].id}),
+          Factory.create('userProfile', {user: user.id}),
           Factory.create('userProfile')
-        ], function() {
-          done();
+        ], function(err, data) {
+          // Updating user with profile id
+          User.update({id: user.id}, {profile: data[0].id}).exec(function(err) {
+            if (err) throw 'Can\'t update user';
+
+            done();
+          });
         });
       });
     });
   });
 
-  it('should return public user object', function(done) {
+  it('should return public user object hjghjgjhgh', function(done) {
     agent
-      .get('/users/' + factoryData[0].id + '.json')
+      .get('/users/' + user.id + '.json')
       .end(function(err, res) {
         expect(res.statusCode).to.eql(200);
         var validation = userPublicSchema.validate(res.body);
         expect(validation.error).to.be.null;
-        expect(res.body.user.id).to.equal(factoryData[0].id);
+        expect(res.body.user.id).to.equal(user.id);
         done();
       });
   });
