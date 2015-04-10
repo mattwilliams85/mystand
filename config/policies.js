@@ -52,6 +52,9 @@ module.exports.policies = {
   UsersController: {
     update: 'sessionAuth'
   },
+  UserNotificationsController: {
+    '*': 'sessionAuth'
+  },
   ProfilesController: {
     '*': 'sessionAuth'
   },

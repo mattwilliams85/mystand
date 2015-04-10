@@ -1498,6 +1498,84 @@
   },
   {
     "type": "get",
+    "url": "/users/:userId/notifications",
+    "title": "Get User Notifications",
+    "name": "GetUserNotifications",
+    "group": "Users",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": false,
+            "field": "userId",
+            "description": "<p>User ID</p> "
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Object",
+            "optional": false,
+            "field": "userNotifications",
+            "description": "<p>User Notifications object</p> "
+          },
+          {
+            "group": "Success 200",
+            "type": "Boolean",
+            "optional": false,
+            "field": "userNotifications.announcements",
+            "description": "<p>Announcements</p> "
+          },
+          {
+            "group": "Success 200",
+            "type": "Boolean",
+            "optional": false,
+            "field": "userNotifications.updates",
+            "description": "<p>Updates</p> "
+          },
+          {
+            "group": "Success 200",
+            "type": "Boolean",
+            "optional": false,
+            "field": "userNotifications.comments",
+            "description": "<p>Comments</p> "
+          },
+          {
+            "group": "Success 200",
+            "type": "Boolean",
+            "optional": false,
+            "field": "userNotifications.actions",
+            "description": "<p>Actions</p> "
+          },
+          {
+            "group": "Success 200",
+            "type": "Boolean",
+            "optional": false,
+            "field": "userNotifications.social",
+            "description": "<p>Social</p> "
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n  \"userNotifications\": {\n    \"announcements\": true,\n    \"updates\": false,\n    \"comments\": false,\n    \"actions\": true,\n    \"social\": false\n  }\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "api/controllers/UserNotificationsController.js",
+    "groupTitle": "Users"
+  },
+  {
+    "type": "get",
     "url": "/users/:userId/stands",
     "title": "User Stands",
     "name": "GetUserStands",
@@ -1817,6 +1895,66 @@
     },
     "version": "0.0.0",
     "filename": "api/controllers/UsersController.js",
+    "groupTitle": "Users"
+  },
+  {
+    "type": "put",
+    "url": "/users/:userId/notifications",
+    "title": "Update User Notifications",
+    "name": "PutUserNotifications",
+    "group": "Users",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Boolean",
+            "optional": false,
+            "field": "announcements",
+            "description": "<p>Announcements</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "Boolean",
+            "optional": false,
+            "field": "updates",
+            "description": "<p>Updates</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "Boolean",
+            "optional": false,
+            "field": "comments",
+            "description": "<p>Comments</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "Boolean",
+            "optional": false,
+            "field": "actions",
+            "description": "<p>Actions</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "Boolean",
+            "optional": false,
+            "field": "social",
+            "description": "<p>Social</p> "
+          }
+        ]
+      }
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "api/controllers/UserNotificationsController.js",
     "groupTitle": "Users"
   },
   {

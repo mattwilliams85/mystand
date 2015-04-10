@@ -50,6 +50,10 @@ module.exports.routes = {
   // User profiles
   'get /profile.json': 'ProfilesController.show',
 
+  // User notifications
+  'get /users/:userId/notifications.json': 'UserNotificationsController.show',
+  'put /users/:userId/notifications.json': 'UserNotificationsController.update',
+
   // Sessions
   'post /login.json': 'SessionsController.create',
   'delete /login.json': 'SessionsController.destroy',

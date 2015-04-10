@@ -1,9 +1,9 @@
 'use strict';
 
-/*
+/**
  * UserNotification.js
  *
-*/
+ */
 
 module.exports = {
 
@@ -28,6 +28,17 @@ module.exports = {
     },
     social: {
       type: 'boolean'
-    }
+    },
+
+    toJSON: function toJSON() {
+      var obj = this.toObject();
+      return {
+        announcements: obj.announcements || false,
+        updates: obj.updates || false,
+        comments: obj.comments || false,
+        actions: obj.actions || false,
+        social: obj.social || false
+      };
+    },
   }
 };
