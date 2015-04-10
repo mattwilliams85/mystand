@@ -1603,6 +1603,46 @@
     "groupTitle": "Users"
   },
   {
+    "type": "get",
+    "url": "/auth/facebook",
+    "title": "Facebook Auth",
+    "name": "LoginFacebook",
+    "group": "Users",
+    "version": "0.0.0",
+    "filename": "api/controllers/SessionsController.js",
+    "groupTitle": "Users"
+  },
+  {
+    "type": "get",
+    "url": "/auth/facebook/callback",
+    "title": "Facebook Auth Callback",
+    "name": "LoginFacebookCallback",
+    "group": "Users",
+    "version": "0.0.0",
+    "filename": "api/controllers/SessionsController.js",
+    "groupTitle": "Users"
+  },
+  {
+    "type": "get",
+    "url": "/auth/google",
+    "title": "Google Auth",
+    "name": "LoginGoogle",
+    "group": "Users",
+    "version": "0.0.0",
+    "filename": "api/controllers/SessionsController.js",
+    "groupTitle": "Users"
+  },
+  {
+    "type": "get",
+    "url": "/auth/google/callback",
+    "title": "Google Auth Callback",
+    "name": "LoginGoogleCallback",
+    "group": "Users",
+    "version": "0.0.0",
+    "filename": "api/controllers/SessionsController.js",
+    "groupTitle": "Users"
+  },
+  {
     "type": "post",
     "url": "/login",
     "title": "Sign In",
@@ -1771,6 +1811,87 @@
         {
           "title": "Success-Response:",
           "content": "HTTP/1.1 200 OK\n{\n  \"user\": {\n    \"id\": 123,\n    \"email\": \"user@example.com\",\n    \"first_name\": \"Bob\",\n    \"last_name\": \"Smith\"\n  }\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "api/controllers/UsersController.js",
+    "groupTitle": "Users"
+  },
+  {
+    "type": "put",
+    "url": "/users/:id",
+    "title": "Update User",
+    "name": "PutUsers",
+    "group": "Users",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "email",
+            "description": "<p>User&#39;s email.</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "password",
+            "description": "<p>Password</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "password_confirmation",
+            "description": "<p>Password confirmation</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "first_name",
+            "description": "<p>First name</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "last_name",
+            "description": "<p>Last name</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "image_original_url",
+            "description": "<p>Profile image</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "bio",
+            "description": "<p>Bio</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "website",
+            "description": "<p>Website</p> "
+          }
+        ]
+      }
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{}",
           "type": "json"
         }
       ]

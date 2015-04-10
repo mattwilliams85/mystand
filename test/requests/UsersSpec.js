@@ -1,4 +1,4 @@
-/*global User: true */
+/*global User: true, UserProfile: true */
 'use strict';
 
 var joi = require('joi');
@@ -81,18 +81,31 @@ describe('PUT /users/:id.json', function() {
       password_confirmation: 'newpassword',
       first_name: 'Chad',
       last_name: 'Whiteface',
-      image_original_url: 'http://example.com/newone.png'
+      image_original_url: 'http://example.com/newone.png',
+      bio: 'mahalo',
+      website: 'http://chadwhiteface.com'
     };
 
-    DatabaseCleaner.clean(['users'], function() {
+    DatabaseCleaner.clean(['users', 'user_profiles'], function() {
       withSignIn(function(err, data) {
         user = data;
-        done();
+        // Create user profile
+        async.series([
+          Factory.create('userProfile', {user: user.id})
+        ], function(err, data) {
+          // Updating user with profile id
+          User.update({id: user.id}, {profile: data[0].id}).exec(function(err, users) {
+            if (err) throw 'Can\'t update user';
+
+            user = users[0];
+            done();
+          });
+        });
       });
     });
   });
 
-  it('should return 200 on success', function(done) {
+  it('should return 200 on success fdgdkjvdfhjvgdfhv', function(done) {
     agent
     .put('/users/' + user.id + '.json')
     .send(updateUserData)
@@ -106,7 +119,12 @@ describe('PUT /users/:id.json', function() {
         expect(user.last_name).to.eql(updateUserData.last_name);
         expect(user.image_original_url).to.eql(updateUserData.image_original_url);
 
-        done();
+        UserProfile.findOneById(user.profile).exec(function(err, userProfile) {
+          expect(userProfile.bio).to.eql(updateUserData.bio);
+          expect(userProfile.website).to.eql(updateUserData.website);
+
+          done();
+        });
       });
     });
   });

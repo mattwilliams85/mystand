@@ -1,4 +1,4 @@
-/*global User: true */
+/*global User: true, UserProfile: true */
 'use strict';
 
 /**
@@ -106,15 +106,27 @@ module.exports = {
    * @apiParam {String} first_name First name
    * @apiParam {String} last_name Last name
    * @apiParam {String} image_original_url Profile image
+   * @apiParam {String} bio Bio
+   * @apiParam {String} website Website
    *
    * @apiSuccessExample Success-Response:
    *   HTTP/1.1 200 OK
    *   {}
    */
   update: function(req, res) {
-    User.auth(req.session.user, function(err, currentUser) {
-      if (err || parseInt(req.param('id')) !== currentUser.id) return res.forbidden();
+    var updateUserProfile = function(profileId, callback) {
+      var data = {
+        bio: req.body.bio,
+        website: req.body.website
+      };
+      // Remove empty keys
+      for (var key in data) {
+        if (!data[key]) delete data[key];
+      }
+      UserProfile.update({id: profileId}, data).exec(callback);
+    };
 
+    var updateUser = function(userId, callback) {
       var data = {
         email: req.body.email,
         password: req.body.password,
@@ -127,13 +139,20 @@ module.exports = {
       for (var key in data) {
         if (!data[key]) delete data[key];
       }
+      User.update({id: userId}, data).exec(callback);
+    };
 
-      User.update({
-        id: currentUser.id
-      }, data).exec(function(err) {
+    User.auth(req.session.user, function(err, currentUser) {
+      if (err || parseInt(req.param('id')) !== currentUser.id) return res.forbidden();
+
+      updateUser(currentUser.id, function(err) {
         if (err) return res.status(500).json({error: sails.config.models.errorMessagesJson(err)});
 
-        return res.status(200).end();
+        updateUserProfile(currentUser.profile, function(err) {
+          if (err) return res.status(500).json({error: sails.config.models.errorMessagesJson(err)});
+
+          return res.status(200).end();
+        });
       });
     });
   }
