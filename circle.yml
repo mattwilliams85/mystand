@@ -19,7 +19,10 @@ machine:
 test:
   pre:
     - npm run db-migrate up
-    - npm install -g grunt-cli protractor
+    - npm install -g grunt-cli mocha protractor
+    - webdriver-manager update --standalone
+    - webdriver-manager start:
+        background: true
   override:
     - grunt test
-    - npm run test-frontend
+    - protractor ./test/protractor.conf.js

@@ -1,7 +1,7 @@
 // var seleniumPortAndPath = process.env.DISPLAY || ':4444/wd/hub';
 
 exports.config = {
-  seleniumAddress: 'http://localhost:4444/wd/hub',
+  seleniumAddress: 'http://127.0.0.1:4444/wd/hub',
   // capabilities: {
   //   'browserName': 'chrome'
   // },
