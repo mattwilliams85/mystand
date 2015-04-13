@@ -1,6 +1,6 @@
 'use strict';
 
-function Stand($http, $q) {
+function Stand($http, $q, $sails) {
 
   var service = {
 
@@ -30,9 +30,9 @@ function Stand($http, $q) {
       return dfr.promise;
     },
 
-    /*
-    * Create a Stand
-    */
+    /**
+     * Create a Stand
+     */
     create: function(data) {
       var dfr = $q.defer();
       data._csrf = SAILS_LOCALS._csrf;
@@ -47,9 +47,9 @@ function Stand($http, $q) {
       return dfr.promise;
     },
 
-    /*
-    * Publish a Stand
-    */
+    /**
+     * Publish a Stand
+     */
     publish: function(data) {
       var dfr = $q.defer();
       data._csrf = SAILS_LOCALS._csrf;
@@ -68,9 +68,9 @@ function Stand($http, $q) {
       return dfr.promise;
     },
 
-    /*
-    * Bookmark a Stand
-    */
+    /**
+     * Bookmark a Stand
+     */
     bookmark: function(data) {
       var dfr = $q.defer();
       data._csrf = SAILS_LOCALS._csrf;
@@ -92,15 +92,14 @@ function Stand($http, $q) {
     /**
      * Get a stand
      */
-    get: function(id) {
+    get: function(id, isSocket) {
       var dfr = $q.defer();
 
-      $http({
-        method: 'GET',
-        url: '/stands/' + id + '.json'
-      }).success(function(res) {
+      (isSocket ? $sails : $http).get('/stands/' + id + '.json')
+      .success(function(res) {
         dfr.resolve(res);
-      }).error(function(err) {
+      })
+      .error(function(err) {
         console.log('エラー', err);
         dfr.reject(err);
       });
@@ -112,5 +111,5 @@ function Stand($http, $q) {
   return service;
 }
 
-Stand.$inject = ['$http', '$q'];
+Stand.$inject = ['$http', '$q', '$sails'];
 myStandServices.factory('Stand', Stand);

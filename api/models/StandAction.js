@@ -61,6 +61,9 @@ module.exports = {
             return callback(err);
           }
 
+          // Notify subscribed clients about actions count update
+          Stand.publishUpdate(stand.id, {actions_count: count});
+
           return callback();
         });
       });

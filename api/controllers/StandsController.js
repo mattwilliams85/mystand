@@ -144,6 +144,12 @@ module.exports = {
         return res.status(500).json({error: 'Database error'});
       }
 
+      if (req.isSocket) {
+        // Subscribe client to instance changes
+        Stand.subscribe(req.socket, [stand]);
+        sails.log.info('Subscribed client to stand updates', stand.id, req.socket.id);
+      }
+
       return res.json({stand: stand.toJSON({withProfile: true})});
     });
   },

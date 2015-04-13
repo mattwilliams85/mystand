@@ -4,7 +4,8 @@ var myStandApp = angular.module('myStandApp', [
   'ngRoute',
   'myStandControllers',
   'myStandServices',
-  'textAngular'
+  'textAngular',
+  'ngSails'
 ]);
 
 myStandApp.run(['$rootScope', '$location', '$timeout', 'CurrentUser',
