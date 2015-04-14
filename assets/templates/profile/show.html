@@ -9,19 +9,19 @@
   <div class="row">
     <div class="large-6 columns">
       <div class="avatar-box left">
-        <img class="avatar-small left" ng-src="{{profile.image_original_url}}"/><h3 class="left profile-name">{{profile.first_name}} {{profile.last_name}}</h3>
+        <img class="avatar-small left" ng-src="{{currentUser.image_original_url}}"/><h3 class="left profile-name">{{currentUser.first_name}} {{currentUser.last_name}}</h3>
       </div>
     </div>
     <div class="large-2 columns">
-      <span class="count">{{profile.score}}</span>
+      <span class="count">{{currentUser.score}}</span>
       <span class="count-detail uppercase">activism score</span>
     </div> 
     <div class="large-2 columns">
-      <span class="count">!{{profile.bystanders}}</span>
+      <span class="count">!{{currentUser.bystanders}}</span>
       <span class="count-detail uppercase">bystanders</span>
     </div> 
     <div class="large-2 columns">
-      <span class="count">!{{profile.mystanders}}</span>
+      <span class="count">!{{currentUser.mystanders}}</span>
       <span class="count-detail uppercase">mystanders</span>
     </div> 
   </div>

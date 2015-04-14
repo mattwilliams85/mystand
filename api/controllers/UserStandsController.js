@@ -60,7 +60,6 @@ module.exports = {
       .paginate({page: options.page, limit: options.limit})
       .exec(function(err, stands) {
         if (err) {
-          console.log(err);
           return res.status(500).json({error: 'Database error'});
         }
 

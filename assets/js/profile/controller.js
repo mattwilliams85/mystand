@@ -15,10 +15,7 @@ function ProfileCtrl($scope, $rootScope, $location, $http, CurrentUser, Profile,
   $scope.changeTab = function(section) {
     $scope.page = 0;
 
-    if(section === 'details') $location.path('profile/details');
-    if(section === 'manage') $location.path('profile/manage');
-    if(section === 'activity') $location.path('profile/activity');
-    if(section === 'notifications') $location.path('profile/notifications');
+    $location.path('profile/' + section);
   }
 
   $scope.loadMore = function(tab) {
@@ -101,14 +98,14 @@ function ProfileCtrl($scope, $rootScope, $location, $http, CurrentUser, Profile,
   }
 
   $scope.loadForm = function(id) {
-    Stand.get(id).then(function(data) {
-      $scope.editStand = data.stand
+    // Stand.get(id).then(function(data) {
+    //   $scope.editStand = data.stand
 
-      if(data.youtube) $scope.editStand.youtube = 'https://www.youtube.com/embed/' + data.youtube;
-      for (var key in $scope.options.categories) {
-        if(data.stand.category == $scope.options.categories[key].value) $scope.editStand.category = $scope.options.categories[key].id;
-      }
-    });
+    //   if(data.youtube) $scope.editStand.youtube = 'https://www.youtube.com/embed/' + data.youtube;
+    //   for (var key in $scope.options.categories) {
+    //     if(data.stand.category == $scope.options.categories[key].value) $scope.editStand.category = $scope.options.categories[key].id;
+    //   }
+    // });
   }
 
   // TURN ME BACK ON!!!
@@ -130,15 +127,7 @@ ProfileCtrl.prototype.fetch = function($scope, $rootScope, $location,  $http, Cu
 
   CurrentUser.get().then(function(data) {
     $rootScope.currentUser = data;
-    Profile.get($rootScope.currentUser.id).then(function(data) {
-      $scope.profile = data.user;
-      //TEMP DATA
-      $scope.profile.bystanders = Math.floor((Math.random() * 100) + 1);
-      $scope.profile.mystanders = Math.floor((Math.random() * 100) + 1);
-
-      if($scope.mode === "details") {
-        
-      }
+      angular.copy($rootScope.currentUser, $scope.profile);
 
       if($scope.mode === "manage") {
         $scope.options = {};
@@ -154,7 +143,7 @@ ProfileCtrl.prototype.fetch = function($scope, $rootScope, $location,  $http, Cu
         });
         $scope.loadMore('manage');
       }
-    });
+    // });
   });
 
 

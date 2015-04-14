@@ -121,7 +121,7 @@ module.exports = {
 
   auth: function(userId, callback) {
     if (!userId) return callback('Forbidden');
-    this.findOneById(userId).exec(function(err, user) {
+    this.findOneById(userId).populate('profile').exec(function(err, user) {
       if (err) {
         console.log(err);
         return callback(err);

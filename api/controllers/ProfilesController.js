@@ -34,7 +34,7 @@ module.exports = {
     User.auth(req.session.user, function(err, currentUser) {
       if (err) return res.forbidden();
 
-      var userData = currentUser.toJSON();
+      var userData = currentUser.toJSON({publicProfile: true});
       userData.is_admin = !!currentUser.is_admin;
       res.json({user: userData});
     });

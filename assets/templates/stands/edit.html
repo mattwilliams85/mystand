@@ -7,36 +7,6 @@
     <ng-include src="'assets/templates/profile/show.html'"></ng-include>
 
     <div class="nav-box">
-      <section class="profile-manage-section" ng-show="!editStand.category">
-        <div class="row stand-row">
-          <a ng-href="/start"><div class="ms-button-transparent black uppercase right create-button">create stand &nbsp; <i class="fa fa-plus"></i></div></a>
-          <ul class="large-block-grid-4">
-            <a ng-href="stands/{{stand.id}}">
-              <li class="stand-column" ng-repeat="stand in tabData['manage']">
-                <div class="user-stand">
-                  <div class="user-img">
-                    <img ng-src='{{stand.image_original_url}}'>
-                  </div>
-                  <div class="details">
-                    <h5 class="uppercase"><a ng-href="/stands/{{stand.id}}">{{stand.title}}</a></h5>
-                    <div class="bottom-part">
-                      <div class="progress">
-                        <span class="meter" style="width: {{stand.progressPercent}}%"></span>
-                      </div>
-                      <a ng-href="/stands/{{stand.id}}/edit"><div class="ms-button-transparent black uppercase" ng-click="loadForm(stand.id)">edit</div></a>
-                    </div>
-                  </div>
-                </div>
-              </li>
-            </a>
-          </ul>
-        </div>
-
-        <div ng-if="showLoadMore" class="load-more-wrapper">
-          <button ng-click="loadMore('manage')" class="load-more">Load more</button>
-        </div>
-      </section>
-
       <section class="create-stand-section ms-create-page edit-stand-section" ng-show="editStand.category">
         <div class="row narrow">
           <div class="large-12 columns">

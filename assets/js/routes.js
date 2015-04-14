@@ -30,6 +30,11 @@ myStandApp.config(['$routeProvider', '$locationProvider', function($routeProvide
     controller: 'StandsCtrl'
   }).
 
+  when('/stands/:standId/edit', {
+    template: JST['assets/templates/stands/edit.html'],
+    controller: 'StandsCtrl'
+  }).
+
   //PROFILE ROUTES
 
   when('/profile', {
