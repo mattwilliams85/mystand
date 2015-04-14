@@ -1,0 +1,151 @@
+.ms-profile-page {
+  padding-bottom:200px;
+
+  .profile-stats-section {
+    padding: 50px 0px;
+    background-color:#eee;
+
+    .avatar-box {
+      margin-top:10px;
+    }
+
+    .count {
+      font-size:36pt;
+      display:block;
+      text-align:right;
+    }
+    .count-detail {
+      font-size:14pt;
+      display:block;
+      text-align:right;
+    }
+
+    .profile-name {
+      margin:10px 0px 0px 65px;
+    }
+  }
+
+  .center-nav-bar {
+    li {
+      width:150px;
+    }
+  }
+
+  .profile-details-section {
+
+    .ms-button-transparent {
+      border-width: 2px;
+      margin:50px 0px;
+      padding:10px 0px;
+      &.cancel {
+        margin-right:20px;
+      }
+    }
+    .detail-box {
+      background-color:#eee;
+      padding:20px 30px;
+    }
+    a {
+      display:block;
+    }
+    .detail {
+      font-size:12pt;
+      line-height:21pt;
+      text-align:left;
+      &.website {
+        text-align:right;
+        font-weight:600;
+        display:block;
+      }
+      &.input {
+        background-color:#eee;
+        height: 67px;
+        width:100%;
+        padding:0 30px;
+        border: 1px solid #5F9EB6;
+        /* round the corners */
+        -webkit-border-radius: 4px;
+        -moz-border-radius: 4px;
+        border-radius: 4px;
+        /* glow */
+        -webkit-box-shadow: 0px 0px 4px #5F9EB6;
+        -moz-box-shadow: 0px 0px 4px #5F9EB6;
+         box-shadow: 0px 0px 4px #5F9EB6;
+      }
+      &.bio {
+        padding-top:20px;
+      }
+    }
+    .bio {
+      min-height:300px;
+    }
+    .detail-title {
+      font-size:24pt;
+      letter-spacing:.1em;
+      text-align:left;
+      line-height:50px;
+    }
+  }
+
+  .edit-stand-section {
+    .ms-button-transparent {
+      width:170px;
+    }
+  }
+
+  .profile-manage-section {
+    .stand-row {
+      margin-bottom:20px;
+      .create-button {
+        padding: 10px 10px;
+      }
+    }
+    .stand-column {
+      padding:0px 7px;
+      float:left;
+    }
+    .user-stand {
+      position:relative;
+      border:1px solid #aaa;
+      border-radius:3px;
+      margin-top:40px;
+      -webkit-box-shadow: 0px 2px 8px 1px rgba(51,51,51,.35);
+      -moz-box-shadow: 0px 2px 8px 1px rgba(51,51,51,.35);
+      box-shadow: 0px 2px 8px 1px rgba(51,51,51,.35);
+      @media #{$small} {
+        -webkit-box-shadow: none;
+        -moz-box-shadow: none;
+        box-shadow: none;
+      }
+
+      .ms-button-transparent {
+        padding:5px 0px;
+        margin:15px 10px 10px 10px;
+      }
+
+      .user-img {
+        width:100%;
+        height:175px;
+        overflow:hidden;
+        img {
+          width: 100%;
+          min-height:175px;
+        }
+      }
+      .details {
+        padding:10px 25px;
+        height:155px;
+        .bottom-part {
+          position:absolute;
+          bottom:15px;
+          left:15px;
+        }
+        .progress {
+          margin-bottom:.5em;
+          margin-top:1em;
+          margin-bottom:0px;
+        }
+      }
+    }
+  }
+}

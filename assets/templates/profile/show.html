@@ -1,0 +1,43 @@
+<section class="profile-stats-section">
+  <div class="row">
+    <div class="large-6 columns"></div>
+    <div class="large-6 columns">
+      <span class="uppercase left count-detail">my impact</span>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="large-6 columns">
+      <div class="avatar-box left">
+        <img class="avatar-small left" ng-src="{{profile.image_original_url}}"/><h3 class="left profile-name">{{profile.first_name}} {{profile.last_name}}</h3>
+      </div>
+    </div>
+    <div class="large-2 columns">
+      <span class="count">{{profile.score}}</span>
+      <span class="count-detail uppercase">activism score</span>
+    </div> 
+    <div class="large-2 columns">
+      <span class="count">!{{profile.bystanders}}</span>
+      <span class="count-detail uppercase">bystanders</span>
+    </div> 
+    <div class="large-2 columns">
+      <span class="count">!{{profile.mystanders}}</span>
+      <span class="count-detail uppercase">mystanders</span>
+    </div> 
+  </div>
+</section>
+
+<div class="center-nav-bar">
+  <div class="row">
+  <li ng-class="{'active': mode === 'details'}" ng-click="changeTab('details')">profile</li>
+  <li ng-class="{'active': mode === 'manage'}" ng-click="changeTab('manage')">manage stands</li>
+  <li ng-class="{'active': mode === 'activity'}" ng-click="changeTab('activity')">my activity</li>
+  <li ng-class="{'active': mode === 'notifications'}" ng-click="changeTab('notifications')">notifications</li>
+  <li class="scroll-top-button" ng-click="scrollUp()"><i class="fa fa-chevron-up"></i>&nbsp;&nbsp;back to top </li>
+  </div>
+</div>
+<!-- <div class="nav-box">
+  <ng-include src="tabUrl"></ng-include>
+</div> -->
+
+

@@ -12,6 +12,7 @@ myStandApp.run(['$rootScope', '$location', '$timeout', '$sails', 'CurrentUser',
   function ($rootScope, $location, $timeout, $sails, CurrentUser) {
     $rootScope.currentUser = {};
     $rootScope.isSignedIn = !!SignedIn;
+    $rootScope.formValues = {};
     /*
      * Fill in User object with data if user is signed in but object is empty
     */
@@ -22,6 +23,12 @@ myStandApp.run(['$rootScope', '$location', '$timeout', '$sails', 'CurrentUser',
         });
       }
     });
+
+    $rootScope.redirectUnlessSignedIn = function() {
+      if (!$rootScope.isSignedIn) {
+        window.location = '/';
+      }
+    };
 
     $rootScope.goTo = '';
     $rootScope.signInRedirect = function(goTo) {
@@ -55,6 +62,22 @@ myStandApp.run(['$rootScope', '$location', '$timeout', '$sails', 'CurrentUser',
       $sails._raw.removeEventListener(modelName);
       $sails.on(modelName, cb);
     };
+
+    //CENTER-NAV-BAR Functions
+    $rootScope.tabUrl = "";
+
+    $rootScope.createTabUrl = function(section) {
+      return "assets/templates/stands/" + section + "/show.html"
+    }
+
+    $rootScope.isActiveTab = function(section) {
+      return $rootScope.createTabUrl(section) === $rootScope.tabUrl;
+    }
+
+    $rootScope.scrollUp = function() {
+      $("body").animate({scrollTop: 0}, "slow");
+    }
+
 
     // Prevent A-sync issue with Foundation.js
     $timeout(function() {

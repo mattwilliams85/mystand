@@ -336,36 +336,41 @@ module.exports = {
    *   {}
    */
   update: function(req, res) {
-    var updateStandProfile = function(stand) {
-      StandProfile.update({
-        stand: stand.id
-      }, {
-        full_description: req.body.full_description
-      })
-      .exec(function(err) {
-        if (err) return res.status(500).json({error: err.Errors});
+    var updateStandProfile = function(stand, cb) {
+      var standProfileData = {
+        full_description: req.body.profile.full_description
+      };
 
-        return res.status(200).end();
+      StandProfile.findOne({stand: stand.id}).exec(function(err, standProfile) {
+        if (err) return callback(err);
+
+        // Update if exists, otherwise create
+        if (standProfile) {
+          StandProfile.update({stand: stand.id}, standProfileData).exec(cb);
+        } else {
+          standProfileData.stand = stand.id;
+          StandProfile.create(standProfileData).exec(cb);
+        }
       });
     };
 
-    var updateStand = function(stand) {
+    var updateStand = function(stand, cb) {
       Stand.update({
         id: stand.id
       }, {
         title: req.body.title,
         image_original_url: req.body.image_original_url,
+        category: req.body.category,
         youtube: req.body.youtube,
         description: req.body.description,
         duration: req.body.duration,
         closed_at: Stand.calculateClosedAtFromDuration(req.body.duration, stand.createdAt),
         goal: req.body.goal,
         goal_result: req.body.goal_result
-      })
-      .exec(function(err, stand) {
-        if (err) return res.status(500).json({error: err.Errors});
+      }).exec(function(err, stand) {
+        if (err) return cb(err);
 
-        return updateStandProfile(stand[0]);
+        return updateStandProfile(stand[0], cb);
       });
     };
 
@@ -379,7 +384,12 @@ module.exports = {
         }
         if (currentUser.id !== stand.user) return res.forbidden();
 
-        return updateStand(stand);
+        updateStand(stand, function(err) {
+          console.log(err)
+          if (err) return res.status(500).json({error: 'Database error'});
+
+          return res.status(200).end();
+        });
       });
     });
   },

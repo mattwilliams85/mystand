@@ -62,10 +62,10 @@
     </div>
     <div class="center-nav-bar">
       <div class="row">
-      <li ng-class="{'active': isActive('details')}" ng-click="changeTab('details')">details</li>
-      <li ng-class="{'active': isActive('updates')}" ng-click="changeTab('updates')">UPDATES({{stand.updates_count}})</li>
-      <li ng-class="{'active': isActive('actions')}" ng-click="changeTab('actions')">actions({{stand.actions_count}})</li>
-      <li ng-class="{'active': isActive('comments')}" ng-click="changeTab('comments')">comments</li>
+      <li ng-class="{'active': isActiveTab('details')}" ng-click="changeTab('details')">details</li>
+      <li ng-class="{'active': isActiveTab('updates')}" ng-click="changeTab('updates')">updates({{stand.updates_count}})</li>
+      <li ng-class="{'active': isActiveTab('actions')}" ng-click="changeTab('actions')">actions({{stand.actions_count}})</li>
+      <li ng-class="{'active': isActiveTab('comments')}" ng-click="changeTab('comments')">comments</li>
       <li class="scroll-top-button" ng-click="scrollUp()"><i class="fa fa-chevron-up"></i>&nbsp;&nbsp;back to top </li>
       </div>
     </div>

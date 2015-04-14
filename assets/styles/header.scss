@@ -250,7 +250,7 @@
   .header-dropdown {
     border-color:#ccc !important;
     background-color:#ccc;
-    box-shadow: -5px 5px 5px 3px rgba(0,0,0,0.3);
+    box-shadow: -5px 5px 0px 3px rgba(0,0,0,0.3);
     &.open:before {
       border-color: transparent transparent #ccc transparent;
     }

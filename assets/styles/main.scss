@@ -73,6 +73,10 @@ a {
   letter-spacing: .25em;
 }
 
+.skinny {
+  font-weight:100;
+}
+
 .uppercase {
   text-transform: uppercase;
 }
@@ -100,6 +104,13 @@ a {
 .avatar-tiny {
   height:45px;
   width:45px;
+  border-radius:100%;
+  position:absolute
+}
+
+.avatar-small {
+  height:55px;
+  width:55px;
   border-radius:100%;
   position:absolute
 }
@@ -179,7 +190,6 @@ a {
 .ms-button-transparent {
   padding: 1em 2.5em;
   border: 2px solid #fff;
-  border-radius:2px;
   font-weight:600;
   letter-spacing:.1em;
   -o-transition:.5s;
@@ -189,6 +199,7 @@ a {
   transition:.5s;
   font-size:16px;
   text-transform:uppercase;
+  text-align:center;
   cursor:pointer;
 
   &.black {

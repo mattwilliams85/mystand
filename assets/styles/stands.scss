@@ -76,67 +76,6 @@
     }
   }
 
-  .center-nav-bar {
-    background-color:#fff;
-    border-top:1px solid #ccc;
-    border-bottom:1px solid #ccc;    
-    li {
-      display:inline-block;
-      text-decoration: none;
-      padding:15px;
-      width:140px;
-      text-align:center;
-      text-transform: uppercase;
-      border-right:1px solid #ccc;
-      cursor:pointer;
-      transition:.15s linear;
-      &.scroll-top-button {
-        margin-left: 200px;
-        border-right: 0px;
-        width: 200px;
-        display:none;
-      }
-      &:first-child {
-        border-left:1px solid #ccc;
-      }
-      &.active {
-        color:#ff3333;
-      }
-      &:hover {
-        color:#ff3333;
-      }
-    }
-  }
-
-  .nav-box {
-    background-color:#fff;
-    height:100%;
-    padding:50px 0px 200px 0px;
-
-    .ms-button-transparent {
-      margin:0 auto;
-      margin-top:50px;
-      width:185px;
-    }
-
-    .tab-detail {
-      font-size:14pt;
-      line-height:21pt;
-    }
-    .tab-detail * {
-      background-color:#fff !important;
-    }
-    .tab-date {
-      color: #999;
-      margin:-10px 0px 35px 0px;
-    }
-    .tab-divider {
-      width:40%;
-      border-color: #333;
-      margin:50px 0px;
-    }
-  }
-
   .stand-update {
     padding-bottom:40px;
   }
@@ -230,7 +169,7 @@
 }
 
 .create-stand-section {
-  .narrow {
+  .top-row {
     margin-top: 100px;
     padding-bottom: 250px;
   }
@@ -288,8 +227,7 @@
   .ms-button-transparent {
     margin: 50px 0px 0px 20px;
     padding: 10px 40px;
-    border-radius: 4px;
-    border-width: 3px;
+    border-width: 2px;
   }
   .input-label {
     &.select {

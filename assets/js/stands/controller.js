@@ -12,7 +12,9 @@ function StandsCtrl($rootScope, $scope, $location, $routeParams, Stand, StandUpd
   };
   $scope.actionUser = {};
   $scope.newAction = {};
+
   $scope.tabUrl = 'assets/templates/stands/details/show.html';
+
   $scope.formErrorMessages = {};
   $scope.page = 0;
 
@@ -43,17 +45,17 @@ function StandsCtrl($rootScope, $scope, $location, $routeParams, Stand, StandUpd
     }
   };
 
-  $scope.createTabUrl = function(section) {
-    return 'assets/templates/stands/' + section + '/show.html';
-  };
+  // $scope.createTabUrl = function(section) {
+  //   return 'assets/templates/stands/' + section + '/show.html';
+  // };
 
-  $scope.isActive = function(section) {
-    return $scope.createTabUrl(section) === $scope.tabUrl;
-  };
+  // $scope.isActive = function(section) {
+  //   return $scope.createTabUrl(section) === $scope.tabUrl;
+  // };
 
-  $scope.scrollUp = function() {
-    $('body').animate({scrollTop: 0}, 'slow');
-  };
+  // $scope.scrollUp = function() {
+  //   $('body').animate({scrollTop: 0}, 'slow');
+  // };
 
   $scope.fileUpload = function() {
     if ($scope.newAction) {
@@ -170,7 +172,9 @@ function StandsCtrl($rootScope, $scope, $location, $routeParams, Stand, StandUpd
         } else if ($scope.stand.actions_count ===  $scope.tabData[tab].length) {
           $scope.showLoadMore = false;
         }
+
         $scope.tabUrl =  $scope.createTabUrl(tab);
+
       });
     } else if (tab === 'updates') {
       StandUpdate.list($scope.stand.id, {page: $scope.page}).then(function(data) {
@@ -181,6 +185,7 @@ function StandsCtrl($rootScope, $scope, $location, $routeParams, Stand, StandUpd
         } else if ($scope.stand.updates_count ===  $scope.tabData[tab].length) {
           $scope.showLoadMore = false;
         }
+
         $scope.tabUrl = $scope.createTabUrl(tab);
       });
     }

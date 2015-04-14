@@ -76,12 +76,12 @@ module.exports = {
 
       options.where = { user: currentUser.id };
 
-      if (req.param('filter') === 'active') {
-        options.where.is_public = true;
+      if (req.param('filter') === 'inactive') {
+        options.where.is_public = false;
       } else if (req.param('filter') === 'closed') {
         options.where.closed_at = {'<': (new Date())};
       } else {
-        options.where.is_public = false;
+        options.where.is_public = true;
       }
 
       return findStands(currentUser);

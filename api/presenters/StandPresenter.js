@@ -29,6 +29,7 @@ module.exports = function toJSON(opts) {
   if (opts.withProfile) {
     data.duration = obj.duration;
     data.user = obj.user;
+    data.goal_result = obj.goal_result;
     if (obj.profile !== null && typeof obj.profile === 'object') {
       data.profile = {
         full_description: obj.profile.full_description

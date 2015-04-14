@@ -21,6 +21,23 @@ function Profile($http, $q) {
       return dfr.promise;
     },
 
+    /*
+    * Update a Profile
+    */
+    update: function(data) {
+      var dfr = $q.defer();
+      data._csrf = SAILS_LOCALS._csrf;
+
+      $http.put('/users/' + data.id + '.json', data).success(function(res) {
+        dfr.resolve(res);
+      }).error(function(err) {
+        console.log('エラー', err);
+        dfr.reject(err);
+      });
+
+      return dfr.promise;
+    },
+
     get: function(id) {
       var dfr = $q.defer();
 

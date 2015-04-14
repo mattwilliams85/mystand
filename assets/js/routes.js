@@ -30,10 +30,39 @@ myStandApp.config(['$routeProvider', '$locationProvider', function($routeProvide
     controller: 'StandsCtrl'
   }).
 
-  when('/profile/:profileMode?', {
-    template: JST['assets/templates/profile/show.html'],
+  //PROFILE ROUTES
+
+  when('/profile', {
+    template: JST['assets/templates/profile/details/show.html'],
     controller: 'ProfileCtrl'
   }).
+
+  when('/profile/details', {
+    template: JST['assets/templates/profile/details/show.html'],
+    controller: 'ProfileCtrl'
+  }).
+
+  when('/profile/details', {
+    template: JST['assets/templates/profile/details/show.html'],
+    controller: 'ProfileCtrl'
+  }).
+
+  when('/profile/manage', {
+    template: JST['assets/templates/profile/manage/show.html'],
+    controller: 'ProfileCtrl'
+  }).
+
+  when('/profile/activity', {
+    template: JST['assets/templates/profile/activity/show.html'],
+    controller: 'ProfileCtrl'
+  }).
+
+  when('/profile/notifications', {
+    template: JST['assets/templates/profile/notifications/show.html'],
+    controller: 'ProfileCtrl'
+  }).
+
+  //
 
   when('/start', {
     template: JST['assets/templates/stands/new.html'],

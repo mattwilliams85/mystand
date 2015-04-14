@@ -68,9 +68,26 @@ function Stand($http, $q, $sails) {
       return dfr.promise;
     },
 
-    /**
-     * Bookmark a Stand
-     */
+    /*
+    * Update a Stand
+    */
+    update: function(data) {
+      var dfr = $q.defer();
+      data._csrf = SAILS_LOCALS._csrf;
+
+      $http.put('/stands/' + data.id + '.json', data).success(function(res) {
+        dfr.resolve(res);
+      }).error(function(err) {
+        console.log('エラー', err);
+        dfr.reject(err);
+      });
+
+      return dfr.promise;
+    },
+
+    /*
+    * Bookmark a Stand
+    */
     bookmark: function(data) {
       var dfr = $q.defer();
       data._csrf = SAILS_LOCALS._csrf;
