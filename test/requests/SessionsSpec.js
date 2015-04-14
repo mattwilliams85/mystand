@@ -5,16 +5,20 @@ var joi = require('joi');
 var userSchema = joi.object({
   user: joi.object({
     id: joi.number().integer().required(),
-    email: joi.string().required(),
     first_name: joi.string().allow(null),
     last_name: joi.string().allow(null),
-    image_original_url: joi.string().allow(null)
+    image_original_url: joi.string().allow(null),
+    bio: joi.string().allow(null),
+    website: joi.string().allow(null),
+    stands_count: joi.number().integer().required(),
+    score: joi.number().integer().required(),
+    email: joi.string().required(),
+    is_admin: joi.boolean().required()
   })
 });
 
 describe('POST /login.json', function() {
-  var factoryData,
-      email,
+  var email,
       password;
 
   beforeEach(function(done) {
@@ -25,8 +29,12 @@ describe('POST /login.json', function() {
       async.series([
         Factory.create('user', {email: email, password: password, password_confirmation: password})
       ], function(err, data) {
-        factoryData = data;
-        done();
+        // Create user profile
+        async.series([
+          Factory.create('userProfile', {user: data[0].id})
+        ], function() {
+          done();
+        });
       });
     });
   });

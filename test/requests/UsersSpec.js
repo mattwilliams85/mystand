@@ -3,13 +3,14 @@
 
 var joi = require('joi');
 
-var userSchema = joi.object({
+var userPrivateSchema = joi.object({
   user: joi.object({
     id: joi.number().integer().required(),
-    email: joi.string().required(),
     first_name: joi.string().allow(null),
     last_name: joi.string().allow(null),
-    image_original_url: joi.string().allow(null)
+    image_original_url: joi.string().allow(null),
+    email: joi.string().required(),
+    is_admin: joi.boolean().required()
   })
 });
 
@@ -22,7 +23,7 @@ var userPublicSchema = joi.object({
     bio: joi.string().allow(null),
     website: joi.string().allow(null),
     stands_count: joi.number().integer().required(),
-    score: joi.number().integer().required(),
+    score: joi.number().integer().required()
   })
 });
 
@@ -45,7 +46,7 @@ describe('POST /users.json', function() {
       .send({_csrf: csrfToken, email: email, password: password, password_confirmation: password, first_name: 'Bob', last_name: 'Smith'})
       .end(function(err, res) {
         expect(res.statusCode).to.eql(200);
-        var validation = userSchema.validate(res.body);
+        var validation = userPrivateSchema.validate(res.body);
         expect(validation.error).to.be.null;
         expect(res.body.user.email).to.equal(email);
         done();
@@ -168,15 +169,15 @@ describe('GET /users/:id.json', function() {
     });
   });
 
-  it('should return public user object hjghjgjhgh', function(done) {
+  it('should return public user object', function(done) {
     agent
-      .get('/users/' + user.id + '.json')
-      .end(function(err, res) {
-        expect(res.statusCode).to.eql(200);
-        var validation = userPublicSchema.validate(res.body);
-        expect(validation.error).to.be.null;
-        expect(res.body.user.id).to.equal(user.id);
-        done();
-      });
+    .get('/users/' + user.id + '.json')
+    .end(function(err, res) {
+      expect(res.statusCode).to.eql(200);
+      var validation = userPublicSchema.validate(res.body);
+      expect(validation.error).to.be.null;
+      expect(res.body.user.id).to.equal(user.id);
+      done();
+    });
   });
 });

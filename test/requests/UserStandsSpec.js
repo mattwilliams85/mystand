@@ -66,23 +66,23 @@ describe('GET /users/:userId/stands.json', function() {
       });
     });
 
-    it('should return inactive stands by default', function(done) {
+    it('should return active stands by default', function(done) {
       agent.get('/users/' + user.id + '/stands.json')
-      .end(function(err, res) {
-        expect(res.statusCode).to.eql(200);
-        expect(res.body.stands.length).to.eql(1);
-        expect(res.body.stands[0].id).to.eql(stands[1].id);
-        done();
-      });
-    });
-
-    it('should return active stands', function(done) {
-      agent.get('/users/' + user.id + '/stands.json')
-      .query('filter=active')
       .end(function(err, res) {
         expect(res.statusCode).to.eql(200);
         expect(res.body.stands.length).to.eql(1);
         expect(res.body.stands[0].id).to.eql(stands[0].id);
+        done();
+      });
+    });
+
+    it('should return inactive stands', function(done) {
+      agent.get('/users/' + user.id + '/stands.json')
+      .query('filter=inactive')
+      .end(function(err, res) {
+        expect(res.statusCode).to.eql(200);
+        expect(res.body.stands.length).to.eql(1);
+        expect(res.body.stands[0].id).to.eql(stands[1].id);
         done();
       });
     });

@@ -19,6 +19,7 @@ module.exports = {
    * @apiSuccess {Number} user.id User ID
    * @apiSuccess {String} user.first_name First name
    * @apiSuccess {String} user.last_name Last name
+   * @apiSuccess {String} user.image_original_url Profile Image
    * @apiSuccess {String} user.website Website
    * @apiSuccess {Number} user.stands_count Created stands count
    * @apiSuccess {Number} user.score Activism score
@@ -31,10 +32,11 @@ module.exports = {
    *       "id": 123,
    *       "first_name": "Bob",
    *       "last_name": "White",
+   *       "image_original_url": "http://example.com/image.jpg",
    *       "website": "http://www.google.com/",
    *       "stands_count": 5,
    *       "score": 100,
-   *       "bio": "Bio here ..."
+   *       "bio": "Bio here ...",
    *     }
    *   }
    */
@@ -62,18 +64,22 @@ module.exports = {
    *
    * @apiSuccess {Object} user User profile information.
    * @apiSuccess {Number} user.id ID.
-   * @apiSuccess {String} user.email Email.
    * @apiSuccess {String} user.first_name First Name.
    * @apiSuccess {String} user.last_name Last Name.
+   * @apiSuccess {String} user.image_original_url Profile Image
+   * @apiSuccess {String} user.email Email
+   * @apiSuccess {Boolean} user.is_admin Is Admin
    *
    * @apiSuccessExample Success-Response:
    *   HTTP/1.1 200 OK
    *   {
    *     "user": {
    *       "id": 123,
-   *       "email": "user@example.com",
    *       "first_name": "Bob",
-   *       "last_name": "Smith"
+   *       "last_name": "Smith",
+   *       "image_original_url": "http://example.com/image.jpg",
+   *       "email": "email@example.com",
+   *       "is_admin": true
    *     }
    *   }
    */
@@ -90,7 +96,7 @@ module.exports = {
       sails.config.kue.create('signUpEmailConfirmation', {
         email: user.email
       }).save(function() {
-        res.json({user: user.toJSON()});
+        res.json({user: user.toJSON({privateProfile: true})});
       });
     });
   },

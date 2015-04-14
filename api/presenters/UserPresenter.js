@@ -7,22 +7,27 @@
 
 module.exports = function toJSON(opts) {
   opts = opts || {};
-  var obj = this.toObject();
+
   var data = {
-    id: obj.id,
-    first_name: obj.first_name,
-    last_name: obj.last_name,
-    image_original_url: obj.image_original_url || 'http://actualidadmedieval.com/img/avatar.png'
+    id: this.id,
+    first_name: this.first_name,
+    last_name: this.last_name,
+    image_original_url: this.image_original_url || 'http://actualidadmedieval.com/img/avatar.png'
   };
-  if (opts.publicProfile) {
-    if (obj.profile !== null && typeof obj.profile === 'object') {
-      data.bio = obj.profile.bio;
-      data.website = obj.profile.website;
-      data.stands_count = obj.profile.stands_count || 0;
-      data.score = obj.profile.score || 0;
-    }
-  } else {
-    data.email = obj.email;
+
+  if (opts.privateProfile) {
+    data.email = this.email;
+    data.is_admin = !!this.is_admin;
   }
+
+  if (opts.publicProfile) {
+    if (this.profile !== null && typeof this.profile === 'object') {
+      data.bio = this.profile.bio;
+      data.website = this.profile.website;
+      data.stands_count = this.profile.stands_count || 0;
+      data.score = this.profile.score || 0;
+    }
+  }
+
   return data;
 };

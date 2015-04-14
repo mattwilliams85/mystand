@@ -5,30 +5,37 @@ var joi = require('joi');
 var userSchema = joi.object({
   user: joi.object({
     id: joi.number().integer().required(),
-    email: joi.string().required(),
     first_name: joi.string().allow(null),
     last_name: joi.string().allow(null),
     image_original_url: joi.string().allow(null),
+    bio: joi.string().allow(null),
+    website: joi.string().allow(null),
+    stands_count: joi.number().integer().required(),
+    score: joi.number().integer().required(),
+    email: joi.string().required(),
     is_admin: joi.boolean().required()
   })
 });
 
 describe('GET /profile.json', function() {
-  var factoryData,
-      email,
+  var email,
       password;
 
   beforeEach(function(done) {
     email = 'example@example.com';
     password = 'passw0RD';
 
-    DatabaseCleaner.clean(['users'], function() {
+    DatabaseCleaner.clean(['users', 'user_profiles'], function() {
       async.series([
         Factory.create('user', {email: email, password: password, password_confirmation: password}),
         Factory.create('user')
       ], function(err, data) {
-        factoryData = data;
-        done();
+        // Create user profile
+        async.series([
+          Factory.create('userProfile', {user: data[0].id})
+        ], function() {
+          done();
+        });
       });
     });
   });
@@ -47,15 +54,15 @@ describe('GET /profile.json', function() {
 
     it('should return current user\'s object', function(done) {
       agent
-        .get('/profile.json')
-        .end(function(err, res) {
-          expect(res.statusCode).to.eql(200);
-          var validation = userSchema.validate(res.body);
-          expect(validation.error).to.be.null;
-          expect(res.body.user.email).to.equal(email);
-          expect(res.body.user.is_admin).to.equal(false);
-          done();
-        });
+      .get('/profile.json')
+      .end(function(err, res) {
+        expect(res.statusCode).to.eql(200);
+        var validation = userSchema.validate(res.body);
+        expect(validation.error).to.be.null;
+        expect(res.body.user.email).to.equal(email);
+        expect(res.body.user.is_admin).to.equal(false);
+        done();
+      });
     });
   });
 
