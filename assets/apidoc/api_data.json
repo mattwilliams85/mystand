@@ -696,6 +696,13 @@
           },
           {
             "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "stand.goal_result",
+            "description": "<p>Goal result</p> "
+          },
+          {
+            "group": "Success 200",
             "type": "Object",
             "optional": false,
             "field": "stand.profile",
@@ -713,7 +720,7 @@
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n  \"stand\": {\n    \"id\": 123,\n    \"title\": \"Save The Planet\",\n    \"description\": \"Some description\",\n    \"image_original_url\": \"http://www.mystand.herokuapp.com/img.jpg\",\n    \"youtube\": \"43T5K8D3h\",\n    \"goal\": 100,\n    \"category\": \"Planet\",\n    \"user\": 123,\n    \"profile\": {\n      \"full_description\": \"Full description here ...\",\n    },\n    \"actions_count\": 95\n  }\n}",
+          "content": "HTTP/1.1 200 OK\n{\n  \"stand\": {\n    \"id\": 123,\n    \"title\": \"Save The Planet\",\n    \"description\": \"Some description\",\n    \"image_original_url\": \"http://www.mystand.herokuapp.com/img.jpg\",\n    \"youtube\": \"43T5K8D3h\",\n    \"goal\": 100,\n    \"category\": \"Planet\",\n    \"user\": 123,\n    \"goal_result\": \"Some text here\",\n    \"profile\": {\n      \"full_description\": \"Full description here ...\",\n    },\n    \"actions_count\": 95\n  }\n}",
           "type": "json"
         }
       ]
@@ -1360,42 +1367,84 @@
             "type": "Object",
             "optional": false,
             "field": "user",
-            "description": "<p>User profile information.</p> "
+            "description": "<p>User object</p> "
           },
           {
             "group": "Success 200",
             "type": "Number",
             "optional": false,
             "field": "user.id",
-            "description": "<p>ID.</p> "
-          },
-          {
-            "group": "Success 200",
-            "type": "String",
-            "optional": false,
-            "field": "user.email",
-            "description": "<p>Email.</p> "
+            "description": "<p>User ID</p> "
           },
           {
             "group": "Success 200",
             "type": "String",
             "optional": false,
             "field": "user.first_name",
-            "description": "<p>First Name.</p> "
+            "description": "<p>First name</p> "
           },
           {
             "group": "Success 200",
             "type": "String",
             "optional": false,
             "field": "user.last_name",
-            "description": "<p>Last Name.</p> "
+            "description": "<p>Last name</p> "
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "user.image_original_url",
+            "description": "<p>Profile Image</p> "
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "user.website",
+            "description": "<p>Website</p> "
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "user.stands_count",
+            "description": "<p>Created stands count</p> "
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "user.score",
+            "description": "<p>Activism score</p> "
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "user.bio",
+            "description": "<p>Bio</p> "
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "user.email",
+            "description": "<p>Email</p> "
+          },
+          {
+            "group": "Success 200",
+            "type": "Boolean",
+            "optional": false,
+            "field": "user.is_admin",
+            "description": "<p>Is Admin</p> "
           }
         ]
       },
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n  \"user\": {\n    \"id\": 123,\n    \"email\": \"user@example.com\",\n    \"first_name\": \"Bob\",\n    \"last_name\": \"Smith\"\n  }\n}",
+          "content": "HTTP/1.1 200 OK\n{\n  \"user\": {\n    \"id\": 123,\n    \"first_name\": \"Bob\",\n    \"last_name\": \"White\",\n    \"image_original_url\": \"http://example.com/image.jpg\",\n    \"website\": \"http://www.google.com/\",\n    \"stands_count\": 5,\n    \"score\": 100,\n    \"bio\": \"Bio here ...\",\n    \"email\": \"email@example.com\",\n    \"is_admin\": true\n  }\n}",
           "type": "json"
         }
       ]
@@ -1458,6 +1507,13 @@
             "group": "Success 200",
             "type": "String",
             "optional": false,
+            "field": "user.image_original_url",
+            "description": "<p>Profile Image</p> "
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
             "field": "user.website",
             "description": "<p>Website</p> "
           },
@@ -1487,7 +1543,7 @@
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n  \"user\": {\n    \"id\": 123,\n    \"first_name\": \"Bob\",\n    \"last_name\": \"White\",\n    \"website\": \"http://www.google.com/\",\n    \"stands_count\": 5,\n    \"score\": 100,\n    \"bio\": \"Bio here ...\"\n  }\n}",
+          "content": "HTTP/1.1 200 OK\n{\n  \"user\": {\n    \"id\": 123,\n    \"first_name\": \"Bob\",\n    \"last_name\": \"White\",\n    \"image_original_url\": \"http://example.com/image.jpg\",\n    \"website\": \"http://www.google.com/\",\n    \"stands_count\": 5,\n    \"score\": 100,\n    \"bio\": \"Bio here ...\",\n  }\n}",
           "type": "json"
         }
       ]
@@ -1754,42 +1810,84 @@
             "type": "Object",
             "optional": false,
             "field": "user",
-            "description": "<p>User profile information.</p> "
+            "description": "<p>User object</p> "
           },
           {
             "group": "Success 200",
             "type": "Number",
             "optional": false,
             "field": "user.id",
-            "description": "<p>ID.</p> "
-          },
-          {
-            "group": "Success 200",
-            "type": "String",
-            "optional": false,
-            "field": "user.email",
-            "description": "<p>Email.</p> "
+            "description": "<p>User ID</p> "
           },
           {
             "group": "Success 200",
             "type": "String",
             "optional": false,
             "field": "user.first_name",
-            "description": "<p>First Name.</p> "
+            "description": "<p>First name</p> "
           },
           {
             "group": "Success 200",
             "type": "String",
             "optional": false,
             "field": "user.last_name",
-            "description": "<p>Last Name.</p> "
+            "description": "<p>Last name</p> "
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "user.image_original_url",
+            "description": "<p>Profile Image</p> "
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "user.website",
+            "description": "<p>Website</p> "
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "user.stands_count",
+            "description": "<p>Created stands count</p> "
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "user.score",
+            "description": "<p>Activism score</p> "
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "user.bio",
+            "description": "<p>Bio</p> "
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "user.email",
+            "description": "<p>Email</p> "
+          },
+          {
+            "group": "Success 200",
+            "type": "Boolean",
+            "optional": false,
+            "field": "user.is_admin",
+            "description": "<p>Is Admin</p> "
           }
         ]
       },
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n  \"user\": {\n    \"id\": 123,\n    \"email\": \"user@example.com\",\n    \"first_name\": \"Bob\",\n    \"last_name\": \"Smith\"\n  }\n}",
+          "content": "HTTP/1.1 200 OK\n{\n  \"user\": {\n    \"id\": 123,\n    \"first_name\": \"Bob\",\n    \"last_name\": \"White\",\n    \"image_original_url\": \"http://example.com/image.jpg\",\n    \"website\": \"http://www.google.com/\",\n    \"stands_count\": 5,\n    \"score\": 100,\n    \"bio\": \"Bio here ...\",\n    \"email\": \"email@example.com\",\n    \"is_admin\": true\n  }\n}",
           "type": "json"
         }
       ]
@@ -1866,13 +1964,6 @@
             "group": "Success 200",
             "type": "String",
             "optional": false,
-            "field": "user.email",
-            "description": "<p>Email.</p> "
-          },
-          {
-            "group": "Success 200",
-            "type": "String",
-            "optional": false,
             "field": "user.first_name",
             "description": "<p>First Name.</p> "
           },
@@ -1882,13 +1973,34 @@
             "optional": false,
             "field": "user.last_name",
             "description": "<p>Last Name.</p> "
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "user.image_original_url",
+            "description": "<p>Profile Image</p> "
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "user.email",
+            "description": "<p>Email</p> "
+          },
+          {
+            "group": "Success 200",
+            "type": "Boolean",
+            "optional": false,
+            "field": "user.is_admin",
+            "description": "<p>Is Admin</p> "
           }
         ]
       },
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n  \"user\": {\n    \"id\": 123,\n    \"email\": \"user@example.com\",\n    \"first_name\": \"Bob\",\n    \"last_name\": \"Smith\"\n  }\n}",
+          "content": "HTTP/1.1 200 OK\n{\n  \"user\": {\n    \"id\": 123,\n    \"first_name\": \"Bob\",\n    \"last_name\": \"Smith\",\n    \"image_original_url\": \"http://example.com/image.jpg\",\n    \"email\": \"email@example.com\",\n    \"is_admin\": true\n  }\n}",
           "type": "json"
         }
       ]

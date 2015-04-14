@@ -115,6 +115,7 @@ module.exports = {
    * @apiSuccess {Number} stand.updates_count Updates count
    * @apiSuccess {Number} stand.duration Duration in days
    * @apiSuccess {Number} stand.user User ID
+   * @apiSuccess {String} stand.goal_result Goal result
    * @apiSuccess {Object} stand.profile Profile object
    * @apiSuccess {String} stand.profile.full_description Full Description
    *
@@ -130,6 +131,7 @@ module.exports = {
    *       "goal": 100,
    *       "category": "Planet",
    *       "user": 123,
+   *       "goal_result": "Some text here",
    *       "profile": {
    *         "full_description": "Full description here ...",
    *       },

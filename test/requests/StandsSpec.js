@@ -19,6 +19,7 @@ var standSchema = joi.object({
 var standFullSchema = standSchema.keys({
   duration: joi.number().integer().required(),
   user: joi.number().integer().required(),
+  goal_result: joi.string().required(),
   profile: joi.object({
     full_description: joi.string().required()
   }).required()
@@ -497,7 +498,9 @@ describe('PUT /stands/:id.json', function() {
       goal_result: 'newresult',
       goal: 101,
       duration: 31,
-      full_description: 'newfulldescr'
+      profile: {
+        full_description: 'newfulldescr'
+      }
     };
 
     DatabaseCleaner.clean(['stands', 'users'], function() {
@@ -516,6 +519,7 @@ describe('PUT /stands/:id.json', function() {
           Factory.create('stand', {user: user.id})
         ], function(err, data) {
           factoryData = data;
+          standData.category = factoryData[0].category;
           // Create a stand profile
           async.series([
             Factory.create('standProfile', {stand: factoryData[0].id})
@@ -539,15 +543,16 @@ describe('PUT /stands/:id.json', function() {
           var savedData = {
             title: stand.title,
             image_original_url: stand.image_original_url,
+            category: stand.category,
             youtube: stand.youtube,
             description: stand.description,
             goal_result: stand.goal_result,
             goal: stand.goal,
             duration: stand.duration
           };
-          var fullDescription = standData.full_description;
+          var fullDescription = standData.profile.full_description;
           delete standData._csrf;
-          delete standData.full_description;
+          delete standData.profile;
           expect(savedData).to.be.eql(standData);
 
           // Making sure Stand Profile was updated
