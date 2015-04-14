@@ -12,6 +12,8 @@
  * http://sailsjs.org/#/documentation/reference/sails.config/sails.config.session.html
  */
 
+var redisConfig = require(__dirname + '/../lib/RedisClient').config();
+
 module.exports.session = {
 
   /***************************************************************************
@@ -41,7 +43,13 @@ module.exports.session = {
   * session store that can be shared across multiple Sails.js servers        *
   ***************************************************************************/
 
-  // adapter: 'redis',
+  adapter: 'redis',
+  prefix: 'sess:',
+  host: redisConfig.host,
+  port: redisConfig.port,
+  ttl: 60 * 60, // redis ttl in seconds
+  pass: redisConfig.auth,
+  db: redisConfig.db
 
   /***************************************************************************
   *                                                                          *
