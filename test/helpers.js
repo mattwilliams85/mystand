@@ -20,6 +20,18 @@ global.request = require('supertest');
 global.DatabaseCleaner = require(__dirname + '/../lib/DatabaseCleaner')();
 global.Factory = require('./factory')();
 
+global.agent = {}; // Actual agent will be defined in test/hooks.js
+global.csrfToken = ''; // Actual csrfToken will be defined in test/hooks.js
+
+global.resetCSRF = function(done) {
+  agent.get('/').end(function(err, res) {
+    var regExp = /\_csrf\:\ \"([^"]+)/g;
+    csrfToken = regExp.exec(res.text)[1];
+
+    done(err);
+  });
+};
+
 global.withSignIn = function(userData, cb) {
   if (typeof(userData) === 'function') {
     cb = userData;
@@ -35,13 +47,15 @@ global.withSignIn = function(userData, cb) {
   async.series([
     Factory.create('user', data)
   ], function(err, factoryData) {
-    agent
+    resetCSRF(function() {
+      agent
       .post('/login.json')
       .send({_csrf: csrfToken, email: data.email, password: data.password})
       .end(function(err, res) {
         expect(res.statusCode).to.eql(200);
         return cb(null, factoryData[0]);
       });
+    });
   });
 };
 

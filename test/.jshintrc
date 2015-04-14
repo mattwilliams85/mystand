@@ -39,6 +39,7 @@
     "withSignIn",
     "redisClient",
     "formattedDate",
-    "daysFromDate"
+    "daysFromDate",
+    "resetCSRF"
   ]
 }

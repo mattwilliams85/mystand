@@ -3,9 +3,6 @@
 var Sails = require('sails');
 global.redisClient = require(__dirname + '/../lib/RedisClient').client();
 
-global.agent = {}; // Actual agent will be defined on sails lift callback in this file
-global.csrfToken = ''; // Actual csrfToken will be defined on sails lift callback in this file
-
 before(function(done) {
   // Clear Redis db
   redisClient.flushdb();
@@ -20,11 +17,7 @@ before(function(done) {
     if (err) return done(err);
     // Here you can load fixtures, etc.
     agent = request.agent(sails.hooks.http.app);
-    // Request csrftoken
-    agent.get('/').end(function(err, res) {
-      var regExp = /\_csrf\:\ \"([^"]+)/g;
-      csrfToken = regExp.exec(res.text)[1];
-
+    resetCSRF(function(err) {
       done(err, sails);
     });
   });
