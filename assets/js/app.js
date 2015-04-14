@@ -8,14 +8,14 @@ var myStandApp = angular.module('myStandApp', [
   'ngSails'
 ]);
 
-myStandApp.run(['$rootScope', '$location', '$timeout', 'CurrentUser',
-  function ($rootScope, $location, $timeout, CurrentUser) {
+myStandApp.run(['$rootScope', '$location', '$timeout', '$sails', 'CurrentUser',
+  function ($rootScope, $location, $timeout, $sails, CurrentUser) {
     $rootScope.currentUser = {};
     $rootScope.isSignedIn = !!SignedIn;
     /*
      * Fill in User object with data if user is signed in but object is empty
     */
-    $rootScope.$on('$includeContentLoaded', function(event) {
+    $rootScope.$on('$includeContentLoaded', function() {
       if ($rootScope.isSignedIn) {
         CurrentUser.get().then(function(data) {
           $rootScope.currentUser = data;
@@ -49,7 +49,12 @@ myStandApp.run(['$rootScope', '$location', '$timeout', 'CurrentUser',
 
     $rootScope.readyHeader = function() {
       $(document).foundation();
-    }
+    };
+
+    $rootScope.listenToModel = function(modelName, cb) {
+      $sails._raw.removeEventListener(modelName);
+      $sails.on(modelName, cb);
+    };
 
     // Prevent A-sync issue with Foundation.js
     $timeout(function() {

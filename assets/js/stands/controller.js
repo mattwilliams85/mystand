@@ -1,8 +1,8 @@
 'use strict';
 
-function StandsCtrl($rootScope, $scope, $location, $routeParams, $sails, Stand, StandUpdate, StandAction, Profile, Category, Flag) {
+function StandsCtrl($rootScope, $scope, $location, $routeParams, Stand, StandUpdate, StandAction, Profile, Category, Flag) {
   this.init($scope, $location);
-  this.fetch($rootScope, $scope, $location, $routeParams, $sails, Stand, StandUpdate, StandAction, Profile, Category);
+  this.fetch($rootScope, $scope, $location, $routeParams, Stand, StandUpdate, StandAction, Profile, Category);
 
   $scope.stand = {};
   $scope.author = {};
@@ -17,8 +17,8 @@ function StandsCtrl($rootScope, $scope, $location, $routeParams, $sails, Stand, 
   $scope.page = 0;
 
   // Listen for updates
-  $sails.on('stand', function(message) {
-    // console.log('received message', message.data);
+  $scope.listenToModel('stand', function(message) {
+    console.log('received message', message.data);
     if (message.verb === 'updated') {
       $scope.stand.actions_count = message.data.actions_count;
     }
@@ -194,7 +194,7 @@ StandsCtrl.prototype.init = function($scope, $location) {
   if (/\/start/.test($location.path())) return $scope.mode = 'new';
 };
 
-StandsCtrl.prototype.fetch = function($rootScope, $scope, $location, $routeParams, $sails, Stand, StandUpdate, StandAction, Profile, Category) {
+StandsCtrl.prototype.fetch = function($rootScope, $scope, $location, $routeParams, Stand, StandUpdate, StandAction, Profile, Category) {
   if ($scope.mode === 'show') {
     $scope.fullDetailsHtml = '';
 
@@ -256,5 +256,5 @@ StandsCtrl.prototype.fetch = function($rootScope, $scope, $location, $routeParam
   }
 };
 
-StandsCtrl.$inject = ['$rootScope', '$scope', '$location', '$routeParams', '$sails', 'Stand', 'StandUpdate', 'StandAction', 'Profile','Category','Flag'];
+StandsCtrl.$inject = ['$rootScope', '$scope', '$location', '$routeParams', 'Stand', 'StandUpdate', 'StandAction', 'Profile','Category','Flag'];
 myStandControllers.controller('StandsCtrl', StandsCtrl);
