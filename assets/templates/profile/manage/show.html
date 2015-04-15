@@ -7,9 +7,19 @@
     <ng-include src="'assets/templates/profile/show.html'"></ng-include>
 
     <div class="nav-box">
-      <section class="profile-manage-section" ng-show="!editStand.category">
+      <section class="profile-manage-section">
         <div class="row stand-row">
+          <a data-options="align:bottom; pip: center" data-dropdown="sort_by_dropdown" class="button sort-by left">Sort By<i class="fa fa-chevron-down right"></i></a>
+          <ul id="sort_by_dropdown" class="f-dropdown sort-by-dropdown" data-dropdown-content>
+            <li ng-class="{'selected': !filter}"><a ng-click="selectSort('active')">active</a></li>
+            <li ng-class="{'selected': filter === 'inactive'}"><a ng-click="selectSort('inactive')">inactive</a></li>
+            <li ng-class="{'selected': filter === 'closed'}"><a ng-click="selectSort('closed')">closed</a></li>
+          </ul>
           <a ng-href="/start"><div class="ms-button-transparent black uppercase right create-button">create stand &nbsp; <i class="fa fa-plus"></i></div></a>
+          <div ng-show="tabData['manage'].length === 0" class="clearfix">
+            <br>
+            <h4> You have no {{filter}} stands at this time.</h4>
+          </div>
           <ul class="large-block-grid-4">
             <a ng-href="stands/{{stand.id}}">
               <li class="stand-column" ng-repeat="stand in tabData['manage']">
@@ -34,137 +44,6 @@
 
         <div ng-if="showLoadMore" class="load-more-wrapper">
           <button ng-click="loadMore('manage')" class="load-more">Load more</button>
-        </div>
-      </section>
-
-      <section class="create-stand-section ms-create-page edit-stand-section" ng-show="editStand.category">
-        <div class="row narrow">
-          <div class="large-12 columns">
-            <form name="form" ng-submit="publishStand()" novalidate autocomplete='off'>
-              <div class="field-div">
-                <input 
-                  class="input-field" 
-                  ng-class="{'input-alert': formErrorMessages['title']}" 
-                  ng-model='editStand.title' 
-                  id='stand_title' 
-                  name='stand_title' 
-                  type='text' 
-                  ng-required='true'
-                  ng-value="editStand.title">
-                </input>
-                <label ng-class="{'input-alert': formErrorMessages['title']}" class="input-label">title</label> 
-              </div>
-              <div class="field-div">
-                <input 
-                  class="input-field" 
-                  ng-class="{'input-alert': formErrorMessages['featured']}" 
-                  ng-model='editStand.image_original_url' 
-                  id='stand_featured' 
-                  name='stand_featured' 
-                  type='text' 
-                  ng-required='true'
-                  ng-value="editStand.image_original_url">
-                </input>
-                <label ng-class="{'input-alert': formErrorMessages['image_original_url']}" class="input-label">Featured Image/Video</label> 
-              </div>
-              <div class="field-div">
-                <textarea 
-                  class="input-field area short" 
-                  ng-minlength="1"
-                  ng-class="{'input-alert': formErrorMessages['description'], 'ng-invalid': editStand.description.length > 144}" 
-                  ng-model='editStand.description' 
-                  id='stand_description' 
-                  name='stand_description' 
-                  type='text' 
-                  ng-required='true'
-                  ng-value='editStand.description' >
-                </textarea>
-                <label ng-class="{'input-alert': formErrorMessages['description']}" class="input-label area">short description</label>
-                <span class="counter">{{144 - editStand.description.length}} Characters</span>
-              </div>
-              <div class="field-div text-angular-wrapper">
-                <div 
-                  text-angular
-                  class="input-field area long" 
-                  ng-class="{'input-alert': formErrorMessages['full_description']}" 
-                  ng-model='editStand.profile.full_description' 
-                  id='stand_full' 
-                  name='stand_full' 
-                  type='text' 
-                  ng-required='true'
-                  ng-value='editStand.profile.full_description' 
-                  ta-toolbar="[
-                    ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p', 'pre'],
-                    ['bold', 'italics', 'underline', 'strikeThrough', 'ul', 'ol', 'redo', 'undo', 'clear'],
-                    ['justifyLeft', 'justifyCenter', 'justifyRight', 'indent', 'outdent'],
-                    ['insertImage','insertLink', 'insertVideo']
-                  ]">
-                </div>
-                <label ng-class="{'input-alert': formErrorMessages['full_description']}" class="input-label area">full description</label>
-              </div>
-              <div class="field-div">
-                <select 
-                  class="input-field" 
-                  ng-class="{'input-alert': formErrorMessages['category']}" 
-                  ng-model="editStand.category"
-                  id='stand_category' 
-                  name='stand_category' 
-                  type='text' 
-                  ng-required='true'
-                  ng-value="editStand.category"
-                  ng-options="opt.id as opt.label for opt in options.categories"
-                  >
-                </select>
-                <label ng-class="{'input-alert': formErrorMessages['category']}" class="input-label select">Category</label> 
-              </div>
-              <div class="field-div">
-                <select 
-                  class="input-field" 
-                  ng-class="{'input-alert': formErrorMessages['duration']}"
-                  ng-model='editStand.duration'
-                  id='stand_duration' 
-                  name='stand_duration' 
-                  type='text' 
-                  ng-required='true'
-                  ng-options="opt.value as opt.label for opt in options.duration"
-                  ng-value='editStand.duration'>
-                </select>
-                <label ng-class="{'input-alert': formErrorMessages['duration']}" class="input-label select">duration</label> 
-              </div>
-              <div class="field-div">
-                <select 
-                  class="input-field" 
-                  ng-class="{'input-alert': formErrorMessages['goal']}" 
-                  ng-model='editStand.goal'
-                  id='stand_goal' 
-                  name='stand_goal' 
-                  type='text' 
-                  ng-required='true'
-                  ng-options="opt.value as opt.label for opt in options.goal"
-                  ng-value='editStand.goal'>
-                </select>
-                <label ng-class="{'input-alert': formErrorMessages['goal']}" class="input-label select">goal</label> 
-              </div>
-              <div class="field-div">
-                <textarea 
-                  class="input-field area short" 
-                  my-maxlength="144"
-                  ng-class="{'input-alert': formErrorMessages['goal_result'], 'ng-invalid': editStand.goal_result.length > 144}"  
-                  ng-model='editStand.goal_result' 
-                  id='stand_result' 
-                  name='stand_result' 
-                  type='text' 
-                  ng-required='true'
-                  ng-value='editStand.goal_result' >
-                </textarea>
-                <label ng-class="{'input-alert': formErrorMessages['goal_result']}" class="input-label area">action description</label>
-                <span class="counter">{{144 - editStand.goal_result.length}} Characters</span>
-              </div>
-              <div ng-show="!editStand.is_published && !editMode" class="ms-button-transparent black right cancel" ng-click="publishStand()">Publish</div>
-              <div class="ms-button-transparent black right cancel" ng-click="updateStand()">Update</div>
-              <div class="ms-button-transparent black right cancel" ng-click="editStand = {}">Cancel</div>
-            </form>
-          </div>
         </div>
       </section>
     </div>

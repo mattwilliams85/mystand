@@ -38,8 +38,8 @@
         </div>
 
         <div class="large-4 columns">
-          <a data-options="align:bottom; pip: center" data-dropdown="sort_by_dropdown" class="button sort-by">Sort By</a>
-          <ul id="sort_by_dropdown" class="f-dropdown" data-dropdown-content>
+          <a data-options="align:bottom; pip: center" data-dropdown="sort_by_dropdown" class="button sort-by">Sort By<i class="fa fa-chevron-down right"></i></a>
+          <ul id="sort_by_dropdown" class="f-dropdown sort-by-dropdown" data-dropdown-content>
             <li ng-class="{'selected': !sortBy}"><a ng-click="selectSort('newest')">newest</a></li>
             <li ng-class="{'selected': sortBy === 'oldest'}"><a ng-click="selectSort('oldest')">oldest</a></li>
             <li ng-class="{'selected': sortBy === 'popular'}"><a ng-click="selectSort('popular')">popularity</a></li>

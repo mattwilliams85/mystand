@@ -17,11 +17,11 @@
       <span class="count-detail uppercase">activism score</span>
     </div> 
     <div class="large-2 columns">
-      <span class="count">!{{currentUser.bystanders}}</span>
+      <span class="count">{{currentUser.bystanders}}</span>
       <span class="count-detail uppercase">bystanders</span>
     </div> 
     <div class="large-2 columns">
-      <span class="count">!{{currentUser.mystanders}}</span>
+      <span class="count">{{currentUser.mystanders}}</span>
       <span class="count-detail uppercase">mystanders</span>
     </div> 
   </div>
@@ -29,10 +29,10 @@
 
 <div class="center-nav-bar">
   <div class="row">
-  <li ng-class="{'active': mode === 'details'}" ng-click="changeTab('details')">profile</li>
-  <li ng-class="{'active': mode === 'manage'}" ng-click="changeTab('manage')">manage stands</li>
-  <li ng-class="{'active': mode === 'activity'}" ng-click="changeTab('activity')">my activity</li>
-  <li ng-class="{'active': mode === 'notifications'}" ng-click="changeTab('notifications')">notifications</li>
+  <a ng-href="/profile" ng-click="mode = bio"><li ng-class="{'active': mode === 'bio'}">profile</li></a>
+  <a ng-href="/profile/manage" ng-click="mode = manage"><li ng-class="{'active': mode === 'manage'}">manage stands</li></a>
+  <a ng-href="/profile/activity" ng-click="mode = activity"><li ng-class="{'active': mode === 'activity'}">my activity</li></a>
+  <a ng-href="/profile/notifications" ng-click="mode = notifications"><li ng-class="{'active': mode === 'notifications'}">notifications</li></a>
   <li class="scroll-top-button" ng-click="scrollUp()"><i class="fa fa-chevron-up"></i>&nbsp;&nbsp;back to top </li>
   </div>
 </div>

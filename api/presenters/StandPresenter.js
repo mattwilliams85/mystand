@@ -17,7 +17,10 @@ module.exports = function toJSON(opts) {
     goal: obj.goal,
     actions_count: obj.actions_count || 0,
     updates_count: obj.updates_count || 0,
-    closed_at: obj.closed_at.getTime()
+    mystanders: obj.mystanders || 0,
+    bystanders: obj.bystanders || 0,
+    closed_at: obj.closed_at.getTime(),
+    is_public: obj.is_public
   };
   // Category
   if (typeof obj.category === 'number') {

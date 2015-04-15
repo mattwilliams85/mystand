@@ -91,6 +91,15 @@
     .ms-button-transparent {
       width:170px;
     }
+    .close {
+      margin-top: 50px;
+      margin-right:15px;
+      color:#aa0000;
+      cursor:pointer;
+      &:hover {
+        color:#ee0000;
+      }
+    }
   }
 
   .profile-manage-section {
@@ -133,7 +142,7 @@
         }
       }
       .details {
-        padding:10px 25px;
+        padding:10px 15px;
         height:155px;
         .bottom-part {
           position:absolute;
@@ -141,10 +150,32 @@
           left:15px;
         }
         .progress {
+          width:100%;
           margin-bottom:.5em;
           margin-top:1em;
           margin-bottom:0px;
         }
+      }
+      .top-row {
+        margin-top:2px;
+      }
+      .bottom-row {
+        line-height:5pt;
+      }
+      .social-icon-box {
+        margin:20px 10px;
+        .social-icon {
+          margin:0 5px;
+          cursor:pointer;
+        }
+      }
+      .activity-detail {
+        font-size:9pt;
+        color:#aaa;
+      }
+      .activity-count {
+        font-size:11pt;
+        font-weight:600;
       }
     }
   }

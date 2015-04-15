@@ -111,6 +111,7 @@ describe('PUT /users/:id.json', function() {
     .put('/users/' + user.id + '.json')
     .send(updateUserData)
     .end(function(err, res) {
+console.log('here ---', res.body);
       expect(res.statusCode).to.eql(200);
       expect(Object.keys(res.body).length).to.equal(0);
 

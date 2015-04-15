@@ -1,3 +1,78 @@
-<div class="row">
-  <h1>ACTVITY</h1>
+<div class="off-canvas-wrap ms-profile-page" data-offcanvas>
+  <div class="inner-wrap">
+    <div class="invert-header">
+      <ng-include onload="readyHeader()" src="'assets/templates/shared/header.html'"></ng-include>
+    </div>
+
+    <ng-include src="'assets/templates/profile/show.html'"></ng-include>
+
+    <div class="nav-box">
+      <section class="profile-manage-section activity">
+        <div class="row stand-row">
+          <a data-options="align:bottom; pip: center" data-dropdown="sort_by_dropdown" class="button sort-by left">Sort By<i class="fa fa-chevron-down right"></i></a>
+          <ul id="sort_by_dropdown" class="f-dropdown sort-by-dropdown" data-dropdown-content>
+            <li ng-class="{'selected': !filter}"><a ng-click="selectSort('bookmark')">bookmarked</a></li>
+            <li ng-class="{'selected': filter === 'active'}"><a ng-click="selectSort('inactive')">active</a></li>
+            <li ng-class="{'selected': filter === 'closed'}"><a ng-click="selectSort('closed')">closed</a></li>
+          </ul>
+
+          <div ng-show="tabData['activity'].length === 0" class="clearfix">
+            <br>
+            <h4> No {{filter}} stands found.</h4>
+          </div>
+          <ul class="large-block-grid-4">
+            <a ng-href="stands/{{stand.id}}">
+              <li class="stand-column" ng-repeat="stand in tabData['activity']">
+                <div class="user-stand">
+                  <div class="user-img">
+                    <img ng-src='{{stand.image_original_url}}'>
+                  </div>
+                  <div class="details">
+                    <h5 class="uppercase"><a ng-href="/stands/{{stand.id}}">{{stand.title}}</a></h5>
+                    <div class="progress">
+                      <span class="meter" style="width: {{stand.progressPercent}}%"></span>
+                    </div>
+                    <div class="row top-row">
+                      <div class="large-4 columns">
+                        <span class="activity-count">{{stand.mystanders}}</span>
+                      </div>
+                      <div class="large-4 columns">
+                        <span class="activity-count">{{stand.mystanders}}</span> 
+                      </div>
+                      <div class="large-4 columns">
+                        <span class="activity-count">{{stand.days_count}}</span>
+                      </div>
+                    </div>
+                    <div class="row bottom-row">
+                      <div class="large-4 columns">
+                        <span class="activity-detail">MyStanders</span>
+                      </div>
+                      <div class="large-4 columns">
+                        <span class="activity-detail">ByStanders</span>
+                      </div>
+                      <div class="large-4 columns">
+                        <span class="activity-detail">Days Left!</span>
+                      </div>
+                    </div>
+                    <div class="social-icon-box">
+                    <div class="row">
+                      <img class="social-icon" src="/images/facebook_icon.png">
+                      <img class="social-icon" src="/images/twitter_icon.png">
+                      <img class="social-icon" src="/images/google_icon.png">
+                    </div>
+                    </div>
+                  </div>
+                </div>
+              </li>
+            </a>
+          </ul>
+        </div>
+
+        <div ng-if="showLoadMore" class="load-more-wrapper">
+          <button ng-click="loadMore('manage')" class="load-more">Load more</button>
+        </div>
+      </section>
+    </div>
+
+  </div>
 </div>

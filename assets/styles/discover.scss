@@ -248,40 +248,6 @@
       }
     }
 
-    .sort-by {
-      background-repeat: no-repeat;
-      background-color: initial;
-      background-image: url("/images/discover/sort-by-icon.png");
-      background-position: 95% center;
-      border: 2px solid #323131;
-      color: #000;
-      float: right;
-      text-transform: uppercase;
-      padding: .5rem 2.5rem .5rem 1rem;
-    }
-
-    .f-dropdown {
-      background: #323131;
-      border: none;
-      color: #fff;
-      text-transform: uppercase;
-
-      &:before, &:after {
-        display: none;
-      }
-
-      a {
-        color: #fff;
-        padding: 0.5rem 1rem;
-      }
-
-      li {
-        &.selected, &:hover {
-          background: #78bbb3;
-        }
-      }
-    }
-
     .stand-item {
       border: 1px solid #d8d8d8;
       height: 405px;

@@ -7,7 +7,7 @@
     <ng-include src="'assets/templates/profile/show.html'"></ng-include>
 
     <div class="nav-box">
-      <section class="create-stand-section ms-create-page edit-stand-section" ng-show="editStand.category">
+      <section class="create-stand-section ms-create-page edit-stand-section">
         <div class="row narrow">
           <div class="large-12 columns">
             <form name="form" ng-submit="publishStand()" novalidate autocomplete='off'>
@@ -130,9 +130,12 @@
                 <label ng-class="{'input-alert': formErrorMessages['goal_result']}" class="input-label area">action description</label>
                 <span class="counter">{{144 - editStand.goal_result.length}} Characters</span>
               </div>
-              <div ng-show="!editStand.is_published && !editMode" class="ms-button-transparent black right cancel" ng-click="publishStand()">Publish</div>
+              <div ng-show="!editStand.is_public" class="ms-button-transparent black right cancel" ng-click="updateStand()">Publish</div>
               <div class="ms-button-transparent black right cancel" ng-click="updateStand()">Update</div>
-              <div class="ms-button-transparent black right cancel" ng-click="editStand = {}">Cancel</div>
+              <a ng-href="/profile/manage"><div class="ms-button-transparent black right cancel">Cancel</div></div></a>
+              <br>
+
+              <span ng-show="editStand.is_public && editStand.closed_at > today" class="close right clearfix" ng-click="closeStand()">Permanently close this stand</span>
             </form>
           </div>
         </div>
