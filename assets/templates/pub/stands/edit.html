@@ -1,0 +1,146 @@
+<div class="off-canvas-wrap ms-profile-page" data-offcanvas>
+  <div class="inner-wrap">
+    <div class="invert-header">
+      <ng-include onload="readyHeader()" src="'assets/templates/pub/shared/header.html'"></ng-include>
+    </div>
+
+    <ng-include src="'assets/templates/pub/profile/show.html'"></ng-include>
+
+    <div class="nav-box">
+      <section class="create-stand-section ms-create-page edit-stand-section">
+        <div class="row narrow">
+          <div class="large-12 columns">
+            <form name="form" ng-submit="publishStand()" novalidate autocomplete='off'>
+              <div class="field-div">
+                <input
+                  class="input-field"
+                  ng-class="{'input-alert': formErrorMessages['title']}"
+                  ng-model='editStand.title'
+                  id='stand_title'
+                  name='stand_title'
+                  type='text'
+                  ng-required='true'
+                  ng-value="editStand.title">
+                </input>
+                <label ng-class="{'input-alert': formErrorMessages['title']}" class="input-label">title</label>
+              </div>
+              <div class="field-div">
+                <input
+                  class="input-field"
+                  ng-class="{'input-alert': formErrorMessages['featured']}"
+                  ng-model='editStand.image_original_url'
+                  id='stand_featured'
+                  name='stand_featured'
+                  type='text'
+                  ng-required='true'
+                  ng-value="editStand.image_original_url">
+                </input>
+                <label ng-class="{'input-alert': formErrorMessages['image_original_url']}" class="input-label">Featured Image/Video</label>
+              </div>
+              <div class="field-div">
+                <textarea
+                  class="input-field area short"
+                  ng-minlength="1"
+                  ng-class="{'input-alert': formErrorMessages['description'], 'ng-invalid': editStand.description.length > 144}"
+                  ng-model='editStand.description'
+                  id='stand_description'
+                  name='stand_description'
+                  type='text'
+                  ng-required='true'
+                  ng-value='editStand.description' >
+                </textarea>
+                <label ng-class="{'input-alert': formErrorMessages['description']}" class="input-label area">short description</label>
+                <span class="counter">{{144 - editStand.description.length}} Characters</span>
+              </div>
+              <div class="field-div text-angular-wrapper">
+                <div
+                  text-angular
+                  class="input-field area long"
+                  ng-class="{'input-alert': formErrorMessages['full_description']}"
+                  ng-model='editStand.profile.full_description'
+                  id='stand_full'
+                  name='stand_full'
+                  type='text'
+                  ng-required='true'
+                  ng-value='editStand.profile.full_description'
+                  ta-toolbar="[
+                    ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p', 'pre'],
+                    ['bold', 'italics', 'underline', 'strikeThrough', 'ul', 'ol', 'redo', 'undo', 'clear'],
+                    ['justifyLeft', 'justifyCenter', 'justifyRight', 'indent', 'outdent'],
+                    ['insertImage','insertLink', 'insertVideo']
+                  ]">
+                </div>
+                <label ng-class="{'input-alert': formErrorMessages['full_description']}" class="input-label area">full description</label>
+              </div>
+              <div class="field-div">
+                <select
+                  class="input-field"
+                  ng-class="{'input-alert': formErrorMessages['category']}"
+                  ng-model="editStand.category"
+                  id='stand_category'
+                  name='stand_category'
+                  type='text'
+                  ng-required='true'
+                  ng-value="editStand.category"
+                  ng-options="opt.id as opt.label for opt in options.categories"
+                  >
+                </select>
+                <label ng-class="{'input-alert': formErrorMessages['category']}" class="input-label select">Category</label>
+              </div>
+              <div class="field-div">
+                <select
+                  class="input-field"
+                  ng-class="{'input-alert': formErrorMessages['duration']}"
+                  ng-model='editStand.duration'
+                  id='stand_duration'
+                  name='stand_duration'
+                  type='text'
+                  ng-required='true'
+                  ng-options="opt.value as opt.label for opt in options.duration"
+                  ng-value='editStand.duration'>
+                </select>
+                <label ng-class="{'input-alert': formErrorMessages['duration']}" class="input-label select">duration</label>
+              </div>
+              <div class="field-div">
+                <select
+                  class="input-field"
+                  ng-class="{'input-alert': formErrorMessages['goal']}"
+                  ng-model='editStand.goal'
+                  id='stand_goal'
+                  name='stand_goal'
+                  type='text'
+                  ng-required='true'
+                  ng-options="opt.value as opt.label for opt in options.goal"
+                  ng-value='editStand.goal'>
+                </select>
+                <label ng-class="{'input-alert': formErrorMessages['goal']}" class="input-label select">goal</label>
+              </div>
+              <div class="field-div">
+                <textarea
+                  class="input-field area short"
+                  my-maxlength="144"
+                  ng-class="{'input-alert': formErrorMessages['goal_result'], 'ng-invalid': editStand.goal_result.length > 144}"
+                  ng-model='editStand.goal_result'
+                  id='stand_result'
+                  name='stand_result'
+                  type='text'
+                  ng-required='true'
+                  ng-value='editStand.goal_result' >
+                </textarea>
+                <label ng-class="{'input-alert': formErrorMessages['goal_result']}" class="input-label area">action description</label>
+                <span class="counter">{{144 - editStand.goal_result.length}} Characters</span>
+              </div>
+              <div ng-show="!editStand.is_public" class="ms-button-transparent black right cancel" ng-click="updateStand()">Publish</div>
+              <div class="ms-button-transparent black right cancel" ng-click="updateStand()">Update</div>
+              <a ng-href="/profile/manage"><div class="ms-button-transparent black right cancel">Cancel</div></div></a>
+              <br>
+
+              <span ng-show="editStand.is_public && editStand.closed_at > today" class="close right clearfix" ng-click="closeStand()">Permanently close this stand</span>
+            </form>
+          </div>
+        </div>
+      </section>
+    </div>
+
+  </div>
+</div>

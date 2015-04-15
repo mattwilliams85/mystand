@@ -100,6 +100,20 @@ module.exports.routes = {
   'get /auth/google': 'SessionsController.google',
   'get /auth/google/callback': 'SessionsController.googleCallback',
 
+
+  /**
+   * Admin routes
+   *
+   */
+  '/admin*': {
+    view: 'index',
+    locals: {
+      layout: 'layout-admin'
+    },
+    skipAssets: true
+  },
+
+
   // All other non asset routes will render a default layout with no content
   '*': {
     view: 'index',

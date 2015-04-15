@@ -1,0 +1,44 @@
+<div class="off-canvas-wrap ms-profile-page" data-offcanvas>
+  <div class="inner-wrap">
+    <div class="invert-header">
+      <ng-include onload="readyHeader()" src="'assets/templates/pub/shared/header.html'"></ng-include>
+    </div>
+
+    <ng-include src="'assets/templates/pub/profile/show.html'"></ng-include>
+
+    <div class="nav-box">
+      <section class="profile-details-section">
+        <div class="row">
+          <div ng-show="editMode" class="ms-button-transparent black uppercase right" ng-click="editMode = !editMode; updateProfile();">update</div>
+          <div ng-show="editMode" class="ms-button-transparent black uppercase right cancel" ng-click="editMode = !editMode; reset()">cancel</div>
+          <div ng-show="!editMode" class="ms-button-transparent black uppercase right" ng-click="editMode = !editMode; backup(profile)">edit profile</div>
+          <br>
+          <div class="clearfix"></div>
+          <div class="large-4 columns">
+            <span class="detail-title uppercase">url</span>
+          </div>
+          <div class="large-8 columns">
+            <div ng-show="!editMode"  class="detail-box">
+              <a ng-href="{{profile.website}}"><span class="detail website">{{profile.website}}</span></a>
+            </div>
+            <input ng-model="profile.website" ng-show="editMode" class="detail input website focusme" ng-value="profile.website" type="text"></input>
+          </div>
+        </div>
+        <br><br>
+        <div class="row">
+          <div class="large-4 columns">
+            <span class="detail-title uppercase">bio</span>
+          </div>
+          <div class="large-8 columns">
+            <div ng-show="!editMode" class="detail-box bio">
+              <span class="detail">{{profile.bio}}</span>
+            </div>
+            <textarea ng-model="profile.bio" ng-show="editMode" ng-focus="editMode" class="detail input bio" type="text"></textarea>
+          </div>
+        </div>
+        </div>
+      </section>
+
+    </div>
+  </div>
+</div>

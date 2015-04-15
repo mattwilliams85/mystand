@@ -10,7 +10,7 @@
     <!-- <link rel="stylesheet" href="/styles/importer.css"> -->
     <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700' rel='stylesheet' type='text/css'>
     <!--STYLES-->
-    <link rel="stylesheet" href="/styles/importer.css">
+    <link rel="stylesheet" href="/styles/pub/importer.css">
     <link rel="stylesheet" href="/bower_components/textAngular/src/textAngular.css">
     <!--STYLES END-->
     <script type="text/javascript">
@@ -19,9 +19,9 @@
   </head>
   <body>
     <ng-view autoscroll="true"></ng-view>
-    <ng-include src="'assets/templates/shared/footer.html'"></ng-include>
-    <ng-include src="'assets/templates/modals/sign-in.html'"></ng-include>
-    <ng-include src="'assets/templates/modals/dialogue.html'"></ng-include>
+    <ng-include src="'assets/templates/pub/shared/footer.html'"></ng-include>
+    <ng-include src="'assets/templates/pub/modals/sign-in.html'"></ng-include>
+    <ng-include src="'assets/templates/pub/modals/dialogue.html'"></ng-include>
 
     <script type="text/javascript">
       SignedIn = <%=req.session.user ? 'true' : 'false' %>;
@@ -29,7 +29,7 @@
 
     <!-- DO NOT REMOVE OR CHANGE THESE COMMENTS -- >
     <!--TEMPLATES-->
-    <script type="text/javascript" src="/jst.js"></script>
+    <script type="text/javascript" src="/pub/jst.js"></script>
     <!--TEMPLATES END-->
 
     <!-- DO NOT REMOVE OR CHANGE THESE COMMENTS -- >
@@ -46,26 +46,26 @@
     <script src="/bower_components/textAngular/dist/textAngular-rangy.min.js"></script>
     <script src="/bower_components/textAngular/dist/textAngular-sanitize.min.js"></script>
     <script src="/bower_components/textAngular/dist/textAngular.min.js"></script>
-    <script src="/js/app.js"></script>
-    <script src="/js/categories/service.js"></script>
-    <script src="/js/current-user/service.js"></script>
-    <script src="/js/discover/controller.js"></script>
-    <script src="/js/flags/service.js"></script>
-    <script src="/js/header/controller.js"></script>
-    <script src="/js/landing/controller.js"></script>
-    <script src="/js/landing/featuredStand.js"></script>
-    <script src="/js/landing/trendingStand.js"></script>
-    <script src="/js/profile/controller.js"></script>
-    <script src="/js/profile/service.js"></script>
-    <script src="/js/profile/userBookmark.js"></script>
-    <script src="/js/profile/userStand.js"></script>
-    <script src="/js/routes.js"></script>
-    <script src="/js/sign-in/controller.js"></script>
-    <script src="/js/sign-up/controller.js"></script>
-    <script src="/js/stand-actions/service.js"></script>
-    <script src="/js/stand-updates/service.js"></script>
-    <script src="/js/stands/controller.js"></script>
-    <script src="/js/stands/service.js"></script>
+    <script src="/js/pub/app.js"></script>
+    <script src="/js/pub/categories/service.js"></script>
+    <script src="/js/pub/current-user/service.js"></script>
+    <script src="/js/pub/discover/controller.js"></script>
+    <script src="/js/pub/flags/service.js"></script>
+    <script src="/js/pub/header/controller.js"></script>
+    <script src="/js/pub/landing/controller.js"></script>
+    <script src="/js/pub/landing/featuredStand.js"></script>
+    <script src="/js/pub/landing/trendingStand.js"></script>
+    <script src="/js/pub/profile/controller.js"></script>
+    <script src="/js/pub/profile/service.js"></script>
+    <script src="/js/pub/profile/userBookmark.js"></script>
+    <script src="/js/pub/profile/userStand.js"></script>
+    <script src="/js/pub/routes.js"></script>
+    <script src="/js/pub/sign-in/controller.js"></script>
+    <script src="/js/pub/sign-up/controller.js"></script>
+    <script src="/js/pub/stand-actions/service.js"></script>
+    <script src="/js/pub/stand-updates/service.js"></script>
+    <script src="/js/pub/stands/controller.js"></script>
+    <script src="/js/pub/stands/service.js"></script>
     <!--SCRIPTS END-->
   </body>
 </html>

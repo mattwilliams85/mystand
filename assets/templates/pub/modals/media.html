@@ -1,0 +1,29 @@
+<div id="media-modal-{{action.id}}" class="reveal-modal media-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+  <div class="inner-wrapper">
+    <div class="row flexed">
+      <div class="large-7 columns image-part">
+        <img ng-if="action.image_original_url" ng-src="{{action.image_original_url}}"/>
+        <iframe ng-if="!action.image_original_url"
+                class="modal-youtube-player"
+                id="player"
+                type="text/html"
+                width="100%"
+                ng-src="{{action.youtube}}"
+                frameborder="0"
+                modestbranding="1"
+                autohide="1"
+                showinfo="1"
+                controls="1";></iframe>
+      </div>
+      <div class="large-5 columns details-box">
+        <img class="avatar-tiny" src="http://www.musica100.com/assets/images/default_avatar.jpg"/><span class="uppercase inline author-title">{{actionUser.first_name}} {{actionUser.last_name}}</span>
+        <a ng-href="{{actionUser.website}}" ng-if="actionUser.website"><span class="detail" >{{actionUser.website}}</span></a>
+        <br>
+        <span class="detail">{{action.description}}</span>
+        <div class="icons-box">
+          <span class="detail"><img class="social-icon" src="/images/facebook_icon.png"><img class="social-icon" src="/images/twitter_icon.png"><img class="social-icon" src="/images/google_icon.png"><i class="fa fa-flag"></i></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

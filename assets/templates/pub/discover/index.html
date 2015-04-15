@@ -1,0 +1,83 @@
+<div class="off-canvas-wrap ms-discover-page" data-offcanvas>
+  <div class="inner-wrap">
+    <div class="invert-header">
+      <ng-include onload="readyHeader()" src="'assets/templates/pub/shared/header.html'"></ng-include>
+    </div>
+    <section class="discover-categories">
+      <div class="row">
+        <div class="large-12 columns">
+          <h3>Discover stands</h3>
+          <ul class="categories-list">
+            <li ng-repeat="category in categories" ng-mouseenter="hoverEffect(category.id)" ng-mouseleave="hoverEffect(0)">
+              <div class="category-wrapper">
+                <div class="category-bg category-{{category.id}} color" ng-class="{'zoom-out': hoverCategory == category.id, 'active': freshPage || categories[category.id - 1].active}"></div>
+                <div class="category-bg category-{{category.id}} bw" ng-class="{'zoom-out': hoverCategory == category.id}"></div>
+                <button ng-click="selectCategory(category.id)" class="button-title">{{category.title}}</button>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+    </section>
+
+    <section class="discover-stands">
+      <div class="row">
+        <div class="large-8 columns">
+          <div class="selected-keywords">
+            <span ng-if="searchQuery" class="keyword">
+              <a ng-click="unSelectQuery()" class="unselect">x</a>
+              <span>{{searchQuery}}</span>
+            </span>
+
+          <!--   <span ng-repeat="categoryId in selectedCategories" class="keyword">
+              <a ng-click="unSelectCategory(categoryId)" class="unselect">x</a>
+              <span>{{categoryName(categoryId)}}</span>
+            </span> -->
+          </div>
+        </div>
+
+        <div class="large-4 columns">
+          <a data-options="align:bottom; pip: center" data-dropdown="sort_by_dropdown" class="button sort-by">Sort By<i class="fa fa-chevron-down right"></i></a>
+          <ul id="sort_by_dropdown" class="f-dropdown sort-by-dropdown" data-dropdown-content>
+            <li ng-class="{'selected': !sortBy}"><a ng-click="selectSort('newest')">newest</a></li>
+            <li ng-class="{'selected': sortBy === 'oldest'}"><a ng-click="selectSort('oldest')">oldest</a></li>
+            <li ng-class="{'selected': sortBy === 'popular'}"><a ng-click="selectSort('popular')">popularity</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="row">
+        <div ng-if="!stands.length" class="large-12 columns">
+          <div class="get-started-box">
+            <h4>How fascinating! You are the first person to think of this. Now it's your turn to create a stand and make the world a better place!</h4>
+            <br>
+            <button class="start-button uppercase" ng-href="start"><h4>get started</h4></button>
+          </div>
+        </div>
+
+        <div ng-repeat="stand in stands" class="large-3 columns left">
+          <div class="stand-item">
+            <div class="image-wrapper">
+              <a ng-href="/stands/{{stand.id}}"><img ng-src='{{stand.image_original_url}}' /></a>
+            </div>
+            <div class="info-wrapper">
+              <h6><a ng-href="/stands/{{stand.id}}">{{stand.title}}</a></h6>
+              <i>#{{stand.category}}</i>
+              <p class="description">{{stand.description}}</p>
+              <div class="goal-progress"><div class="inner" style="width: {{stand.progressPercent}}%"></div></div>
+              <span class="count-detail">{{stand.actions_count}} {{stand.actions_count === 1 ? 'hero' : 'heroes'}} have taken this stand.</span>
+              <span class="count-detail">Let's get to {{stand.goal}}.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="clearfix"></div>
+
+      <div ng-if="showLoadMore" class="load-more-wrapper">
+        <button ng-click="loadMore()" class="load-more">Load more</button>
+      </div>
+    </section>
+  </div>
+</div>

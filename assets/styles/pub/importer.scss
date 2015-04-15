@@ -1,0 +1,62 @@
+/**
+ * pub/importer.scss
+ *
+ * By default, new Sails projects are configured to compile this file
+ * from SASS to CSS.  Unlike CSS files, SASS files are not compiled and
+ * included automatically unless they are imported below.
+ *
+ * The SASS files imported below are compiled and included in the order
+ * they are listed.  Mixins, variables, etc. should be imported first
+ * so that they can be accessed by subsequent SASS stylesheets.
+ *
+ * (Just like the rest of the asset pipeline bundled in Sails, you can
+ * always omit, customize, or replace this behavior with SASS, SCSS,
+ * or any other Grunt tasks you like.)
+ */
+
+// Foundation Settings
+$switch-active-color: #ade279;
+
+// Import zurb foundation framework
+@import "assets/bower_components/foundation/scss/foundation";
+// Import font awesome
+@import "../../bower_components/fontawesome/css/font-awesome.min.css";
+
+
+/*
+ * Slick Carousel mixins and variables
+ *
+ */
+$slick-dot-size: 24px;
+$slick-dot-color: white;
+$slick-font-path: '../../bower_components/slick-carousel/slick/fonts/';
+$slick-loader-path: '../../bower_components/slick-carousel/slick/';
+// Import Slick Carousel Structure CSS
+@import "../../bower_components/slick-carousel/slick/slick.scss";
+// Import Slick Carousel Visual CSS
+@import "../../bower_components/slick-carousel/slick/slick-theme.scss";
+
+
+/*
+ * MyStand mixins and variables
+ *
+ */
+@mixin vertical-align-center {
+  position: relative;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+$header-height: 100px;
+$header-height-small: 60px;
+
+@import 'main.scss';
+@import 'header.scss';
+@import 'footer.scss';
+@import 'landing.scss';
+@import 'discover.scss';
+@import 'stands.scss';
+@import 'utility.scss';
+@import 'create.scss';
+@import 'profile.scss';
