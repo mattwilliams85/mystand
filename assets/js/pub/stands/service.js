@@ -106,6 +106,23 @@ function Stand($http, $q, $sails) {
       return dfr.promise;
     },
 
+    /*
+    * Close a Stand
+    */
+    close: function(data) {
+    var dfr = $q.defer();
+    data._csrf = SAILS_LOCALS._csrf;
+
+    $http.put('/stands/' + data.id + '/close.json', data).success(function(res) {
+      dfr.resolve(res);
+    }).error(function(err) {
+      console.log('エラー', err);
+      dfr.reject(err);
+    });
+
+    return dfr.promise;
+    },
+
     /**
      * Get a stand
      */

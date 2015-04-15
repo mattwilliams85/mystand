@@ -2,7 +2,7 @@
 
 function ProfileCtrl($scope, $rootScope, $location, $http, CurrentUser, Profile, UserStand, UserBookmark, Stand, Category) {
 
-  $rootScope.tabUrl = "assets/templates/profile/bio/show.html"
+  $rootScope.tabUrl = "assets/templates/pub/profile/bio/show.html"
   $scope.profile = {};
   $scope.profileCopy = {};
   $scope.tabData = {
@@ -138,6 +138,8 @@ ProfileCtrl.prototype.init = function($scope, $location) {
 ProfileCtrl.prototype.fetch = function($scope, $rootScope, $location,  $http, CurrentUser, Profile, UserStand, UserBookmark, Stand, Category) {
 
   CurrentUser.get().then(function(data) {
+    if (!data.mystanders) data.mystanders = 0; 
+    if (!data.bystanders) data.bystanders = 0; 
     $rootScope.currentUser = data;
       angular.copy($rootScope.currentUser, $scope.profile);
 

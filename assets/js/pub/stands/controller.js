@@ -192,8 +192,7 @@ function StandsCtrl($rootScope, $scope, $location, $routeParams, Stand, StandUpd
   };
 
   var closeCallback = function() {
-    // $scope.editStand.duration = ;
-    // Stand.update($scope.editStand).then(updateSuccessCallback, standFailureCallback);
+    Stand.close($scope.editStand).then(updateSuccessCallback, standFailureCallback);
   }
 
   $scope.closeStand = function() {

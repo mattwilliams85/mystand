@@ -38,7 +38,7 @@ myStandApp.config(['$routeProvider', '$locationProvider', function($routeProvide
   //PROFILE ROUTES
 
   when('/profile', {
-    template: JST['assets/templates/profile/bio/show.html'],
+    template: JST['assets/templates/pub/profile/bio/show.html'],
     controller: 'ProfileCtrl'
   }).
 
