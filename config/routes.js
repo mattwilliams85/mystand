@@ -67,6 +67,7 @@ module.exports.routes = {
   'post /stands.json': 'StandsController.create',
   'put /stands/:id/publish.json': 'StandsController.publish',
   'put /stands/:id/unpublish.json': 'StandsController.unpublish',
+  'put /stands/:id/close.json': 'StandsController.close',
   'put /stands/:id.json': 'StandsController.update',
   'delete /stands/:id.json': 'StandsController.destroy',
   'get /featured-stands.json': 'FeaturedStandsController.index',

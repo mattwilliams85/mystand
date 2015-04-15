@@ -485,6 +485,73 @@ describe('PUT /stands/:id/unpublish.json', function() {
 });
 
 
+describe('PUT /stands/:id/close.json', function() {
+  var factoryData;
+
+  beforeEach(function(done) {
+    DatabaseCleaner.clean(['stands', 'users'], function() {
+      done();
+    });
+  });
+
+  describe('signed in user', function() {
+    var user,
+        twoDaysFromNow = daysFromDate(new Date(), 2);
+
+    beforeEach(function(done) {
+      withSignIn(function(err, data) {
+        user = data;
+        async.series([
+          Factory.create('stand', {user: user.id, closed_at: twoDaysFromNow})
+        ], function(err, data) {
+          factoryData = data;
+          done();
+        });
+      });
+    });
+
+    it('should publish a stand', function(done) {
+      agent
+      .put('/stands/' + factoryData[0].id + '/close.json')
+      .send({_csrf: csrfToken})
+      .end(function(err, res) {
+        expect(res.statusCode).to.eql(200);
+        expect(res.body).to.eql({});
+
+        // Making sure stand was closed
+        Stand.findOneById(factoryData[0].id).exec(function(err, stand) {
+          expect(err).to.be.null;
+          expect(stand.closed_at).to.be.below(new Date());
+          done();
+        });
+      });
+    });
+
+    describe('user does not own a stand', function() {
+      beforeEach(function(done) {
+        async.series([
+          Factory.create('stand', {user: 123})
+        ], function(err, data) {
+          factoryData = data;
+          done();
+        });
+      });
+
+      it('should return 403 forbidden', function(done) {
+        agent
+        .put('/stands/' + factoryData[0].id + '/close.json')
+        .send({_csrf: csrfToken})
+        .end(function(err, res) {
+          expect(res.statusCode).to.eql(403);
+          expect(Object.keys(res.body).length).to.equal(0);
+          done();
+        });
+      });
+    });
+  });
+});
+
+
 describe('PUT /stands/:id.json', function() {
   var factoryData, standData;
 

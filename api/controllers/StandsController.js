@@ -319,6 +319,38 @@ module.exports = {
 
 
   /**
+   * @api {put} /stands/:id/close Close a Stand
+   * @apiName CloseStand
+   * @apiGroup Stands
+   *
+   * @apiParam {Number} id Stand ID
+   *
+   * @apiSuccessExample Success-Response:
+   *   HTTP/1.1 200 OK
+   *   {}
+   */
+  close: function(req, res) {
+    User.auth(req.session.user, function(err, currentUser) {
+      if (err) return res.forbidden();
+
+      Stand.findOneById(req.param('id')).exec(function(err, stand) {
+        if (err) return res.status(500).json({error: 'Database error'});
+        if (currentUser.id !== stand.user) return res.forbidden();
+
+        Stand.update({id: stand.id}, {closed_at: new Date()}, function(err) {
+          if (err) {
+            console.log(err);
+            return res.status(500).json({error: 'Database error'});
+          }
+
+          return res.status(200).end();
+        });
+      });
+    });
+  },
+
+
+  /**
    * @api {put} /stands/:id Update a Stand
    * @apiName UpdateStand
    * @apiGroup Stands
