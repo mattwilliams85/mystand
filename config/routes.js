@@ -86,6 +86,7 @@ module.exports.routes = {
 
   // User Stands
   'get /users/:userId/stands.json': 'UserStandsController.index',
+  'get /users/:userId/stands/activity.json': 'UserStandsController.activity',
 
   // Flags
   'post /flags.json': 'FlagsController.create',

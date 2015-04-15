@@ -67,7 +67,7 @@ module.exports.policies = {
     show: []
   },
   UserStandsController: {
-    index: 'sessionAuth'
+    '*': 'sessionAuth'
   },
   StandActionsController: {
     create: 'sessionAuth'

@@ -1586,6 +1586,112 @@ define({ "api": [
   },
   {
     "type": "get",
+    "url": "/users/:userId/stands/activity",
+    "title": "User Actionable Stands",
+    "name": "GetUserActivity",
+    "group": "Users",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": false,
+            "field": "page",
+            "description": "<p>Page number</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "filter",
+            "description": "<p>Filter type(open/closed)</p> "
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Object[]",
+            "optional": false,
+            "field": "stands",
+            "description": "<p>List of stands.</p> "
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "stands.id",
+            "description": "<p>Stand ID.</p> "
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "stands.title",
+            "description": "<p>Title.</p> "
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "stands.description",
+            "description": "<p>Description.</p> "
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "stands.image_original_url",
+            "description": "<p>Image URL.</p> "
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "stands.youtube",
+            "description": "<p>Youtube ID.</p> "
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "stands.goal",
+            "description": "<p>Goal number.</p> "
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "stands.actions_count",
+            "description": "<p>Actions count.</p> "
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "stands.updates_count",
+            "description": "<p>Updates count</p> "
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n  \"stands\": [\n    {\n      \"id\": 123,\n      \"title\": \"Save The Planet\",\n      \"description\": \"Some description\",\n      \"image_original_url\": \"http://www.mystand.herokuapp.com/img.jpg\",\n      \"youtube\": \"43T5K8D3h\",\n      \"goal\": 100,\n      \"actions_count\": 95,\n      \"updates_count\": 5\n    }\n  ]\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "api/controllers/UserStandsController.js",
+    "groupTitle": "Users"
+  },
+  {
+    "type": "get",
     "url": "/users/:userId/notifications",
     "title": "Get User Notifications",
     "name": "GetUserNotifications",
