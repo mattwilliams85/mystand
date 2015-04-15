@@ -192,8 +192,8 @@ function StandsCtrl($rootScope, $scope, $location, $routeParams, Stand, StandUpd
   };
 
   var closeCallback = function() {
-    $scope.editStand.duration = 0;
-    Stand.update($scope.editStand).then(updateSuccessCallback, standFailureCallback);
+    // $scope.editStand.duration = ;
+    // Stand.update($scope.editStand).then(updateSuccessCallback, standFailureCallback);
   }
 
   $scope.closeStand = function() {
@@ -270,6 +270,8 @@ StandsCtrl.prototype.fetch = function($rootScope, $scope, $location, $routeParam
       if ($scope.stand.youtube) $scope.stand.youtube = 'https://www.youtube.com/embed/' + $scope.stand.youtube + '?modestbranding=1;controls=0;showinfo=0;rel=0;fs=1';
 
       if ($scope.stand.profile) $scope.fullDetailsHtml = $scope.stand.profile.full_description;
+      // Calculate Remaining Days
+      $scope.stand.days_count = Math.round((Math.abs(Date.now() - $scope.stand.closed_at) / 86400000));
 
       Profile.get($scope.stand.user).then(function(data) {
         $scope.author = data.user;

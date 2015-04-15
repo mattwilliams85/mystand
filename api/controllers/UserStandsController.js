@@ -76,7 +76,7 @@ module.exports = {
       options.where = { user: currentUser.id };
 
       if (req.param('filter') === 'inactive') {
-        options.where.is_public = null;
+        options.where.is_public = [false, null];
       } else if (req.param('filter') === 'closed') {
         console.log(new Date())
         options.where.closed_at = {'<': (new Date())};

@@ -115,6 +115,9 @@ module.exports = {
     },
     duration: {
       required: 'Duration is required'
+    },
+    is_public: {
+      required: 'Is_public is required'
     }
   },
 

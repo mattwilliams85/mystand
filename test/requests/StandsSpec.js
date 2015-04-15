@@ -13,7 +13,8 @@ var standSchema = joi.object({
   category: joi.string().required(),
   actions_count: joi.number().integer().required(),
   updates_count: joi.number().integer().required(),
-  closed_at: joi.number().integer().required()
+  closed_at: joi.number().integer().required(),
+  is_public: joi.boolean()
 });
 
 var standFullSchema = standSchema.keys({
@@ -163,7 +164,8 @@ describe('POST /stands.json', function() {
         goal: 100,
         actions_count: 0,
         duration: 30,
-        full_description: 'text'
+        full_description: 'text',
+        is_public: false
       };
 
   beforeEach(function(done) {

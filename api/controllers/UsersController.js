@@ -155,7 +155,6 @@ module.exports = {
         if (err) return res.status(500).json({error: sails.config.models.errorMessagesJson(err)});
 
         updateUserProfile(currentUser.profile, function(err) {
-sails.log.info('err 2 ----', sails.config.models.errorMessagesJson(err));
           if (err) return res.status(500).json({error: sails.config.models.errorMessagesJson(err)});
 
           return res.status(200).end();
