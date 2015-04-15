@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html ng-app="myStandAdminApp">
+  <head>
+    <title>My Stand Admin</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <meta name="fragment" content="!" />
+    <base href="/">
+
+    <!--STYLES-->
+    <link rel="stylesheet" href="/styles/admin/importer.css">
+    <link rel="stylesheet" href="/bower_components/textAngular/src/textAngular.css">
+    <!--STYLES END-->
+    <script type="text/javascript">
+      window.SAILS_LOCALS = { _csrf: '<%= _csrf %>' };
+    </script>
+  </head>
+  <body>
+    <ng-view autoscroll="true"></ng-view>
+
+    <!-- DO NOT REMOVE OR CHANGE THESE COMMENTS -- >
+    <!--TEMPLATES-->
+
+    <!--TEMPLATES END-->
+
+    <!-- DO NOT REMOVE OR CHANGE THESE COMMENTS -- >
+    <!--SCRIPTS-->
+    <script src="/bower_components/angular/angular.min.js"></script>
+    <script src="/bower_components/angular-route/angular-route.min.js"></script>
+    <script src="/bower_components/angular-resource/angular-resource.min.js"></script>
+    <script src="/bower_components/lodash/lodash.min.js"></script>
+    <script src="/bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="/bower_components/foundation/js/foundation.min.js"></script>
+    <script src="/bower_components/textAngular/dist/textAngular-rangy.min.js"></script>
+    <script src="/bower_components/textAngular/dist/textAngular-sanitize.min.js"></script>
+    <script src="/bower_components/textAngular/dist/textAngular.min.js"></script>
+    <!--SCRIPTS END-->
+  </body>
+</html>

@@ -1,0 +1,240 @@
+.ms-stands-show-page {
+  padding-bottom:200px;
+  font-size:13pt;
+
+  .ms-stand {
+    background-color:#f6f6f6;
+    padding-bottom:100px;
+
+    .title-box {
+      text-align:center;
+      padding:100px 0px 20px 0px;
+    }
+
+    .movie-part {
+      padding-left:0px;
+      height:380px;
+      overflow:hidden;
+      margin-bottom:25px;
+      .youtube-player {
+        height:380px;
+      }
+      .stand-image {
+
+      }
+    }
+
+    .details-box {
+      border-bottom:1px solid #ccc;
+      .count {
+        color:#333;
+        font-size:60pt;
+        font-weight:800;
+        line-height:.7em;
+        &:last-of-type {
+          padding-top:20px;
+        }
+      }
+      .count-detail {
+        font-size:16pt;
+      }
+    }
+
+    .impact {
+      clear:both;
+      background-color:#eee;
+      padding:3px 7px;
+      margin:10px 0px;
+      float:left;
+    }
+
+
+    .left {
+      float:left;
+      clear:both;
+      .fa {
+        margin:0px 5px;
+      }
+      .share-detail {
+        margin: 3px 5px 15px 0px;
+      }
+    }
+    .right {
+      float:right;
+      .fa {
+        margin:0px 15px 0px 10px;
+        cursor:pointer;
+      }
+      span {
+        cursor:pointer;
+      }
+    }
+    .stand-description {
+      font-size:18pt;
+      font-weight:600;
+      line-height:36px;
+    }
+  }
+
+  .stand-update {
+    padding-bottom:40px;
+  }
+
+
+  .action {
+    .action-image-wrapper {
+      max-height: 175px;
+      overflow: hidden;
+    }
+    .action-box {
+      border:1px solid #ccc;
+      margin-top:20px;
+    }
+    .details-box {
+      padding: 15px 15px 40px 10px;
+      .fa-flag {
+        float:right;
+        padding-top:3px;
+      }
+    }
+  }
+
+  .social-icon {
+    float:left;
+    padding:0 7px 0px 7px;
+    margin-top:2px;
+    cursor:pointer;
+  }
+
+  .disqus-thread {
+    padding:0px 100px;
+  }
+
+  .disqus-box {
+    display:none;
+  }
+
+  .anchor-link {
+    color: #008CBA;
+  }
+
+  .detail {
+    display:block;
+    &.link {
+      margin-bottom:5px;
+      cursor:pointer;
+    }
+    &.record {
+      margin-bottom:10px;
+      letter-spacing:.1em;
+    }
+  }
+
+  .author-title {
+    font-size:21pt;
+    letter-spacing:.1em;
+    font-weight:600;
+    margin:10px 0px 0px 50px;
+    width:500px;
+    cursor:pointer;
+  }
+
+  .action-button {
+    background-color:#933232;
+    color:#fff;
+    border-radius:5px;
+    padding:10px;
+    width:280px;
+    text-align:center;
+    margin: 60px 0px;
+    cursor: pointer;
+    font-size:16pt;
+    &:hover {
+      background-color:#B03C3C;
+    }
+    &.alt {
+      margin: 100px auto 0px auto;
+    }
+  }
+
+  .fa-flag, .fa-bookmark {
+    color:#555;
+    font-size:15pt;
+  }
+
+  .sticky {
+    position:fixed;
+    width:100%;
+  }
+}
+
+.create-stand-section {
+  .top-row {
+    margin-top: 100px;
+    padding-bottom: 250px;
+  }
+  .counter {
+    color:#999;
+    position: absolute;
+    right: 10px;
+    bottom: 5px;
+  }
+  .input-field.area {
+    resize: none;
+    height:100%;
+    padding:0;
+    &.short {
+      height:200px;
+      padding: 12px 12px 40px 12px;
+    }
+    &:focus {
+      background-color:#f7f7f7;
+    }
+    //SHORT TEXTAREA VALIDATION COLORS
+    .ng-valid-maxlength {
+      + label {
+        color: #4FCD6E;
+      }
+    }
+    .ng-invalid-maxlength {
+      + label {
+        color: #ff0000;
+      }
+    }
+    //LONG TEXTAREA VALIDATION COLORS
+    &.long.ng-untouched.ng-valid {
+      + label {
+        color: #333;
+      }
+    }
+    &.long.focussed.ng-valid {
+      + label {
+        color: #4FCD6E;
+      }
+    }
+  }
+  select {
+    text-transform: uppercase;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    background-image:url('/images/create/arrow.png');
+    background-position: right 15px top 15px;
+  }
+
+  input.ms-button-transparent {
+    line-height:1.5em;
+  }
+  .ms-button-transparent {
+    margin: 50px 0px 0px 20px;
+    padding: 10px 40px;
+    border-width: 2px;
+  }
+  .input-label {
+    &.select {
+      top:13px;
+    }
+    &.area {
+      top:-3px;
+    }
+  }
+}

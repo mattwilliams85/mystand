@@ -1,0 +1,149 @@
+<div class="off-canvas-wrap full ms-create-page" data-offcanvas>
+  <div class="inner-wrap">
+    <div class="invert-header">
+      <ng-include onload="readyHeader()" src="'assets/templates/pub/shared/header.html'"></ng-include>
+    </div>
+
+    <section class="create-stand-section">
+      <div class="header-space trees">
+        <div class="row">
+          <h2 class="header-space-title">Maecenas sed diam eget risus varius blandit sit amet non magna</h2>
+        </div>
+        <div class="triangle-mask-block">
+          <div class="left-rect left"></div>
+          <div class="inverted-triangle-box">
+            <div class="inverted-triangle lefty">
+              <div class="rect"></div>
+            </div>
+            <div class="inverted-triangle righty">
+              <div class="rect"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- <div class="triangle trees"><div class="treeblock"></div></div> -->
+      <div class="row narrow top-row">
+        <div class="large-12 columns">
+          <form name="form" ng-submit="publishStand()" novalidate autocomplete='off'>
+            <div class="field-div">
+              <input
+                class="input-field"
+                ng-class="{'input-alert': formErrorMessages['title']}"
+                ng-model='newStand.title'
+                id='stand_title'
+                name='stand_title'
+                type='text'
+                ng-required='true'>
+              </input>
+              <label ng-class="{'input-alert': formErrorMessages['title']}" class="input-label">title</label>
+            </div>
+            <div class="field-div">
+              <input
+                class="input-field"
+                ng-class="{'input-alert': formErrorMessages['featured']}"
+                ng-model='newStand.image_original_url'
+                id='stand_featured'
+                name='stand_featured'
+                type='text'
+                ng-required='true'>
+              </input>
+              <label ng-class="{'input-alert': formErrorMessages['image_original_url']}" class="input-label">Featured Image/Video</label>
+            </div>
+            <div class="field-div">
+              <textarea
+                class="input-field area short"
+                ng-minlength="1"
+                ng-class="{'input-alert': formErrorMessages['description'], 'ng-invalid': newStand.description.length > 144}"
+                ng-model='newStand.description'
+                id='stand_description'
+                name='stand_description'
+                type='text'
+                ng-required='true'>
+              </textarea>
+              <label ng-class="{'input-alert': formErrorMessages['description']}" class="input-label area">short description</label>
+              <span class="counter">{{144 - newStand.description.length}} Characters</span>
+            </div>
+            <div class="field-div text-angular-wrapper">
+              <div
+                text-angular
+                class="input-field area long"
+                ng-class="{'input-alert': formErrorMessages['full_description']}"
+                ng-model='newStand.full_description'
+                id='stand_full'
+                name='stand_full'
+                type='text'
+                ng-required='true'
+                ta-toolbar="[
+                  ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p', 'pre'],
+                  ['bold', 'italics', 'underline', 'strikeThrough', 'ul', 'ol', 'redo', 'undo', 'clear'],
+                  ['justifyLeft', 'justifyCenter', 'justifyRight', 'indent', 'outdent'],
+                  ['insertImage','insertLink', 'insertVideo']
+                ]">
+              </div>
+              <label ng-class="{'input-alert': formErrorMessages['full_description']}" class="input-label area">full description</label>
+            </div>
+            <div class="field-div">
+              <select
+                class="input-field"
+                ng-class="{'input-alert': formErrorMessages['category']}"
+                ng-model="newStand.category"
+                id='stand_category'
+                name='stand_category'
+                type='text'
+                ng-required='true'
+                ng-options="opt.id as opt.label for opt in options.categories"
+                >
+                <!-- <option value="">category title</option> -->
+              </select>
+              <label ng-class="{'input-alert': formErrorMessages['category']}" class="input-label select">Category</label>
+            </div>
+            <div class="field-div">
+              <select
+                class="input-field"
+                ng-class="{'input-alert': formErrorMessages['duration']}"
+                ng-model='newStand.duration'
+                id='stand_duration'
+                name='stand_duration'
+                type='text'
+                ng-required='true'
+                ng-options="opt.value as opt.label for opt in options.duration">
+              </select>
+              <label ng-class="{'input-alert': formErrorMessages['duration']}" class="input-label select">duration</label>
+            </div>
+            <div class="field-div">
+              <select
+                class="input-field"
+                ng-class="{'input-alert': formErrorMessages['goal']}"
+                ng-model='newStand.goal'
+                id='stand_goal'
+                name='stand_goal'
+                type='text'
+                ng-required='true'
+                ng-options="opt.value as opt.label for opt in options.goal">
+              </select>
+              <label ng-class="{'input-alert': formErrorMessages['goal']}" class="input-label select">goal</label>
+            </div>
+            <div class="field-div">
+              <textarea
+                class="input-field area short"
+                my-maxlength="144"
+                ng-class="{'input-alert': formErrorMessages['goal_result'], 'ng-invalid': newStand.goal_result.length > 144}"
+                ng-model='newStand.goal_result'
+                id='stand_result'
+                name='stand_result'
+                type='text'
+                ng-required='true'>
+              </textarea>
+              <label ng-class="{'input-alert': formErrorMessages['goal_result']}" class="input-label area">action description</label>
+              <span class="counter">{{144 - newStand.goal_result.length}} Characters</span>
+            </div>
+            <input class="ms-button-transparent black right" value="Publish" type="submit" />
+            <div class="ms-button-transparent black right save" ng-click="saveStand()">Save</div>
+            <div class="ms-button-transparent black right cancel" ng-click="cancelStand()">Cancel</div>
+          </form>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>

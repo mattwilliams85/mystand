@@ -1,7 +1,7 @@
 'use strict';
 
 /**
- * grunt/pipeline.js
+ * grunt/pipeline-admin.js
  *
  * The order in which your css, javascript, and template files should be
  * compiled and linked from your views and static HTML files.
@@ -17,7 +17,7 @@
 // (if you're using LESS with the built-in default config, you'll want
 //  to change `assets/styles/importer.less` instead.)
 var cssFilesToInject = [
-  'styles/pub/**/*.css',
+  'styles/admin/**/*.css',
   'bower_components/textAngular/src/textAngular.css'
 ];
 
@@ -25,26 +25,21 @@ var cssFilesToInject = [
 // Client-side javascript files to inject in order
 // (uses Grunt-style wildcard/glob/splat expressions)
 var jsFilesToInject = [
-  // Load sails.io before everything else
-  'js/dependencies/sails.io.js',
-
   // Bower components
   'bower_components/angular/angular.min.js',
   'bower_components/angular-route/angular-route.min.js',
   'bower_components/angular-resource/angular-resource.min.js',
-  'bower_components/angular-sails/dist/angular-sails.min.js',
   'bower_components/lodash/lodash.min.js',
   'bower_components/jquery/dist/jquery.min.js',
   'bower_components/foundation/js/foundation.min.js',
-  'bower_components/slick-carousel/slick/slick.min.js',
   'bower_components/textAngular/dist/*.js',
 
   // Load main Angular app config
-  'js/pub/app.js',
+  'js/admin/app.js',
 
   // All of the rest of your client-side js files
   // will be injected here in no particular order.
-  'js/pub/**/*.js'
+  'js/admin/**/*.js'
 ];
 
 
@@ -58,7 +53,7 @@ var jsFilesToInject = [
 // templates get spit out to the same file.  Be sure and check out `tasks/README.md`
 // for information on customizing and installing new tasks.
 var templateFilesToInject = [
-  'templates/**/*.html'
+  'templates/admin/**/*.html'
 ];
 
 // Prefix relative paths to source files so they point to the proper locations

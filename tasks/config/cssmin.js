@@ -10,12 +10,20 @@
  */
 module.exports = function(grunt) {
 
-	grunt.config.set('cssmin', {
-		dist: {
-			src: ['.tmp/public/concat/production.css'],
-			dest: '.tmp/public/min/production.min.css'
-		}
-	});
+  grunt.config.set('cssmin', {
+    // dist: {
+    // 	src: ['.tmp/public/concat/production.css'],
+    // 	dest: '.tmp/public/min/production.min.css'
+    // },
+    pub: {
+      src: ['.tmp/public/pub/concat/production.css'],
+      dest: '.tmp/public/pub/min/production.min.css'
+    },
+    admin: {
+      src: ['.tmp/public/admin/concat/production.css'],
+      dest: '.tmp/public/admin/min/production.min.css'
+    }
+  });
 
-	grunt.loadNpmTasks('grunt-contrib-cssmin');
+  grunt.loadNpmTasks('grunt-contrib-cssmin');
 };
