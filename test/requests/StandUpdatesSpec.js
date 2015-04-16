@@ -50,3 +50,75 @@ describe('GET /stands/:standId/updates.json', function() {
     });
   });
 });
+
+describe('POST /stands/:id/updates.json', function() {
+  var stand;
+  var standUpdateData = {
+    title: "Title 1",
+    text: "Baracka Obama"
+  };
+
+  beforeEach(function(done) {
+    standUpdateData._csrf = csrfToken;
+
+    DatabaseCleaner.clean(['stands', 'users'], function() {
+      async.series([
+        Factory.create('stand')
+      ], function(err, data) {
+        stand = data[0];
+        done();
+      });
+    });
+  });
+
+  describe('signed in user', function() {
+    beforeEach(function(done) {
+      withSignIn(function() {
+        done();
+      });
+    });
+
+    it('should return created stand update object on success', function(done) {
+      agent
+        .post('/stands/' + stand.id + '/updates.json')
+        .send(standUpdateData)
+        .end(function(err, res) {
+          expect(res.statusCode).to.eql(200);
+          var validation = standUpdateSchema.validate(res.body.standUpdate);
+          expect(validation.error).to.be.null;
+          expect(res.body.standUpdate.title).to.equal(standUpdateData.title);
+          expect(res.body.standUpdate.text).to.equal(standUpdateData.text);
+          done();
+        });
+    });
+
+    describe('stand attribute validation', function() {
+      beforeEach(function() {
+        standUpdateData.title = null;
+      });
+
+      it('should return error message', function(done) {
+        agent
+          .post('/stands/' + stand.id + '/updates.json')
+          .send(standUpdateData)
+          .end(function(err, res) {
+            expect(res.statusCode).to.equal(500);
+            expect(res.body.error.title[0].message).to.equal('Title is required');
+            done();
+          });
+      });
+    });
+  });
+
+  describe('guest user', function() {
+    it('should return 403 forbidden', function(done) {
+      agent
+        .post('/stands/' + stand.id + '/updates.json')
+        .end(function(err, res) {
+          expect(res.statusCode).to.eql(403);
+          expect(Object.keys(res.body).length).to.equal(0);
+          done();
+        });
+    });
+  });
+});

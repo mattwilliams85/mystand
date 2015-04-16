@@ -65,14 +65,13 @@ module.exports = {
     var createStandUpdate = function(stand, currentUser) {
       StandUpdate.create({
         stand: stand.id,
-        user: currentUser.id,
         title: req.body.title,
         text: req.body.text
       })
-      .exec(function(err, StandUpdate) {
+      .exec(function(err, standUpdate) {
         if (err) return res.status(500).json({error: err.Errors});
 
-        return res.json({StandUpdate: StandUpdate.toJSON()});
+        return res.json({standUpdate: standUpdate.toJSON()});
       });
     };
 
