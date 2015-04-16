@@ -8,21 +8,13 @@
 
 // Import zurb foundation framework
 @import "assets/bower_components/foundation/scss/foundation";
-// Import font awesome
-// @import "../bower_components/fontawesome/css/font-awesome.min.css";
 
 /*
  * MyStand mixins and variables
  *
  */
-// @mixin vertical-align-center {
-//   position: relative;
-//   top: 50%;
-//   -webkit-transform: translateY(-50%);
-//   -ms-transform: translateY(-50%);
-//   transform: translateY(-50%);
-// }
 // $header-height: 100px;
 // $header-height-small: 60px;
+$footer-bg-color: #363636;
 
 @import 'main.scss';

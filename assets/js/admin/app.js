@@ -7,24 +7,26 @@ var myStandAdminApp = angular.module('myStandAdminApp', [
   'textAngular'
 ]);
 
-myStandAdminApp.run(['$rootScope', 'CurrentUser',
-  function ($rootScope, CurrentUser) {
-    $rootScope.currentUser = {};
+myStandAdminApp.run(['$rootScope', '$location', 'CurrentUser', function ($rootScope, $location, CurrentUser) {
+  $rootScope.currentUser = {};
 
-    /*
-     * Fill in User object with data
-    */
-    $rootScope.$on('$includeContentLoaded', function() {
-      CurrentUser.get().then(function(data) {
-        $rootScope.currentUser = data;
-        // Redirect if not admin
-        // if (!$rootScope.currentUser || !$rootScope.currentUser.is_admin) {
-          // window.location = '/';
-        // }
-      });
+  /*
+   * Fill in User object with data
+  */
+  $rootScope.$on('$includeContentLoaded', function() {
+    CurrentUser.get().then(function(data) {
+      $rootScope.currentUser = data;
+      // Redirect if not admin
+      // if (!$rootScope.currentUser || !$rootScope.currentUser.is_admin) {
+        // window.location = '/';
+      // }
     });
-  }
-]);
+  });
+
+  $rootScope.isCurrentPage = function(path) {
+    return $location.path() === path;
+  };
+}]);
 
 var myStandAdminControllers = angular.module('myStandAdminControllers', []);
 
