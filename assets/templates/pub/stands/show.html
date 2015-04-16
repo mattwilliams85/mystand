@@ -46,7 +46,7 @@
             <span class="uppercase inline" ng-click="bookmarkStand()">bookmark <i class="fa fa-bookmark"></i></span>
             <span class="uppercase inline" ng-click="flagStand()">flag <i class="fa fa-flag"></i></span>
           </div>
-          <span class="uppercase impact" ng-if="stand.currentUser"><span class="bold">my impact:</span> <b>453</b> bystanders <b>25</b> mystanders</span>
+          <span class="uppercase impact" ng-show="contributor"><span class="bold">my impact:</span> <b>0</b> bystanders <b>0</b> mystanders</span>
           <div class="left stand-description">{{stand.description}}</div>
         </div>
         <div class="large-4 columns">
@@ -71,8 +71,8 @@
     </div>
     <div class="nav-box">
       <ng-include src="tabUrl"></ng-include>
-      <div ng-if="stand.currentUser" class="row disqus-box">
-        <div id="disqus_thread"></div>
+      <div class="row disqus-box">
+        <div ng-hide="!contributor" id="disqus_thread"></div>
       </div>
     </div>
   </div>

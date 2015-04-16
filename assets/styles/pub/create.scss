@@ -162,11 +162,18 @@
       letter-spacing:.1em;
       cursor:pointer;
       width:100%;
+      background-color:#ccc;
       -o-transition:.5s;
       -ms-transition:.5s;
       -moz-transition:.5s;
       -webkit-transition:.5s;
       transition:.5s;
+      &.ready {
+        background-color:#008aff;
+        &:hover {
+          background-color:#289EFF;
+        }
+      }
       b {
         font-weight:400;
       }

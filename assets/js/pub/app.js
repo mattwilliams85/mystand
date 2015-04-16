@@ -40,6 +40,11 @@ myStandApp.run(['$rootScope', '$location', '$timeout', '$sails', 'CurrentUser',
       }
     };
 
+    $rootScope.savePath = function() {
+      $('#sign-in-modal').foundation('reveal','close');
+      $rootScope.goTo = $location.url(); 
+    }
+
     $rootScope.modalText = '';
     $rootScope.modalPath = '';
     $rootScope.showModal = function(text, modalPath, okCallback, cancelCallback) {

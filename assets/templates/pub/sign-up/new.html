@@ -107,7 +107,7 @@
             </div>
             <small class="input-error">Incorrect Email or Password</small>
             <p class="detail">By clicking Sign Up, you agree to Mystand's <a class="detail-link">privacy policy.</a></p>
-            <input class="login-button signup-button" value="Sign Up" type="submit" />
+            <input ng-class="{'ready': form.user.$valid }" ng-disabled="form.user.$invalid" class="signup-button" value="Sign Up" type="submit" />
           </form>
           <p class="detail large">Already have an account? <a class="detail-link" ng-click="signInRedirect('discover')">Log in.</a></p>
         </div>

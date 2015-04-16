@@ -1,8 +1,8 @@
 'use strict';
 
-function StandsCtrl($rootScope, $scope, $location, $routeParams, Stand, StandUpdate, StandAction, Profile, Category, Flag) {
+function StandsCtrl($rootScope, $scope, $location, $routeParams, CurrentUser, Stand, StandUpdate, StandAction, Profile, Category, Flag, UserActionableStand) {
   this.init($scope, $location);
-  this.fetch($rootScope, $scope, $location, $routeParams, Stand, StandUpdate, StandAction, Profile, Category);
+  this.fetch($rootScope, $scope, $location, $routeParams, CurrentUser, Stand, StandUpdate, StandAction, Profile, Category, UserActionableStand);
 
   $scope.stand = {};
   $scope.author = {};
@@ -20,11 +20,12 @@ function StandsCtrl($rootScope, $scope, $location, $routeParams, Stand, StandUpd
 
   $scope.today = new Date();
 
-  $scope.options = {};
-  $scope.options.categories = [];
-  $scope.options.type = [{label: 'photo', value: 'photo'}, {label: 'video', value: 'video'}];
-  $scope.options.duration = [{label: '30 days', value: 30}, {label: '60 days', value: 60}, {label: '90 days', value: 90}];
-  $scope.options.goal = [{label: '100 actions', value: 100}, {label: '300 actions', value: 300}, {label: '500 actions', value: 500}, {label: '1000 actions', value: 1000}];
+  $scope.options = {
+    categories: [],
+    type: [{label: 'photo', value: 'photo'}, {label: 'video', value: 'video'}],
+    duration: [{label: '30 days', value: 30}, {label: '60 days', value: 60}, {label: '90 days', value: 90}],
+    goat: [{label: '100 actions', value: 100}, {label: '300 actions', value: 300}, {label: '500 actions', value: 500}, {label: '1000 actions', value: 1000}]
+  };
 
   // Listen for updates
   $scope.listenToModel('stand', function(message) {
@@ -36,6 +37,7 @@ function StandsCtrl($rootScope, $scope, $location, $routeParams, Stand, StandUpd
 
   $scope.changeTab = function(section) {
     $scope.page = 0;
+    $('.disqus-box').hide();
 
     if (section === 'details') {
       $scope.tabUrl =  $scope.createTabUrl(section);
@@ -45,25 +47,11 @@ function StandsCtrl($rootScope, $scope, $location, $routeParams, Stand, StandUpd
     } else if (section === 'actions') {
       $scope.tabData.actions = [];
       $scope.loadMore('actions');
-    } else if (section === 'comments') {
+    } else {
       $scope.tabUrl =  $scope.createTabUrl(section);
       $('.disqus-box').show();
-    } else {
-      $('.disqus-box').hide();
     }
   };
-
-  // $scope.createTabUrl = function(section) {
-  //   return 'assets/templates/pub/stands/' + section + '/show.html';
-  // };
-
-  // $scope.isActive = function(section) {
-  //   return $scope.createTabUrl(section) === $scope.tabUrl;
-  // };
-
-  // $scope.scrollUp = function() {
-  //   $('body').animate({scrollTop: 0}, 'slow');
-  // };
 
   $scope.fileUpload = function() {
     if ($scope.newAction) {
@@ -78,6 +66,7 @@ function StandsCtrl($rootScope, $scope, $location, $routeParams, Stand, StandUpd
       }
       StandAction.create($scope.newAction).then(function() {
         $scope.changeTab('actions');
+        $scope.contributor = true;
       });
     }
   };
@@ -88,6 +77,7 @@ function StandsCtrl($rootScope, $scope, $location, $routeParams, Stand, StandUpd
 
   $scope.bookmarkStand = function() {
     Stand.bookmark($scope.stand);
+    $('.fa-bookmark').css('color','#EBBF2D')
   };
 
   $scope.flagStand = function() {
@@ -97,6 +87,7 @@ function StandsCtrl($rootScope, $scope, $location, $routeParams, Stand, StandUpd
       contentType: 'Stand'
     };
     Flag.create(flag);
+    $('.fa-flag').css('color','#8A0A18')
   };
 
   $scope.takeAction = function() {
@@ -246,8 +237,10 @@ StandsCtrl.prototype.init = function($scope, $location) {
   if (/\/start/.test($location.path())) return $scope.mode = 'new';
 };
 
-StandsCtrl.prototype.fetch = function($rootScope, $scope, $location, $routeParams, Stand, StandUpdate, StandAction, Profile, Category) {
+StandsCtrl.prototype.fetch = function($rootScope, $scope, $location, $routeParams, CurrentUser, Stand, StandUpdate, StandAction, Profile, Category, UserActionableStand) {
+  
   if ($scope.mode === 'show') {
+    $scope.contributor = false;
     $scope.fullDetailsHtml = '';
 
     // Watches and locks Center-Nav-Bar when scrolling down
@@ -275,6 +268,15 @@ StandsCtrl.prototype.fetch = function($rootScope, $scope, $location, $routeParam
       Profile.get($scope.stand.user).then(function(data) {
         $scope.author = data.user;
         if($scope.author.bio.length > 50) $scope.author.bio = $scope.author.bio.substring(0,143) + '...';
+      });
+    });
+
+    CurrentUser.get().then(function(data) {
+      $rootScope.currentUser = data;
+      UserActionableStand.index(data.id).then(function(data){
+        for (var i in data.stands) {
+          if(data.stands[i].id == $scope.stand.id) $scope.contributor = true;
+        }
       });
     });
 
@@ -315,5 +317,5 @@ StandsCtrl.prototype.fetch = function($rootScope, $scope, $location, $routeParam
   }
 };
 
-StandsCtrl.$inject = ['$rootScope', '$scope', '$location', '$routeParams', 'Stand', 'StandUpdate', 'StandAction', 'Profile','Category','Flag'];
+StandsCtrl.$inject = ['$rootScope', '$scope', '$location', '$routeParams', 'CurrentUser', 'Stand', 'StandUpdate', 'StandAction', 'Profile','Category','Flag', 'UserActionableStand'];
 myStandControllers.controller('StandsCtrl', StandsCtrl);
