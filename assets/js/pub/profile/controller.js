@@ -1,6 +1,6 @@
 'use strict';
 
-function ProfileCtrl($scope, $rootScope, $location, $http, CurrentUser, Profile, UserStand, UserBookmark, Stand, Category) {
+function ProfileCtrl($scope, $rootScope, $location, CurrentUser, Profile, UserStand, UserBookmark, UserNotification, Category) {
 
   $rootScope.tabUrl = "assets/templates/pub/profile/bio/show.html"
   $scope.profile = {};
@@ -10,6 +10,7 @@ function ProfileCtrl($scope, $rootScope, $location, $http, CurrentUser, Profile,
     activity: []
   };
   $scope.page = 0;
+  $scope.notif = {};
 
   // $scope.changeTab = function(section) {
   //   $scope.page = 0;
@@ -96,8 +97,12 @@ function ProfileCtrl($scope, $rootScope, $location, $http, CurrentUser, Profile,
     Profile.update($scope.profile);
   }
 
+  $scope.updateNotifications = function() {
+    UserNotification.update($scope.notif);
+  }
+
   // var publishSuccessCallback = function(data) {
-  //    Stand.publish(data.stand).then($location.path('stands/'+data.stand.id));
+  //  .publish(data.stand).then($location.path('stands/'+data.stand.id));
   // }
 
   // $scope.publishStand = function() {
@@ -123,7 +128,7 @@ function ProfileCtrl($scope, $rootScope, $location, $http, CurrentUser, Profile,
   // $scope.redirectUnlessSignedIn()
 
   this.init($scope, $location);
-  this.fetch($scope, $rootScope, $location,  $http, CurrentUser, Profile, UserStand, Stand, UserBookmark, Category);
+  this.fetch($scope, $rootScope, $location, CurrentUser, Profile, UserStand, UserBookmark, UserNotification, Category);
 };
 
 ProfileCtrl.prototype.init = function($scope, $location) {
@@ -135,7 +140,7 @@ ProfileCtrl.prototype.init = function($scope, $location) {
   if (/\/profile\/notifications/.test($location.path())) return $scope.mode = 'notifications';
 };
 
-ProfileCtrl.prototype.fetch = function($scope, $rootScope, $location,  $http, CurrentUser, Profile, UserStand, UserBookmark, Stand, Category) {
+ProfileCtrl.prototype.fetch = function($scope, $rootScope, $location, CurrentUser, Profile, UserStand, UserBookmark, UserNotification, Category) {
 
   CurrentUser.get().then(function(data) {
     if (!data.mystanders) data.mystanders = 0; 
@@ -150,18 +155,28 @@ ProfileCtrl.prototype.fetch = function($scope, $rootScope, $location,  $http, Cu
         $scope.options.duration = [{label: '30 days', value: 30}, {label: '60 days', value: 60}, {label: '90 days', value: 90}];
         $scope.options.goal = [{label: '100 actions', value: 100}, {label: '300 actions', value: 300}, {label: '500 actions', value: 500}, {label: '1000 actions', value: 1000}];
 
-        Category.list().then(function(data) {
-          for(var i in data.categories) {
-            $scope.options.categories.push({label: data.categories[i].title, value: data.categories[i].title, id: data.categories[i].id});
-          }
-        });
+        // Category.list().then(function(data) {
+        //   for(var i in data.categories) {
+        //     $scope.options.categories.push({label: data.categories[i].title, value: data.categories[i].title, id: data.categories[i].id});
+        //   }
+        // });
         $scope.loadMore('manage');
       }
+
       if($scope.mode === "activity") {
         $scope.loadMore('activity');
+      }
+
+      if($scope.mode === 'notifications') {
+        UserNotification.get($scope.profile.id).then(function(data){
+          $scope.notif = data.userNotifications;
+          $scope.notif.user = $scope.profile.id;
+          //TEMP
+
+        })
       }
   });
 };
 
-ProfileCtrl.$inject = ['$scope', '$rootScope', '$location', '$http', 'CurrentUser', 'Profile', 'UserStand', 'UserBookmark', 'Stand','Category'];
+ProfileCtrl.$inject = ['$scope', '$rootScope', '$location', 'CurrentUser', 'Profile', 'UserStand', 'UserBookmark', 'UserNotification', 'Category'];
 myStandControllers.controller('ProfileCtrl', ProfileCtrl);

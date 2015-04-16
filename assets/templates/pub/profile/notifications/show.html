@@ -1,3 +1,105 @@
-<div class="row">
-  <h1>notifications</h1>
+<div class="off-canvas-wrap ms-profile-page" data-offcanvas>
+  <div class="inner-wrap">
+    <div class="invert-header">
+      <ng-include onload="readyHeader()" src="'assets/templates/pub/shared/header.html'"></ng-include>
+    </div>
+
+    <ng-include src="'assets/templates/pub/profile/show.html'"></ng-include>
+
+    <div class="nav-box">
+      <section class="profile-notifications-section">
+        <div class="row">
+          <h4 class="uppercase">turn on or off to receive notification by mail</h4>
+          <div class="notifications-box">
+            <div class="row notification-row">
+              <div class="large-7 columns">
+                <h5 class="uppercase">new announcements</h5>
+                <span class="notification-detail">* This is a short description of this announcement</span>
+                <hr class="notification-divider">
+              </div>
+              <div class="large-5 columns">
+                <div class="toggle-box">
+                  <span class="toggle-detail uppercase" ng-class="{'active': !notif.announcements}">off</span>
+                  <fieldset class="switch round small">
+                    <input ng-change="updateNotifications()" id="announcement-toggle" ng-model="notif.announcements" type="checkbox" name="announcement_toggle">
+                    <label for="announcement-toggle"></label>
+                  </fieldset>
+                  <span class="toggle-detail uppercase" ng-class="{'active': notif.announcements === true}">on</span><span>
+                </div>
+              </div>
+            </div>
+            <div class="row notification-row">
+              <div class="large-7 columns">
+                <h5 class="uppercase">new updates</h5>
+                <span class="notification-detail">* This is a short description of this announcement</span>
+                <hr class="notification-divider">
+              </div>
+              <div class="large-5 columns">
+                <div class="toggle-box">
+                  <span class="toggle-detail uppercase" ng-class="{'active': !notif.updates}">off</span>
+                  <fieldset class="switch round small">
+                    <input ng-change="updateNotifications()" id="update-toggle" ng-model="notif.updates" type="checkbox" name="update_toggle">
+                    <label for="update-toggle"></label>
+                  </fieldset>
+                  <span class="toggle-detail uppercase" ng-class="{'active': notif.updates == true}">on</span>
+                </div>
+              </div>
+            </div>
+            <div class="row notification-row">
+              <div class="large-7 columns">
+                <h5 class="uppercase">new comments</h5>
+                <span class="notification-detail">* This is a short description of this announcement</span>
+                <hr class="notification-divider">
+              </div>
+              <div class="large-5 columns">
+                <div class="toggle-box">
+                  <span class="toggle-detail uppercase" ng-class="{'active': !notif.comments}">off</span>
+                  <fieldset class="switch round small">
+                    <input ng-change="updateNotifications()" id="comment-toggle" ng-model="notif.comments" type="checkbox" name="comment_toggle">
+                    <label for="comment-toggle"></label>
+                  </fieldset>
+                  <span class="toggle-detail uppercase" ng-class="{'active': notif.comments == true}">on</span>
+                </div>
+              </div>
+            </div>
+            <div class="row notification-row">
+              <div class="large-7 columns">
+                <h5 class="uppercase">new actions</h5>
+                <span class="notification-detail">* This is a short description of this announcement</span>
+                <hr class="notification-divider">
+              </div>
+              <div class="large-5 columns">
+                <div class="toggle-box">
+                  <span class="toggle-detail uppercase" ng-class="{'active': !notif.actions}">off</span>
+                  <fieldset class="switch round small">
+                    <input ng-change="updateNotifications()" id="action-toggle" ng-model="notif.actions" type="checkbox" name="action_toggle">
+                    <label for="action-toggle"></label>
+                  </fieldset>
+                  <span class="toggle-detail uppercase" ng-class="{'active': notif.actions == true}">on</span>
+                </div>
+              </div>
+            </div>
+            <div class="row notification-row">
+              <div class="large-7 columns">
+                <h5 class="uppercase">social notifications</h5>
+                <span class="notification-detail">* This is a short description of this announcement</span>
+                <hr class="notification-divider">
+              </div>
+              <div class="large-5 columns">
+                <div class="toggle-box">
+                  <span class="toggle-detail uppercase" ng-class="{'active': !notif.social}">off</span>
+                  <fieldset class="switch round small">
+                    <input ng-change="updateNotifications()" id="social-toggle" ng-model="notif.social" type="checkbox" name="social_toggle">
+                    <label for="social-toggle"></label>
+                  </fieldset>
+                  <span class="toggle-detail uppercase" ng-class="{'active': notif.social == true}">on</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+  </div>
 </div>

@@ -102,6 +102,36 @@
     }
   }
 
+  .profile-notifications-section {
+    .notifications-box {
+      padding:75px 50px;
+
+      .notification-row {
+        margin-top:10px;
+
+        .notification-divider {
+          width:150px;
+        }   
+      }
+
+      .toggle-box {
+        margin-top:10px;
+        .switch {
+          display:inline-block;
+        }
+        .toggle-detail {
+          margin:0 40px;
+          position:relative;
+          top:-8px;
+          &.active {
+            color:#5F9EB6;
+          }
+        }
+      }
+    }
+
+  }
+
   .profile-manage-section {
     .stand-row {
       margin-bottom:20px;
