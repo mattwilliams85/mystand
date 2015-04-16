@@ -59,6 +59,11 @@ myStandApp.config(['$routeProvider', '$locationProvider', function($routeProvide
 
   //
 
+  when('/stands/:standId/updates/new', {
+    template: JST['assets/templates/pub/stands/updates/new.html'],
+    controller: 'StandUpdatesCtrl'
+  }).
+
   when('/start', {
     template: JST['assets/templates/pub/stands/new.html'],
     controller: 'StandsCtrl'

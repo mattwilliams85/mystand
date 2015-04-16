@@ -59,5 +59,32 @@ module.exports = {
       }
       return res.json({standUpdates: updates});
     });
-  }
+  },
+
+  create: function(req, res) {
+    var createStandUpdate = function(stand, currentUser) {
+      StandUpdate.create({
+        stand: stand.id,
+        user: currentUser.id,
+        title: req.body.title,
+        text: req.body.text
+      })
+      .exec(function(err, StandUpdate) {
+        if (err) return res.status(500).json({error: err.Errors});
+
+        return res.json({StandUpdate: StandUpdate.toJSON()});
+      });
+    };
+
+    User.auth(req.session.user, function(err, currentUser) {
+      if (err) return res.forbidden();
+
+      // Make sure stand exists
+      Stand.findOneById(req.param('standId')).exec(function(err, stand) {
+        if (err || !stand) return res.status(500).json({error: {stand: [{message: 'Specified stand does not exist'}]}});
+
+        return createStandUpdate(stand, currentUser);
+      });
+    });
+  },
 };

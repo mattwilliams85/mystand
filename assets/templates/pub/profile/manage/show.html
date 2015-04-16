@@ -15,7 +15,7 @@
             <li ng-class="{'selected': filter === 'inactive'}"><a ng-click="selectSort('inactive')">inactive</a></li>
             <li ng-class="{'selected': filter === 'closed'}"><a ng-click="selectSort('closed')">closed</a></li>
           </ul>
-          <a ng-href="/start"><div class="ms-button-transparent black uppercase right create-button">create stand &nbsp; <i class="fa fa-plus"></i></div></a>
+          <a ng-href="/start"><div class="ms-button-transparent black uppercase right create-button">create stand &nbsp;<i class="fa fa-plus"></i></div></a>
           <div ng-show="tabData['manage'].length === 0" class="clearfix">
             <br>
             <h4> You have no {{filter}} stands at this time.</h4>
@@ -33,7 +33,8 @@
                       <div class="progress">
                         <span class="meter" style="width: {{stand.progressPercent}}%"></span>
                       </div>
-                      <a ng-href="/stands/{{stand.id}}/edit"><div class="ms-button-transparent black uppercase" ng-click="loadForm(stand.id)">edit</div></a>
+                      <a ng-href="/stands/{{stand.id}}/edit"><div class="ms-button-transparent black uppercase">edit</div></a>
+                      <a ng-href="/stands/{{stand.id}}/updates/new"><div class="ms-button-transparent black uppercase">add update &nbsp; +</div></a>
                     </div>
                   </div>
                 </div>

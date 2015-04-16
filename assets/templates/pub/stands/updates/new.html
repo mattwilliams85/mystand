@@ -1,0 +1,58 @@
+<div class="off-canvas-wrap ms-profile-page" data-offcanvas>
+  <div class="inner-wrap">
+    <div class="invert-header">
+      <ng-include onload="readyHeader()" src="'assets/templates/pub/shared/header.html'"></ng-include>
+    </div>
+
+    <ng-include src="'assets/templates/pub/profile/show.html'"></ng-include>
+
+    <div class="nav-box">
+      <section class="create-stand-section ms-create-page edit-stand-section">
+        <div class="row narrow">
+          <div class="large-12 columns">
+            <form name="form" ng-submit="create()" novalidate autocomplete='off'>
+              <h1>{{category}}</h1>
+              <div class="field-div">
+                <input
+                  class="input-field"
+                  ng-class="{'input-alert': formErrorMessages['title']}"
+                  ng-model='newUpdate.title'
+                  id='stand_title'
+                  name='stand_title'
+                  type='text'
+                  ng-required='true'
+                  ng-value="newUpdate.title">
+                </input>
+                <label ng-class="{'input-alert': formErrorMessages['title']}" class="input-label">title</label>
+              </div>
+              <div class="field-div text-angular-wrapper">
+                <div
+                  text-angular
+                  class="input-field area long"
+                  ng-class="{'input-alert': formErrorMessages['text']}"
+                  ng-model='newUpdate.text'
+                  id='stand_full'
+                  name='stand_full'
+                  type='text'
+                  ng-required='true'
+                  ng-value='newUpdate.text'
+                  ta-toolbar="[
+                    ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p', 'pre'],
+                    ['bold', 'italics', 'underline', 'strikeThrough', 'ul', 'ol', 'redo', 'undo', 'clear'],
+                    ['justifyLeft', 'justifyCenter', 'justifyRight', 'indent', 'outdent'],
+                    ['insertImage','insertLink', 'insertVideo']
+                  ]">
+                </div>
+                <label ng-class="{'input-alert': formErrorMessages['full_description']}" class="input-label area">full description</label>
+              </div>
+              <div class="ms-button-transparent black right cancel" ng-click="create()">Publish</div>
+              <a ng-href="/profile/manage"><div class="ms-button-transparent black right cancel">Cancel</div></div></a>
+              <br>
+            </form>
+          </div>
+        </div>
+      </section>
+    </div>
+
+  </div>
+</div>

@@ -5,7 +5,7 @@ function StandUpdate($http, $q) {
   var service = {
 
     /*
-    * Get a stand
+    * Get list of updates
     */
     list: function(id, opts) {
       var dfr = $q.defer();
@@ -19,6 +19,23 @@ function StandUpdate($http, $q) {
         url: '/stands/' + id + '/updates.json',
         params: params
       }).success(function(res) {
+        dfr.resolve(res);
+      }).error(function(err) {
+        console.log('エラー', err);
+        dfr.reject(err);
+      });
+
+      return dfr.promise;
+    },
+
+    /*
+     * Create an update
+     */
+    create: function(data, standId) {
+      var dfr = $q.defer();
+      data._csrf = SAILS_LOCALS._csrf;
+
+      $http.post('/stands/'+ standId +'/updates.json', data).success(function(res) {
         dfr.resolve(res);
       }).error(function(err) {
         console.log('エラー', err);
