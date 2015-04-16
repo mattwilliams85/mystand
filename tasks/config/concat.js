@@ -14,20 +14,20 @@ module.exports = function(grunt) {
 
   grunt.config.set('concat', {
     jsPub: {
-      src: require('../pipeline').jsFilesToInjectPub,
+      src: require('../pipeline').jsFilesToInject,
       dest: '.tmp/public/pub/concat/production.js'
     },
     cssPub: {
-      src: require('../pipeline').cssFilesToInjectPub,
+      src: require('../pipeline').cssFilesToInject,
       dest: '.tmp/public/pub/concat/production.css'
     },
 
     jsAdmin: {
-      src: require('../pipeline-admin').jsFilesToInjectPub,
+      src: require('../pipeline-admin').jsFilesToInject,
       dest: '.tmp/public/admin/concat/production.js'
     },
     cssAdmin: {
-      src: require('../pipeline-admin').cssFilesToInjectPub,
+      src: require('../pipeline-admin').cssFilesToInject,
       dest: '.tmp/public/admin/concat/production.css'
     }
   });
