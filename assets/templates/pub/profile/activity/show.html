@@ -11,9 +11,9 @@
         <div class="row stand-row">
           <a data-options="align:bottom; pip: center" data-dropdown="sort_by_dropdown" class="button sort-by left">Sort By<i class="fa fa-chevron-down right"></i></a>
           <ul id="sort_by_dropdown" class="f-dropdown sort-by-dropdown" data-dropdown-content>
-            <li ng-class="{'selected': !filter}"><a ng-click="selectSort('bookmark')">bookmarked</a></li>
-            <li ng-class="{'selected': filter === 'active'}"><a ng-click="selectSort('inactive')">active</a></li>
+            <li ng-class="{'selected': !filter}"><a ng-click="selectSort('active')">active</a></li>
             <li ng-class="{'selected': filter === 'closed'}"><a ng-click="selectSort('closed')">closed</a></li>
+            <li ng-class="{'selected': filter === 'bookmark'}"><a ng-click="selectSort('bookmark')">bookmarked</a></li>
           </ul>
 
           <div ng-show="tabData['activity'].length === 0" class="clearfix">

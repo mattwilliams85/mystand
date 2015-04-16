@@ -12,23 +12,16 @@ function ProfileCtrl($scope, $rootScope, $location, CurrentUser, Profile, UserSt
   $scope.page = 0;
   $scope.notif = {};
 
-  // $scope.changeTab = function(section) {
-  //   $scope.page = 0;
-  //   $scope.mode = section
-  //   if (section === 'bio') $location.path()
-  //   $location.path('profile/' + section);
-  // }
+  // Redirects if not signed in
+  $scope.redirectUnlessSignedIn()
 
   $scope.selectSort = function(sort) {
-    if (sort === 'active') {
-      $scope.filter = null;
-    } else {
-      $scope.filter = sort;
-    }
-    $scope.tabData['manage'] = [];
+    $scope.filter = sort;
     $scope.page = 0;
     $scope.showLoadMore = true;
-    $scope.loadMore('manage');
+
+    $scope.tabData[$scope.mode] = [];
+    $scope.loadMore($scope.mode);
   };
 
   $scope.loadMore = function(tab) {
@@ -36,7 +29,7 @@ function ProfileCtrl($scope, $rootScope, $location, CurrentUser, Profile, UserSt
     $scope.page += 1;
 
     if(tab === 'manage') {
-      UserStand.index($scope.profile.id, {page: $scope.page, sort: $scope.sortBy, filter: $scope.filter}).then(function(data) {
+      UserStand.index($scope.profile.id, {page: $scope.page, filter: $scope.filter}).then(function(data) {
         for (var i in data.stands) {
           // Calculate progress
           data.stands[i].progressPercent = Math.round((data.stands[i].actions_count*100)/data.stands[i].goal);
@@ -47,8 +40,6 @@ function ProfileCtrl($scope, $rootScope, $location, CurrentUser, Profile, UserSt
         } else {
           $scope.tabData[tab] = $scope.tabData[tab].concat(data.stands);
         }
-
-        // console.log($scope.tabData[tab])
 
         if ($scope.page === 1 && $scope.stands < 12) {
           $scope.showLoadMore = false;
@@ -58,31 +49,51 @@ function ProfileCtrl($scope, $rootScope, $location, CurrentUser, Profile, UserSt
       });
     }
     if(tab === 'activity') {
-      UserBookmark.index($scope.profile.id).then(function(data) {
-        for (var i in data.stands) {
-          // Calculate progress
-          data.stands[i].progressPercent = Math.round((data.stands[i].actions_count*100)/data.stands[i].goal);
-          // Calculate remaining days
-          data.stands[i].days_count = Math.round((Math.abs(Date.now() - data.stands[i].closed_at) / 86400000));
-        }
+      if($scope.filter === 'bookmark') {
+        console.log('active or closed')
+        UserBookmark.index($scope.profile.id, {page: $scope.page}).then(function(data) {
+          for (var i in data.stands) {
+            // Calculate progress
+            data.stands[i].progressPercent = Math.round((data.stands[i].actions_count*100)/data.stands[i].goal);
+            // Calculate remaining days
+            data.stands[i].days_count = Math.round((Math.abs(Date.now() - data.stands[i].closed_at) / 86400000));
+          }
 
-        if ($scope.tabData[tab].length === 0) {
-          $scope.tabData[tab] = data.stands
-        } else {
-          $scope.tabData[tab] = $scope.tabData[tab].concat(data.stands);
-        }
+          if ($scope.tabData[tab].length === 0) {
+            $scope.tabData[tab] = data.stands
+          } else {
+            $scope.tabData[tab] = $scope.tabData[tab].concat(data.stands);
+          }
 
-        // console.log($scope.tabData[tab])
+          if ($scope.page === 1 && $scope.stands < 12) {
+            $scope.showLoadMore = false;
+          } else if (data.stands.length < 12) {
+            $scope.showLoadMore = false;
+          }
+        })
+      } else {
+        UserStand.activity($scope.profile.id, {page: $scope.page, filter: $scope.filter}).then(function(data) {
+          for (var i in data.stands) {
+            // Calculate progress
+            data.stands[i].progressPercent = Math.round((data.stands[i].actions_count*100)/data.stands[i].goal);
+            // Calculate remaining days
+            data.stands[i].days_count = Math.round((Math.abs(Date.now() - data.stands[i].closed_at) / 86400000));
+          }
 
-        if ($scope.page === 1 && $scope.stands < 12) {
-          $scope.showLoadMore = false;
-        } else if (data.stands.length < 12) {
-          $scope.showLoadMore = false;
-        }
-      console.log($scope.tabData[tab])
-      })
+          if ($scope.tabData[tab].length === 0) {
+            $scope.tabData[tab] = data.stands
+          } else {
+            $scope.tabData[tab] = $scope.tabData[tab].concat(data.stands);
+          }
+
+          if ($scope.page === 1 && $scope.stands < 12) {
+            $scope.showLoadMore = false;
+          } else if (data.stands.length < 12) {
+            $scope.showLoadMore = false;
+          }
+        })
+      }
     }
-
   };
 
   $scope.backup = function(profile) {
@@ -100,32 +111,6 @@ function ProfileCtrl($scope, $rootScope, $location, CurrentUser, Profile, UserSt
   $scope.updateNotifications = function() {
     UserNotification.update($scope.notif);
   }
-
-  // var publishSuccessCallback = function(data) {
-  //  .publish(data.stand).then($location.path('stands/'+data.stand.id));
-  // }
-
-  // $scope.publishStand = function() {
-  //   if ($scope.editStand) {
-  //     //REGEX for YOUTUBE LINKS
-  //     if($scope.editStand.iamge_original_url) {
-  //       var regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
-  //       var match = $scope.editStand.image_original_url.match(regExp);
-  //       if (match && match[2].length == 11) {
-  //         $scope.editStand.image_original_url = "http://img.youtube.com/vi/" + match[2] + "/hqdefault.jpg";
-  //         $scope.editStand.youtube = match[2];
-  //       }
-  //     }
-  //     Stand.create($scope.newStand).then(publishSucessCallback, updateFailureCallback);
-  //   }
-  // }
-
-  $scope.loadForm = function(id) {
-
-  }
-
-  // TURN ME BACK ON!!!
-  // $scope.redirectUnlessSignedIn()
 
   this.init($scope, $location);
   this.fetch($scope, $rootScope, $location, CurrentUser, Profile, UserStand, UserBookmark, UserNotification, Category);
@@ -155,11 +140,6 @@ ProfileCtrl.prototype.fetch = function($scope, $rootScope, $location, CurrentUse
         $scope.options.duration = [{label: '30 days', value: 30}, {label: '60 days', value: 60}, {label: '90 days', value: 90}];
         $scope.options.goal = [{label: '100 actions', value: 100}, {label: '300 actions', value: 300}, {label: '500 actions', value: 500}, {label: '1000 actions', value: 1000}];
 
-        // Category.list().then(function(data) {
-        //   for(var i in data.categories) {
-        //     $scope.options.categories.push({label: data.categories[i].title, value: data.categories[i].title, id: data.categories[i].id});
-        //   }
-        // });
         $scope.loadMore('manage');
       }
 
@@ -171,8 +151,6 @@ ProfileCtrl.prototype.fetch = function($scope, $rootScope, $location, CurrentUse
         UserNotification.get($scope.profile.id).then(function(data){
           $scope.notif = data.userNotifications;
           $scope.notif.user = $scope.profile.id;
-          //TEMP
-
         })
       }
   });
