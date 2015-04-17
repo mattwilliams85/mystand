@@ -4,8 +4,8 @@
     <form name="form" ng-submit="fileUpload()" novalidate autocomplete='off'>
      <div class="field-div">
        <label class="right action-label">*you may only do one action at a time</label>
-       <label class="uppercase left action-label">paste your youtube link here</label>
-       <input class="action-input" ng-model="newAction.youtube" name="youtube" type="text"></input>
+       <label class="uppercase left action-label">Share a Video</label>
+       <input class="action-input" ng-model="newAction.youtube" name="youtube" type="text" placeholder="Paste link here"></input>
        <div class="row">
          <div class="small-5 columns">
            <hr/>
@@ -17,17 +17,17 @@
            <hr/>
          </div>
        </div>
-       <label class="uppercase action-label left">UPLOAD PHOTO</label>
+       <label class="uppercase action-label left">Share a photo</label>
        <div class="clearfix"></div>
        <div class="input-row">
 
-         <input class="input-path action-input" ng-model="newAction.image_original_url" name="image_original_url" type="text" ng-required="true"/>
+         <input class="input-path action-input" ng-model="newAction.image_original_url" name="image_original_url" type="text" ng-required="true" placeholder="Select file or paste link here"/>
          
-         <!-- <label class="upload-button"> -->
-             <file-s3-uploader data="newAction.image_original_url" mode="segment_image" show-progress="1" auto-upload="1" />
+         <label class="upload-button">
+             <file-s3-uploader data="newAction.image_original_url" mode="segment_image" show-progress="1" auto-upload="1" class="s3-button"></file-s3-uploader>
              <!-- <input onchange="angular.element(this).scope().onSelect(this)" class="upload-input" type="file" ng-required="true"/> -->
-             <!-- <span>BROWSE</span> -->
-         <!-- </label> -->
+             <span>BROWSE</span>
+         </label>
         </div>
        <div class="clearfix"></div>
        <label class="uppercase left action-label">caption</label>
