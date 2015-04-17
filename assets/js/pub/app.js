@@ -5,7 +5,8 @@ var myStandApp = angular.module('myStandApp', [
   'myStandControllers',
   'myStandServices',
   'textAngular',
-  'ngSails'
+  'ngSails',
+  'myStandApp.fileS3Uploader'
 ]);
 
 myStandApp.run(['$rootScope', '$location', '$timeout', '$sails', 'CurrentUser',

@@ -20,13 +20,14 @@
        <label class="uppercase action-label left">UPLOAD PHOTO</label>
        <div class="clearfix"></div>
        <div class="input-row">
-         <label class="left action-label">Select File: </label>
-         <input class="input-path action-input" ng-model="newAction.image_original_url" name="image_original_url" type="text"></input>
-         <!-- <input ng-model="$newAction.file[0].name" class="input-path"></input> -->
-         <label class="upload-button">
-             <input onchange="angular.element(this).scope().onSelect(this.files)" class="upload-input" type="file" name="file" ng-required="true"/>
-             <span>BROWSE</span>
-         </label>
+
+         <input class="input-path action-input" ng-model="newAction.image_original_url" name="image_original_url" type="text" ng-required="true"/>
+         
+         <!-- <label class="upload-button"> -->
+             <file-s3-uploader data="newAction.image_original_url" mode="segment_image" show-progress="1" auto-upload="1" />
+             <!-- <input onchange="angular.element(this).scope().onSelect(this)" class="upload-input" type="file" ng-required="true"/> -->
+             <!-- <span>BROWSE</span> -->
+         <!-- </label> -->
         </div>
        <div class="clearfix"></div>
        <label class="uppercase left action-label">caption</label>

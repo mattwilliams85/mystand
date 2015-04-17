@@ -72,7 +72,7 @@ function StandsCtrl($rootScope, $scope, $location, $routeParams, CurrentUser, St
   };
 
   $scope.onSelect = function(file) {
-    $scope.newAction.file = file;
+    $scope.newAction.image_original_url = file.value
   };
 
   $scope.bookmarkStand = function() {
@@ -271,14 +271,15 @@ StandsCtrl.prototype.fetch = function($rootScope, $scope, $location, $routeParam
       });
     });
 
-    CurrentUser.get().then(function(data) {
-      $rootScope.currentUser = data;
-      UserActionableStand.index(data.id).then(function(data){
-        for (var i in data.stands) {
-          if(data.stands[i].id == $scope.stand.id) $scope.contributor = true;
-        }
-      });
-    });
+    // NEEDS UPDATE
+    // CurrentUser.get().then(function(data) {
+    //   $rootScope.currentUser = data;
+    //   UserActionableStand.index(data.id).then(function(data){
+    //     for (var i in data.stands) {
+    //       if(data.stands[i].id == $scope.stand.id) $scope.contributor = true;
+    //     }
+    //   });
+    // });
 
     angular.element(document).ready(function () {
       var disqus_shortname = 'mystandcomments';
