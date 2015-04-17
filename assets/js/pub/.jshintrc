@@ -21,6 +21,12 @@
   "white": false,
   "predef": [
     "sails",
-    "async"
+    "angular",
+    "async",
+    "myStandApp",
+    "myStandControllers",
+    "myStandServices",
+    "JST",
+    "SAILS_LOCALS"
   ]
 }

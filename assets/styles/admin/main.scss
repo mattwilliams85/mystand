@@ -20,6 +20,23 @@ body * {
   a {
     color: #fff;
   }
+
+  .user-image {
+    height: 45px;
+    border-radius: 100%;
+    float: right;
+    margin-left: 20px;
+    margin-top: 16px;
+  }
+
+  .user-name {
+    float: right;
+  }
+}
+
+.ms-admin-header-divider {
+  background-color: #e7e7e7;
+  height: 40px;
 }
 
 
@@ -31,8 +48,13 @@ body * {
   color: #fff;
   height: 200px;
   line-height: 200px;
-}
 
+  h6 {
+    font-size: 15pt;
+    color: #fff;
+    line-height: inherit;
+  }
+}
 
 .ms-admin-center {
   background: #959595;
@@ -42,6 +64,10 @@ body * {
   }
 }
 
+
+/**
+ * Menu
+ */
 .ms-admin-menu-wrapper {
   .ms-admin-menu {
     list-style: none;
@@ -55,6 +81,7 @@ body * {
         a {
           color: #f00;
           background-color: #fff;
+          border-left: 7px solid #00c4ee
         }
       }
     }
@@ -68,9 +95,35 @@ body * {
   }
 }
 
+
+/**
+ * Content
+ */
 .ms-admin-content {
   background-color: #d5d3d3;
   min-height: 400px;
+  padding: 10px;
+
+  .ms-admin-table {
+    width: 100%;
+  }
+}
+
+
+/**
+ * Pagination
+ */
+.ms-admin-pagination {
+  text-align: center;
+
+  button {
+    border: 2px solid #464646;
+    color: #464646;
+    font-size: 1em;
+    line-height: 1em;
+    padding: .5em;
+    background: none;
+  }
 }
 
 

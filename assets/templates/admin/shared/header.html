@@ -1,7 +1,11 @@
 <header class="ms-admin-header">
   <div class="row">
     <div class="large-12 columns">
+      <img ng-if="currentUser" class="user-image" ng-src="{{currentUser.image_original_url}}" />
+      <span ng-if="currentUser" class="user-name">Hello {{currentUser.first_name}}</span>
       <a ng-href="/home" target="_self">MyStand</a>
     </div>
   </div>
 </header>
+
+<section class="ms-admin-header-divider"></section>

@@ -7,19 +7,20 @@ var myStandAdminApp = angular.module('myStandAdminApp', [
   'textAngular'
 ]);
 
-myStandAdminApp.run(['$rootScope', '$location', 'CurrentUser', function ($rootScope, $location, CurrentUser) {
+myStandAdminApp.run(['$rootScope', '$window', '$location', 'CurrentUser', function ($rootScope, $window, $location, CurrentUser) {
   $rootScope.currentUser = {};
 
   /*
    * Fill in User object with data
   */
   $rootScope.$on('$includeContentLoaded', function() {
-    CurrentUser.get().then(function(data) {
+    CurrentUser.get().then(function successCallback(data) {
       $rootScope.currentUser = data;
       // Redirect if not admin
-      // if (!$rootScope.currentUser || !$rootScope.currentUser.is_admin) {
-        // window.location = '/';
-      // }
+      if (!$rootScope.currentUser.is_admin) $window.location = '/';
+    }, function errorCallback(status) {
+      // Redirect if not signed in
+      if (status === 403) $window.location = '/';
     });
   });
 

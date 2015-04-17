@@ -14,7 +14,7 @@ function CurrentUser($http, $q, $cacheFactory) {
       var userData = cache.get('data');
 
       if (isProcessingRequest) {
-        dfr.resolve({});
+        dfr.reject('Processing Request ...');
       } else if (userData && userData.email) {
         dfr.resolve(userData);
       } else {
@@ -26,10 +26,10 @@ function CurrentUser($http, $q, $cacheFactory) {
           cache.put('data', res.user);
           isProcessingRequest = false;
           dfr.resolve(cache.get('data'));
-        }).error(function(err) {
+        }).error(function(data, status) {
           isProcessingRequest = false;
-          console.log('エラー', err);
-          dfr.reject(err);
+          console.log('エラー', data, status);
+          dfr.reject(status);
         });
       }
 

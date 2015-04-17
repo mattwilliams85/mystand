@@ -1,0 +1,25 @@
+<table class="ms-admin-table">
+  <thead>
+    <tr>
+      <th width="20">ID</th>
+      <th>Name</th>
+      <th>Email</th>
+      <th width="150">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="user in users">
+      <td>{{user.id}}</td>
+      <td>{{user.first_name}} {{user.last_name}}</td>
+      <td>{{user.email}}</td>
+      <td><a ng-href="/admin/users/{{user.id}}">Edit</a></td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<div class="ms-admin-pagination">
+  <button ng-if="page > 1" ng-click="paginationPrev()">Prev</button>
+  <button ng-if="showLoadMore" ng-click="paginationNext()">Next</button>
+</div>

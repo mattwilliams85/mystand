@@ -80,5 +80,12 @@ module.exports.policies = {
   },
   MediaController: {
     '*': 'sessionAuth'
+  },
+
+
+  // Admin policies
+  'admin/AdminUsersController': {
+    '*': 'adminAuth'
   }
+
 };

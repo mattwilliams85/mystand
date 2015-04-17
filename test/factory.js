@@ -29,7 +29,8 @@ module.exports = function() {
       password: 'passw0rD',
       password_confirmation: 'passw0rD',
       first_name: 'John',
-      last_name: 'Smith'
+      last_name: 'Smith',
+      is_admin: false
     };
     for (var key in opts) { attributes[key] = opts[key]; }
 

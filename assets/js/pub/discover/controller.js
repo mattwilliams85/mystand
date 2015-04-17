@@ -41,11 +41,11 @@ function DiscoverCtrl($scope, $routeParams, $timeout, Stand, Category) {
 
   $scope.selectCategory = function(categoryId) {
     $scope.freshPage = false;
-    $scope.categories[categoryId - 1]['active'] = true;
+    $scope.categories[categoryId - 1].active = true;
     if ($scope.selectedCategories.indexOf(categoryId) > -1) {
       $scope.selectedCategories.splice($scope.selectedCategories.indexOf(categoryId), 1);
       $scope.unSelectCategory(categoryId);
-      $scope.categories[categoryId - 1]['active'] = false;
+      $scope.categories[categoryId - 1].active = false;
       return;
     }
     $scope.selectedCategories.push(categoryId);
@@ -55,7 +55,7 @@ function DiscoverCtrl($scope, $routeParams, $timeout, Stand, Category) {
     $scope.loadMore();
   };
 
-  $scope.unSelectCategory = function(categoryId) {
+  $scope.unSelectCategory = function() {
     $scope.stands = [];
     $scope.page = 0;
     $scope.showLoadMore = true;
@@ -80,8 +80,8 @@ function DiscoverCtrl($scope, $routeParams, $timeout, Stand, Category) {
   };
 
   $scope.hoverEffect = function(categoryId) {
-    $scope.hoverCategory = categoryId
-  }
+    $scope.hoverCategory = categoryId;
+  };
 
   $scope.$on('headerSearchSubmit', function(event, args) {
     $scope.searchQuery = args.query;

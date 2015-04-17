@@ -4,7 +4,11 @@
  */
 
 // Foundation Settings
-// $switch-active-color: #ade279;
+$table-bg: #ededed;
+$table-even-row-bg: #ededed;
+$table-border-color: #d5d3d3;
+$table-head-bg: #e7e7e7;
+$table-head-font-color: #1f1f1f;
 
 // Import zurb foundation framework
 @import "assets/bower_components/foundation/scss/foundation";

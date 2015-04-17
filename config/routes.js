@@ -116,6 +116,12 @@ module.exports.routes = {
     skipAssets: true
   },
 
+  // Users
+  'get /admin/users.json': 'admin/AdminUsersController.index',
+  'get /admin/users/:id.json': 'admin/AdminUsersController.show',
+  'post /admin/users.json': 'admin/AdminUsersController.create',
+  'put /admin/users/:id.json': 'admin/AdminUsersController.update',
+
 
   // All other non asset routes will render a default layout with no content
   '*': {

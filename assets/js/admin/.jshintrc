@@ -21,6 +21,12 @@
   "white": false,
   "predef": [
     "sails",
-    "async"
+    "angular",
+    "async",
+    "myStandAdminApp",
+    "myStandAdminControllers",
+    "myStandAdminServices",
+    "JST",
+    "SAILS_LOCALS"
   ]
 }

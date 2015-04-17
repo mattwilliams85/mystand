@@ -17,8 +17,31 @@
     </script>
   </head>
   <body>
+
     <ng-include src="'assets/templates/admin/shared/header.html'"></ng-include>
-    <ng-view autoscroll="true"></ng-view>
+
+    <section class="ms-admin-center">
+      <div class="row">
+        <div class="large-12 columns ms-admin-center-inner">
+          <div class="row">
+            <div class="large-3 columns no-pad-left no-pad-right">
+              <div class="ms-admin-menu-wrapper">
+                <ng-include src="'assets/templates/admin/shared/menu.html'"></ng-include>
+              </div>
+            </div>
+
+            <div class="large-9 columns no-pad-left no-pad-right">
+              <div class="ms-admin-content">
+
+                <ng-view autoscroll="true"></ng-view>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <ng-include src="'assets/templates/admin/shared/footer.html'"></ng-include>
 
     <!-- DO NOT REMOVE OR CHANGE THESE COMMENTS -- >
@@ -40,7 +63,9 @@
     <script src="/js/admin/app.js"></script>
     <script src="/js/admin/current-user/service.js"></script>
     <script src="/js/admin/home/controller.js"></script>
+    <script src="/js/admin/rest-service/service.js"></script>
     <script src="/js/admin/routes.js"></script>
+    <script src="/js/admin/users/controller.js"></script>
     <!--SCRIPTS END-->
   </body>
 </html>

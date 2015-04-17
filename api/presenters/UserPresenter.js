@@ -29,5 +29,17 @@ module.exports = function toJSON(opts) {
     }
   }
 
+  if (opts.cms) {
+    data.image_original_url = this.image_original_url;
+    data.email = this.email;
+    data.is_admin = !!this.is_admin;
+    if (this.profile) {
+      data.bio = this.profile.bio;
+      data.website = this.profile.website;
+      data.stands_count = this.profile.stands_count || 0;
+      data.score = this.profile.score || 0;
+    }
+  }
+
   return data;
 };

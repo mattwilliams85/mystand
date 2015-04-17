@@ -10,6 +10,12 @@ myStandAdminApp.config(['$routeProvider', '$locationProvider', function($routePr
     controller: 'HomeCtrl'
   }).
 
+  // users
+  when('/admin/users', {
+    template: JST['assets/templates/admin/users/index.html'],
+    controller: 'UsersCtrl'
+  }).
+
   otherwise({
     redirectTo: '/admin/home'
   });
