@@ -28,6 +28,9 @@ LandingCtrl.prototype.fetch = function($scope, $timeout, FeaturedStand, Trending
       $scope.trendingStands = data.trendingStands;
       for (var i in data.trendingStands) {
         if(data.trendingStands[i].title.length > 27) data.trendingStands[i].title = data.trendingStands[i].title.substring(0,24) + "...";
+        if(data.trendingStands[i].youtube) {
+          data.trendingStands[i].thumbnail = 'http://img.youtube.com/vi/' + data.trendingStands[i].youtube + '/hqdefault.jpg';
+        }
       }
     });
 
@@ -46,7 +49,9 @@ LandingCtrl.prototype.fetch = function($scope, $timeout, FeaturedStand, Trending
         });
       } else {
         $('.ms-featured-stands').slick({
-          draggable: false
+          draggable: false,
+          prevArrow: '<i class="fa fa-chevron-left carousel-left" style="color:#fff"></i>',
+          nextArrow: '<i class="fa fa-chevron-right carousel-right" style="color:#fff"></i>'
         });
       }
     }, 1000);

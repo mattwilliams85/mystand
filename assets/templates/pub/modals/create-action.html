@@ -24,7 +24,7 @@
          <input class="input-path action-input" ng-model="newAction.image_original_url" name="image_original_url" type="text" ng-required="true" placeholder="Select file or paste link here"/>
          
          <label class="upload-button">
-             <file-s3-uploader data="newAction.image_original_url" mode="segment_image" show-progress="1" auto-upload="1" class="s3-button"></file-s3-uploader>
+             <ng-s3-file-upload data="newAction.image_original_url" config="/uploader-config.json" show-progress="1" auto-upload="1"></ng-s3-file-upload>
              <!-- <input onchange="angular.element(this).scope().onSelect(this)" class="upload-input" type="file" ng-required="true"/> -->
              <span>BROWSE</span>
          </label>

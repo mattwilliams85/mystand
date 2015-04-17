@@ -24,7 +24,7 @@ function StandsCtrl($rootScope, $scope, $location, $routeParams, CurrentUser, St
     categories: [],
     type: [{label: 'photo', value: 'photo'}, {label: 'video', value: 'video'}],
     duration: [{label: '30 days', value: 30}, {label: '60 days', value: 60}, {label: '90 days', value: 90}],
-    goat: [{label: '100 actions', value: 100}, {label: '300 actions', value: 300}, {label: '500 actions', value: 500}, {label: '1000 actions', value: 1000}]
+    goal: [{label: '100 actions', value: 100}, {label: '300 actions', value: 300}, {label: '500 actions', value: 500}, {label: '1000 actions', value: 1000}]
   };
 
   // Listen for updates
@@ -67,6 +67,7 @@ function StandsCtrl($rootScope, $scope, $location, $routeParams, CurrentUser, St
       StandAction.create($scope.newAction).then(function() {
         $scope.changeTab('actions');
         $scope.contributor = true;
+        $scope.newAction = {};
       });
     }
   };
@@ -77,8 +78,12 @@ function StandsCtrl($rootScope, $scope, $location, $routeParams, CurrentUser, St
 
   $scope.bookmarkStand = function() {
     Stand.bookmark($scope.stand);
-    $('.fa-bookmark').css('color','#EBBF2D')
+    $('.fa-bookmark').css('color','#1EAFFC')
   };
+
+  var flagStandSuccess = function() {
+    $('.fa-flag').css('color','#8A0A18');
+  }
 
   $scope.flagStand = function() {
     var flag = {
@@ -86,8 +91,7 @@ function StandsCtrl($rootScope, $scope, $location, $routeParams, CurrentUser, St
       contentId: $scope.stand.id,
       contentType: 'Stand'
     };
-    Flag.create(flag);
-    $('.fa-flag').css('color','#8A0A18')
+    Flag.create(flag).then(flagStandSuccess);
   };
 
   $scope.takeAction = function() {
@@ -198,8 +202,10 @@ function StandsCtrl($rootScope, $scope, $location, $routeParams, CurrentUser, St
     if (tab === 'actions') {
       StandAction.list($scope.stand.id, {page: $scope.page}).then(function(data) {
         for (var i in data.standActions) {
-          data.standActions[i].thumbnail =  'http://img.youtube.com/vi/' +  data.standActions[i].youtube + '/hqdefault.jpg';
-          if(data.standActions[i].youtube) data.standActions[i].youtube = 'https://www.youtube.com/embed/' + data.standActions[i].youtube + '?modestbranding=1;controls=1;showinfo=0;rel=0;fs=1';
+          if(data.standActions[i].youtube) {
+            data.standActions[i].youtube = 'https://www.youtube.com/embed/' + data.standActions[i].youtube + '?modestbranding=1;controls=1;showinfo=0;rel=0;fs=1';
+            data.standActions[i].thumbnail = 'http://img.youtube.com/vi/' +  data.standActions[i].youtube + '/hqdefault.jpg';
+          }
         }
         $scope.tabData[tab] = $scope.tabData[tab].concat(data.standActions);
         console.log($scope.tabData[tab]);

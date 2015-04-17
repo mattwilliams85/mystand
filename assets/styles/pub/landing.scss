@@ -82,6 +82,21 @@
       right: -35px;
     }
 
+    .carousel-left {
+      left:-4%;
+    }
+
+    .carousel-right {
+      right:-4%;
+    }
+
+    .carousel-right, .carousel-left {
+      position:absolute;
+      top:50%;
+      font-size:25pt;
+      cursor:pointer;
+    }
+
     .hide-overflow {
       overflow:hidden;
       height:405px;

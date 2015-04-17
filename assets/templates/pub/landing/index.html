@@ -101,7 +101,8 @@
                     <a ng-href="stands/{{stand.id}}">
                       <div class="trending-stand">
                         <div class="trend-img">
-                          <img ng-src='{{stand.image_original_url}}'>
+                          <img ng-if="!stand.youtube" ng-src='{{stand.image_original_url}}'>
+                          <img ng-if="stand.youtube" ng-src="{{stand.thumbnail}}"/>
                         </div>
                         <div class="details show-for-medium-up">
                           <h4><a ng-href="/stands/{{stand.id}}">{{stand.title}}</a></h4>

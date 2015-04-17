@@ -33,7 +33,7 @@ var jsFilesToInject = [
   'bower_components/angular-route/angular-route.min.js',
   'bower_components/angular-resource/angular-resource.min.js',
   'bower_components/angular-sails/dist/angular-sails.min.js',
-  'bower_components/angular-s3-file-upload/angularS3FileUpload.js',
+  'bower_components/angular-s3-file-upload/angular-s3-file-upload.js',
   'bower_components/lodash/lodash.min.js',
   'bower_components/jquery/dist/jquery.min.js',
   'bower_components/foundation/js/foundation.min.js',
