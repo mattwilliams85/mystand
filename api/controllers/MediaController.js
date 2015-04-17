@@ -57,6 +57,7 @@ module.exports = {
           base64Policy = new Buffer(JSON.stringify(policy), 'utf-8').toString('base64'),
           credentials = {
             key: 'uploads/' + dir + '/${filename}',
+            acl: 'public-read',
             awsAccessKeyId: awsAccessKeyId,
             s3Policy: new Buffer(JSON.stringify(policy)).toString('base64'),
             s3Signature: crypto.createHmac('sha1', awsSecretAccessKeyId).update(base64Policy).digest('base64'),

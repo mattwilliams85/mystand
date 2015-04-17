@@ -13,12 +13,14 @@ module.exports = {
   index: function(req, res) {
     var items = [],
         options = {
+          sort: 'id DESC',
           page: req.param('page') || 1,
           limit: this.perPage
         };
 
     var findUsers = function() {
       User.find()
+      .sort(options.sort)
       .populate('profile')
       .paginate({page: options.page, limit: options.limit})
       .exec(function(err, users) {
