@@ -268,6 +268,24 @@ describe('POST /stands.json', function() {
       });
     });
 
+    describe('image or youtube validation', function() {
+      beforeEach(function() {
+        standData.youtube = null;
+        standData.image_original_url = null;
+      });
+
+      it('should return error message cfgfyfhggfh', function(done) {
+        agent
+          .post('/stands.json')
+          .send(standData)
+          .end(function(err, res) {
+            expect(res.statusCode).to.equal(500);
+            expect(res.body.error.image_original_url[0].message).to.equal('Image or Youtube link is required');
+            done();
+          });
+      });
+    });
+
     describe('stand profile field validation', function() {
       beforeEach(function() {
         standData.full_description = null;

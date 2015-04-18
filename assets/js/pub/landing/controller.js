@@ -19,7 +19,7 @@ LandingCtrl.prototype.fetch = function($scope, $timeout, FeaturedStand, Trending
 
     FeaturedStand.index().then(function(data) {
       for (var i in data.featuredStands) {
-        data.featuredStands[i].youtube = 'https://www.youtube.com/embed/' + data.featuredStands[i].youtube + '?modestbranding=1;controls=0;showinfo=0;rel=0;fs=1';
+        if(data.featuredStands[i].youtube) data.featuredStands[i].youtube = 'https://www.youtube.com/embed/' + data.featuredStands[i].youtube + '?modestbranding=1;controls=0;showinfo=0;rel=0;fs=1';
       }
       $scope.featuredStands = data.featuredStands;
     });

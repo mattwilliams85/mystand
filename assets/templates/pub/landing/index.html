@@ -55,7 +55,8 @@
                 <!-- Featured Stand -->
                 <div class="featured-stand" ng-repeat="stand in featuredStands">
                     <div class="large-8 small-12 columns">
-                      <iframe id="player" type="text/html" class="youtube-player" width="100%"
+                      <img ng-if="!stand.youtube" ng-src="{{stand.image_original_url}}" class="featured-image"/>
+                      <iframe ng-if="stand.youtube" id="player" type="text/html" class="youtube-player" width="100%"
                         ng-src="{{stand.youtube}}"
                         frameborder="0"  modestbranding="1" autohide="1" showinfo="1" controls="1";></iframe>
                     </div>

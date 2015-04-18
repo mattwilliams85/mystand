@@ -38,6 +38,10 @@
     letter-spacing:.25em;
   }
 
+  .featured-image {
+    min-height:380px;
+  }
+
   .youtube-player {
     height:200px;
     @media #{$small} {

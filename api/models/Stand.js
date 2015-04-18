@@ -32,10 +32,15 @@ module.exports = {
     },
     image_original_url: {
       type: 'string',
-      required: true
+      required: function() {
+        return !this.youtube;
+      }
     },
     youtube: {
-      type: 'string'
+      type: 'string',
+      required: function() {
+        return !this.image_original_url;
+      }
     },
     description: {
       type: 'string',
@@ -102,7 +107,10 @@ module.exports = {
       required: 'Title is required'
     },
     image_original_url: {
-      required: 'Image is required'
+      required: 'Image or Youtube link is required'
+    },
+    youtube: {
+      required: 'Image or Youtube link is required'
     },
     description: {
       required: 'Description is required'
