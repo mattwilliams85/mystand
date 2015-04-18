@@ -746,6 +746,55 @@
             "optional": false,
             "field": "stand.profile.full_description",
             "description": "<p>Full Description</p> "
+          },
+          {
+            "group": "Success 200",
+            "type": "Object",
+            "optional": false,
+            "field": "standAction",
+            "description": "<p>Stand Action object (Optional. Returned if current user acted on the stand)</p> "
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "standAction.id",
+            "description": "<p>Stand Action ID</p> "
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "standAction.stand",
+            "description": "<p>Stand ID</p> "
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "standAction.user",
+            "description": "<p>User ID</p> "
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "standAction.image_original_url",
+            "description": "<p>Image url</p> "
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "standAction.youtube",
+            "description": "<p>Youtube ID</p> "
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "standAction.description",
+            "description": "<p>Description</p> "
           }
         ]
       },

@@ -118,6 +118,13 @@ module.exports = {
    * @apiSuccess {String} stand.goal_result Goal result
    * @apiSuccess {Object} stand.profile Profile object
    * @apiSuccess {String} stand.profile.full_description Full Description
+   * @apiSuccess {Object} standAction Stand Action object (Optional. Returned if current user acted on the stand)
+   * @apiSuccess {Number} standAction.id Stand Action ID
+   * @apiSuccess {Number} standAction.stand Stand ID
+   * @apiSuccess {Number} standAction.user User ID
+   * @apiSuccess {String} standAction.image_original_url Image url
+   * @apiSuccess {String} standAction.youtube Youtube ID
+   * @apiSuccess {String} standAction.description Description
    *
    * @apiSuccessExample Success-Response:
    *   HTTP/1.1 200 OK
