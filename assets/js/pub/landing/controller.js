@@ -33,7 +33,7 @@ LandingCtrl.prototype.fetch = function($scope, $timeout, FeaturedStand, Trending
         }
       }
     });
-
+    
     // initialize Featured Stands carousel
     $timeout(function() {
       if(window.innerWidth <= 768) {

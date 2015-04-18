@@ -265,6 +265,7 @@ StandsCtrl.prototype.fetch = function($rootScope, $scope, $location, $routeParam
     Stand.get($routeParams.standId, true).then(function(data) {
       $scope.stand = data.stand;
 
+      if (data.currentUserStandAction) $scope.contributor = true;
       if ($scope.stand.youtube) $scope.stand.youtube = 'https://www.youtube.com/embed/' + $scope.stand.youtube + '?modestbranding=1;controls=0;showinfo=0;rel=0;fs=1';
 
       if ($scope.stand.profile) $scope.fullDetailsHtml = $scope.stand.profile.full_description;
