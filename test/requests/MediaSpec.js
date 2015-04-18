@@ -9,6 +9,7 @@ var uploaderConfigSchema = joi.object({
     s3Policy: joi.string().min(200).required(),
     s3Signature: joi.string().min(10).required(),
     s3Bucket: joi.string().min(10).required(),
+    acl: joi.string().required()
   })
 });
 
