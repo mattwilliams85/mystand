@@ -1,4 +1,4 @@
-/*global Stand: true, StandProfile: true, User: true, Category: true */
+/*global Stand: true, StandProfile: true, User: true, Category: true, StandAction: true */
 'use strict';
 
 /**
@@ -140,19 +140,42 @@ module.exports = {
    *   }
    */
   show: function(req, res) {
-    Stand.findOneById(req.param('id')).populate('category').populate('profile').exec(function(err, stand) {
-      if (err) {
-        console.log(err);
-        return res.status(500).json({error: 'Database error'});
-      }
+    function findCurrentUserStandAction(standId, userId, callback) {
+      StandAction.findOne().where({stand: standId, user: userId}).exec(function(err, standAction) {
+        if (err) {
+          sails.log.error(err);
+          return callback(err);
+        }
+        if (!standAction) return callback();
 
-      if (req.isSocket) {
-        // Subscribe client to instance changes
-        Stand.subscribe(req.socket, [stand]);
-        sails.log.info('Subscribed client to stand updates', stand.id, req.socket.id);
-      }
+        return callback(null, standAction);
+      });
+    }
 
-      return res.json({stand: stand.toJSON({withProfile: true})});
+    User.auth(req.session.user, function(err, currentUser) {
+      Stand.findOneById(req.param('id')).populate('category').populate('profile').exec(function(err, stand) {
+        if (err) {
+          sails.log.error(err);
+          return res.status(500).json({error: 'Database error'});
+        }
+
+        if (req.isSocket) {
+          // Subscribe client to instance changes
+          Stand.subscribe(req.socket, [stand]);
+          sails.log.info('Subscribed client to stand updates', stand.id, req.socket.id);
+        }
+
+        var data = {stand: stand.toJSON({withProfile: true})};
+        if (!currentUser) return res.json(data);
+
+        // Update response with current yser's stand action
+        findCurrentUserStandAction(stand.id, currentUser.id, function(err, standAction) {
+          if (err) return res.status(500).json({error: 'Database error'});
+
+          if (standAction) data.currentUserStandAction = standAction.toJSON();
+          return res.json(data);
+        });
+      });
     });
   },
 

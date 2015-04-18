@@ -26,6 +26,15 @@ var standFullSchema = standSchema.keys({
   }).required()
 });
 
+var standActionSchema = joi.object({
+  id: joi.number().integer().required(),
+  stand: joi.number().integer().required(),
+  user: joi.number().integer().required(),
+  image_original_url: joi.string().optional(),
+  youtube: joi.string().optional(),
+  description: joi.string().optional()
+});
+
 var standsSchema = joi.object({
   stands: joi.array().items(standSchema).required()
 });
@@ -117,7 +126,7 @@ describe('GET /stands.json', function() {
 describe('GET /stands/:id.json', function() {
   var factoryData;
   beforeEach(function(done) {
-    DatabaseCleaner.clean(['stands', 'stand_profiles', 'categories'], function() {
+    DatabaseCleaner.clean(['users', 'stands', 'stand_profiles', 'categories'], function() {
       // Create category
       Factory.create('category')(function(err, category) {
         // Create stands with category
@@ -143,6 +152,39 @@ describe('GET /stands/:id.json', function() {
       expect(validation.error).to.be.null;
       expect(res.body.stand.id).to.eql(factoryData[0].id);
       done();
+    });
+  });
+
+  describe('signed in user', function() {
+    var standAction;
+
+    beforeEach(function(done) {
+      withSignIn(function(err, data) {
+        async.series([
+          Factory.create('standAction', {stand: factoryData[0].id, user: data.id}),
+          Factory.create('standAction', {stand: factoryData[1].id, user: data.id})
+        ], function(err, data) {
+          standAction = data[0];
+          done();
+        });
+      });
+    });
+
+    it('should return stand action when user is signed in and has acted on this stand', function(done) {
+      agent.get('/stands/' + factoryData[0].id + '.json').end(function(err, res) {
+        expect(res.statusCode).to.eql(200);
+        var validation;
+
+        validation = standFullSchema.validate(res.body.stand);
+        expect(validation.error).to.be.null;
+        expect(res.body.stand.id).to.eql(factoryData[0].id);
+
+        validation = standActionSchema.validate(res.body.currentUserStandAction);
+        expect(validation.error).to.be.null;
+        expect(res.body.currentUserStandAction.id).to.eql(standAction.id);
+
+        done();
+      });
     });
   });
 });
