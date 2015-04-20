@@ -32,15 +32,9 @@ module.exports = {
     },
     image_original_url: {
       type: 'string',
-      required: function() {
-        return !this.youtube;
-      }
     },
     youtube: {
       type: 'string',
-      required: function() {
-        return !this.image_original_url;
-      }
     },
     description: {
       type: 'string',
