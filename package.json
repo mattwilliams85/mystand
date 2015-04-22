@@ -17,6 +17,7 @@
     "connect-redis": "1.4.5",
     "db-migrate": "^0.9.9",
     "ejs": "~0.8.4",
+    "forever": "^0.14.1",
     "grunt": "0.4.2",
     "grunt-contrib-clean": "~0.5.0",
     "grunt-contrib-coffee": "~0.10.1",
@@ -62,6 +63,7 @@
     "debug": "node debug app.js",
     "dev": "node app.js",
     "prod": "node app.js --prod",
+    "worker": "node worker.js",
     "db-migrate": "node ./node_modules/db-migrate/bin/db-migrate",
     "test-frontend": "./script/test_frontend.sh",
     "postinstall": "bower install"
